@@ -176,6 +176,8 @@ Planned topics:
 
 AI-related engineering topics will appear throughout the series when relevant. They do not need to be forced into every article.
 
+Practical tool-specific examples will focus on Claude and GitHub Copilot, the AI tools officially approved for use in the author's company. General engineering principles will remain vendor-neutral, while hands-on workflows will reflect these approved tools.
+
 Potential dedicated topics include:
 
 - AI-assisted requirements analysis and task decomposition.
