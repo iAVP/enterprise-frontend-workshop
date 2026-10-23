@@ -35,6 +35,21 @@ The application is a practical context for discussing architecture. Features sho
 
 ## 3. Planned Article Sequence
 
+### Introductory Article — Architecture Before Technology
+
+**Purpose:** introduce the author's personal view of software architecture and explain why architectural decisions should be considered before implementation begins.
+
+Planned topics:
+
+- Architecture as a set of deliberate decisions, not a specific framework or tool.
+- Why it is preferable to establish the main architectural direction before development starts.
+- How the cost and impact of architectural changes can grow as a project progresses: before development, during the first third or MVP stage, and around the middle or later stages.
+- Architecture as an evolving set of decisions rather than an immutable blueprint.
+- Why the following articles focus on the architectural reasoning behind choices, using Angular, Vue, NX, and other technologies as implementation tools.
+- How AI can reduce the time needed to learn and use tools, while architectural understanding remains essential for directing and validating the resulting code.
+
+The article presents a personal perspective, not a mandatory architecture or a universal prescription. Readers remain free to make their own choices.
+
 ### Stage 1 — NX Fundamentals
 
 **Purpose:** establish the workspace and explain the NX development model.
