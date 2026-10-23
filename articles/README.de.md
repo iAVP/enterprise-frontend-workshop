@@ -35,6 +35,21 @@ Die Anwendung bietet einen praktischen Kontext für die Architekturdiskussion. F
 
 ## 3. Geplante Artikelabfolge
 
+### Einführender Artikel — Architektur vor Technologie
+
+**Ziel:** Die persönliche Sicht des Autors auf Softwarearchitektur vorstellen und erläutern, warum Architekturentscheidungen möglichst vor Beginn der Implementierung bedacht werden sollten.
+
+Geplante Themen:
+
+- Architektur als Ergebnis bewusster Entscheidungen und nicht als bestimmtes Framework oder Werkzeug.
+- Warum die grundlegende architektonische Richtung möglichst vor Entwicklungsbeginn festgelegt werden sollte.
+- Wie Aufwand und Auswirkungen architektonischer Änderungen im Projektverlauf wachsen können: vor Entwicklungsbeginn, im ersten Drittel oder während der MVP-Phase sowie in der Mitte und in späteren Phasen.
+- Architektur als weiterentwickelbares Set von Entscheidungen statt als unveränderlicher Bauplan.
+- Warum die folgenden Artikel vor allem die architektonischen Überlegungen hinter Entscheidungen erklären und Angular, Vue, NX und andere Technologien als Umsetzungswerkzeuge behandeln.
+- Wie KI die Einarbeitung in Werkzeuge beschleunigen kann, während Architekturverständnis für die Steuerung und Überprüfung des Ergebnisses wesentlich bleibt.
+
+Der Artikel stellt eine persönliche Perspektive vor, keine verpflichtende Architektur und keine allgemeingültige Vorschrift. Die Leser können ihren eigenen Ansatz wählen.
+
 ### Phase 1 — NX-Grundlagen
 
 **Ziel:** Den Workspace einrichten und das Entwicklungsmodell von NX erläutern.
