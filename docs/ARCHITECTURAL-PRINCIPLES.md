@@ -62,11 +62,13 @@ State handling and data access should be encapsulated in services with clear res
 
 The intended approach distinguishes several responsibilities:
 
-- **UI components:** rendering, user input, and local presentation.
-- **UI state and facades:** encapsulated state, selections, filters, dialogs, loading and error states where appropriate.
-- **Use cases:** coordination of application operations when additional orchestration is justified.
-- **Data access:** communication with backend APIs and transformation of transport data where needed.
-- **Shared base functionality:** narrowly scoped technical utilities with explicit contracts.
+- **UI components:** render state, collect user input, and handle presentation-level interactions. This applies to ordinary feature components as well as reusable shared components.
+- **Facades:** expose the state and operations a component needs, encapsulating application or UI logic behind an explicit interface.
+- **Use cases:** coordinate application operations when additional orchestration is justified.
+- **Data access:** communicate with backend APIs and transform transport data where needed.
+- **Shared base functionality:** provide narrowly scoped technical utilities with explicit contracts.
+
+Components should generally inject the facade responsible for their functional area instead of implementing business or application logic themselves. They bind to exposed state and invoke facade operations in response to user interactions. Presentation-specific logic can remain in the component, but business rules and workflows should live in the appropriate facade or application service.
 
 These are responsibility categories, not a requirement to create a library for every category. The actual structure will depend on the application and its complexity.
 
@@ -99,7 +101,8 @@ Principles:
 
 - Prefer explicit inputs, outputs, and service interfaces.
 - Avoid hidden dependencies between unrelated modules.
-- Separate reusable UI components from business-specific behavior.
+- Keep all UI components focused on presentation and interaction, with application logic encapsulated in injected facades or services.
+- Keep reusable shared UI components free of feature-specific business behavior.
 - Share design tokens and UI conventions intentionally.
 - Avoid generalizing a solution before multiple real use cases justify it.
 
