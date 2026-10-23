@@ -176,6 +176,8 @@ Geplante Themen:
 
 KI-bezogene Engineering-Themen werden im Verlauf der Serie aufgegriffen, wenn sie relevant sind. Sie müssen nicht in jeden Artikel künstlich eingebaut werden.
 
+Konkrete Tool-Beispiele konzentrieren sich auf Claude und GitHub Copilot, die im Unternehmen des Autors offiziell zur Nutzung freigegebenen KI-Werkzeuge. Allgemeine Engineering-Prinzipien bleiben anbieterneutral; praktische Anleitungen berücksichtigen diese zugelassenen Werkzeuge.
+
 Mögliche eigenständige Themen:
 
 - KI-gestützte Anforderungsanalyse und Aufgabenzerlegung.
