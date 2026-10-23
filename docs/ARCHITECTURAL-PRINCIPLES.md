@@ -159,6 +159,8 @@ The goal is to demonstrate practical interoperability without confusing it with 
 
 AI-assisted development is a cross-cutting engineering topic throughout the workshop.
 
+Practical tool-specific examples will use Claude and GitHub Copilot, the AI tools officially approved for use in the author's company. Guidance that depends on a specific tool will focus on these approved tools; the underlying engineering principles will remain vendor-neutral.
+
 The focus is on improving engineering outcomes, not simply generating code faster.
 
 Relevant practices may include:
