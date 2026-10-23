@@ -99,11 +99,14 @@ The workshop follows a deliberate sequence. Each stage builds on the preceding s
 - Encapsulated state and service-based facades
 - HTTP communication, error handling, and interceptors
 - Testing and maintainable component design
+- Angular Material and Material 3 (M3) theming
+- Design tokens and a consistent, maintainable UI design system
 
 ### 3. Domain-Driven Design and Library Boundaries
 
 - Organizing applications and libraries
 - Separating UI, facades/API, data-access layers, and shared base functionality
+- Organizing UI libraries, shared design tokens, and reusable components within an NX workspace
 - Defining dependency directions
 - Enforcing module boundaries with NX and ESLint
 - Applying architectural rules without unnecessary abstractions
