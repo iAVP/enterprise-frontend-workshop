@@ -50,6 +50,18 @@ Planned topics:
 
 **Expected outcome:** a correctly initialized workspace and the first minimal application project.
 
+
+
+### Short companion article — Development Tools
+
+A short, practical comparison will cover three options:
+
+- **WebStorm:** a full-featured IDE with a paid commercial license.
+- **Visual Studio Code:** a free, extensible code editor.
+- **OpenCode:** a free, open-source AI coding agent that can run in a terminal, desktop app, or IDE extension.
+
+OpenCode can be an alternative when access to VS Code or its extensions is restricted, although access to model providers may still depend on regional availability and network policies. The NX walkthrough itself will remain independent of any specific IDE or editor.
+
 ### Stage 2 — Angular in Depth
 
 **Purpose:** establish the Angular application structure and the core frontend programming model.
