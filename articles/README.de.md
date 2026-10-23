@@ -50,6 +50,18 @@ Geplante Themen:
 
 **Erwartetes Ergebnis:** Ein korrekt initialisierter Workspace und das erste minimale Anwendungsprojekt.
 
+
+
+### Kurzer ergänzender Artikel — Entwicklungswerkzeuge
+
+Ein kurzer, praxisorientierter Vergleich behandelt drei Optionen:
+
+- **WebStorm:** eine voll ausgestattete IDE mit kostenpflichtiger Lizenz für die kommerzielle Entwicklung.
+- **Visual Studio Code:** ein kostenloser, erweiterbarer Code-Editor.
+- **OpenCode:** ein kostenloser Open-Source-KI-Coding-Agent, der im Terminal, als Desktop-App oder über eine IDE-Erweiterung genutzt werden kann.
+
+OpenCode kann eine Alternative sein, wenn der Zugriff auf VS Code oder dessen Erweiterungen eingeschränkt ist. Der Zugriff auf KI-Modelle und Anbieter kann jedoch weiterhin von regionaler Verfügbarkeit und Netzwerkregeln abhängen. Die NX-Anleitung bleibt unabhängig von einer bestimmten IDE oder einem bestimmten Editor.
+
 ### Phase 2 — Angular im Detail
 
 **Ziel:** Die Struktur der Angular-Anwendung und das grundlegende Programmiermodell des Frontends etablieren.
