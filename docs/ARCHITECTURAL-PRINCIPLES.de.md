@@ -159,6 +159,8 @@ Ziel ist es, praktische Interoperabilität zu zeigen, ohne sie mit einer vollst�
 
 KI-gestützte Entwicklung ist ein durchgängiges Engineering-Thema im gesamten Workshop.
 
+Konkrete Tool-Beispiele verwenden Claude und GitHub Copilot, die im Unternehmen des Autors offiziell zur Nutzung freigegebenen KI-Werkzeuge. Tool-spezifische Anleitungen konzentrieren sich auf diese zugelassenen Werkzeuge; die zugrunde liegenden Engineering-Prinzipien bleiben anbieterneutral.
+
 Im Mittelpunkt stehen bessere Engineering-Ergebnisse und nicht allein eine schnellere Codegenerierung.
 
 Mögliche Praktiken sind:
