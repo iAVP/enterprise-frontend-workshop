@@ -1,0 +1,233 @@
+# Publikations-Roadmap
+
+Dieses Dokument beschreibt die geplante technische Artikelserie für den Enterprise Frontend Workshop.
+
+Die Artikel begleiten die Weiterentwicklung einer Beispielanwendung für persönliche Finanzen (Personal Finance). Jede Etappe führt ein technisches oder architektonisches Konzept ein, zeigt dessen praktische Anwendung und erläutert die damit verbundenen Abwägungen.
+
+Die Roadmap beschreibt geplante Inhalte. Ein Artikel darf erst dann als veröffentlicht markiert werden, wenn er tatsächlich verfügbar ist.
+
+## 1. Redaktionelle Prinzipien
+
+Die Serie folgt mehreren Prinzipien:
+
+- **Eine kontinuierlich weiterentwickelte Anwendung:** Die architektonische Entwicklung wird anhand eines zusammenhängenden Beispiels gezeigt, nicht anhand unverbundener Demos.
+- **Architektur von Anfang an:** Das Projekt wird direkt als NX-Workspace angelegt, statt zunächst mit einer einfachen Angular-Anwendung zu beginnen und später zu migrieren.
+- **Praxisorientiertes Engineering:** Technische Konzepte werden mit konkreten Implementierungsentscheidungen verknüpft.
+- **Explizite Abwägungen:** Es wird nicht nur erklärt, wie eine Lösung funktioniert, sondern auch, warum sie geeignet ist und wo ihre Grenzen liegen.
+- **KI als übergreifendes Thema:** AI-assisted und agentic Engineering werden behandelt, wenn sie den Entwicklungsprozess sinnvoll verbessern.
+- **Englisch als maßgebliche Sprache:** Die primären technischen Artikel und die Code-Dokumentation werden auf Englisch gepflegt.
+- **Lokalisierte Kommunikation:** Ausgewählte Themen werden für ein russisch- und ein deutschsprachiges Publikum angepasst.
+
+## 2. Beispielanwendung
+
+Als Beispiel dient eine Personal-Finance-Anwendung, die sich im Laufe der Serie schrittweise weiterentwickelt.
+
+Geplante Funktionsbereiche:
+
+- Verwaltung von Einnahmen und Ausgaben.
+- Kategorien und Budgets.
+- Finanzübersichten.
+- Eingabevalidierung und Fehlerbehandlung.
+- Datenimport und -export.
+- Backend-Integration.
+
+Die Anwendung bietet einen praktischen Kontext für die Architekturdiskussion. Funktionen werden implementiert, wenn sie das Thema eines Artikels unterstützen, nicht nur, damit die Anwendung vollständig wirkt.
+
+## 3. Geplante Artikelabfolge
+
+### Phase 1 — NX-Grundlagen
+
+**Ziel:** Den Workspace einrichten und das Entwicklungsmodell von NX erläutern.
+
+Geplante Themen:
+
+- Konzepte des NX-Workspace und Projektorganisation.
+- Die Verzeichnisse `apps/` und `libs/`.
+- Projektkonfiguration und grundlegende Entwicklungsabläufe.
+- Projekte ausführen, bauen, testen und linten.
+- Warum NX von Anfang an eingesetzt wird.
+- Architektur einführen, ohne vorschnell Abstraktionen zu schaffen.
+
+**Erwartetes Ergebnis:** Ein korrekt initialisierter Workspace und das erste minimale Anwendungsprojekt.
+
+### Phase 2 — Angular im Detail
+
+**Ziel:** Die Struktur der Angular-Anwendung und das grundlegende Programmiermodell des Frontends etablieren.
+
+Geplante Themen:
+
+- Komponenten, Templates, Direktiven, Dependency Injection und Services.
+- Angular Signals: `signal`, `computed` und `effect`.
+- Gekapselter Zustand und servicebasierte Facades.
+- HTTP-Kommunikation, Fehlerbehandlung und Interceptors.
+- Tests und wartbares Komponentendesign.
+- Angular Material und Material-3-Theming.
+- Design-Tokens und ein konsistentes UI-Designsystem.
+- Sinnvoller Einsatz von RxJS für asynchrone und streamorientierte Aufgaben.
+
+**Erwartetes Ergebnis:** Ein Angular-Frontend mit klaren Komponentenverantwortlichkeiten und einem nachvollziehbaren Zustandsmodell.
+
+### Phase 3 — Domain-Driven Design und Bibliotheksgrenzen
+
+**Ziel:** Den Workspace um explizite funktionale und architektonische Grenzen weiterentwickeln.
+
+Geplante Themen:
+
+- Anwendung von DDD-Konzepten in der Frontend-Entwicklung.
+- Organisation von Anwendungen und Bibliotheken nach Verantwortlichkeiten.
+- Trennung von UI, Facades, Use Cases und Datenzugriff, wo dies gerechtfertigt ist.
+- Festlegung der Abhängigkeitsrichtungen.
+- NX-Projekt-Tags und `@nx/enforce-module-boundaries`.
+- Gemeinsame Nutzung von UI-Komponenten und Design-Tokens.
+- Vermeidung unnötiger Schichten und übergroßer Shared Libraries.
+
+**Erwartetes Ergebnis:** Ein modulares Frontend mit bewusst gestalteten und zunehmend durchsetzbaren Abhängigkeiten.
+
+### Phase 4 — Angular-Microfrontends und Web Components
+
+**Ziel:** Integration und Wiederverwendung über Frontend-Grenzen hinweg untersuchen.
+
+Geplante Themen:
+
+- Microfrontend-Konzepte und Deployment-Aspekte.
+- Angular Elements und Web Components.
+- Komponentenverträge, Lebenszyklus und Framework-Abhängigkeiten.
+- Der Unterschied zwischen wiederverwendbaren Web Components und unabhängig deploybaren Microfrontends.
+- Integrationsabwägungen und Laufzeitbetrachtungen.
+
+**Erwartetes Ergebnis:** Ein praktisches Verständnis dafür, wann Web Components helfen und welche zusätzliche Architektur Microfrontends erfordern.
+
+### Phase 5 — npm-Packages und Azure DevOps Artifacts
+
+**Ziel:** Kontrollierte Verteilung und Wiederverwendung von Frontend-Bibliotheken zeigen.
+
+Geplante Themen:
+
+- Paketierung wiederverwendbarer Bibliotheken.
+- Struktur und Versionierung von npm-Paketen.
+- Öffentliche und private Paketverteilung.
+- Azure-DevOps-Artifacts-Feeds.
+- Abhängigkeitsverwaltung und Verwendung veröffentlichter Pakete.
+- CI/CD-Aspekte beim Veröffentlichen von Paketen.
+
+**Erwartetes Ergebnis:** Ein nachvollziehbarer Paketlebenszyklus für wiederverwendbaren Code, ohne Bibliotheken verfrüht zu veröffentlichen.
+
+### Phase 6 — Next.js-Backend und REST API
+
+**Ziel:** Die Beispielanwendung zu einer Fullstack-Architektur erweitern.
+
+Geplante Themen:
+
+- Backend-Funktionen und Anwendungsstruktur von Next.js.
+- REST-API-Design und Verträge.
+- Integration des Backends in das bestehende Angular-Frontend.
+- Validierung, Fehlerbehandlung und Transportgrenzen.
+- Konfiguration und umgebungsspezifische Aspekte.
+- Tests und Deployment.
+
+**Erwartetes Ergebnis:** Ein dokumentiertes Interaktionsmodell zwischen Frontend und Backend für die Beispielanwendung.
+
+### Phase 7 — Einführung in Vue.js
+
+**Ziel:** Vue.js als alternatives Frontend-Framework im Kontext des bestehenden Projekts vorstellen.
+
+Geplante Themen:
+
+- Vue-Komponenten und Reaktivität.
+- Composition API und Composables.
+- Komponentenstatus und Service-Verantwortlichkeiten.
+- Routing und API-Integration.
+- UI-Implementierung mit Bootstrap als Vergleich zum Angular-Frontend.
+- Unterschiede im Programmiermodell und Ökosystem.
+
+**Erwartetes Ergebnis:** Eine Grundlage für ein Vue-Frontend und ein klares Verständnis seiner zentralen Konzepte.
+
+### Phase 8 — Vue.js, DDD und das bestehende Backend
+
+**Ziel:** Explizite Architekturgrenzen im Vue-Frontend anwenden und dabei das vorhandene Backend weiterverwenden.
+
+Geplante Themen:
+
+- Organisation des Vue-Codes nach Funktionsbereichen.
+- Composables, Anwendungsservices und Verantwortlichkeiten des Datenzugriffs.
+- Abhängigkeitsrichtungen und Modulgrenzen.
+- Integration der bestehenden Next.js-REST-API.
+- Vermeidung unnötiger Abstraktionen.
+- Vergleich architektonischer Entscheidungen in Angular und Vue.
+
+**Erwartetes Ergebnis:** Eine Vue-Implementierung, die das vorhandene Backend nutzt und konsistente Architekturprinzipien anwendet.
+
+### Phase 9 — Vue.js mit Angular Elements
+
+**Ziel:** Ausgewählte Angular-Komponenten in eine Vue-Anwendung integrieren.
+
+Geplante Themen:
+
+- Ausgewählte Angular-Komponenten als Web Components bereitstellen.
+- Angular Elements in Vue integrieren.
+- Komponentenverträge definieren und Daten übergeben.
+- Events, Lebenszyklus, Styling und frameworkspezifische Abhängigkeiten behandeln.
+- Ein gemeinsames Backend nutzen, ohne die beiden Frontend-Frameworks eng zu koppeln.
+- Vorteile und Kosten einer Integration verschiedener Frameworks bewerten.
+
+**Erwartetes Ergebnis:** Ein konkretes Beispiel für frameworkübergreifende Komponentenintegration mit klar benannten Grenzen und Abwägungen.
+
+## 4. Übergreifende Themenreihe: AI-Assisted und Agentic Engineering
+
+KI-bezogene Engineering-Themen werden im Verlauf der Serie aufgegriffen, wenn sie relevant sind. Sie müssen nicht in jeden Artikel künstlich eingebaut werden.
+
+Mögliche eigenständige Themen:
+
+- KI-gestützte Anforderungsanalyse und Aufgabenzerlegung.
+- Coding Agents in Implementierungs- und Refactoring-Workflows.
+- Context Engineering und Specification-Driven Development.
+- Agentengestütztes Testen und Code Review.
+- Überprüfung generierten Codes anhand architektonischer Grenzen.
+- Menschliche Aufsicht, Sicherheit und Qualitätssicherung.
+- Der Unterschied zwischen Agentic Engineering und der Entwicklung agentischer KI-Systeme.
+
+Im Mittelpunkt stehen praktische Engineering-Methoden, zuverlässige Ergebnisse und wartbare Software.
+
+## 5. Zusätzliche Engineering-Fallstudie
+
+Ein separater Artikel könnte TypeScript, objektorientiertes Design und den Nutzen von Kapselung anhand eines realen Refactoring-Falls untersuchen.
+
+Die zentrale Idee ist zu zeigen, wie viel wiederholter oder unnötig komplexer Code sich manchmal durch eine kleine, klar definierte Abstraktion ersetzen lässt.
+
+Vor der Veröffentlichung muss das Beispiel Folgendes erklären:
+
+- Das ursprüngliche Problem und die Rahmenbedingungen.
+- Was der ursprüngliche Code tatsächlich getan hat.
+- Welche Verantwortung die neue Abstraktion kapselt.
+- Warum die Änderung korrekt und wartbar ist.
+- Welche Abwägungen und Grenzen bestehen.
+
+Der Artikel soll die Engineering-Überlegungen vermitteln und sich nicht auf einen spektakulären Vergleich der Zeilenanzahl verlassen.
+
+## 6. Veröffentlichungsprozess
+
+Die maßgeblichen technischen Inhalte werden auf Englisch gepflegt.
+
+Ausgewählte Artikel können für andere Plattformen und Zielgruppen angepasst werden:
+
+- **LinkedIn:** Fachliche Diskussionen und Ankündigungen mit Verweis auf den vollständigen Artikel.
+- **Xing:** Berufliche Updates und passende technische Beiträge.
+- **VK / Around IT:** Russischsprachige Adaptionen und Diskussionen in der Community.
+
+Beiträge für einzelne Plattformen dürfen sich in Länge und Darstellung unterscheiden, sollen aber die technische Aussage des Originalartikels bewahren.
+
+Für Hashtags in Veröffentlichungen dient `HASHTAGS.md` als kontrolliertes Vokabular.
+
+## 7. Status und Umfang
+
+Alle Artikel dieser Roadmap sind geplant, sofern sie nicht ausdrücklich anders gekennzeichnet sind.
+
+Die Reihenfolge beschreibt den vorgesehenen Lernpfad und ist keine Verpflichtung zu festen Veröffentlichungsterminen.
+
+Wenn sich bei der Implementierung eine bessere Art der Vermittlung ergibt, können Artikel überarbeitet, aufgeteilt, zusammengeführt oder umsortiert werden.
+
+Es sollen keine Platzhalter-Anwendungen, Bibliotheken oder Code erstellt werden, nur damit die Roadmap vollständig aussieht.
+
+---
+
+**Leitprinzip:** Jeder Artikel soll eine konkrete Engineering-Erkenntnis, ein verständliches Beispiel und ein klareres Verständnis der damit verbundenen Abwägungen vermitteln.
