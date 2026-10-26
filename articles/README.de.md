@@ -37,6 +37,9 @@ Die Anwendung bietet einen praktischen Kontext für die Architekturdiskussion. F
 
 ### Einführender Artikel — Architektur vor Technologie
 
+**Status: Veröffentlicht** — [The Road to Architecture](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture)
+
+
 **Ziel:** Die persönliche Sicht des Autors auf Softwarearchitektur vorstellen und erläutern, warum Architekturentscheidungen möglichst vor Beginn der Implementierung bedacht werden sollten.
 
 Geplante Themen:
