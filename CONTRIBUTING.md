@@ -27,3 +27,15 @@ Avoid examples such as:
 - `Commit ede430b`
 
 The goal is for the commit history to communicate the project's evolution without requiring readers to open every diff.
+
+## Article Branching and Versioning
+
+Each article must be developed on a dedicated Git branch whose name corresponds to the article title.
+
+- Use the article title as the branch name, replacing spaces with hyphens where necessary.
+- If an article requires multiple branches to demonstrate successive implementation stages, append `+` followed by the branch number within that article. For example: `NX-Workspace+1`, `NX-Workspace+2`.
+- Each branch represents a distinct stage of the article's practical implementation.
+- At the end of the article, include a section listing the relevant branch names and their corresponding GitHub URLs.
+- Branch links must point to actual branches in the repository and must be verified before publication.
+
+The purpose of this convention is to let readers navigate the implementation history of each article and inspect the code at each stage.
