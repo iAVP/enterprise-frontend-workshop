@@ -1,0 +1,7 @@
+/.idea/
+
+.nx/cache
+.nx/workspace-data
+.nx/migrate-runs
+
+/node_modules/
