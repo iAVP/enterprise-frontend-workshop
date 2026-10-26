@@ -37,6 +37,9 @@ The application is a practical context for discussing architecture. Features sho
 
 ### Introductory Article — Architecture Before Technology
 
+**Status: Published** — [The Road to Architecture](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture)
+
+
 **Purpose:** introduce the author's personal view of software architecture and explain why architectural decisions should be considered before implementation begins.
 
 Planned topics:
