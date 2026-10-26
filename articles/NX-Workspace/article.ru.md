@@ -228,3 +228,13 @@ test('has title', async ({ page }) => {
 
 - [NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace) — инициализация NX Workspace.
 - [NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace+1) — подключение Angular и создание первого приложения.
+
+## Дополнительные материалы
+
+Официальная документация поможет подробнее разобраться в инструментах и концепциях, рассмотренных в статье:
+
+- [Документация NX](https://nx.dev/docs) — основная документация платформы.
+- [NX и Angular](https://nx.dev/docs/technologies/angular/introduction) — работа с Angular-приложениями в NX Workspace.
+- [Генераторы Angular](https://nx.dev/docs/technologies/angular/generators) — параметры генерации приложений и библиотек.
+- [Конфигурация проектов NX](https://nx.dev/docs/reference/project-configuration) — проекты, цели и задачи в Workspace.
+- [Контроль архитектурных границ](https://nx.dev/docs/features/enforce-module-boundaries) — управление зависимостями между проектами с помощью тегов и правил линтинга.
