@@ -28,11 +28,23 @@ Avoid examples such as:
 
 The goal is for the commit history to communicate the project's evolution without requiring readers to open every diff.
 
+## Article Directory and File Naming
+
+Each article must have its own directory directly under `articles/`. Name the directory after the article title, using a readable title slug with words separated by hyphens. Keep the same directory name across all language versions.
+
+Each article directory must contain exactly these three language entry files:
+
+- `README.md` — English version. English is the default language and must not use an `EN` suffix.
+- `README.ru.md` — Russian version.
+- `README.de.md` — German version.
+
+Do not use names such as `README.en.md`, `article.en.md`, or language-specific alternative filenames. Preserve the language convention consistently for existing and new article directories.
+
 ## Article Branching and Versioning
 
 Each article must be developed on a dedicated Git branch whose name corresponds to the article title.
 
-- Use the article title as the branch name, replacing spaces with hyphens where necessary.
+- Use the article title as the branch name, replacing spaces with hyphens and keeping the title wording recognizable. For example, `NX Fundamentals: Building an Enterprise Frontend Workspace from Scratch` becomes `NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch`.
 - If an article requires multiple branches to demonstrate successive implementation stages, append `+` followed by the branch number within that article. For example: `NX-Workspace+1`, `NX-Workspace+2`.
 - Each branch represents a distinct stage of the article's practical implementation.
 - At the end of the article, include a section listing the relevant branch names and their corresponding GitHub URLs.
