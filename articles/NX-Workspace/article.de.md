@@ -228,3 +228,13 @@ Wir haben mit einer minimalen Anwendung begonnen, die grundlegende Infrastruktur
 
 - [NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace) — Initialisierung des NX Workspace.
 - [NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace+1) — Integration von Angular und Erstellung der ersten Anwendung.
+
+## Weiterführende Dokumentation
+
+Die folgenden offiziellen Ressourcen bieten weitere Informationen zu den Werkzeugen und Konzepten aus diesem Artikel:
+
+- [NX-Dokumentation](https://nx.dev/docs) — das zentrale Dokumentationsportal.
+- [NX mit Angular](https://nx.dev/docs/technologies/angular/introduction) — Angular-Anwendungen in einem NX Workspace.
+- [Angular-Generatoren](https://nx.dev/docs/technologies/angular/generators) — Optionen zum Generieren von Angular-Anwendungen und Bibliotheken.
+- [NX-Projektkonfiguration](https://nx.dev/docs/reference/project-configuration) — Projekte, Targets und Tasks im Workspace.
+- [Architekturgrenzen durchsetzen](https://nx.dev/docs/features/enforce-module-boundaries) — Abhängigkeiten zwischen Projekten mit Tags und Lint-Regeln kontrollieren.
