@@ -18,6 +18,13 @@ The series follows several principles:
 - **English as the canonical language:** maintain the primary technical articles and code documentation in English.
 - **Localized communication:** adapt selected topics for Russian-speaking and German-speaking audiences.
 
+## Article Branching Workflow
+
+Each article is developed on its own Git branch named after the article title, using hyphens instead of spaces. When an article needs multiple implementation stages, append `+` and the branch number for that article, for example `NX-Workspace+1` and `NX-Workspace+2`.
+
+At the bottom of the article, list the relevant branch names and their GitHub URLs. Add links only after the branches exist and their URLs have been verified. This allows readers to inspect the code corresponding to each stage of the article.
+
+
 ## 2. Sample Application
 
 The example project is a Personal Finance application that evolves throughout the series.
