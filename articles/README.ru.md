@@ -41,6 +41,7 @@
 | --- | --- | --- | --- | --- |
 | 1 | [The Road to Architecture](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture) | Опубликована | Не зафиксирована здесь | [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture) |
 | 2 | NX Fundamentals — Building an Enterprise Frontend Workspace from Scratch | Опубликована | Не зафиксирована здесь | Не зафиксирована |
+| 3 | [Architecture in Practice: Decisions Behind Enterprise Frontend Systems](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems) (русская версия: [VK](https://vk.ru/@-65490196-arhitektura-na-praktike-resh1?subtype=primary)) | Опубликована | 2026-10-27 | [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems) |
 
 **Правила для всех чатов проекта и участников:**
 
@@ -74,7 +75,7 @@
 
 ### Теоретическая статья — Архитектура на практике
 
-**Статус: черновик** — [Архитектура на практике: решения, которые определяют развитие frontend-систем](architecture-in-practice.ru.md)
+**Статус: опубликована** — [Architecture in Practice: Decisions Behind Enterprise Frontend Systems](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems); русская версия также опубликована во [ВКонтакте](https://vk.ru/@-65490196-arhitektura-na-praktike-resh1?subtype=primary).
 
 **Цель:** подробно разобрать архитектурные причины реальных проектных решений до перехода к технической реализации. Статья рассматривает сохранение привычных рабочих процессов, сосуществование frontend-фреймворков, пересмотр решений по конфигурации и соотношение технического выбора с долгосрочными затратами.
 
