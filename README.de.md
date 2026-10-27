@@ -180,6 +180,9 @@ Diese Struktur beschreibt den angestrebten Zustand und ist keine Verpflichtung, 
 
 ## Technische Veröffentlichungen
 
+
+Veröffentlichungshistorie und Artikel-Roadmap werden in [`articles/README.de.md`](articles/README.de.md) gepflegt. Vor Aussagen zur Artikelreihenfolge oder zur nächsten Veröffentlichung ist dieses Register zu prüfen.
+
 Das Repository begleitet eine mehrsprachige Serie technischer Veröffentlichungen.
 
 - **Primäre technische Inhalte:** Englisch
