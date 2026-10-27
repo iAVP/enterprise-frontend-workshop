@@ -43,9 +43,12 @@ English article text is not mirrored into the repository yet. The following sect
 - [Was wir umsetzen werden](The-Road-to-Architecture/README.de.md#was-werden-wir-in-diesem-artikel-umsetzen)
 
 ## 2. NX Workspace: From Architecture to Tools
-**Status:** Article text and implementation notes exist. Do not repeat this article's setup walkthrough in NX Fundamentals.
+**Status:** Published on Hashnode. Do not repeat this article's setup walkthrough in NX Fundamentals.
 
-- [English](NX-Workspace/README.md) · [Russian](NX-Workspace/README.ru.md) · [German](NX-Workspace/README.de.md)
+- [Published article on Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-workspace-from-architecture-to-tooling)
+
+- [English article notes](NX-Workspace/README.md) · [Russian article notes](NX-Workspace/README.ru.md) · [German article notes](NX-Workspace/README.de.md)
+- [Published article on Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-workspace-from-architecture-to-tooling)
 - [Branch NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace) · [Branch NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace%2B1)
 
 ### Section TOC — English
