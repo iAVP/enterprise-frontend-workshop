@@ -1,6 +1,90 @@
-# NX Fundamentals: Grundlagen für einen Enterprise-Frontend-Workspace
+<!-- ENTWURF: Festgelegte theoretische Einleitung. Ohne gesonderte Abstimmung nicht bearbeiten. -->
 
-> Arbeitsgliederung und Implementierungsnotizen. Dieser Artikel baut auf [NX Workspace: Von der Architektur zu den Werkzeugen](../NX-Workspace/README.de.md) auf und soll die initiale Workspace-Einrichtung und die Angular-Generierung nicht wiederholen.
+# NX Fundamentals: Architektur für ein Enterprise-Frontend-Projekt aufbauen
+
+## Architektur vor Technologie
+
+Bei der Entwicklung einer Enterprise-Anwendung beginnt man leicht mit der Auswahl von Technologien: Angular oder React, ein Monorepo oder mehrere Repositories, ein bestimmtes Build-System oder eine Sammlung von Bibliotheken.
+
+Sinnvoller ist es, zunächst andere Fragen zu beantworten:
+
+- Welche Probleme soll das Produkt lösen?
+- Welche Anwendungen und Plattformen müssen unterstützt werden?
+- Wie interagieren die verschiedenen Teile des Systems?
+- Was soll gemeinsam genutzt werden und was unabhängig bleiben?
+- Wie wirkt sich die Architektur auf Entwicklungs- und Wartungskosten aus?
+
+Technologien helfen dabei, eine Architektur umzusetzen, definieren sie aber nicht von selbst.
+
+## Architektur ist mehr als Technologie
+
+Softwarearchitektur betrifft nicht nur die Code-Struktur. Sie hängt mit Geschäftsanforderungen, finanziellen Rahmenbedingungen, den Fähigkeiten des Teams, organisatorischen Prozessen und der langfristigen Wartung eines Produkts zusammen.
+
+Eine technisch attraktive Lösung kann beispielsweise unwirtschaftlich sein, wenn für ihre Wartung schwer zu findende Spezialisten eingestellt werden müssen. Umgekehrt kann die Nutzung vorhandener Infrastruktur Kosten senken und die Einführung beschleunigen, selbst wenn technisch modernere Alternativen verfügbar sind.
+
+Architekturentscheidungen sollten daher im Kontext des konkreten Projekts bewertet werden.
+
+## Warum lebt Architektur länger als Technologie?
+
+Technologien und Werkzeuge verändern sich schneller als die grundlegenden Anforderungen und Organisationsprinzipien eines Systems. Architektur ist allerdings nicht unveränderlich: Wesentliche Änderungen der Anforderungen können es nötig machen, Teile davon neu zu bewerten.
+
+Eine gute Architektur hilft, die Auswirkungen solcher Änderungen zu begrenzen. Beispielsweise lässt sich Geschäftslogik, die nicht von einem bestimmten Frontend-Framework abhängt, auch bei einem Wechsel von Angular zu React oder Vue wiederverwenden.
+
+Es reicht jedoch nicht, Code einfach in eine separate Bibliothek auszulagern. Die tatsächlichen Abhängigkeiten sind entscheidend: Eine Bibliothek, die Angular Dependency Injection, React Hooks oder die Vue Composition API verwendet, bleibt an das jeweilige Framework gebunden.
+
+Das Ziel ist nicht, jede Abhängigkeit zu beseitigen, sondern sie explizit und beherrschbar zu machen.
+
+## Architektur als wirtschaftliche Entscheidung
+
+Betrachten wir ein Enterprise-Produkt, das auf mehreren Plattformen laufen soll.
+
+Dazu können eine Webanwendung, ein Desktop-Client und mobile Anwendungen gehören. Sie haben möglicherweise unterschiedliche Einstiegspunkte, Build-Prozesse, Startabläufe und Anforderungen an die Benutzeroberfläche. Gleichzeitig können Teile der Geschäftslogik und der Regeln gemeinsam genutzt werden.
+
+Eine gemeinsame Codebasis bedeutet nicht, dass alle Anwendungen dieselbe Struktur oder denselben Technologie-Stack verwenden müssen. Entscheidend ist, zu erkennen, welche Teile tatsächlich wiederverwendbar sind und welche separate Lösungen benötigen.
+
+Dasselbe gilt für unterschiedliche Teams. Ein Team kann Angular einsetzen, ein anderes React oder Vue. Wenn die gemeinsame Geschäftslogik nicht von einem bestimmten Framework abhängt, kann sie unabhängig von der Benutzeroberfläche weiterentwickelt und wiederverwendet werden.
+
+## Praxisbeispiel: Mobile Anwendung und vorhandene Infrastruktur
+
+In einem Projekt musste eine mobile Anwendung für iOS und Android entstehen, die in bereits verwendete Unternehmenssysteme integriert war.
+
+Anstatt die vertrauten Werkzeuge vollständig zu ersetzen, wurde ein Teil der Lösung auf der bestehenden SharePoint-Umgebung aufgebaut. So konnten die Mitarbeitenden weiterhin in einer vertrauten Umgebung arbeiten, ohne unnötig ein zusätzliches System erlernen zu müssen.
+
+Zur Verarbeitung von Änderungen kamen Azure WebJobs und zugehörige Dienste zum Einsatz. Für Push-Benachrichtigungen auf beiden mobilen Plattformen wurde Firebase verwendet. Dadurch stand ein gemeinsamer Benachrichtigungsmechanismus zur Verfügung, ohne den gesamten Ablauf für jede Plattform separat aufbauen zu müssen.
+
+Das bedeutet nicht, dass SharePoint, Azure oder Firebase immer die beste Wahl sind. Entscheidend ist vielmehr, dass eine Architektur die vorhandene Infrastruktur, die Gewohnheiten der Anwender, die verfügbaren Kompetenzen und die Wartungskosten berücksichtigt.
+
+## Architektur verbindet Technologie, Menschen und Wirtschaftlichkeit
+
+Aus diesen Beispielen ergibt sich eine wichtige Schlussfolgerung: Architektur soll nicht nur die technische Funktionsfähigkeit eines Systems sicherstellen. Sie soll helfen, Komplexität zu beherrschen und bei veränderten Anforderungen flexibel zu bleiben.
+
+Dazu müssen Grenzen zwischen Anwendungen und Bibliotheken, Abhängigkeitsregeln und die Ablage gemeinsamer Funktionalität festgelegt werden.
+
+Hier wird NX hilfreich.
+
+## Von Architekturentscheidungen zum NX Workspace
+
+NX ist kein Werkzeug, das automatisch die richtige Architektur erstellt. Es ersetzt weder architektonisches Denken noch trifft es geschäftliche Entscheidungen für das Team.
+
+Sein Nutzen besteht darin, ein Monorepo zu strukturieren, Regeln für die Zusammenarbeit zwischen Projekten festzulegen und architektonische Einschränkungen zu überprüfen.
+
+So lassen sich beispielsweise Anwendungen und Bibliotheken trennen, gemeinsam genutzter Code identifizieren, zulässige Abhängigkeitsrichtungen festlegen und unbeabsichtigte Kopplungen zwischen unabhängigen Teilen verhindern.
+
+NX hilft damit, Architekturvereinbarungen in überprüfbare Regeln zu überführen, die nicht nur in der Dokumentation, sondern auch im Entwicklungsalltag gelten.
+
+## Was werden wir in diesem Artikel umsetzen?
+
+Ein NX Workspace und ein grundlegendes Angular-Projekt sind bereits vorhanden. Wir erstellen den Workspace daher nicht erneut von Grund auf, sondern entwickeln die bestehende Struktur weiter.
+
+Wir untersuchen, wie Anwendungen und Bibliotheken organisiert werden, wo gemeinsame Styles und Konfigurationen liegen, wie wiederverwendbare Geschäftslogik herausgelöst und wie Abhängigkeiten zwischen den Systemteilen kontrolliert werden können.
+
+Jede Änderung betrachten wir nicht nur technisch, sondern auch im Hinblick auf ihre architektonische Begründung: Welches Problem löst sie, warum wurde dieser Ansatz gewählt und welche Einschränkungen müssen berücksichtigt werden?
+
+Das Ziel ist nicht nur ein funktionierender NX Workspace, sondern eine Struktur für ein Enterprise-Frontend-Projekt, die sich kontinuierlich weiterentwickeln und warten lässt.
+
+---
+
+<!-- Die bestehende Arbeitsgliederung folgt und bleibt erhalten. -->
 
 ## NX-Workspace-Konzepte und Projektorganisation
 
