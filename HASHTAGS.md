@@ -213,3 +213,65 @@ New hashtags should be introduced deliberately, based on recurring technical the
 The vocabulary should remain small enough to be consistent and broad enough to represent the workshop's actual engineering topics.
 
 **Guiding principle:** Use hashtags to make substantive engineering work discoverable. Let the technical content demonstrate the expertise.
+
+
+## 9. Hashnode Article Tags
+
+Hashnode uses article tags (without the `#` prefix). Choose tags that describe the article itself; do not copy the hashtag conventions used on LinkedIn, Xing, or VK.
+
+### 9.1 Recommended Tag Selection
+
+For each Hashnode article, normally select up to five relevant tags, prioritizing this order:
+
+1. **Specific subject** — for example, `nx`, `monorepo`, or `frontend-architecture`, if the tag exists on Hashnode.
+2. **Technical audience** — for example, `webdev` or `javascript`.
+3. **Article format** — `tutorial`, only for a genuinely practical, step-by-step guide.
+4. **Supporting topic** — for example, `devops` for CI/CD, task orchestration, caching, and build pipelines.
+
+Use the platform's tag autocomplete to confirm the exact available tag names before publishing. Do not assume that every tag below exists on Hashnode.
+
+### 9.2 Tag Reference Table
+
+| Article topic | Preferred tags to check on Hashnode | Notes |
+|---|---|---|
+| NX workspace fundamentals | `nx`, `monorepo`, `webdev`, `javascript`, `tutorial` | Default starting point for the NX Fundamentals article; keep only tags that accurately match the article and are available. |
+| Frontend architecture | `frontend`, `webdev`, `javascript`, `software-architecture` | Prioritize architecture-specific tags where available. |
+| NX module boundaries and dependency rules | `nx`, `monorepo`, `architecture`, `javascript` | Use `devops` only if build/CI workflow is a substantial part of the article. |
+| CI/CD, task pipelines, caching, build optimization | `devops`, `automation`, `webdev`, `javascript` | Select tags based on the actual emphasis, not merely because NX is mentioned. |
+| API design and integration | `api`, `webdev`, `javascript`, `tutorial` | Use `api` when API design or integration is a central topic. |
+| Security and dependency management | `security`, `javascript`, `webdev` | Include `security` only when security is substantively discussed. |
+| Developer workflow and productivity | `productivity`, `automation`, `webdev`, `tutorial` | Avoid using productivity/automation as generic reach tags. |
+| AI-assisted engineering | `ai`, `artificial-intelligence`, `ai-agents` | Use only when AI/agents are a substantive subject of the article. |
+
+### 9.3 Popular-Tag Snapshot (27 October 2026)
+
+The Hashnode trending-tags screenshot reviewed for this date showed the following tags and weekly post counts:
+
+| Tag | Posts shown | Potential relevance to this series |
+|---|---:|---|
+| `ai` | 285 | Only AI-focused articles |
+| `python` | 131 | Generally not relevant unless the article covers Python |
+| `security` | 122 | Security-focused articles |
+| `devops` | 107 | CI/CD, builds, automation, and delivery workflows |
+| `webdev` | 102 | Broad web-development audience |
+| `web-development` | 91 | Alternative broad web-development tag; verify availability and avoid redundant tagging |
+| `javascript` | 86 | Frontend and JavaScript engineering |
+| `productivity` | 85 | Developer productivity when central to the article |
+| `llm` | 75 | LLM-focused articles only |
+| `artificial-intelligence` | 74 | AI-focused articles only |
+| `automation` | 67 | Automation-focused articles |
+| `tutorial` | 67 | Practical instructional articles |
+| `ai-agents` | 60 | Agent-focused articles only |
+| `api` | 55 | API design and integration |
+
+This is a dated snapshot of weekly post counts, not evidence of views, engagement, or tag effectiveness. Recheck current trends when making a time-sensitive choice; do not search for the same information on every article. Use this table as a starting reference, not as a reason to add irrelevant tags.
+
+### 9.4 Default for the NX Fundamentals Article
+
+Recommended candidate tags, in order of relevance:
+
+`nx` · `monorepo` · `webdev` · `javascript` · `tutorial`
+
+Confirm the exact tag names in Hashnode's autocomplete and use no more than five. If `nx` or `monorepo` is unavailable, choose the closest accurate topic tag offered by the platform. Treat `devops` as an alternative only if the article materially covers delivery pipelines, automation, or build infrastructure.
+
+**Maintenance rule:** This section is the local reference for Hashnode tag selection. Consult it before searching for trending tags again; refresh the dated snapshot only when planning a new publication cycle or when current platform trends are specifically needed.
