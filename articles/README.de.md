@@ -72,6 +72,14 @@ Geplante Themen:
 
 Der Artikel stellt eine persönliche Perspektive vor, keine verpflichtende Architektur und keine allgemeingültige Vorschrift. Die Leser können ihren eigenen Ansatz wählen.
 
+### Theoretischer Begleitartikel — Architektur in der Praxis
+
+**Status: Entwurf** — [Architektur in der Praxis: Entscheidungen, die die Entwicklung von Frontend-Systemen prägen](architecture-in-practice.ru.md) (russischer Entwurf)
+
+**Ziel:** die architektonischen Überlegungen hinter realen Projektentscheidungen erläutern, bevor die technische Umsetzung beginnt. Der Artikel behandelt den Erhalt bestehender Arbeitsabläufe, mehrere Frontend-Frameworks, die Neubewertung von Konfigurationsentscheidungen und die langfristigen Kosten technischer Entscheidungen.
+
+Damit wird ein redaktionelles Muster für die Serie festgehalten: Wenn die architektonische Begründung einen eigenen Artikel verdient, kann vor dem technischen Implementierungsartikel ein eigenständiger theoretischer Beitrag erscheinen.
+
 ### Phase 1 — NX-Grundlagen
 
 **Ziel:** Den Workspace einrichten und das Entwicklungsmodell von NX erläutern.
