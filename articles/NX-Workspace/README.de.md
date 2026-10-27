@@ -238,3 +238,13 @@ Die folgenden offiziellen Ressourcen bieten weitere Informationen zu den Werkzeu
 - [Angular-Generatoren](https://nx.dev/docs/technologies/angular/generators) — Optionen zum Generieren von Angular-Anwendungen und Bibliotheken.
 - [NX-Projektkonfiguration](https://nx.dev/docs/reference/project-configuration) — Projekte, Targets und Tasks im Workspace.
 - [Architekturgrenzen durchsetzen](https://nx.dev/docs/features/enforce-module-boundaries) — Abhängigkeiten zwischen Projekten mit Tags und Lint-Regeln kontrollieren.
+
+## Implementierungsstatus und Umfang
+
+Dieser Artikel beschreibt die ersten beiden Implementierungsschritte des Workshops:
+
+- **Branch `NX-Workspace`:** NX wird mit `npx nx@latest init` zum bestehenden Repository hinzugefügt; ausgewählt werden die Installation über package.json und die geführte Einrichtung; AI-Agenten und NX Cloud werden vorerst übersprungen; Analytics wird deaktiviert.
+- **Branch `NX-Workspace+1`:** Die erste Angular-Anwendung und ein separates End-to-End-Testprojekt werden generiert; die erzeugte Projektstruktur wird geprüft; Build, Unit-Tests, ESLint und Playwright werden ausgeführt; die Playwright-Browser werden installiert.
+- **Aktueller Stand:** Das Repository enthält einen funktionierenden NX Workspace und eine minimale Angular-Anwendung. Die Personal-Finance-Fachfunktionalität, wiederverwendbare Business-Bibliotheken, Domänengrenzen, Projekt-Tags und die Durchsetzung von Module Boundaries sind noch nicht implementiert.
+
+**Im nächsten Artikel nicht wiederholen:** NX initialisieren, die erste Angular-Anwendung generieren oder die grundlegenden Build-, Test- und Lint-Prüfungen erneut beschreiben. Der nächste NX-Artikel sollte vom bestehenden Stand ausgehen und den nächsten Architektur-Schritt erklären; Befehle sind nur nötig, wenn sie neue Funktionen einführen.
