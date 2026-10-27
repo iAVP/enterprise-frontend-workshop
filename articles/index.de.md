@@ -26,9 +26,12 @@ Dies ist der zentrale Einstiegspunkt für Reihenfolge, Sprachversionen, Status u
 - [Was werden wir in diesem Artikel umsetzen?](The-Road-to-Architecture/README.de.md#was-werden-wir-in-diesem-artikel-umsetzen)
 
 ## 2. NX Workspace: Von der Architektur zu den Werkzeugen
-**Status:** Artikeltext und Implementierungsnotizen sind vorhanden. Die initiale Einrichtung soll im nächsten Artikel nicht wiederholt werden.
+**Status:** Auf Hashnode veröffentlicht. Die initiale Einrichtung soll im nächsten Artikel nicht wiederholt werden.
 
-- [English](NX-Workspace/README.md) · [Russisch](NX-Workspace/README.ru.md) · [Deutsch](NX-Workspace/README.de.md)
+- [Veröffentlichter Artikel auf Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-workspace-from-architecture-to-tooling)
+
+- [Englische Notizen](NX-Workspace/README.md) · [Russische Notizen](NX-Workspace/README.ru.md) · [Deutsche Notizen](NX-Workspace/README.de.md)
+- [Veröffentlichter Artikel auf Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-workspace-from-architecture-to-tooling)
 - [Branch NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace) · [Branch NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace%2B1)
 
 ### Inhaltsverzeichnis — deutscher Text
