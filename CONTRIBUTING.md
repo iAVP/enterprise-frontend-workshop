@@ -28,6 +28,14 @@ Avoid examples such as:
 
 The goal is for the commit history to communicate the project's evolution without requiring readers to open every diff.
 
+## Article Index and Publication Status
+
+The files `articles/index.md`, `articles/index.ru.md`, and `articles/index.de.md` are the primary navigation and status records for the article series. They list articles, link to the relevant language versions, and indicate whether each article is planned or published.
+
+- Keep all three indexes in sync when adding, renaming, reorganizing, or publishing an article.
+- Mark an article as **Published** only after the publication is live, and include the verified publication URL.
+- Treat `articles/README.md`, `articles/README.ru.md`, and `articles/README.de.md` as the editorial roadmap describing planned topics and learning order. They do not replace the indexes as the source of truth for publication status.
+
 ## Article Directory and File Naming
 
 Each article must have its own directory directly under `articles/`. Name the directory after the article title, using a readable title slug with words separated by hyphens. Keep the same directory name across all language versions.
