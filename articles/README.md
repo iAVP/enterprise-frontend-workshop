@@ -1,3 +1,5 @@
+> **Article index and publication status:** See the [English article index](index.md) for the canonical list of articles, their publication status, and links to published versions. The [Russian index](index.ru.md) and [German index](index.de.md) provide the same navigation for localized readers. This roadmap explains the planned content and learning sequence; use the indexes as the source of truth for what is published.
+
 # Article Roadmap
 
 This document defines the planned technical publication series for the Enterprise Frontend Workshop.
