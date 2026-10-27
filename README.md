@@ -174,6 +174,9 @@ This is a target structure, not a requirement to create every directory immediat
 
 ## Technical Publications
 
+
+The publication history and article roadmap are maintained in [`articles/README.md`](articles/README.md). Check this record before referring to article order or the next planned publication.
+
 The repository is intended to accompany a multilingual technical publication series.
 
 - **Primary technical material:** English
