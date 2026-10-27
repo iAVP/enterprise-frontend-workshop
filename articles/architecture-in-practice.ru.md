@@ -1,5 +1,7 @@
 # Архитектура на практике: решения, которые определяют развитие frontend-систем
 
+> **Статус:** Опубликована на [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems). Русская версия также опубликована во [ВКонтакте](https://vk.ru/@-65490196-arhitektura-na-praktike-resh1?subtype=primary).
+
 *Architecture in Practice: Decisions Behind Enterprise Frontend Systems*
 
 Эта статья открывает теоретическую линию материалов Enterprise Frontend Workshop. Здесь рассматриваются реальные архитектурные дилеммы и причины, по которым в разных проектах выбираются разные решения. Следующий шаг — техническая реализация этих идей в NX Workspace.
