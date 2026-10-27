@@ -40,6 +40,25 @@ Planned functional areas include:
 
 The application is a practical context for discussing architecture. Features should be implemented when they support the subject of an article, not merely to make the application appear complete.
 
+## Publication Record and Source of Truth
+
+This section records actual publication history. It is distinct from the planned learning sequence below.
+
+| Publication order | Article | Status | Publication date | Canonical publication URL |
+| --- | --- | --- | --- | --- |
+| 1 | [The Road to Architecture](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture) | Published | Not recorded here | [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture) |
+| 2 | NX Fundamentals — Building an Enterprise Frontend Workspace from Scratch | Published | Not recorded here | Not recorded here |
+
+**Rules for all project chats and contributors:**
+
+- Use this publication record—not chat order, branch names, or roadmap stage numbers—to determine publication order.
+- *The Road to Architecture* is publication 1. NX Fundamentals is publication 2; do not describe the NX article as the first publication.
+- Keep actual publication order separate from the planned learning sequence. Roadmap stages are not publication numbers.
+- Before answering questions about article history, the next planned article, publication dates, or links, check this file.
+- Never infer missing dates or URLs. Mark them as “Not recorded” until verified.
+- After publication, update this record with the actual title, date, and canonical URL, and update the roadmap status. Add links to translated and platform-specific versions where known.
+- If a chat cannot access this file or information is ambiguous, state that limitation rather than guessing.
+
 ## 3. Planned Article Sequence
 
 ### Introductory Article — Architecture Before Technology
