@@ -79,6 +79,14 @@ Planned topics:
 
 The article presents a personal perspective, not a mandatory architecture or a universal prescription. Readers remain free to make their own choices.
 
+### Theoretical companion — Architecture in Practice
+
+**Status: Draft** — [Architecture in Practice: Decisions Behind Enterprise Frontend Systems](architecture-in-practice.ru.md) (Russian draft)
+
+**Purpose:** develop the architectural reasoning behind real project decisions before moving into technical implementation. This article discusses preserving existing workflows, working across frontend frameworks, revisiting configuration decisions, and weighing technical choices against long-term cost.
+
+This is a recurring editorial pattern for the series: a theoretical article may precede a technical implementation article when the reasoning deserves a separate treatment.
+
 ### Stage 1 — NX Fundamentals
 
 **Purpose:** establish the workspace and explain the NX development model.
