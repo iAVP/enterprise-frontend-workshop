@@ -1,3 +1,5 @@
+> **Artikelindex und Veröffentlichungsstatus:** Der [englische Artikelindex](index.md) ist die maßgebliche Übersicht über Artikel, Veröffentlichungsstatus und Links zu publizierten Versionen. Für die Navigation gibt es außerdem den [russischen Index](index.ru.md) und den [deutschen Index](index.de.md). Diese Roadmap beschreibt geplante Inhalte und die Lernreihenfolge; der aktuelle Veröffentlichungsstatus ist in den Indizes zu prüfen.
+
 # Publikations-Roadmap
 
 Dieses Dokument beschreibt die geplante technische Artikelserie für den Enterprise Frontend Workshop.
