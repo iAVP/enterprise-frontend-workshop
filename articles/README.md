@@ -48,6 +48,7 @@ This section records actual publication history. It is distinct from the planned
 | --- | --- | --- | --- | --- |
 | 1 | [The Road to Architecture](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture) | Published | Not recorded here | [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture) |
 | 2 | NX Fundamentals — Building an Enterprise Frontend Workspace from Scratch | Published | Not recorded here | Not recorded here |
+| 3 | [Architecture in Practice: Decisions Behind Enterprise Frontend Systems](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems) | Published | 2026-10-27 | [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems) |
 
 **Rules for all project chats and contributors:**
 
@@ -81,7 +82,7 @@ The article presents a personal perspective, not a mandatory architecture or a u
 
 ### Theoretical companion — Architecture in Practice
 
-**Status: Draft** — [Architecture in Practice: Decisions Behind Enterprise Frontend Systems](architecture-in-practice.ru.md) (Russian draft)
+**Status: Published** — [Architecture in Practice: Decisions Behind Enterprise Frontend Systems](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems) (Russian and German translations are maintained in this repository).
 
 **Purpose:** develop the architectural reasoning behind real project decisions before moving into technical implementation. This article discusses preserving existing workflows, working across frontend frameworks, revisiting configuration decisions, and weighing technical choices against long-term cost.
 
