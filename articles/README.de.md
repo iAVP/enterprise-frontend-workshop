@@ -41,6 +41,7 @@ Dieser Abschnitt dokumentiert die tatsächliche Veröffentlichungshistorie. Sie 
 | --- | --- | --- | --- | --- |
 | 1 | [The Road to Architecture](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture) | Veröffentlicht | Hier nicht erfasst | [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture) |
 | 2 | NX Fundamentals — Building an Enterprise Frontend Workspace from Scratch | Veröffentlicht | Hier nicht erfasst | Nicht erfasst |
+| 3 | [Architecture in Practice: Decisions Behind Enterprise Frontend Systems](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems) | Veröffentlicht | 2026-10-27 | [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems) |
 
 **Regeln für alle Projekt-Chats und Mitwirkenden:**
 
@@ -74,7 +75,7 @@ Der Artikel stellt eine persönliche Perspektive vor, keine verpflichtende Archi
 
 ### Theoretischer Begleitartikel — Architektur in der Praxis
 
-**Status: Entwurf** — [Architektur in der Praxis: Entscheidungen, die die Entwicklung von Frontend-Systemen prägen](architecture-in-practice.ru.md) (russischer Entwurf)
+**Status: Veröffentlicht** — [Architecture in Practice: Decisions Behind Enterprise Frontend Systems](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems) (russische und deutsche Fassungen werden in diesem Repository gepflegt).
 
 **Ziel:** die architektonischen Überlegungen hinter realen Projektentscheidungen erläutern, bevor die technische Umsetzung beginnt. Der Artikel behandelt den Erhalt bestehender Arbeitsabläufe, mehrere Frontend-Frameworks, die Neubewertung von Konfigurationsentscheidungen und die langfristigen Kosten technischer Entscheidungen.
 
