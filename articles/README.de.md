@@ -35,6 +35,25 @@ Geplante Funktionsbereiche:
 
 Die Anwendung bietet einen praktischen Kontext für die Architekturdiskussion. Funktionen werden implementiert, wenn sie das Thema eines Artikels unterstützen, nicht nur, damit die Anwendung vollständig wirkt.
 
+## Veröffentlichungsregister und maßgebliche Quelle
+
+Dieser Abschnitt dokumentiert die tatsächliche Veröffentlichungshistorie. Sie ist von der unten beschriebenen geplanten Lernreihenfolge zu unterscheiden.
+
+| Veröffentlichungsreihenfolge | Artikel | Status | Veröffentlichungsdatum | Kanonischer Link |
+| --- | --- | --- | --- | --- |
+| 1 | [The Road to Architecture](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture) | Veröffentlicht | Hier nicht erfasst | [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture) |
+| 2 | NX Fundamentals — Building an Enterprise Frontend Workspace from Scratch | Veröffentlicht | Hier nicht erfasst | Nicht erfasst |
+
+**Regeln für alle Projekt-Chats und Mitwirkenden:**
+
+- Die Veröffentlichungsreihenfolge wird anhand dieses Registers bestimmt, nicht anhand der Chat-Reihenfolge, Branch-Namen oder Nummern der Roadmap-Phasen.
+- Die erste Veröffentlichung ist *The Road to Architecture*. Der NX-Fundamentals-Artikel ist die zweite Veröffentlichung und darf nicht als erste bezeichnet werden.
+- Die tatsächliche Veröffentlichungsreihenfolge muss von der geplanten Lernreihenfolge getrennt bleiben. Roadmap-Phasen sind keine Veröffentlichungsnummern.
+- Vor Antworten zur Veröffentlichungshistorie, zum nächsten Artikel, zu Daten oder Links ist diese Datei zu prüfen.
+- Fehlende Daten oder URLs dürfen nicht geraten werden. Bis zur Verifizierung steht dort „Hier nicht erfasst“.
+- Nach jeder Veröffentlichung sind Titel, Datum und kanonische URL einzutragen sowie der Status in der Roadmap zu aktualisieren. Übersetzungen und plattformspezifische Versionen werden verlinkt, sofern bekannt.
+- Wenn ein Chat keinen Zugriff auf diese Datei hat oder Angaben mehrdeutig sind, muss diese Einschränkung benannt werden, statt zu raten.
+
 ## 3. Geplante Artikelabfolge
 
 ### Einführender Artikel — Architektur vor Technologie
