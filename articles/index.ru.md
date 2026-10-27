@@ -39,9 +39,12 @@
 - [Was werden wir umsetzen?](The-Road-to-Architecture/README.de.md#was-werden-wir-in-diesem-artikel-umsetzen)
 
 ## 2. NX Workspace: от архитектуры к инструментам
-**Статус:** текст статьи и заметки о реализации находятся в репозитории. Начальная настройка и генерация Angular-приложения не должны дублироваться в следующей статье.
+**Статус:** опубликована на Hashnode. Начальная настройка и генерация Angular-приложения не должны дублироваться в следующей статье.
 
-- [English](NX-Workspace/README.md) · [Русский](NX-Workspace/README.ru.md) · [Deutsch](NX-Workspace/README.de.md)
+- [Опубликованная статья на Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-workspace-from-architecture-to-tooling)
+
+- [Заметки на английском](NX-Workspace/README.md) · [Заметки на русском](NX-Workspace/README.ru.md) · [Заметки на немецком](NX-Workspace/README.de.md)
+- [Опубликованная статья на Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-workspace-from-architecture-to-tooling)
 - [Ветка NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace) · [Ветка NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace%2B1)
 
 ### Оглавление — русский текст
