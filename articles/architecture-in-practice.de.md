@@ -1,5 +1,7 @@
 # Architektur in der Praxis: Entscheidungen, die Enterprise-Frontend-Systeme prägen
 
+> **Status:** Published on [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems).
+
 Dieser Artikel eröffnet den theoretischen Teil der Reihe Enterprise Frontend Workshop. Er behandelt reale architektonische Zielkonflikte und erklärt, warum unterschiedliche Projekte zu unterschiedlichen Lösungen kommen. Im nächsten Schritt werden diese Überlegungen technisch in einem NX-Workspace umgesetzt.
 
 ## Architektur vor Technologie
