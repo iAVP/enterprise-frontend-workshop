@@ -81,6 +81,8 @@ The article presents a personal perspective, not a mandatory architecture or a u
 
 ### Stage 1 — NX Fundamentals
 
+**Status: Published** — canonical publication URL not yet recorded in this repository.
+
 **Purpose:** establish the workspace and explain the NX development model.
 
 Planned topics:

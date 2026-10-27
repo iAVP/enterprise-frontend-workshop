@@ -74,6 +74,8 @@ Der Artikel stellt eine persönliche Perspektive vor, keine verpflichtende Archi
 
 ### Phase 1 — NX-Grundlagen
 
+**Status: Veröffentlicht** — der kanonische Veröffentlichungslink ist im Repository noch nicht erfasst.
+
 **Ziel:** Den Workspace einrichten und das Entwicklungsmodell von NX erläutern.
 
 Geplante Themen:
