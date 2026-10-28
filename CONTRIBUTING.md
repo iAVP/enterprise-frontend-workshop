@@ -92,38 +92,13 @@ Register a stable alias for each shared library in the root `tsconfig.base.json`
 
 Add an alias when each library is created and ensure the target entry-point file exists. Import public APIs through these aliases rather than using relative paths that reach into another library's source tree. Path aliases make imports stable; they do not enforce dependency boundaries by themselves.
 
-### NX module boundaries and allowed imports
-
-Enforce the dependency rules in the root `eslint.config.mjs` using `@nx/enforce-module-boundaries` and `depConstraints`:
-
-- `level:app` may depend on `tag:facades`, `tag:definitions`, and `tag:base`.
-- `tag:facades` may depend on `tag:dal`, `tag:base`, and `tag:definitions`.
-- `tag:definitions` may depend only on `tag:base`.
-- `tag:dal` may depend on `tag:base` and `tag:definitions`.
-- `tag:base` may not depend on other workspace projects.
-
-The project-specific `app:<project-name>` tag identifies an app-related project; it does not replace the shared `level:app` tag. All application-related projects, including E2E projects, must have `level:app`.
-
-These restrictions keep application code from bypassing facades, keep the data-access layer independent of orchestration, and preserve `base` as the lowest-level shared library. When changing project tags or adding a library, update and verify the ESLint constraints accordingly.
-
-### Shared library TypeScript path aliases
-
-Register public entry-point aliases in root `tsconfig.base.json` under `compilerOptions.paths`, using the format `@workshop:<library-name>`. The initial aliases are:
-
-- `@workshop:facades` → `libs/shared/facades/src/index.ts`
-- `@workshop:dal` → `libs/shared/dal/src/index.ts`
-- `@workshop:base` → `libs/shared/base/src/index.ts`
-- `@workshop:definitions` → `libs/shared/definitions/src/index.ts`
-
-Add or update the alias when creating, renaming, or moving a library. Ensure the referenced `src/index.ts` exists and exports the public API. Use these aliases instead of reaching into another library's source through relative paths. Aliases improve import stability but do not enforce module boundaries; ESLint does that.
-
 ### Shared library responsibilities
 
 The initial planned shared libraries are:
 
 - `facades`: API-facing/application services and service contracts. Keep UI logic that belongs to a specific frontend framework out of this library.
 - `dal`: data-access services for retrieving and persisting data from the backend and other sources.
-- `base`: foundational functionality intended to be available throughout the application, such as helpers for text internationalization.
+- `base`: foundational functionality intended to be available throughout the application, such as helpers for text internationalization. It must not import any other project in the workspace, now or in the future.
 - `definitions`: shared constants, facade contracts, types, enums, records, and framework-independent functions; `abstracts` for TypeScript abstract classes; and `classes` for ordinary classes. Keep this library foundational and avoid dependency cycles or dependencies on higher-level features.
 
 Keep these responsibilities distinct. Do not move framework-specific UI behavior into shared libraries simply because multiple parts of the system need related functionality.
