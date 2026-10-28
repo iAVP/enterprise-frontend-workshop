@@ -4,23 +4,17 @@
 
 ## Понятия NX Workspace и организация проектов
 
-Когда в репозитории появляется несколько приложений, тестовых проектов и библиотек, недостаточно просто разложить их по папкам. Разработчикам нужно понимать, какие части системы существуют, как они связаны и какие операции можно выполнять для каждой из них. NX помогает описать эту структуру и предоставляет единый способ работать с её элементами.
+Предыдущая статья уже разобрала, зачем нужен NX Workspace и как создать в нём Angular-приложение с отдельным E2E-проектом. Здесь считаем этот этап завершённым и используем существующий workspace.
 
-**NX Workspace** — это рабочее пространство, в котором NX обнаруживает проекты, определяет доступные для них задачи и анализирует зависимости между проектами. Оно может содержать несколько приложений и библиотек, но само по себе наличие нескольких папок ещё не означает, что архитектура хорошо организована.
+Для дальнейшей работы важно различать три понятия:
 
-**Проект** — единица, которую NX может обнаружить и с которой умеет работать. Проектом может быть приложение, библиотека или, например, отдельный проект end-to-end-тестов. У проекта есть имя и доступная конфигурация. По ней NX определяет, какие задачи можно выполнить и как их запускать.
+- **Workspace** — рабочее пространство и его общая конфигурация.
+- **Project** — обнаруживаемая NX единица, например приложение, библиотека или E2E-проект.
+- **Target** — именованная задача проекта, например сборка, запуск или тестирование.
 
-Важно различать три понятия:
+В текущем репозитории это означает, что `personal-finance` и `personal-finance-e2e` — отдельные NX-проекты с разными обязанностями и доступными задачами. Набор targets определяется конфигурацией и плагинами; не следует предполагать, что у каждого проекта есть одинаковые `build`, `test` и `lint`.
 
-- **Workspace** — всё рабочее пространство и его общая конфигурация.
-- **Project** — отдельная единица внутри workspace.
-- **Target** — операция, доступная для проекта, например сборка или тестирование.
-
-Такое разделение позволяет обсуждать структуру репозитория отдельно от действий, которые над ней выполняются. Например, приложение и E2E-проект могут находиться в одном workspace, но отвечать за разные задачи и иметь разные наборы targets.
-
-В нашем учебном проекте Personal Finance уже есть Angular-приложение и отдельный E2E-проект. Сейчас наша цель — понять, как NX представляет эти существующие элементы и помогает с ними работать. Создавать их заново ради демонстрации команд не нужно.
-
-Документация: [NX](https://nx.dev/) и [конфигурация проектов](https://nx.dev/reference/project-configuration).
+Документация: [конфигурация проектов NX](https://nx.dev/reference/project-configuration).
 
 ### Служебные каталоги `.angular/` и `.nx/`
 
@@ -139,7 +133,8 @@ rmdir apps/personal-finance/public
 
 ```text
 common/
-├── assets/\n│   └── favicon.ico         # Shared workspace favicon
+├── assets/
+│   └── favicon.ico         # Shared workspace favicon
 ├── styles/
 │   └── common.scss         # Shared workspace styles
 └── environments/
@@ -362,30 +357,30 @@ npx nx g @nx/js:lib libs/shared/definitions --tags="level:shared,tag:definitions
 - публичная точка входа `src/index.ts` для `facades`, `dal` и `base`;
 - алиас в корневом `tsconfig.base.json`, соответствующий правилам репозитория.
 
-Для `definitions` категории хранятся в `src/lib/`. У каждой категории есть собственный `index.ts`, который служит публичной точкой входа именно этой категории. Корневой `src/index.ts` нужен для реэкспорта категорий из `./lib/<категория>`; это отдельный файл, его не следует путать с `index.ts` внутри каждой папки. Например, корневой файл содержит строки вида `export * from './lib/constants';`, а `src/lib/constants/index.ts` позднее экспортирует файлы, принадлежащие категории constants.
+Для `definitions` используем только категорийные публичные точки входа: `libs/shared/definitions/src/lib/<категория>/index.ts`. Общего `libs/shared/definitions/src/index.ts` в этой архитектуре **не должно быть**. Такой подход позволяет импортировать конкретные категории через отдельные aliases и не создавать единый barrel для всех определений.
 
-Создайте каталоги и файлы одним Bash-скриптом из корня репозитория:
+Создайте семь категорий и их `index.ts` из корня репозитория:
 
 ```bash
 #!/usr/bin/env bash
 set -euo pipefail
 
-base="libs/shared/definitions/src"
+base="libs/shared/definitions/src/lib"
 categories=(constants abstracts classes enums types interfaces records)
 
 for category in "${categories[@]}"; do
-  mkdir -p "${base}/lib/${category}"
-  touch "${base}/lib/${category}/index.ts"
+  mkdir -p "${base}/${category}"
+  cat > "${base}/${category}/index.ts" <<EOF
+/**
+ * Public exports for shared ${category}.
+ * Add explicit exports when files are introduced.
+ */
+export {};
+EOF
 done
-
-{
-  for category in "${categories[@]}"; do
-    printf "export * from './lib/%s';\n" "${category}"
-  done
-} > "${base}/index.ts"
 ```
 
-Скрипт создаёт `src/lib/<категория>/index.ts` для всех семи категорий, а затем создаёт корневой `src/index.ts` со строками `export * from './lib/<категория>';`. Это разные уровни экспорта: не помещайте реэкспорт `./lib/<категория>` внутрь `src/lib/<категория>/index.ts`, иначе путь будет вести не туда. Внутренние `index.ts` пока пустые — добавляйте в них реэкспорт конкретных файлов категории по мере появления таких файлов.
+Скрипт создаёт только категорийные entry points. Когда в категории появятся реальные файлы, замените `export {}` явными экспортами существующих файлов, например `export * from './account.type';`. Не используйте `export * from './';`: такая строка ссылается на тот же каталог и может создать циклическую ссылку.
 
 Генератор `@nx/js:lib` также может создать стартовые файлы `definitions.ts` и `definitions.spec.ts`. В этой архитектуре они не нужны: вместо единственного стартового модуля используются категории с отдельными `index.ts`. Удалите оба сгенерированных файла полностью. Если генератор положил их в стандартный каталог `src/lib/`, выполните из корня workspace:
 
@@ -394,28 +389,13 @@ rm -f libs/shared/definitions/src/lib/definitions.ts
 rm -f libs/shared/definitions/src/lib/definitions.spec.ts
 ```
 
-Если в вашей версии генератора эти файлы созданы по другому пути, удалите именно сгенерированные `definitions.ts` и `definitions.spec.ts` внутри проекта `libs/shared/definitions/`. Не удаляйте `src/index.ts` и создаваемые ниже файлы `src/lib/<категория>/index.ts`: они нужны для публичного экспорта категорий.
+Если в вашей версии генератора эти файлы созданы по другому пути, удалите именно сгенерированные `definitions.ts` и `definitions.spec.ts` внутри проекта `libs/shared/definitions/`. Не удаляйте категорийные файлы `src/lib/<категория>/index.ts`: они являются публичными точками входа.
 
-Создайте каталоги и файлы явными командами из корня репозитория:
-
-```bash
-mkdir -p libs/shared/definitions/src/lib/{constants,abstracts,classes,enums,types,interfaces,records}
-touch libs/shared/definitions/src/lib/constants/index.ts
-touch libs/shared/definitions/src/lib/abstracts/index.ts
-touch libs/shared/definitions/src/lib/classes/index.ts
-touch libs/shared/definitions/src/lib/enums/index.ts
-touch libs/shared/definitions/src/lib/types/index.ts
-touch libs/shared/definitions/src/lib/interfaces/index.ts
-touch libs/shared/definitions/src/lib/records/index.ts
-```
-
-Эти команды создают семь каталогов внутри `src/lib/` и пустой `index.ts` в каждом из них. Корневой `src/index.ts` создаётся отдельно и реэкспортирует категории через `export * from './lib/<категория>';` — для этого используйте основной скрипт выше либо добавьте эти строки вручную.
-
-Проверьте результат:
+Проверьте, что созданы семь категорийных entry points и отсутствует общий entry point библиотеки:
 
 ```bash
-find libs/shared/definitions/src -maxdepth 3 -type f -name 'index.ts' -print
-cat libs/shared/definitions/src/index.ts
+find libs/shared/definitions/src/lib -maxdepth 2 -type f -name 'index.ts' -print
+test ! -f libs/shared/definitions/src/index.ts
 ```
 
 На Windows используйте Git Bash или WSL для выполнения этого Bash-скрипта. Алиасы категорий в `tsconfig.base.json` должны указывать на `libs/shared/definitions/src/lib/<категория>/index.ts`:
@@ -505,7 +485,7 @@ npx nx graph
 - **DAL зависит от контрактов и базовых средств, но не от фасадов.** Так технический слой доступа к данным не знает о том, кто и зачем вызывает его методы.
 - **Base остаётся полностью изолированным фундаментом.** `base` не имеет права импортировать ни один другой проект workspace — ни `definitions`, ни `dal`, ни `facades`, ни приложения, ни любые будущие проекты. Это намеренно строгое правило: общий фундамент не должен втягивать внешние контракты, детали предметной области или прикладные механизмы. Если какая-то функциональность требует зависимости от другого проекта, её следует разместить в другом слое, а не ослаблять это ограничение.
 
-Ограничения настроены в корневом `eslint.config.mjs` через правило NX `@nx/enforce-module-boundaries` и массив `depConstraints`: для каждого `sourceTag` указан разрешённый список `onlyDependOnLibsWithTags`. Ошибочные зависимости должны приводить к lint-ошибке. После добавления или переименования проекта нужно проверить его теги и выполнить lint, чтобы убедиться, что NX-граф и правила классифицируют его ожидаемым образом.
+Ограничения настроены в корневом `eslint.config.mts` через правило NX `@nx/enforce-module-boundaries` и массив `depConstraints`: для каждого `sourceTag` указан разрешённый список `onlyDependOnLibsWithTags`. Ошибочные зависимости должны приводить к lint-ошибке. После добавления или переименования проекта нужно проверить его теги и выполнить lint, чтобы убедиться, что NX-граф и правила классифицируют его ожидаемым образом.
 
 ### Единое расширение ESLint-конфигураций: `.mts`
 
@@ -686,7 +666,8 @@ npx nx run personal-finance:lint
 {
   "scripts": {
     "serve": "nx serve personal-finance",
-    "build": "nx run-many -t build",
+    "build": "nx build personal-finance",
+    "build:all": "nx run-many -t build",
     "build:prod": "nx build personal-finance --configuration=production",
     "test": "nx run-many -t test",
     "lint": "nx run-many -t lint",
