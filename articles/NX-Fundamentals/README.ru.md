@@ -267,6 +267,26 @@ npx nx build personal-finance --configuration=test
 npx nx build personal-finance --configuration=production
 ```
 
+#### Запускаем приложение через `serve`
+
+После переноса ресурсов проверьте не только сборку, но и работу приложения в браузере. Из корня workspace выполните:
+
+```bash
+npx nx serve personal-finance
+```
+
+По умолчанию target `serve` использует конфигурацию `development`. После успешного запуска откройте адрес, указанный в терминале (в текущей конфигурации это обычно [http://localhost:4200](http://localhost:4200)).
+
+Для проверки конкретного окружения укажите его явно:
+
+```bash
+npx nx serve personal-finance --configuration=development
+npx nx serve personal-finance --configuration=test
+npx nx serve personal-finance --configuration=production
+```
+
+Убедитесь, что приложение загружается без ошибок, глобальные стили применяются, а favicon отображается. В инструментах разработчика браузера проверьте, что запрос к `/favicon.ico` возвращает успешный ответ. Остановить локальный сервер можно сочетанием `Ctrl+C` в терминале.
+
 Документация: [Angular workspace configuration — assets, styles и file replacements](https://angular.dev/reference/configs/workspace-config), [Angular build](https://angular.dev/cli/build) и [NX project configuration](https://nx.dev/docs/reference/project-configuration).
 
 ### `libs/shared/`: общие библиотеки с явными обязанностями
