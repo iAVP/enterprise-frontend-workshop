@@ -7,7 +7,7 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 - [1. Der Weg zur Architektur](#1-der-weg-zur-architektur)
 - [2. NX Fundamentals — Grundlagen eines Enterprise-Frontend-Workspace](#2-nx-fundamentals-grundlagen-eines-enterprise-frontend-workspace)
 - [3. Architektur in der Praxis: Entscheidungen für Enterprise-Frontend-Systeme](#3-architektur-in-der-praxis-entscheidungen-für-enterprise-frontend-systeme)
-- [Verwandter technischer Artikel: NX Workspace — Von der Architektur zu den Werkzeugen](#verwandter-technischer-artikel-nx-workspace-von-der-architektur-zu-den-werkzeugen)
+- [4. NX Workspace — Von der Architektur zu den Werkzeugen](#4-nx-workspace--von-der-architektur-zu-den-werkzeugen)
 - [Redaktionsregeln](#redaktionsregeln)
 
 ## 1. Der Weg zur Architektur
@@ -73,7 +73,7 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 ### GitHub-Branches
 - Für diesen Artikel wurde noch kein eigener Branch gefunden.
 
-## Verwandter technischer Artikel: NX Workspace — Von der Architektur zu den Werkzeugen
+## 4. NX Workspace — Von der Architektur zu den Werkzeugen
 
 - **Veröffentlichung:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-workspace-from-architecture-to-tooling)
 
