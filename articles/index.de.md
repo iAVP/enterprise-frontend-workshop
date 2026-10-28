@@ -32,7 +32,9 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 - [Was werden wir in diesem Artikel umsetzen?](The-Road-to-Architecture/README.de.md#was-werden-wir-in-diesem-artikel-umsetzen)
 
 ### GitHub-Branches
-- Für diesen Artikel wurde noch kein eigener Branch gefunden.## 2. NX Fundamentals — Grundlagen eines Enterprise-Frontend-Workspace
+- Für diesen Artikel wurde noch kein eigener Branch gefunden.
+
+## 2. NX Fundamentals — Grundlagen eines Enterprise-Frontend-Workspace
 
 **Status:** Geplant; alle drei Artikeldateien sind derzeit leer.
 
@@ -42,7 +44,7 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 - [deutsch](NX-Fundamentals/README.de.md)
 
 ### Artikelinhalte
-- Article text and section headings have not been written yet.
+- Artikeltext und Abschnittsüberschriften sind noch nicht vorhanden.
 
 ### GitHub-Branches
 - [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch)
