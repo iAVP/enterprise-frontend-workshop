@@ -7,5 +7,9 @@
     "personal-finance"
   ],
   "// targets": "to see all targets run: nx show project personal-finance-e2e --web",
-  "targets": {}
+  "targets": {},
+  "tags": [
+    "level:app",
+    "app:personal-finance-e2e"
+  ]
 }
