@@ -10,6 +10,8 @@ Die Roadmap beschreibt geplante Inhalte. Ein Artikel darf erst dann als veröffe
 
 ## 1. Redaktionelle Prinzipien
 
+- In einem Artikel dürfen nur Git-Branches aufgeführt werden, die zu diesem Artikel selbst gehören. Branches früherer Artikel oder anderer Phasen sowie eine Branch-Historie dürfen nicht aufgenommen werden. Vor dem Hinzufügen eines Links müssen die Existenz des Branches und die URL überprüft werden.
+
 Die Serie folgt mehreren Prinzipien:
 
 - **Eine kontinuierlich weiterentwickelte Anwendung:** Die architektonische Entwicklung wird anhand eines zusammenhängenden Beispiels gezeigt, nicht anhand unverbundener Demos.
