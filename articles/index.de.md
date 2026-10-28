@@ -7,6 +7,13 @@ Dies ist der zentrale Einstiegspunkt für Reihenfolge, Sprachversionen, Status u
 2. [NX Workspace: Von der Architektur zu den Werkzeugen](#2-nx-workspace-von-der-architektur-zu-den-werkzeugen)
 3. [NX Fundamentals](#3-nx-fundamentals)
 
+## Zusätzlicher veröffentlichter Artikel — Architekturentscheidungen in der Praxis
+
+**Status:** Auf Hashnode veröffentlicht.
+
+- [Englische Veröffentlichung — Architecture in Practice: Decisions Behind Enterprise Frontend Systems](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems)
+- [Russischer Text im Repository](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md) · [Deutsche Fassung](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md)
+
 ## 1. The Road to Architecture
 **Status:** Auf Hashnode veröffentlicht.
 
