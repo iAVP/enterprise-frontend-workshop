@@ -4,8 +4,8 @@ This is the main navigation file for the article series. Maintain publication or
 
 ## Publication sequence
 1. [The Road to Architecture](#1-the-road-to-architecture)
-2. [NX Workspace: From Architecture to Tools](#2-nx-workspace-from-architecture-to-tools)
-3. [NX Fundamentals](#3-nx-fundamentals)
+2. [NX Fundamentals](#2-nx-fundamentals)
+3. [Architecture in Practice: Decisions Behind Enterprise Frontend Systems](#3-architecture-in-practice-decisions-behind-enterprise-frontend-systems)
 
 ## 1. The Road to Architecture
 **Status:** Published on Hashnode. The English repository entry links to the publication; localized texts are in the article folder.
@@ -42,7 +42,7 @@ English article text is not mirrored into the repository yet. The following sect
 - [Von Architekturentscheidungen zum NX Workspace](The-Road-to-Architecture/README.de.md#von-architekturentscheidungen-zum-nx-workspace)
 - [Was wir umsetzen werden](The-Road-to-Architecture/README.de.md#was-werden-wir-in-diesem-artikel-umsetzen)
 
-## 2. NX Workspace: From Architecture to Tools
+## Related article: NX Workspace — From Architecture to Tools
 **Status:** Published on Hashnode. Do not repeat this article's setup walkthrough in NX Fundamentals.
 
 - [Published article on Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-workspace-from-architecture-to-tooling)
@@ -95,7 +95,7 @@ English article text is not mirrored into the repository yet. The following sect
   - [End-to-End-Tests prüfen](NX-Workspace/README.de.md#end-to-end-tests-prüfen) · [Ergebnis dieser Etappe](NX-Workspace/README.de.md#ergebnis-dieser-etappe)
 - [Implementierungs-Branches](NX-Workspace/README.de.md#implementierungs-branches) · [Weiterführende Dokumentation](NX-Workspace/README.de.md#weiterführende-dokumentation) · [Implementierungsstatus](NX-Workspace/README.de.md#implementierungsstatus-und-umfang)
 
-## 3. NX Fundamentals
+## 2. NX Fundamentals
 **Status:** Work in progress. The English file contains the working outline; Russian and German files are aligned to it. This article builds on NX Workspace and does not repeat initial setup or app generation.
 
 - [English draft](Good architecture is not always about choosing one technology and making everything uniform/README.md) · [Russian draft](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md) · [German draft](Good architecture is not always about choosing one technology and making everything uniform/README.de.md)
@@ -132,6 +132,22 @@ English article text is not mirrored into the repository yet. The following sect
 - [Caching und affected-Befehle](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#caching-und-affected-befehle)
 - [Architektur einführen, ohne zu früh zu abstrahieren](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#architektur-einführen-ohne-zu-früh-zu-abstrahieren)
 - [Aktueller Implementierungsstand](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#aktueller-implementierungsstand) · [Weiterführende Dokumentation](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#weiterführende-dokumentation)
+
+## 3. Architecture in Practice: Decisions Behind Enterprise Frontend Systems
+**Status:** Published on Hashnode. Russian version also published on VK.
+
+- [English publication](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems)
+- [Russian version on VK](https://vk.ru/@-65490196-arhitektura-na-praktike-resh1?subtype=primary)
+- [Russian text in the repository](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md) · [German text in the repository](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md)
+
+### Section TOC
+- [Extending an existing corporate environment](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#extending-an-existing-corporate-environment)
+- [Working with multiple frontend frameworks](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#working-with-multiple-frontend-frameworks)
+- [Sharing framework-independent models and contracts](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#sharing-framework-independent-models-and-contracts)
+- [Evolving from desktop to mobile](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#evolving-from-desktop-to-mobile)
+- [Configuration, secrets, and security boundaries](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#configuration-secrets-and-security-boundaries)
+- [Architecture as a set of trade-offs](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#architecture-as-a-set-of-trade-offs)
+- [The role of NX in enforcing boundaries](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#the-role-of-nx-in-enforcing-boundaries)
 
 ## Working rules
 - Use this file as the source of truth for navigation and article status.
