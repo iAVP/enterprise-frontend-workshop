@@ -226,8 +226,8 @@ Wir haben mit einer minimalen Anwendung begonnen, die grundlegende Infrastruktur
 
 ## Implementierungs-Branches
 
-- [NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace) — Initialisierung des NX Workspace.
-- [NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace+1) — Integration von Angular und Erstellung der ersten Anwendung.
+- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch) — Initialisierung des NX Workspace.
+- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch%2B1) — Integration von Angular und Erstellung der ersten Anwendung.
 
 ## Weiterführende Dokumentation
 
