@@ -32,8 +32,7 @@
 - [Что мы будем делать в этой статье?](The-Road-to-Architecture/README.ru.md#что-мы-будем-делать-в-этой-статье)
 
 ### Ветки GitHub
-- [main](https://github.com/iAVP/enterprise-frontend-workshop/tree/main)
-## 2. NX Fundamentals — основы NX Workspace
+- Отдельная ветка для этой статьи пока не найдена.## 2. NX Fundamentals — основы NX Workspace
 
 **Статус:** Статья запланирована; все три файла пока пусты.
 
@@ -70,8 +69,7 @@
 - [От практических решений к NX Workspace](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#от-практических-решений-к-nx-workspace)
 
 ### Ветки GitHub
-- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch)
-## Связанная техническая статья: NX Workspace — от архитектуры к инструментам
+- Отдельная ветка для этой статьи пока не найдена.## Связанная техническая статья: NX Workspace — от архитектуры к инструментам
 
 **Статус:** Опубликована на Hashnode.
 
