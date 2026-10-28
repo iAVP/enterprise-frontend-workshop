@@ -773,10 +773,10 @@ NX предоставляет механизмы для организации w
 
 На этом этапе доменная модель и бизнес-функциональность ещё не реализуются. DDD и проектирование предметной области останутся отдельной темой; здесь мы готовим техническую основу для дальнейшей работы.
 
-Актуальные ветки NX Fundamentals:
+Ветки реализации:
 
-- [NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace) — инициализация NX workspace.
-- [NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace%2B1) — создание Angular-приложения и E2E-проекта.
+- [NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace) — Инициализация NX Workspace.
+- [NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace%2B1) — Создание Angular-приложения и E2E-проекта.
 ## Дополнительные материалы
 
 - [Официальная документация NX](https://nx.dev/)
