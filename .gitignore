@@ -10,3 +10,5 @@
 
 __screenshots__/
 /dist/
+vitest.config.*.timestamp*
+.vitest

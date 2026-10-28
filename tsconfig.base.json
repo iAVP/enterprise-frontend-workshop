@@ -47,6 +47,18 @@
       ],
       "@workshop:def:records": [
         "libs/shared/definitions/src/records/index.ts"
+      ],
+      "definitions": [
+        "./libs/shared/definitions/src/index.ts"
+      ],
+      "base": [
+        "./libs/shared/base/src/index.ts"
+      ],
+      "dal": [
+        "./libs/shared/dal/src/index.ts"
+      ],
+      "facades": [
+        "./libs/shared/facades/src/index.ts"
       ]
     }
   },

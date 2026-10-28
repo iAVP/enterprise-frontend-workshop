@@ -154,7 +154,7 @@ apps/
 
 `personal-finance-e2e` ist ein separates Projekt für End-to-End-Tests. Es enthält die Playwright-Konfiguration und die Testdatei `example.spec.ts`.
 
-Der Generator aktualisiert außerdem `package.json`, `package-lock.json` und `nx.json` und ergänzt die benötigten Abhängigkeiten, Plugins und Task-Einstellungen. Die ESLint-Konfiguration befindet sich in `eslint.config.mjs`. Wir behalten die moderne Flat Config bei, die der Generator erstellt.
+Der Generator aktualisiert außerdem `package.json`, `package-lock.json` und `nx.json` und ergänzt die benötigten Abhängigkeiten, Plugins und Task-Einstellungen. Die ESLint-Konfiguration befindet sich in `eslint.config.mts`. Wir behalten die moderne Flat Config bei, die der Generator erstellt.
 
 Die Architektur der Anwendung entwickeln wir schrittweise weiter, wenn neue Funktionen entstehen und eine Trennung der Verantwortlichkeiten zwischen Projekten und Bibliotheken tatsächlich notwendig wird.
 

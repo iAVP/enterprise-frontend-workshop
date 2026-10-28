@@ -23,15 +23,18 @@
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/personal-finance/public"
+            "input": "common/assets",
+            "output": "/"
           }
         ],
         "styles": [
-          "apps/personal-finance/src/styles.scss"
+          "apps/personal-finance/src/styles.scss",
+          "common/styles/common.scss"
         ]
       },
       "configurations": {
         "production": {
+          "fileReplacements": [],
           "budgets": [
             {
               "type": "initial",
@@ -47,6 +50,23 @@
           "outputHashing": "all"
         },
         "development": {
+          "fileReplacements": [
+            {
+              "replace": "common/environments/environment.prod.ts",
+              "with": "common/environments/environment.dev.ts"
+            }
+          ],
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        },
+        "test": {
+          "fileReplacements": [
+            {
+              "replace": "common/environments/environment.prod.ts",
+              "with": "common/environments/environment.test.ts"
+            }
+          ],
           "optimization": false,
           "extractLicenses": false,
           "sourceMap": true

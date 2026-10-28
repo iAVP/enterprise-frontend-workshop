@@ -1,0 +1,12 @@
+{
+  "name": "dal",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/dal/src",
+  "projectType": "library",
+  "tags": [
+    "level:shared",
+    "tag:dal"
+  ],
+  "// targets": "to see all targets run: nx show project dal --web",
+  "targets": {}
+}
