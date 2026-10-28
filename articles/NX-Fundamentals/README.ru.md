@@ -376,7 +376,7 @@ done
 
 {
   for category in "${categories[@]}"; do
-    printf "export * from './lib/%s';\\n" "${category}"
+    printf "export * from './lib/%s';\n" "${category}"
   done
 } > "${base}/index.ts"
 ```
