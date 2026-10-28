@@ -820,11 +820,10 @@ NX предоставляет механизмы для организации w
 
 **Главный результат этого этапа — не количество созданных файлов и конфигураций, а наличие проверенной основы, от которой мы можем отталкиваться в дальнейшем развитии проекта.** Теперь у нас есть рабочий каркас, а следующие архитектурные решения будут появляться не в отрыве от реализации, а в ответ на реальные задачи нашего будущего приложения.
 
-Ветки предыдущих этапов:
+Актуальные ветки NX Fundamentals:
 
-- [NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace)
-- [NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace%2B1)
-- [Текущая ветка NX Fundamentals](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch)
+- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch)
+- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch%2B1)
 
 ## Дополнительные материалы
 
