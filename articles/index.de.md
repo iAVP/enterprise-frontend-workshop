@@ -54,18 +54,18 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 - **Russische Veröffentlichung:** [VK](https://vk.ru/@-65490196-arhitektura-na-praktike-resh1?subtype=primary)
 
 ### Repository-Materialien
-- [englisch](Good architecture is not always about choosing one technology and making everything uniform/README.md)
-- [русский](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md)
-- [deutsch](Good architecture is not always about choosing one technology and making everything uniform/README.de.md)
+- [englisch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.md)
+- [русский](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md)
+- [deutsch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md)
 
 ### Artikelinhalte
-- [Architektur vor Technologie](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#architektur-vor-technologie)
-- [Wenn neue Funktionen die gewohnte Arbeitsweise nicht beeinträchtigen sollen](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#wenn-neue-funktionen-die-gewohnte-arbeitsweise-nicht-beeinträchtigen-sollen)
-- [Wenn sich ein Produkt mit mehreren Frontend-Frameworks weiterentwickelt](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#wenn-sich-ein-produkt-mit-mehreren-frontend-frameworks-weiterentwickelt)
-- [Wenn ein bequemer Konfigurationsmechanismus neu bewertet werden muss](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#wenn-ein-bequemer-konfigurationsmechanismus-neu-bewertet-werden-muss)
-- [Wenn verschiedene Technologien gemeinsam ein Problem lösen](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#wenn-verschiedene-technologien-gemeinsam-ein-problem-lösen)
-- [Warum Architektur bei der Weiterentwicklung des Produkts erhalten bleiben muss](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#warum-architektur-bei-der-weiterentwicklung-des-produkts-erhalten-bleiben-muss)
-- [Vom Architekturdenken zur Projektorganisation](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#vom-architekturdenken-zur-projektorganisation)
+- [Architektur vor Technologie](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md#architektur-vor-technologie)
+- [Wenn neue Funktionen die gewohnte Arbeitsweise nicht beeinträchtigen sollen](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md#wenn-neue-funktionen-die-gewohnte-arbeitsweise-nicht-beeinträchtigen-sollen)
+- [Wenn sich ein Produkt mit mehreren Frontend-Frameworks weiterentwickelt](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md#wenn-sich-ein-produkt-mit-mehreren-frontend-frameworks-weiterentwickelt)
+- [Wenn ein bequemer Konfigurationsmechanismus neu bewertet werden muss](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md#wenn-ein-bequemer-konfigurationsmechanismus-neu-bewertet-werden-muss)
+- [Wenn verschiedene Technologien gemeinsam ein Problem lösen](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md#wenn-verschiedene-technologien-gemeinsam-ein-problem-lösen)
+- [Warum Architektur bei der Weiterentwicklung des Produkts erhalten bleiben muss](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md#warum-architektur-bei-der-weiterentwicklung-des-produkts-erhalten-bleiben-muss)
+- [Vom Architekturdenken zur Projektorganisation](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md#vom-architekturdenken-zur-projektorganisation)
 
 ### GitHub-Branches
 - Für diesen Artikel wurde noch kein eigener Branch gefunden.## Verwandter technischer Artikel: NX Workspace — Von der Architektur zu den Werkzeugen
