@@ -21,23 +21,25 @@ This index is the central navigation source for the article series. Keep the pub
 ### GitHub branches
 - No dedicated article branch is currently available.
 
-## 2. NX Fundamentals — Building an Enterprise Frontend Workspace
+## 2. NX Fundamentals — Building an Enterprise Frontend Workspace from Scratch
 
 ### Repository materials
-[englisch](NX-Fundamentals/README.md) | [русский](NX-Fundamentals/README.ru.md) | [deutsch](NX-Fundamentals/README.de.md)
+[English](NX-Fundamentals/README.md) | [Russian](NX-Fundamentals/README.ru.md) | [German](NX-Fundamentals/README.de.md)
 
 ### Article contents
-- NX Workspace concepts and project organization
-- Organizing `apps/` and `libs/`: common and shared resources
-- NX Module Boundaries and dependency rules
-- Creating shared libraries and TypeScript path aliases
-- Project and target configuration
-- How NX discovers projects and runs tasks
-- Running, building, testing, and linting
-- Project and task graphs
-- Caching and affected commands
-- Early architectural decisions without premature abstractions
-- Conclusion: a foundation for the future enterprise workspace
+- [NX Workspace Concepts and Project Organization](NX-Fundamentals/README.md#nx-workspace-concepts-and-project-organization)
+- [Organizing `apps/` and `libs/`: `common` and `shared`](NX-Fundamentals/README.md#organizing-apps-and-libs-common-and-shared)
+- [NX Module Boundaries: Dependency Rules](NX-Fundamentals/README.md#nx-module-boundaries-dependency-rules)
+- [Creating Shared Libraries and TypeScript Path Aliases](NX-Fundamentals/README.md#creating-shared-libraries-and-typescript-path-aliases)
+- [Project Configuration and Targets](NX-Fundamentals/README.md#project-configuration-and-targets)
+- [How NX Discovers Projects and Runs Tasks](NX-Fundamentals/README.md#how-nx-discovers-projects-and-runs-tasks)
+- [Running, Building, Testing, and Linting](NX-Fundamentals/README.md#running-building-testing-and-linting)
+- [The Project Graph and the Task Graph](NX-Fundamentals/README.md#the-project-graph-and-the-task-graph)
+- [Caching and Affected Commands](NX-Fundamentals/README.md#caching-and-affected-commands)
+- [Initial Architecture Decisions Without Premature Abstractions](NX-Fundamentals/README.md#initial-architecture-decisions-without-premature-abstractions)
+- [Scope of This Stage: Preparing the Workspace Skeleton](NX-Fundamentals/README.md#scope-of-this-stage-preparing-the-workspace-skeleton)
+- [Current Implementation Status](NX-Fundamentals/README.md#current-implementation-status)
+- [Further Reading](NX-Fundamentals/README.md#further-reading)
 
 ### GitHub branches
 - [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch)
