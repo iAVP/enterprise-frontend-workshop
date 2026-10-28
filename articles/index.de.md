@@ -70,7 +70,9 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 - [Vom Architekturdenken zur Projektorganisation](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md#vom-architekturdenken-zur-projektorganisation)
 
 ### GitHub-Branches
-- Für diesen Artikel wurde noch kein eigener Branch gefunden.## Verwandter technischer Artikel: NX Workspace — Von der Architektur zu den Werkzeugen
+- Für diesen Artikel wurde noch kein eigener Branch gefunden.
+
+## Verwandter technischer Artikel: NX Workspace — Von der Architektur zu den Werkzeugen
 
 **Status:** Auf Hashnode veröffentlicht.
 
