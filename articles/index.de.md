@@ -94,6 +94,8 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 
 ## Redaktionsregeln
 
+- Jeder Artikeleintrag muss exakt derselben Vorlage folgen: `## N. Artikeltitel`, `### Repository-Materialien` mit allen drei Sprachlinks in einer Zeile, getrennt durch ` | `, `### Artikelinhalte` mit Abschnittslinks und `### GitHub-Branches` ausschließlich mit Branches dieses Artikels. Keine Statuszeile in die Artikeleintragsvorlage einfügen.
+
 - Die festgelegte Veröffentlichungsreihenfolge bleibt unverändert.
 - Das Gesamtinhaltsverzeichnis und die Abschnittsverzeichnisse gehören in die Indexdateien, nicht in kopierfertige Artikeltexte.
 - Alle drei Indizes müssen dieselbe Struktur haben; nur sprachspezifische Titel, Beschriftungen und Artikelüberschriften unterscheiden sich.
