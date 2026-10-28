@@ -21,7 +21,7 @@
 
 - **Английская публикация:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems)
 - **Русская публикация:** [ВКонтакте](https://vk.ru/@-65490196-arhitektura-na-praktike-resh1?subtype=primary)
-- **Полный русский текст в репозитории:** [README.ru.md](Architecture-in-Practice/README.ru.md)
+- **Полный русский текст в репозитории:** [README.ru.md](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md)
 - **Содержание:** практические архитектурные решения при работе с существующей корпоративной средой, несколькими frontend-фреймворками, повторным использованием бизнес-логики, конфигурацией и безопасностью; компромиссы и переход к NX Workspace. Английский текст доступен по ссылке на публикацию; английский и немецкий переводы в репозитории не заявляются.
 
 ## Связанная техническая статья: NX Workspace — From Architecture to Tooling
