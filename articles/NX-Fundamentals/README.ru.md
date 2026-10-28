@@ -460,6 +460,39 @@ npx nx graph
 
 Ограничения настроены в корневом `eslint.config.mjs` через правило NX `@nx/enforce-module-boundaries` и массив `depConstraints`: для каждого `sourceTag` указан разрешённый список `onlyDependOnLibsWithTags`. Ошибочные зависимости должны приводить к lint-ошибке. После добавления или переименования проекта нужно проверить его теги и выполнить lint, чтобы убедиться, что NX-граф и правила классифицируют его ожидаемым образом.
 
+### Единое расширение ESLint-конфигураций: `.mts`
+
+В этом workspace договоримся использовать расширение `.mts` для всех трёх ESLint flat-конфигураций: корневой и конфигураций приложения и E2E-проекта. Расширение `.mts` обозначает TypeScript-модуль в формате ES Modules и согласуется с конфигурациями вроде `vitest.config.mts`. Это соглашение о формате файлов; само по себе переименование не меняет правила lint.
+
+В ESLint 9 для загрузки TypeScript-конфигурации `.mts` в обычном Node.js-режиме требуется пакет `jiti`. Установите его как dev dependency:
+
+```bash
+npm install --save-dev jiti
+```
+
+Переименуйте все три файла, чтобы ссылки и соглашения были последовательными:
+
+```bash
+git mv eslint.config.mjs eslint.config.mts
+git mv apps/personal-finance/eslint.config.mjs apps/personal-finance/eslint.config.mts
+git mv apps/personal-finance-e2e/eslint.config.mjs apps/personal-finance-e2e/eslint.config.mts
+```
+
+В двух конфигурациях проектов обновите импорт корневой конфигурации. В `apps/personal-finance/eslint.config.mts` и `apps/personal-finance-e2e/eslint.config.mts` он должен ссылаться на `../../eslint.config.mts`:
+
+```typescript
+import baseConfig from "../../eslint.config.mts";
+```
+
+Остальные правила и импорты оставьте без изменений. После переименования проверьте, что конфигурации загружаются и targets lint работают:
+
+```bash
+npx nx lint personal-finance
+npx nx lint personal-finance-e2e
+```
+
+Вторую команду выполняйте, если у E2E-проекта настроен target `lint`. Если ESLint сообщает, что конфигурация не найдена или не может быть загружена, проверьте имена файлов, относительные пути импортов, наличие `jiti` в `package.json` и lock-файле. Не оставляйте часть конфигураций с расширением `.mjs`, если принято решение использовать `.mts` во всём workspace.
+
 Тег `app:<имя-проекта>` идентифицирует конкретный app-related проект; он не заменяет общий тег `level:app`. E2E-проект получает `level:app` для классификации на уровне workspace, но его тестовая конфигурация остаётся отдельной от runtime environment-настроек приложения.
 
 Документация: [Enforce module boundaries](https://nx.dev/features/enforce-module-boundaries).
