@@ -13,7 +13,7 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Reihenfolge entsp
 ### 2. NX Fundamentals — Grundlagen des NX Workspace
 **Status:** In Arbeit. Die englische Datei enthält einen ausführlichen Entwurf; die russische und deutsche Fassung sind derzeit strukturierte Gliederungen und müssen noch vollständig ausgearbeitet bzw. übersetzt werden.
 
-- **Materialien:** [English draft](NX-Fundamentals/README.md) · [Русский Entwurf** (Gliederung)](NX-Fundamentals/README.ru.md) · [Deutsch-Gliederung](NX-Fundamentals/README.de.md)
+- **Materialien:** [English draft](NX-Fundamentals/README.md) · [Русская Gliederung](NX-Fundamentals/README.ru.md) · [Deutsch-Gliederung](NX-Fundamentals/README.de.md)
 - **Inhalt:** Workspace-Konzepte, Aufgaben von `apps/` und `libs/`, Projektkonfiguration und Targets, Projekt- und Task-Graphen, Caching, affected-Befehle und Architekturgrenzen. Die erste Einrichtung und Anwendungsgenerierung sind bereits im separaten Artikel zu NX Workspace beschrieben.
 
 ### 3. Architecture in Practice: Decisions Behind Enterprise Frontend Systems
