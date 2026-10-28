@@ -12,12 +12,8 @@
 
 ## 1. Дорога к архитектуре
 
-**Статус:** Опубликована на Hashnode.
-
 ### Материалы в репозитории
-- [englisch](The-Road-to-Architecture/README.md)
-- [русский](The-Road-to-Architecture/README.ru.md)
-- [deutsch](The-Road-to-Architecture/README.de.md)
+[englisch](The-Road-to-Architecture/README.md) | [русский](The-Road-to-Architecture/README.ru.md) | [deutsch](The-Road-to-Architecture/README.de.md)
 
 ### Содержание статьи
 - [Архитектура прежде технологий](The-Road-to-Architecture/README.ru.md#архитектура-прежде-технологий)
@@ -36,12 +32,8 @@
 
 ## 2. NX Fundamentals — основы NX Workspace
 
-**Статус:** Русский черновик подготовлен; английская и немецкая версии ожидают перевода.
-
 ### Материалы в репозитории
-- [English](NX-Fundamentals/README.md)
-- [Русский](NX-Fundamentals/README.ru.md)
-- [Deutsch](NX-Fundamentals/README.de.md)
+[englisch](NX-Fundamentals/README.md) | [русский](NX-Fundamentals/README.ru.md) | [deutsch](NX-Fundamentals/README.de.md)
 
 ### Содержание статьи
 - [Понятия NX Workspace и организация проектов](NX-Fundamentals/README.ru.md#понятия-nx-workspace-и-организация-проектов)
@@ -61,15 +53,11 @@
 - [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch%2B1)
 ## 3. Архитектура на практике: решения, которые определяют развитие frontend-систем
 
-**Статус:** Опубликована на Hashnode; русская версия также опубликована во ВКонтакте.
-
 - **Английская публикация:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems)
 - **Русская публикация:** [ВКонтакте](https://vk.ru/@-65490196-arhitektura-na-praktike-resh1?subtype=primary)
 
 ### Материалы в репозитории
-- [englisch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.md)
-- [русский](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md)
-- [deutsch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md)
+[englisch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.md) | [русский](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md) | [deutsch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md)
 
 ### Содержание статьи
 - [Архитектура прежде технологий](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md#архитектура-прежде-технологий)
@@ -86,14 +74,10 @@
 
 ## Связанная техническая статья: NX Workspace — от архитектуры к инструментам
 
-**Статус:** Опубликована на Hashnode.
-
 - **Публикация:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-workspace-from-architecture-to-tooling)
 
 ### Материалы в репозитории
-- [englisch](NX-Workspace/README.md)
-- [русский](NX-Workspace/README.ru.md)
-- [deutsch](NX-Workspace/README.de.md)
+[englisch](NX-Workspace/README.md) | [русский](NX-Workspace/README.ru.md) | [deutsch](NX-Workspace/README.de.md)
 
 ### Содержание статьи
 - [Что такое NX и зачем он нужен](NX-Workspace/README.ru.md#что-такое-nx-и-зачем-он-нужен)
