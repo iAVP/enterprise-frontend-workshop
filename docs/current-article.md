@@ -12,7 +12,7 @@ Checked directly in the working branch on 2026-10-29:
 - `articles/NX-Fundamentals/README.ru.md`: exists, 50,870 characters.
 - `articles/NX-Fundamentals/README.md`: empty.
 - `articles/NX-Fundamentals/README.de.md`: empty.
-- `articles/index.md`, `articles/index.ru.md`, and `articles/index.de.md`: exist; article 2 is present, but their structure and links still require a coordinated review against the editorial rules.
+- `articles/index.md`, `articles/index.ru.md`, and `articles/index.de.md`: all three entries were rewritten to the shared four-part structure; both article-specific branches were verified through GitHub branch search. The updated files were fetched back successfully. Section links point to the planned translated headings and must be checked again after the English and German articles are written.
 
 ## Remaining work
 1. Translate the complete Russian source into English in `README.md`, preserving all technical content and code.
