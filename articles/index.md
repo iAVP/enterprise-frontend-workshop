@@ -12,12 +12,8 @@ This index is the central navigation source for the article series. Keep the pub
 
 ## 1. The Road to Architecture
 
-**Status:** Published on Hashnode.
-
 ### Repository materials
-- [englisch](The-Road-to-Architecture/README.md)
-- [русский](The-Road-to-Architecture/README.ru.md)
-- [deutsch](The-Road-to-Architecture/README.de.md)
+[englisch](The-Road-to-Architecture/README.md) | [русский](The-Road-to-Architecture/README.ru.md) | [deutsch](The-Road-to-Architecture/README.de.md)
 
 ### Article contents
 - [The Road to Architecture](The-Road-to-Architecture/README.md)
@@ -27,12 +23,8 @@ This index is the central navigation source for the article series. Keep the pub
 
 ## 2. NX Fundamentals — Building an Enterprise Frontend Workspace
 
-**Status:** The Russian draft is prepared; English and German translations are pending.
-
 ### Repository materials
-- [English](NX-Fundamentals/README.md)
-- [Русский](NX-Fundamentals/README.ru.md)
-- [Deutsch](NX-Fundamentals/README.de.md)
+[englisch](NX-Fundamentals/README.md) | [русский](NX-Fundamentals/README.ru.md) | [deutsch](NX-Fundamentals/README.de.md)
 
 ### Article contents
 - NX Workspace concepts and project organization
@@ -52,15 +44,11 @@ This index is the central navigation source for the article series. Keep the pub
 - [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch%2B1)
 ## 3. Architecture in Practice: Decisions Behind Enterprise Frontend Systems
 
-**Status:** Published on Hashnode; the Russian version is also published on VK.
-
 - **English publication:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems)
 - **Russian publication:** [VK](https://vk.ru/@-65490196-arhitektura-na-praktike-resh1?subtype=primary)
 
 ### Repository materials
-- [englisch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.md)
-- [русский](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md)
-- [deutsch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md)
+[englisch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.md) | [русский](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md) | [deutsch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md)
 
 ### Article contents
 - [Architecture Before Technology](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.md#architecture-before-technology)
@@ -76,14 +64,10 @@ This index is the central navigation source for the article series. Keep the pub
 
 ## Related technical article: NX Workspace — From Architecture to Tooling
 
-**Status:** Published on Hashnode.
-
 - **Publication:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-workspace-from-architecture-to-tooling)
 
 ### Repository materials
-- [englisch](NX-Workspace/README.md)
-- [русский](NX-Workspace/README.ru.md)
-- [deutsch](NX-Workspace/README.de.md)
+[englisch](NX-Workspace/README.md) | [русский](NX-Workspace/README.ru.md) | [deutsch](NX-Workspace/README.de.md)
 
 ### Article contents
 - [What Is NX and Why Use It?](NX-Workspace/README.md#what-is-nx-and-why-use-it)
