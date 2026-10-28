@@ -1,6 +1,10 @@
+# NX Fundamentals — Building an Enterprise Frontend Workspace
+
+**Status:** Work in progress. This article continues the published NX Workspace walkthrough. It focuses on understanding and extending the existing workspace; it does not repeat initial setup or application generation.
+
 <!-- DRAFT: Fixed theoretical introduction. Do not edit without separate agreement. -->
 
-# NX Fundamentals: Building an Enterprise Frontend Architecture
+# NX Fundamentals — Building an Enterprise Frontend Workspace
 
 ## Architecture Before Technology
 
