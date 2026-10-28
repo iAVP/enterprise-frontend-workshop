@@ -22,6 +22,31 @@
 
 Документация: [NX](https://nx.dev/) и [конфигурация проектов](https://nx.dev/reference/project-configuration).
 
+### Служебные каталоги `.angular/` и `.nx/`
+
+Помимо `apps/`, `libs/` и файлов конфигурации, после установки зависимостей и запуска инструментов в workspace могут появляться служебные каталоги. Они содержат кэш, промежуточные данные или локальные сведения, которые нужны инструментам разработки, но обычно не являются исходным кодом проекта.
+
+**`.angular/` — служебные данные Angular CLI.** В частности, здесь может храниться кэш сборки, позволяющий повторно использовать результаты и ускорять последующие запуски. Содержимое зависит от версии Angular CLI и настроек проекта. Обычно каталог можно удалить: при следующем запуске инструменты создадут необходимые данные заново. Удаление кэша может сделать первый последующий запуск медленнее, но не должно удалять исходный код приложения.
+
+**`.nx/` — служебные данные NX.** В нашем `.gitignore` отдельно исключены следующие подкаталоги:
+
+- `.nx/cache` — кэш результатов задач NX. Если входные данные задачи не изменились, NX может использовать ранее полученный результат вместо повторного выполнения.
+- `.nx/workspace-data` — локальные данные workspace, которые NX использует для своей работы и анализа проектов.
+- `.nx/migrate-runs` — данные, связанные с запусками миграций NX.
+
+Эти каталоги исключены из Git, поскольку содержат генерируемые или локальные данные, которые не нужны для восстановления исходного кода на другой машине. Их содержимое может отличаться между разработчиками и окружениями, а кэш при необходимости создаётся повторно. Не следует путать эти служебные данные с файлами конфигурации NX — например, `nx.json`, `project.json` и `tsconfig.base.json`: конфигурации определяют поведение проекта и должны храниться в репозитории.
+
+В корневом `.gitignore` также исключены:
+
+- `.idea/` — настройки и метаданные IDE WebStorm/IntelliJ, которые часто зависят от конкретной машины или личных предпочтений разработчика;
+- `node_modules/` — установленные зависимости, восстанавливаемые по манифестам и lock-файлу пакетного менеджера;
+- `dist/` — результаты сборки, которые можно получить повторным запуском build;
+- `__screenshots__/` — локально создаваемые скриншоты, которые в текущем проекте не считаются исходными файлами.
+
+Смысл `.gitignore` не в том, чтобы скрывать любые неудобные файлы, а в том, чтобы не добавлять в историю генерируемые артефакты и локальные данные. Исходники, настройки, lock-файл и другие файлы, необходимые команде для воспроизводимой разработки, по-прежнему должны быть под контролем версий.
+
+Подробнее: [Angular CLI cache](https://angular.dev/cli/cache) и [NX task caching](https://nx.dev/features/cache-task-results).
+
 ## Организация `apps/` и `libs/`: common и shared
 
 На этом этапе мы не создаём набор абстрактных библиотек «на будущее», но фиксируем минимальную структуру, которая будет направлять дальнейшее развитие Personal Finance. Для этого нужно договориться не только о том, где лежат приложения и библиотеки, но и о назначении общих ресурсов и тегах NX-проектов.
@@ -37,7 +62,7 @@
 ```text
 common/
 ├── styles/
-│   └── styles.scss
+│   └── common.scss
 └── environments/
     ├── common.ts
     ├── environment.dev.ts
@@ -51,7 +76,7 @@ apps/
 └── personal-finance-e2e/
 ```
 
-Глобальный файл стилей располагается в `../../common/styles/common.scss` и должен быть указан в конфигурации сборки приложения в `apps/personal-finance/project.json`. Это именно настройка приложения: не нужно переносить каталог `common` внутрь приложения или полагаться на неявное подключение файла.
+Общие стили располагаются в `common/styles/common.scss` и подключаются отдельно от стилей самого приложения. В `apps/personal-finance/project.json` сначала указывается `apps/personal-finance/src/styles.scss`, затем `common/styles/common.scss`. Так сохраняется разделение: первый файл отвечает за локальные стили приложения, второй — за общие стили workspace. Каталог `common` находится в корне workspace.
 
 Для основного приложения должны быть предусмотрены три режима окружения: `dev`, `test` и `prod`. Соответствующие файлы создаются в `common/environments/`. Это требование относится к приложению, а не к E2E-проекту. Конкретный механизм выбора файла должен быть явно настроен в targets/configurations приложения и согласован с используемой версией Angular/NX.
 
@@ -86,11 +111,14 @@ export const environment = {
 mkdir -p common/styles common/assets common/environments
 ```
 
-Перенесём глобальные стили приложения:
+Файл `apps/personal-finance/src/styles.scss` оставляем на месте: он содержит стили самого приложения. Создадим отдельный файл для общих стилей workspace:
 
 ```bash
-mv apps/personal-finance/src/styles.scss common/styles/styles.scss
+mkdir -p common/styles
+ touch common/styles/common.scss
 ```
+
+Если общие правила уже существуют, перенесите их в `common/styles/common.scss`, не перемещая и не переименовывая файл стилей приложения.
 
 Сейчас в `apps/personal-finance/public/` находится один файл — `favicon.ico`. Перенесём его непосредственно в корень `common/assets/`: favicon является общим ресурсом workspace и в будущем может использоваться несколькими приложениями.
 
@@ -113,7 +141,7 @@ rmdir apps/personal-finance/public
 common/
 ├── assets/\n│   └── favicon.ico         # Shared workspace favicon
 ├── styles/
-│   └── styles.scss         # Global application styles
+│   └── common.scss         # Shared workspace styles
 └── environments/
     ├── common.ts           # Values shared by all environments
     ├── environment.dev.ts
@@ -172,7 +200,7 @@ export const environment = {
 
 #### Обновляем `apps/personal-finance/project.json`
 
-Путь к `common.scss` и путь к статическим ресурсам задаются относительно корня workspace. В `build.options` замените прежние значения `assets` и `styles` на следующие:
+Пути к стилям и статическим ресурсам задаются относительно корня workspace. В `build.options` настройте `assets` и `styles` следующим образом. Стили приложения и общие стили подключаются двумя отдельными записями и именно в таком порядке:
 
 ```json
 "assets": [
@@ -183,7 +211,8 @@ export const environment = {
   }
 ],
 "styles": [
-  "common/styles/styles.scss"
+  "apps/personal-finance/src/styles.scss",
+  "common/styles/common.scss"
 ]
 ```
 
@@ -312,6 +341,10 @@ libs/
 
 Создадим четыре библиотеки из корня workspace. В этом проекте используем генератор `@nx/js:lib`: он подходит для общих TypeScript-библиотек, которым не нужны Angular-компоненты или другие framework-specific элементы. Команда `npx nx g` — сокращённая форма `npx nx generate`.
 
+Во время генерации NX может спросить, какой bundler использовать для сборки библиотеки. В нашем случае на этом этапе выбираем **`none`**: отдельная сборочная конфигурация для каждой внутренней библиотеки не нужна, пока мы создаём архитектурный каркас и настраиваем зависимости. Это сознательное упрощение, а не утверждение, что bundler никогда не понадобится. Если позже появится задача публиковать библиотеку как самостоятельный пакет или собирать её отдельно, выбор можно пересмотреть с учётом формата поставки и требований проекта.
+
+**Bundler и test runner — разные инструменты.** Выбор `none` в вопросе о сборке библиотеки не означает отказ от тестов. Для unit-тестов мы планируем использовать **Vitest**, если выбранная версия Nx и генератор поддерживают нужную конфигурацию. Если генератор задаёт отдельный вопрос о test runner, выбирайте Vitest; если такого вопроса нет, настройте тестирование отдельным шагом и проверьте созданные targets и конфигурационные файлы. Не следует считать, что Vitest настроен автоматически только потому, что библиотека успешно сгенерирована.
+
 Запускайте команды по одной и проверяйте созданный `project.json` после каждой генерации:
 
 ```bash
@@ -329,28 +362,71 @@ npx nx g @nx/js:lib libs/shared/definitions --tags="level:shared,tag:definitions
 - публичная точка входа `src/index.ts` для `facades`, `dal` и `base`;
 - алиас в корневом `tsconfig.base.json`, соответствующий правилам репозитория.
 
-Для `definitions` действует исключение: не создавайте и не поддерживайте единый `src/index.ts`. Вместо него создайте категории и их публичные точки входа:
+Для `definitions` категории хранятся в `src/lib/`. У каждой категории есть собственный `index.ts`, который служит публичной точкой входа именно этой категории. Корневой `src/index.ts` нужен для реэкспорта категорий из `./lib/<категория>`; это отдельный файл, его не следует путать с `index.ts` внутри каждой папки. Например, корневой файл содержит строки вида `export * from './lib/constants';`, а `src/lib/constants/index.ts` позднее экспортирует файлы, принадлежащие категории constants.
+
+Создайте каталоги и файлы одним Bash-скриптом из корня репозитория:
 
 ```bash
-mkdir -p libs/shared/definitions/src/{constants,abstracts,classes,enums,types,interfaces,records}
-touch libs/shared/definitions/src/constants/index.ts
-touch libs/shared/definitions/src/abstracts/index.ts
-touch libs/shared/definitions/src/classes/index.ts
-touch libs/shared/definitions/src/enums/index.ts
-touch libs/shared/definitions/src/types/index.ts
-touch libs/shared/definitions/src/interfaces/index.ts
-touch libs/shared/definitions/src/records/index.ts
+#!/usr/bin/env bash
+set -euo pipefail
+
+base="libs/shared/definitions/src"
+categories=(constants abstracts classes enums types interfaces records)
+
+for category in "${categories[@]}"; do
+  mkdir -p "${base}/lib/${category}"
+  touch "${base}/lib/${category}/index.ts"
+done
+
+{
+  for category in "${categories[@]}"; do
+    printf "export * from './lib/%s';\n" "${category}"
+  done
+} > "${base}/index.ts"
 ```
 
-На Windows команды с фигурными скобками могут не поддерживаться используемой оболочкой. В таком случае создайте каталоги и файлы отдельно либо используйте терминал Git Bash. Не забудьте зарегистрировать алиасы категорий в `tsconfig.base.json`:
+Скрипт создаёт `src/lib/<категория>/index.ts` для всех семи категорий, а затем создаёт корневой `src/index.ts` со строками `export * from './lib/<категория>';`. Это разные уровни экспорта: не помещайте реэкспорт `./lib/<категория>` внутрь `src/lib/<категория>/index.ts`, иначе путь будет вести не туда. Внутренние `index.ts` пока пустые — добавляйте в них реэкспорт конкретных файлов категории по мере появления таких файлов.
 
-- `@workshop:def:consts` → `libs/shared/definitions/src/constants/index.ts`
-- `@workshop:def:abstracts` → `libs/shared/definitions/src/abstracts/index.ts`
-- `@workshop:def:classes` → `libs/shared/definitions/src/classes/index.ts`
-- `@workshop:def:enums` → `libs/shared/definitions/src/enums/index.ts`
-- `@workshop:def:types` → `libs/shared/definitions/src/types/index.ts`
-- `@workshop:def:interfaces` → `libs/shared/definitions/src/interfaces/index.ts`
-- `@workshop:def:records` → `libs/shared/definitions/src/records/index.ts`
+Генератор `@nx/js:lib` также может создать стартовые файлы `definitions.ts` и `definitions.spec.ts`. В этой архитектуре они не нужны: вместо единственного стартового модуля используются категории с отдельными `index.ts`. Удалите оба сгенерированных файла полностью. Если генератор положил их в стандартный каталог `src/lib/`, выполните из корня workspace:
+
+```bash
+rm -f libs/shared/definitions/src/lib/definitions.ts
+rm -f libs/shared/definitions/src/lib/definitions.spec.ts
+```
+
+Если в вашей версии генератора эти файлы созданы по другому пути, удалите именно сгенерированные `definitions.ts` и `definitions.spec.ts` внутри проекта `libs/shared/definitions/`. Не удаляйте `src/index.ts` и создаваемые ниже файлы `src/lib/<категория>/index.ts`: они нужны для публичного экспорта категорий.
+
+Создайте каталоги и файлы явными командами из корня репозитория:
+
+```bash
+mkdir -p libs/shared/definitions/src/lib/{constants,abstracts,classes,enums,types,interfaces,records}
+touch libs/shared/definitions/src/lib/constants/index.ts
+touch libs/shared/definitions/src/lib/abstracts/index.ts
+touch libs/shared/definitions/src/lib/classes/index.ts
+touch libs/shared/definitions/src/lib/enums/index.ts
+touch libs/shared/definitions/src/lib/types/index.ts
+touch libs/shared/definitions/src/lib/interfaces/index.ts
+touch libs/shared/definitions/src/lib/records/index.ts
+```
+
+Эти команды создают семь каталогов внутри `src/lib/` и пустой `index.ts` в каждом из них. Корневой `src/index.ts` создаётся отдельно и реэкспортирует категории через `export * from './lib/<категория>';` — для этого используйте основной скрипт выше либо добавьте эти строки вручную.
+
+Проверьте результат:
+
+```bash
+find libs/shared/definitions/src -maxdepth 3 -type f -name 'index.ts' -print
+cat libs/shared/definitions/src/index.ts
+```
+
+На Windows используйте Git Bash или WSL для выполнения этого Bash-скрипта. Алиасы категорий в `tsconfig.base.json` должны указывать на `libs/shared/definitions/src/lib/<категория>/index.ts`:
+
+- `@workshop:def:consts` → `libs/shared/definitions/src/lib/constants/index.ts`
+- `@workshop:def:abstracts` → `libs/shared/definitions/src/lib/abstracts/index.ts`
+- `@workshop:def:classes` → `libs/shared/definitions/src/lib/classes/index.ts`
+- `@workshop:def:enums` → `libs/shared/definitions/src/lib/enums/index.ts`
+- `@workshop:def:types` → `libs/shared/definitions/src/lib/types/index.ts`
+- `@workshop:def:interfaces` → `libs/shared/definitions/src/lib/interfaces/index.ts`
+- `@workshop:def:records` → `libs/shared/definitions/src/lib/records/index.ts`
 
 После генерации проверьте обнаруженные проекты и граф:
 
@@ -359,7 +435,7 @@ npx nx show projects
 npx nx graph
 ```
 
-Генератор может обновить конфигурации и добавить файлы, но он не знает всех архитектурных соглашений конкретного репозитория. Поэтому проверьте имена и теги в каждом `project.json`, убедитесь, что aliases указывают на существующие файлы, и только затем переходите к реализации. Границы импортов задаются отдельно в `eslint.config.mts` через `@nx/enforce-module-boundaries`.
+Генератор может обновить конфигурации и добавить файлы, но он не знает всех архитектурных соглашений конкретного репозитория. Поэтому проверьте имена и теги в каждом `project.json`, убедитесь, что aliases указывают на существующие файлы, и только затем переходите к реализации. Границы импортов задаются отдельно в `eslint.config.mjs` через `@nx/enforce-module-boundaries`.
 
 **`facades` — прикладные сервисы и фасады API.** Здесь размещаются сервисы, через которые приложение взаимодействует с API и использует прикладные операции. В фасаде может быть координация вызовов и удобный контракт для потребителя, но не должна находиться UI-логика, специфичная для одного frontend-фреймворка. Например, Angular-компонент, его шаблон, UI-состояние или код представления не должны попадать в общую библиотеку фасадов только потому, что ими пользуется несколько экранов.
 
@@ -429,7 +505,40 @@ npx nx graph
 - **DAL зависит от контрактов и базовых средств, но не от фасадов.** Так технический слой доступа к данным не знает о том, кто и зачем вызывает его методы.
 - **Base остаётся полностью изолированным фундаментом.** `base` не имеет права импортировать ни один другой проект workspace — ни `definitions`, ни `dal`, ни `facades`, ни приложения, ни любые будущие проекты. Это намеренно строгое правило: общий фундамент не должен втягивать внешние контракты, детали предметной области или прикладные механизмы. Если какая-то функциональность требует зависимости от другого проекта, её следует разместить в другом слое, а не ослаблять это ограничение.
 
-Ограничения настроены в корневом `eslint.config.mts` через правило NX `@nx/enforce-module-boundaries` и массив `depConstraints`: для каждого `sourceTag` указан разрешённый список `onlyDependOnLibsWithTags`. Ошибочные зависимости должны приводить к lint-ошибке. После добавления или переименования проекта нужно проверить его теги и выполнить lint, чтобы убедиться, что NX-граф и правила классифицируют его ожидаемым образом.
+Ограничения настроены в корневом `eslint.config.mjs` через правило NX `@nx/enforce-module-boundaries` и массив `depConstraints`: для каждого `sourceTag` указан разрешённый список `onlyDependOnLibsWithTags`. Ошибочные зависимости должны приводить к lint-ошибке. После добавления или переименования проекта нужно проверить его теги и выполнить lint, чтобы убедиться, что NX-граф и правила классифицируют его ожидаемым образом.
+
+### Единое расширение ESLint-конфигураций: `.mts`
+
+В этом workspace договоримся использовать расширение `.mts` для всех трёх ESLint flat-конфигураций: корневой и конфигураций приложения и E2E-проекта. Расширение `.mts` обозначает TypeScript-модуль в формате ES Modules и согласуется с конфигурациями вроде `vitest.config.mts`. Это соглашение о формате файлов; само по себе переименование не меняет правила lint.
+
+В ESLint 9 для загрузки TypeScript-конфигурации `.mts` в обычном Node.js-режиме требуется пакет `jiti`. Установите его как dev dependency:
+
+```bash
+npm install --save-dev jiti
+```
+
+Переименуйте все три файла, чтобы ссылки и соглашения были последовательными:
+
+```bash
+git mv eslint.config.mjs eslint.config.mts
+git mv apps/personal-finance/eslint.config.mjs apps/personal-finance/eslint.config.mts
+git mv apps/personal-finance-e2e/eslint.config.mjs apps/personal-finance-e2e/eslint.config.mts
+```
+
+В двух конфигурациях проектов обновите импорт корневой конфигурации. В `apps/personal-finance/eslint.config.mts` и `apps/personal-finance-e2e/eslint.config.mts` он должен ссылаться на `../../eslint.config.mts`:
+
+```typescript
+import baseConfig from "../../eslint.config.mts";
+```
+
+Остальные правила и импорты оставьте без изменений. После переименования проверьте, что конфигурации загружаются и targets lint работают:
+
+```bash
+npx nx lint personal-finance
+npx nx lint personal-finance-e2e
+```
+
+Вторую команду выполняйте, если у E2E-проекта настроен target `lint`. Если ESLint сообщает, что конфигурация не найдена или не может быть загружена, проверьте имена файлов, относительные пути импортов, наличие `jiti` в `package.json` и lock-файле. Не оставляйте часть конфигураций с расширением `.mjs`, если принято решение использовать `.mts` во всём workspace.
 
 Тег `app:<имя-проекта>` идентифицирует конкретный app-related проект; он не заменяет общий тег `level:app`. E2E-проект получает `level:app` для классификации на уровне workspace, но его тестовая конфигурация остаётся отдельной от runtime environment-настроек приложения.
 
@@ -439,28 +548,58 @@ npx nx graph
 
 При создании каждой библиотеки в `libs/shared/` нужно не только настроить её NX-проект и обязательные теги, но и зарегистрировать публичный alias в корневом `tsconfig.base.json`. Это позволяет импортировать публичный API библиотеки по стабильному имени вместо длинных относительных путей.
 
-Для `facades`, `dal` и `base` используется формат `@workshop:<название-библиотеки>`. Для `definitions` применяется отдельное пространство имён `@workshop:def:<категория>`: общего `libs/shared/definitions/src/index.ts` не будет, вместо него каждая категория экспортируется через собственный `index.ts`.
+Для `facades`, `dal` и `base` используются отдельные aliases в формате `@workshop:<название-библиотеки>`, каждый из которых указывает на собственный `src/index.ts` библиотеки. Для `definitions` общий `src/index.ts` не используется: каждая категория имеет собственный `index.ts` в `libs/shared/definitions/src/lib/<категория>/`, а импорт выполняется через отдельный alias `@workshop:def:<категория>`. Если генератор библиотеки создал `libs/shared/definitions/src/index.ts`, удалите этот файл: публичный API `definitions` организован через отдельные entry points категорий, поэтому общий barrel не нужен. Не удаляйте `index.ts` внутри каталогов категорий.
 
 ```json
 {
   "compilerOptions": {
     "paths": {
-      "@workshop:facades": ["libs/shared/facades/src/index.ts"],
-      "@workshop:dal": ["libs/shared/dal/src/index.ts"],
-      "@workshop:base": ["libs/shared/base/src/index.ts"],
-      "@workshop:def:consts": ["libs/shared/definitions/src/constants/index.ts"],
-      "@workshop:def:abstracts": ["libs/shared/definitions/src/abstracts/index.ts"],
-      "@workshop:def:classes": ["libs/shared/definitions/src/classes/index.ts"],
-      "@workshop:def:enums": ["libs/shared/definitions/src/enums/index.ts"],
-      "@workshop:def:types": ["libs/shared/definitions/src/types/index.ts"],
-      "@workshop:def:interfaces": ["libs/shared/definitions/src/interfaces/index.ts"],
-      "@workshop:def:records": ["libs/shared/definitions/src/records/index.ts"]
+      "@workshop:facades": ["./libs/shared/facades/src/index.ts"],
+      "@workshop:dal": ["./libs/shared/dal/src/index.ts"],
+      "@workshop:base": ["./libs/shared/base/src/index.ts"],
+      "@workshop:def:consts": ["./libs/shared/definitions/src/lib/constants/index.ts"],
+      "@workshop:def:abstracts": ["./libs/shared/definitions/src/lib/abstracts/index.ts"],
+      "@workshop:def:classes": ["./libs/shared/definitions/src/lib/classes/index.ts"],
+      "@workshop:def:enums": ["./libs/shared/definitions/src/lib/enums/index.ts"],
+      "@workshop:def:types": ["./libs/shared/definitions/src/lib/types/index.ts"],
+      "@workshop:def:interfaces": ["./libs/shared/definitions/src/lib/interfaces/index.ts"],
+      "@workshop:def:records": ["./libs/shared/definitions/src/lib/records/index.ts"],
+      "base": ["./libs/shared/base/src/index.ts"],
+      "dal": ["./libs/shared/dal/src/index.ts"],
+      "facades": ["./libs/shared/facades/src/index.ts"]
     }
   }
 }
 ```
 
-Каждый alias должен указывать на публичную точку входа соответствующей библиотеки или категории. При создании новой категории `definitions` создайте её собственный `index.ts`, добавьте alias в `tsconfig.base.json` и экспортируйте из него только предназначенный для потребителей API. Не создавайте единый корневой `index.ts` для `definitions`.
+Каждый alias категории должен указывать на публичную точку входа `src/lib/<категория>/index.ts`. Общего `src/index.ts` у библиотеки `definitions` нет: потребительский код использует конкретные aliases `@workshop:def:<категория>`. При добавлении категории создайте её каталог и `index.ts`, добавьте alias в `tsconfig.base.json` и экспортируйте из него только предназначенный для потребителей API.
+
+Пока категории пустые, оставьте в каждом категорийном `index.ts` временную компилируемую заглушку. Не используйте `export * from './';`: такая строка ссылается на тот же каталог и может вызвать циклическую ссылку.
+
+Для `libs/shared/definitions/src/lib/types/index.ts`:
+
+```typescript
+/**
+ * Public exports for shared type definitions.
+ * Add exports here when types are introduced.
+ */
+export {};
+```
+
+Для остальных категорий используйте тот же шаблон, изменив комментарий в соответствии с назначением категории:
+- `constants/index.ts` — shared constants;
+- `abstracts/index.ts` — shared abstract classes;
+- `classes/index.ts` — shared classes;
+- `enums/index.ts` — shared enums;
+- `types/index.ts` — shared type definitions;
+- `interfaces/index.ts` — shared interfaces;
+- `records/index.ts` — shared records.
+
+Когда в категории появятся реальные файлы, замените временную заглушку явными экспортами существующих файлов, например `export * from './account.type';`.
+
+**Важно:** в библиотеке `definitions` не должно быть общего файла `libs/shared/definitions/src/index.ts`. Удалите его, если генератор NX создал такой файл. Это правило касается только корневого entry point библиотеки; категорийные `index.ts` внутри `src/lib/<категория>/` нужны и должны остаться.
+
+Поскольку в этом workspace `baseUrl` не задан, все значения путей в `paths` начинаются с `./`; без этого TypeScript может сообщить об ошибке `TS5090`.
 
 Пример импорта:
 
@@ -536,6 +675,48 @@ npx nx run personal-finance:lint
 ```
 
 Это примеры синтаксиса, а не утверждение, что каждый проект обязательно содержит все три targets. Набор команд нужно определять по фактической конфигурации проекта. Для E2E-проверок используется отдельный проект, поэтому сначала стоит узнать его точное имя и доступные targets через `npx nx show projects` и `npx nx show project <project-name>`.
+
+### Добавляем удобные npm-скрипты в `package.json`
+
+Команды NX можно запускать напрямую через `npx nx`, но часто удобнее дать часто используемым операциям короткие имена в корневом `package.json`. Это единая точка входа для разработчиков и CI: детали запуска хранятся в репозитории, а не в личных заметках команды.
+
+Добавьте объект `scripts` в корневой `package.json` или дополните существующий, не удаляя другие скрипты:
+
+```json
+{
+  "scripts": {
+    "serve": "nx serve personal-finance",
+    "build": "nx run-many -t build",
+    "build:prod": "nx build personal-finance --configuration=production",
+    "test": "nx run-many -t test",
+    "lint": "nx run-many -t lint",
+    "nx:graph": "nx graph",
+    "affected": "nx affected -t lint test build"
+  }
+}
+```
+
+Назначение команд:
+
+- `npm run serve` — запускает основное приложение Personal Finance в режиме разработки.
+- `npm run build` — запускает target `build` для проектов, у которых он настроен. Это удобно для общей проверки workspace; не предполагается, что у каждого проекта обязательно есть сборка.
+- `npm run build:prod` — собирает приложение с production-конфигурацией.
+- `npm test` — запускает targets `test` для проектов, где они доступны.
+- `npm run lint` — запускает lint для проектов, где настроен соответствующий target.
+- `npm run nx:graph` — открывает визуализацию графа проектов.
+- `npm run affected` — запускает lint, тесты и сборку для проектов, которые NX считает затронутыми изменениями.
+
+Скрипты `build`, `test` и `lint` используют `nx run-many`, потому что их цель — запускать одну и ту же задачу для нескольких проектов. Если нужно проверить только один проект, продолжайте использовать точечные команды, например `npx nx lint personal-finance`.
+
+Команда `affected` зависит от Git-диапазона сравнения. Для локального запуска убедитесь, что базовая ревизия доступна и соответствует задаче; в CI обычно явно задают базовую ревизию целевой ветки и текущую ревизию. Например:
+
+```bash
+npx nx affected -t lint test build --base=origin/main --head=HEAD
+```
+
+Замените `origin/main`, если целевая ветка в вашем workflow называется иначе. Чтобы использовать этот вариант из npm-скрипта, можно добавить отдельный скрипт с закреплённой базовой веткой, но не стоит зашивать её, если локальные и CI-сценарии используют разные базы.
+
+После добавления скриптов проверьте, что их названия соответствуют фактическим targets проектов. Если какой-либо target отсутствует, NX не сможет выполнить эту задачу для соответствующего проекта: сначала проверьте конфигурацию командой `npx nx show project <project-name>`.
 
 Главная идея раздела не в том, чтобы повторить список команд из предыдущей статьи. Важно понять модель NX: команда обращается к конкретному проекту и его target, а NX запускает соответствующую задачу с учётом конфигурации и зависимостей.
 
