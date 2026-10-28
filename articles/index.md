@@ -5,7 +5,7 @@ This index is the central navigation source for the article series. Keep the pub
 ## Contents
 
 - [1. The Road to Architecture](#1-the-road-to-architecture)
-- [2. NX Fundamentals — Building an Enterprise Frontend Workspace](#2-nx-fundamentals-building-an-enterprise-frontend-workspace)
+- [2. NX Fundamentals — Building an Enterprise Frontend Workspace](#2-nx-fundamentals--building-an-enterprise-frontend-workspace)
 - [3. Architecture in Practice: Decisions Behind Enterprise Frontend Systems](#3-architecture-in-practice-decisions-behind-enterprise-frontend-systems)
 - [Related technical article: NX Workspace — From Architecture to Tooling](#related-technical-article-nx-workspace-from-architecture-to-tooling)
 - [Editorial rules](#editorial-rules)
@@ -23,7 +23,9 @@ This index is the central navigation source for the article series. Keep the pub
 - [The Road to Architecture](The-Road-to-Architecture/README.md)
 
 ### GitHub branches
-- No dedicated article branch is currently available.## 2. NX Fundamentals — Building an Enterprise Frontend Workspace
+- No dedicated article branch is currently available.
+
+## 2. NX Fundamentals — Building an Enterprise Frontend Workspace
 
 **Status:** Planned; all three article files are currently empty.
 
@@ -45,21 +47,23 @@ This index is the central navigation source for the article series. Keep the pub
 - **Russian publication:** [VK](https://vk.ru/@-65490196-arhitektura-na-praktike-resh1?subtype=primary)
 
 ### Repository materials
-- [englisch](Good architecture is not always about choosing one technology and making everything uniform/README.md)
-- [русский](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md)
-- [deutsch](Good architecture is not always about choosing one technology and making everything uniform/README.de.md)
+- [englisch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.md)
+- [русский](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md)
+- [deutsch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md)
 
 ### Article contents
-- [Architecture Before Technology](Good architecture is not always about choosing one technology and making everything uniform/README.md#architecture-before-technology)
-- [When New Functionality Should Not Disrupt How People Work](Good architecture is not always about choosing one technology and making everything uniform/README.md#when-new-functionality-should-not-disrupt-how-people-work)
-- [When One Product Evolves Across Several Frontend Frameworks](Good architecture is not always about choosing one technology and making everything uniform/README.md#when-one-product-evolves-across-several-frontend-frameworks)
-- [When a Convenient Configuration Mechanism Needs to Be Reconsidered](Good architecture is not always about choosing one technology and making everything uniform/README.md#when-a-convenient-configuration-mechanism-needs-to-be-reconsidered)
-- [When Different Technologies Come Together to Solve One Problem](Good architecture is not always about choosing one technology and making everything uniform/README.md#when-different-technologies-come-together-to-solve-one-problem)
-- [Why Architecture Must Be Preserved as the Product Evolves](Good architecture is not always about choosing one technology and making everything uniform/README.md#why-architecture-must-be-preserved-as-the-product-evolves)
-- [From Architectural Thinking to Project Organization](Good architecture is not always about choosing one technology and making everything uniform/README.md#from-architectural-thinking-to-project-organization)
+- [Architecture Before Technology](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.md#architecture-before-technology)
+- [When New Functionality Should Not Disrupt How People Work](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.md#when-new-functionality-should-not-disrupt-how-people-work)
+- [When One Product Evolves Across Several Frontend Frameworks](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.md#when-one-product-evolves-across-several-frontend-frameworks)
+- [When a Convenient Configuration Mechanism Needs to Be Reconsidered](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.md#when-a-convenient-configuration-mechanism-needs-to-be-reconsidered)
+- [When Different Technologies Come Together to Solve One Problem](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.md#when-different-technologies-come-together-to-solve-one-problem)
+- [Why Architecture Must Be Preserved as the Product Evolves](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.md#why-architecture-must-be-preserved-as-the-product-evolves)
+- [From Architectural Thinking to Project Organization](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.md#from-architectural-thinking-to-project-organization)
 
 ### GitHub branches
-- No dedicated article branch is currently available.## Related technical article: NX Workspace — From Architecture to Tooling
+- No dedicated article branch is currently available.
+
+## Related technical article: NX Workspace — From Architecture to Tooling
 
 **Status:** Published on Hashnode.
 
