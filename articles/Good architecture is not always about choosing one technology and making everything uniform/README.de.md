@@ -1,10 +1,5 @@
 # Architektur in der Praxis: Entscheidungen für Enterprise-Frontend-Systeme
 
-**Status:** Deutsche Übersetzung noch nicht erstellt.
-
-Ausgangsartikel: [Architecture in Practice: Decisions Behind Enterprise Frontend Systems](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems).
-# Architektur in der Praxis: Entscheidungen für Enterprise-Frontend-Systeme
-
 *Dieser Artikel eröffnet den theoretischen Teil des Enterprise Frontend Workshop. Er beleuchtet reale Architekturentscheidungen und erklärt, warum unterschiedliche Projekte zu unterschiedlichen Lösungen gelangen. Im nächsten Schritt werden diese Überlegungen in die technische Organisation eines NX-Workspaces übertragen.*
 
 ## Inhalt
