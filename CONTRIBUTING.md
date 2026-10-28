@@ -36,6 +36,40 @@ The files `articles/index.md`, `articles/index.ru.md`, and `articles/index.de.md
 - Mark an article as **Published** only after the publication is live, and include the verified publication URL.
 - Treat `articles/README.md`, `articles/README.ru.md`, and `articles/README.de.md` as the editorial roadmap describing planned topics and learning order. They do not replace the indexes as the source of truth for publication status.
 
+## Article Index Entry Format
+
+Every article entry in each language-specific index must follow the same structure. Localize the article title and the table-of-contents labels to the language of that index; keep the language-link labels exactly as specified below.
+
+1. Start each index with a **table of contents listing all articles** in the series, in the agreed publication order.
+2. For each article, include:
+   1. The article title in the language of the current index.
+   2. A nested **Repository materials** subsection containing links to all three language versions, in this order:
+      - [englisch](relative-path-to-README.md) — English file: `README.md`
+      - [русский](relative-path-to-README.ru.md) — Russian file: `README.ru.md`
+      - [deutsch](relative-path-to-README.de.md) — German file: `README.de.md`
+   3. A nested **article table of contents** containing links to the article's sections. Use the headings from the corresponding language version and verify that each anchor points to the correct section.
+   4. A **GitHub branches** subsection listing the branches relevant to that article, with verified links to the actual branches in the repository. If the article uses multiple implementation stages, list every relevant branch and identify its stage. Do not invent branch names or URLs.
+
+Use this outline for each article entry (translate the structural headings for the index language, but preserve the three language-link labels exactly):
+
+```markdown
+## 1. Article title in the index language
+
+### Repository materials
+- [englisch](path/to/README.md)
+- [русский](path/to/README.ru.md)
+- [deutsch](path/to/README.de.md)
+
+### Article contents
+- [Section heading](path/to/README.md#section-anchor)
+- [Another section](path/to/README.md#another-section)
+
+### GitHub branches
+- [Branch name](verified-branch-url)
+```
+
+The index-level table of contents at the top must list every article and link to its article entry below. The per-article table of contents is separate: it navigates the sections inside that article. Keep the English, Russian, and German indexes structurally equivalent, with localized article titles and section headings, the same article order, and matching repository and branch destinations.
+
 ## Article Directory and File Naming
 
 Each article must have its own directory directly under `articles/`. Name the directory after the article title, using a readable title slug with words separated by hyphens. Keep the same directory name across all language versions.
