@@ -63,7 +63,7 @@ Use the following tags to classify projects and enforce allowed dependency direc
 
 | Importing project tag | Allowed dependency tags | Rationale |
 | --- | --- | --- |
-| `level:app` | `tag:facades`, `tag:definitions`, `tag:base` | Applications use application-facing services and stable shared contracts/utilities, but must not bypass facades to call the data-access layer directly. |
+| `tag:base` | No workspace projects | `base` is completely isolated and may not import any existing or future project in the workspace. |
 | `tag:facades` | `tag:dal`, `tag:base`, `tag:definitions` | Facades orchestrate application operations and may coordinate data access while relying on foundational helpers and contracts. |
 | `tag:definitions` | `tag:base` only | Definitions remain foundational; allowing them to depend on facades or data access would invert the dependency direction and risk cycles. |
 | `tag:dal` | `tag:base`, `tag:definitions` | Data-access code may use foundational utilities and shared contracts, but must not depend on application orchestration. |
