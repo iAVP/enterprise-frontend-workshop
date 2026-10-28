@@ -27,10 +27,37 @@ export default [
                     ],
                     depConstraints: [
                         {
-                            sourceTag: "*",
+                            sourceTag: "level:app",
                             onlyDependOnLibsWithTags: [
-                                "*"
+                                "tag:facades",
+                                "tag:definitions",
+                                "tag:base"
                             ]
+                        },
+                        {
+                            sourceTag: "tag:facades",
+                            onlyDependOnLibsWithTags: [
+                                "tag:dal",
+                                "tag:base",
+                                "tag:definitions"
+                            ]
+                        },
+                        {
+                            sourceTag: "tag:definitions",
+                            onlyDependOnLibsWithTags: [
+                                "tag:base"
+                            ]
+                        },
+                        {
+                            sourceTag: "tag:dal",
+                            onlyDependOnLibsWithTags: [
+                                "tag:base",
+                                "tag:definitions"
+                            ]
+                        },
+                        {
+                            sourceTag: "tag:base",
+                            onlyDependOnLibsWithTags: []
                         }
                     ]
                 }
