@@ -92,25 +92,26 @@ mkdir -p common/styles common/assets common/environments
 mv apps/personal-finance/src/styles.scss common/styles/styles.scss
 ```
 
-Затем перенесём содержимое `apps/personal-finance/public/` в `common/assets/`. Используем `cp -a .../.`, чтобы скопировать и скрытые файлы, и сохранить вложенную структуру. После проверки копии удалим старый каталог:
+Сейчас в `apps/personal-finance/public/` находится один файл — `favicon.ico`. Перенесём его непосредственно в корень `common/assets/`: favicon является общим ресурсом workspace и в будущем может использоваться несколькими приложениями.
 
 ```bash
-cp -a apps/personal-finance/public/. common/assets/
+mv apps/personal-finance/public/favicon.ico common/assets/favicon.ico
+rmdir apps/personal-finance/public
 ```
 
-Проверьте содержимое `common/assets/` и убедитесь, что файлы на месте. Только после этого выполните:
+В файле `apps/personal-finance/src/index.html` найдите существующий элемент `<link rel="icon" ...>` и измените его `href` на путь к ресурсу из корня сайта:
 
-```bash
-rm -rf apps/personal-finance/public
+```html
+<link rel="icon" type="image/x-icon" href="favicon.ico">
 ```
 
-В результате файлы, которые раньше находились непосредственно в `public/`, будут лежать непосредственно в `common/assets/`, а вложенные каталоги сохранятся. Это важно, потому что Angular копирует статические ресурсы в выходную сборку, сохраняя заданную структуру и путь публикации.
+Если у исходного элемента есть дополнительные атрибуты, сохраните их и поменяйте только `href`. Так как `common/assets/` ниже будет настроен на публикацию в корень сборки, `favicon.ico` останется доступен по адресу `/favicon.ico`.
 
 Итоговая структура общих ресурсов:
 
 ```text
 common/
-├── assets/                 # Images, icons, fonts and other static files
+├── assets/\n│   └── favicon.ico         # Shared workspace favicon
 ├── styles/
 │   └── styles.scss         # Global application styles
 └── environments/
@@ -120,7 +121,7 @@ common/
     └── environment.prod.ts
 ```
 
-Каталог `common/assets/` содержит статические ресурсы, которые подключаются к приложению через `assets` в его `project.json`. Это не библиотека TypeScript: Angular копирует такие файлы в выходную сборку, а приложение может обращаться к ним по URL. Перенос содержимого `public/` в корень `common/assets/` сохраняет пути к файлам, если одновременно настроить корневой путь публикации как раньше.
+Каталог `common/assets/` содержит статические ресурсы, которые подключаются к приложению через `assets` в его `project.json`. Это не библиотека TypeScript: Angular копирует такие файлы в выходную сборку, а приложение может обращаться к ним по URL. Общий `favicon.ico` находится в корне `common/assets/` и публикуется по адресу `/favicon.ico`; ссылка в `index.html` должна указывать на этот путь.
 
 #### Создаём конфигурации окружения
 
