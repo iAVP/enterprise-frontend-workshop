@@ -2,16 +2,6 @@
 
 *Dieser Artikel eröffnet den theoretischen Teil des Enterprise Frontend Workshop. Er beleuchtet reale Architekturentscheidungen und erklärt, warum unterschiedliche Projekte zu unterschiedlichen Lösungen gelangen. Im nächsten Schritt werden diese Überlegungen in die technische Organisation eines NX-Workspaces übertragen.*
 
-## Inhalt
-
-- [Architektur vor Technologie](#architektur-vor-technologie)
-- [Wenn neue Funktionen die gewohnte Arbeitsweise nicht beeinträchtigen sollen](#wenn-neue-funktionen-die-gewohnte-arbeitsweise-nicht-beeinträchtigen-sollen)
-- [Wenn sich ein Produkt mit mehreren Frontend-Frameworks weiterentwickelt](#wenn-sich-ein-produkt-mit-mehreren-frontend-frameworks-weiterentwickelt)
-- [Wenn ein bequemer Konfigurationsmechanismus neu bewertet werden muss](#wenn-ein-bequemer-konfigurationsmechanismus-neu-bewertet-werden-muss)
-- [Wenn verschiedene Technologien gemeinsam ein Problem lösen](#wenn-verschiedene-technologien-gemeinsam-ein-problem-lösen)
-- [Warum Architektur bei der Weiterentwicklung des Produkts erhalten bleiben muss](#warum-architektur-bei-der-weiterentwicklung-des-produkts-erhalten-bleiben-muss)
-- [Vom Architekturdenken zur Projektorganisation](#vom-architekturdenken-zur-projektorganisation)
-
 ## Architektur vor Technologie
 
 Wenn ein neues Projekt beginnt, kann man sich leicht in der Auswahl der Technologien verlieren. Welches Frontend-Framework soll verwendet werden? Wie soll das Frontend mit dem Backend kommunizieren? Welche Projektstruktur ermöglicht komfortable Entwicklung und lässt die Anwendung zugleich wachsen? Sollte Wiederverwendung von Anfang an eingeplant werden, oder sollte sich das Team zunächst auf die Umsetzung der Anforderungen konzentrieren?
@@ -219,4 +209,5 @@ Bevor wir uns konkreten Werkzeugen und Projektstrukturen zuwenden, ist es daher 
 Ziel von Architektur ist nicht, jeden Teil eines Systems identisch zu machen. Es geht darum zu verstehen, warum die Teile so aufgebaut sind, welche Unterschiede gerechtfertigt sind und was vor unbeabsichtigten Änderungen geschützt werden muss, während das Produkt weiter wächst.
 
 Erst dann ist es sinnvoll zu untersuchen, wie sich diese Entscheidungen in der Projektstruktur ausdrücken und über den gesamten Lebenszyklus des Produkts hinweg erhalten lassen.
+
 
