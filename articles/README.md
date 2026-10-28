@@ -22,7 +22,7 @@ The series follows several principles:
 
 Each article is developed on its own Git branch named after the article title, using hyphens instead of spaces. When an article needs multiple implementation stages, append `+` and the branch number for that article, for example `NX-Workspace+1` and `NX-Workspace+2`.
 
-Do not list previous-stage branches or links to earlier article branches inside an article. If branch links are necessary, include only the branches that are current for that article, and verify that each branch exists and its URL is correct. Never describe earlier branches as part of the current article's branch list.
+An article may list only Git branches that belong to that article itself. Do not include branches belonging to previous articles or other stages, and do not include a history of branches. Verify that every listed branch exists and that its URL is correct.
 
 
 ## 2. Sample Application
