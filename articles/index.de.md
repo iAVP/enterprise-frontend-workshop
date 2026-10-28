@@ -13,7 +13,7 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Reihenfolge entsp
 ### 2. NX Fundamentals — Grundlagen des NX Workspace
 **Status:** In Arbeit
 
-- **Entwürfe:** [English](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.md) · [Русский](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md) · [Deutsch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md)
+- **Entwürfe:** [English](NX-Fundamentals/README.md) · [Русский](NX-Fundamentals/README.ru.md) · [Deutsch](NX-Fundamentals/README.de.md)
 - **Inhalt:** Workspace-Konzepte, Aufgaben von `apps/` und `libs/`, Projektkonfiguration und Targets, Projekt- und Task-Graphen, Caching, affected-Befehle und Architekturgrenzen. Die erste Einrichtung und Anwendungsgenerierung sind bereits im separaten Artikel zu NX Workspace beschrieben.
 
 ### 3. Architecture in Practice: Decisions Behind Enterprise Frontend Systems
