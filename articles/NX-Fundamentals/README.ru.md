@@ -554,16 +554,16 @@ npx nx lint personal-finance-e2e
 {
   "compilerOptions": {
     "paths": {
-      "@workshop:facades": ["libs/shared/facades/src/index.ts"],
-      "@workshop:dal": ["libs/shared/dal/src/index.ts"],
-      "@workshop:base": ["libs/shared/base/src/index.ts"],
-      "@workshop:def:consts": ["libs/shared/definitions/src/lib/constants/index.ts"],
-      "@workshop:def:abstracts": ["libs/shared/definitions/src/lib/abstracts/index.ts"],
-      "@workshop:def:classes": ["libs/shared/definitions/src/lib/classes/index.ts"],
-      "@workshop:def:enums": ["libs/shared/definitions/src/lib/enums/index.ts"],
-      "@workshop:def:types": ["libs/shared/definitions/src/lib/types/index.ts"],
-      "@workshop:def:interfaces": ["libs/shared/definitions/src/lib/interfaces/index.ts"],
-      "@workshop:def:records": ["libs/shared/definitions/src/lib/records/index.ts"],
+      "@workshop:facades": ["./libs/shared/facades/src/index.ts"],
+      "@workshop:dal": ["./libs/shared/dal/src/index.ts"],
+      "@workshop:base": ["./libs/shared/base/src/index.ts"],
+      "@workshop:def:consts": ["./libs/shared/definitions/src/lib/constants/index.ts"],
+      "@workshop:def:abstracts": ["./libs/shared/definitions/src/lib/abstracts/index.ts"],
+      "@workshop:def:classes": ["./libs/shared/definitions/src/lib/classes/index.ts"],
+      "@workshop:def:enums": ["./libs/shared/definitions/src/lib/enums/index.ts"],
+      "@workshop:def:types": ["./libs/shared/definitions/src/lib/types/index.ts"],
+      "@workshop:def:interfaces": ["./libs/shared/definitions/src/lib/interfaces/index.ts"],
+      "@workshop:def:records": ["./libs/shared/definitions/src/lib/records/index.ts"],
       "base": ["./libs/shared/base/src/index.ts"],
       "dal": ["./libs/shared/dal/src/index.ts"],
       "facades": ["./libs/shared/facades/src/index.ts"]
@@ -572,7 +572,7 @@ npx nx lint personal-finance-e2e
 }
 ```
 
-Каждый alias категории должен указывать на публичную точку входа `src/lib/<категория>/index.ts`. Корневой `src/index.ts` реэкспортирует категории, но потребительский код использует конкретные aliases `@workshop:def:<категория>`. При добавлении категории создайте её каталог и `index.ts`, добавьте alias в `tsconfig.base.json` и экспортируйте из него только предназначенный для потребителей API.
+Каждый alias категории должен указывать на публичную точку входа `src/lib/<категория>/index.ts`. Общего `src/index.ts` у библиотеки `definitions` нет: потребительский код использует конкретные aliases `@workshop:def:<категория>`. При добавлении категории создайте её каталог и `index.ts`, добавьте alias в `tsconfig.base.json` и экспортируйте из него только предназначенный для потребителей API. Поскольку в этом workspace `baseUrl` не задан, все значения путей в `paths` начинаются с `./`; без этого TypeScript может сообщить об ошибке `TS5090`.
 
 Пример импорта:
 
