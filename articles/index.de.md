@@ -4,15 +4,9 @@ Dies ist der zentrale Einstiegspunkt für Reihenfolge, Sprachversionen, Status u
 
 ## Veröffentlichungsreihenfolge
 1. [The Road to Architecture](#1-the-road-to-architecture)
-2. [NX Workspace: Von der Architektur zu den Werkzeugen](#2-nx-workspace-von-der-architektur-zu-den-werkzeugen)
-3. [NX Fundamentals](#3-nx-fundamentals)
+2. [NX Fundamentals](#2-nx-fundamentals)
+3. [Architektur in der Praxis: Entscheidungen, die Enterprise-Frontend-Systeme prägen](#3-architektur-in-der-praxis-entscheidungen-die-enterprise-frontend-systeme-prägen)
 
-## Zusätzlicher veröffentlichter Artikel — Architekturentscheidungen in der Praxis
-
-**Status:** Auf Hashnode veröffentlicht.
-
-- [Englische Veröffentlichung — Architecture in Practice: Decisions Behind Enterprise Frontend Systems](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems)
-- [Russischer Text im Repository](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md) · [Deutsche Fassung](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md)
 
 ## 1. The Road to Architecture
 **Status:** Auf Hashnode veröffentlicht.
@@ -32,7 +26,7 @@ Dies ist der zentrale Einstiegspunkt für Reihenfolge, Sprachversionen, Status u
 - [Von Architekturentscheidungen zum NX Workspace](The-Road-to-Architecture/README.de.md#von-architekturentscheidungen-zum-nx-workspace)
 - [Was werden wir in diesem Artikel umsetzen?](The-Road-to-Architecture/README.de.md#was-werden-wir-in-diesem-artikel-umsetzen)
 
-## 2. NX Workspace: Von der Architektur zu den Werkzeugen
+## Verwandter Artikel: NX Workspace — Von der Architektur zu den Werkzeugen
 **Status:** Auf Hashnode veröffentlicht. Die initiale Einrichtung soll im nächsten Artikel nicht wiederholt werden.
 
 - [Veröffentlichter Artikel auf Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-workspace-from-architecture-to-tooling)
@@ -54,7 +48,7 @@ Dies ist der zentrale Einstiegspunkt für Reihenfolge, Sprachversionen, Status u
   - [End-to-End-Tests prüfen](NX-Workspace/README.de.md#end-to-end-tests-prüfen) · [Ergebnis dieser Etappe](NX-Workspace/README.de.md#ergebnis-dieser-etappe)
 - [Implementierungs-Branches](NX-Workspace/README.de.md#implementierungs-branches) · [Weiterführende Dokumentation](NX-Workspace/README.de.md#weiterführende-dokumentation) · [Implementierungsstatus](NX-Workspace/README.de.md#implementierungsstatus-und-umfang)
 
-## 3. NX Fundamentals
+## 2. NX Fundamentals
 **Status:** In Arbeit. Der Artikel setzt NX Workspace fort und wiederholt weder die initiale Einrichtung noch die Generierung der Angular-Anwendung.
 
 - [English](Good architecture is not always about choosing one technology and making everything uniform/README.md) · [Russisch](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md) · [Deutsch](Good architecture is not always about choosing one technology and making everything uniform/README.de.md)
@@ -69,6 +63,22 @@ Dies ist der zentrale Einstiegspunkt für Reihenfolge, Sprachversionen, Status u
 - [Caching und affected-Befehle](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#caching-und-affected-befehle)
 - [Architektur einführen, ohne zu früh zu abstrahieren](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#architektur-einführen-ohne-zu-früh-zu-abstrahieren)
 - [Aktueller Implementierungsstand](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#aktueller-implementierungsstand) · [Weiterführende Dokumentation](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#weiterführende-dokumentation)
+
+## 3. Architektur in der Praxis: Entscheidungen, die Enterprise-Frontend-Systeme prägen
+**Status:** Auf Hashnode veröffentlicht; die russische Version ist auch auf VK veröffentlicht.
+
+- [Englische Veröffentlichung — Architecture in Practice: Decisions Behind Enterprise Frontend Systems](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems)
+- [Russische Veröffentlichung auf VK](https://vk.ru/@-65490196-arhitektura-na-praktike-resh1?subtype=primary)
+- [Russischer Repository-Text](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md) · [Deutscher Repository-Text](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md)
+
+### Inhaltsverzeichnis
+- [Eine bestehende Unternehmensumgebung erweitern](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#eine-bestehende-unternehmensumgebung-erweitern)
+- [Mit mehreren Frontend-Frameworks arbeiten](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#mit-mehreren-frontend-frameworks-arbeiten)
+- [Framework-unabhängige Modelle, Verträge und Datenzugriff gemeinsam nutzen](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#framework-unabhängige-modelle-verträge-und-datenzugriff-gemeinsam-nutzen)
+- [Die Entwicklung von Desktop zu Mobile](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#die-entwicklung-von-desktop-zu-mobile)
+- [Konfiguration, Geheimnisse und Sicherheitsgrenzen](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#konfiguration-geheimnisse-und-sicherheitsgrenzen)
+- [Architektur als Abwägung verschiedener Kompromisse](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#architektur-als-abwägung-verschiedener-kompromisse)
+- [Die Rolle von NX bei der Durchsetzung von Architekturgrenzen](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#die-rolle-von-nx-bei-der-durchsetzung-von-architekturgrenzen)
 
 ## Arbeitsregeln
 - Diese Datei ist die zentrale Quelle für Navigation und Artikelstatus.
