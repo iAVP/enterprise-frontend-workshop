@@ -774,7 +774,7 @@ Im aktuellen Workspace gibt es bereits die Personal-Finance-Anwendung und ein se
 
 In dieser Phase werden das Domänenmodell und die fachliche Funktionalität noch nicht implementiert. DDD und die Modellierung der Fachdomäne bleiben ein eigenes Thema; hier bereiten wir die technische Grundlage für die weitere Arbeit vor.
 
-Aktuelle NX-Fundamentals-Branches:
+Implementierungs-Branches:
 
 - [NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace) — Initialisierung des NX Workspace.
 - [NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace%2B1) — Erstellung der Angular-Anwendung und des E2E-Projekts.
