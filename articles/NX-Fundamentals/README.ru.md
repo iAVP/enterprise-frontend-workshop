@@ -76,6 +76,219 @@ export const environment = {
 
 Правило документации к коду обязательно: **все классы и все их публичные или защищённые методы и свойства комментируются на английском языке**. Комментарии должны объяснять назначение класса или члена, а не просто повторять его имя.
 
+### Создаём `common/` и подключаем общие ресурсы
+
+Теперь перенесём в корень workspace ресурсы, которые должны подключаться через конфигурацию приложения, а не храниться внутри него. Все команды ниже выполняются из корня репозитория.
+
+Сначала создадим каталоги:
+
+```bash
+mkdir -p common/styles common/assets common/environments
+```
+
+Перенесём глобальные стили приложения:
+
+```bash
+mv apps/personal-finance/src/styles.scss common/styles/styles.scss
+```
+
+Сейчас в `apps/personal-finance/public/` находится один файл — `favicon.ico`. Перенесём его непосредственно в корень `common/assets/`: favicon является общим ресурсом workspace и в будущем может использоваться несколькими приложениями.
+
+```bash
+mv apps/personal-finance/public/favicon.ico common/assets/favicon.ico
+rmdir apps/personal-finance/public
+```
+
+В файле `apps/personal-finance/src/index.html` найдите существующий элемент `<link rel="icon" ...>` и измените его `href` на путь к ресурсу из корня сайта:
+
+```html
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+```
+
+Если у исходного элемента есть дополнительные атрибуты, сохраните их и поменяйте только `href`. Так как `common/assets/` ниже будет настроен на публикацию в корень сборки, `favicon.ico` останется доступен по адресу `/favicon.ico`.
+
+Итоговая структура общих ресурсов:
+
+```text
+common/
+├── assets/\n│   └── favicon.ico         # Shared workspace favicon
+├── styles/
+│   └── styles.scss         # Global application styles
+└── environments/
+    ├── common.ts           # Values shared by all environments
+    ├── environment.dev.ts
+    ├── environment.test.ts
+    └── environment.prod.ts
+```
+
+Каталог `common/assets/` содержит статические ресурсы, которые подключаются к приложению через `assets` в его `project.json`. Это не библиотека TypeScript: Angular копирует такие файлы в выходную сборку, а приложение может обращаться к ним по URL. Общий `favicon.ico` находится в корне `common/assets/` и публикуется по адресу `/favicon.ico`; ссылка в `index.html` должна указывать на этот путь.
+
+#### Создаём конфигурации окружения
+
+Создадим общий объект и три файла окружений. Общий объект пока пустой намеренно: сюда можно будет добавлять только те настройки, которые действительно общие для всех режимов.
+
+`common/environments/common.ts`:
+
+```typescript
+export const COMMON = {};
+```
+
+`common/environments/environment.dev.ts`:
+
+```typescript
+import { COMMON } from './common';
+
+export const environment = {
+  production: false,
+  common: COMMON,
+};
+```
+
+`common/environments/environment.test.ts`:
+
+```typescript
+import { COMMON } from './common';
+
+export const environment = {
+  production: false,
+  common: COMMON,
+};
+```
+
+`common/environments/environment.prod.ts`:
+
+```typescript
+import { COMMON } from './common';
+
+export const environment = {
+  production: true,
+  common: COMMON,
+};
+```
+
+Эти примеры задают согласованную форму конфигурации. Позже в `common` можно добавлять настройки, которые отличаются между окружениями, но не следует помещать сюда секреты: всё, что попадает в frontend-сборку, доступно пользователю браузера.
+
+В этом варианте `environment.prod.ts` служит базовым файлом, импортируемым приложением. Конфигурации `development` и `test` будут заменять его на соответствующий файл через `fileReplacements`. Поэтому код приложения должен импортировать `environment` из `common/environments/environment.prod`, а не выбирать файл вручную в каждом месте использования.
+
+#### Обновляем `apps/personal-finance/project.json`
+
+Путь к `styles.scss` и путь к статическим ресурсам задаются относительно корня workspace. В `build.options` замените прежние значения `assets` и `styles` на следующие:
+
+```json
+"assets": [
+  {
+    "glob": "**/*",
+    "input": "common/assets",
+    "output": "/"
+  }
+],
+"styles": [
+  "common/styles/styles.scss"
+]
+```
+
+`output: "/"` означает, что файлы из `common/assets/` публикуются от корня сайта. Так, файл `common/assets/images/logo.svg` будет доступен по пути `/images/logo.svg`, как если бы он раньше находился в `apps/personal-finance/public/images/logo.svg`.
+
+Теперь добавим окружения в `build.configurations`. Существующие настройки `production` и `development` нужно сохранить, дополнив их свойствами `fileReplacements`. Добавьте также конфигурацию `test`:
+
+```json
+"configurations": {
+  "production": {
+    "fileReplacements": [],
+    "budgets": [
+      {
+        "type": "initial",
+        "maximumWarning": "500kb",
+        "maximumError": "1mb"
+      },
+      {
+        "type": "anyComponentStyle",
+        "maximumWarning": "4kb",
+        "maximumError": "8kb"
+      }
+    ],
+    "outputHashing": "all"
+  },
+  "development": {
+    "fileReplacements": [
+      {
+        "replace": "common/environments/environment.prod.ts",
+        "with": "common/environments/environment.dev.ts"
+      }
+    ],
+    "optimization": false,
+    "extractLicenses": false,
+    "sourceMap": true
+  },
+  "test": {
+    "fileReplacements": [
+      {
+        "replace": "common/environments/environment.prod.ts",
+        "with": "common/environments/environment.test.ts"
+      }
+    ],
+    "optimization": false,
+    "extractLicenses": false,
+    "sourceMap": true
+  }
+}
+```
+
+В production-режиме замена не нужна: базовый файл уже называется `environment.prod.ts`. Пустой массив `fileReplacements` можно опустить; он показан здесь только для наглядности. Если вставляете фрагмент в существующий файл, не создавайте второй ключ `configurations` и не удаляйте остальные актуальные настройки проекта.
+
+Чтобы `nx serve personal-finance --configuration=test` использовал новую конфигурацию, добавьте конфигурацию в target `serve`:
+
+```json
+"test": {
+  "buildTarget": "personal-finance:build:test"
+}
+```
+
+Оставьте существующие конфигурации `development` и `production` без изменений. После этого можно явно запускать разные варианты:
+
+```bash
+npx nx build personal-finance --configuration=development
+npx nx build personal-finance --configuration=test
+npx nx build personal-finance --configuration=production
+
+npx nx serve personal-finance --configuration=development
+npx nx serve personal-finance --configuration=test
+npx nx serve personal-finance --configuration=production
+```
+
+Это настройки сборки приложения. Target `test`, который запускает unit-тесты, — отдельная задача и не становится автоматически окружением `build:test`; при необходимости настройки тестового раннера следует согласовать с возможностями используемого executor.
+
+Проверьте итоговую конфигурацию и сборки:
+
+```bash
+npx nx show project personal-finance
+npx nx build personal-finance --configuration=development
+npx nx build personal-finance --configuration=test
+npx nx build personal-finance --configuration=production
+```
+
+#### Запускаем приложение через `serve`
+
+После переноса ресурсов проверьте не только сборку, но и работу приложения в браузере. Из корня workspace выполните:
+
+```bash
+npx nx serve personal-finance
+```
+
+По умолчанию target `serve` использует конфигурацию `development`. После успешного запуска откройте адрес, указанный в терминале (в текущей конфигурации это обычно [http://localhost:4200](http://localhost:4200)).
+
+Для проверки конкретного окружения укажите его явно:
+
+```bash
+npx nx serve personal-finance --configuration=development
+npx nx serve personal-finance --configuration=test
+npx nx serve personal-finance --configuration=production
+```
+
+Убедитесь, что приложение загружается без ошибок, глобальные стили применяются, а favicon отображается. В инструментах разработчика браузера проверьте, что запрос к `/favicon.ico` возвращает успешный ответ. Остановить локальный сервер можно сочетанием `Ctrl+C` в терминале.
+
+Документация: [Angular workspace configuration — assets, styles и file replacements](https://angular.dev/reference/configs/workspace-config), [Angular build](https://angular.dev/cli/build) и [NX project configuration](https://nx.dev/docs/reference/project-configuration).
+
 ### `libs/shared/`: общие библиотеки с явными обязанностями
 
 В `libs/` размещаются отдельные NX-библиотеки. На текущем этапе договоримся о каталоге `libs/shared` для библиотек, которые предназначены для использования несколькими частями приложения и должны сохранять framework-independent границы там, где это возможно.
@@ -94,6 +307,59 @@ libs/
 ```
 
 Это четыре самостоятельных NX-проекта, а не просто четыре папки с кодом. У каждого проекта должны быть собственные настройки и явно описанные теги. Выделение библиотек заранее задаёт ожидаемые границы ответственности, но не означает, что мы должны немедленно наполнить каждую из них множеством классов. Сначала создаём необходимую структуру и минимальные точки входа, а реализацию добавляем по мере появления требований.
+
+#### Генерируем библиотеки командами NX
+
+Создадим четыре библиотеки из корня workspace. В этом проекте используем генератор `@nx/js:lib`: он подходит для общих TypeScript-библиотек, которым не нужны Angular-компоненты или другие framework-specific элементы. Команда `npx nx g` — сокращённая форма `npx nx generate`.
+
+Запускайте команды по одной и проверяйте созданный `project.json` после каждой генерации:
+
+```bash
+npx nx g @nx/js:lib libs/shared/facades --tags="level:shared,tag:facades"
+npx nx g @nx/js:lib libs/shared/dal --tags="level:shared,tag:dal"
+npx nx g @nx/js:lib libs/shared/base --tags="level:shared,tag:base"
+npx nx g @nx/js:lib libs/shared/definitions --tags="level:shared,tag:definitions"
+```
+
+Если используемая версия генератора спросит о дополнительных параметрах, выбирайте настройки, согласованные с текущим workspace, и сверяйте результат с правилами ниже. Команды иллюстрируют создание структуры, а не заменяют проверку сгенерированных файлов.
+
+У каждого проекта должны быть:
+- ожидаемое имя NX-проекта, совпадающее с именем библиотеки;
+- теги `level:shared` и `tag:<имя-проекта>`;
+- публичная точка входа `src/index.ts` для `facades`, `dal` и `base`;
+- алиас в корневом `tsconfig.base.json`, соответствующий правилам репозитория.
+
+Для `definitions` действует исключение: не создавайте и не поддерживайте единый `src/index.ts`. Вместо него создайте категории и их публичные точки входа:
+
+```bash
+mkdir -p libs/shared/definitions/src/{constants,abstracts,classes,enums,types,interfaces,records}
+touch libs/shared/definitions/src/constants/index.ts
+touch libs/shared/definitions/src/abstracts/index.ts
+touch libs/shared/definitions/src/classes/index.ts
+touch libs/shared/definitions/src/enums/index.ts
+touch libs/shared/definitions/src/types/index.ts
+touch libs/shared/definitions/src/interfaces/index.ts
+touch libs/shared/definitions/src/records/index.ts
+```
+
+На Windows команды с фигурными скобками могут не поддерживаться используемой оболочкой. В таком случае создайте каталоги и файлы отдельно либо используйте терминал Git Bash. Не забудьте зарегистрировать алиасы категорий в `tsconfig.base.json`:
+
+- `@workshop:def:consts` → `libs/shared/definitions/src/constants/index.ts`
+- `@workshop:def:abstracts` → `libs/shared/definitions/src/abstracts/index.ts`
+- `@workshop:def:classes` → `libs/shared/definitions/src/classes/index.ts`
+- `@workshop:def:enums` → `libs/shared/definitions/src/enums/index.ts`
+- `@workshop:def:types` → `libs/shared/definitions/src/types/index.ts`
+- `@workshop:def:interfaces` → `libs/shared/definitions/src/interfaces/index.ts`
+- `@workshop:def:records` → `libs/shared/definitions/src/records/index.ts`
+
+После генерации проверьте обнаруженные проекты и граф:
+
+```bash
+npx nx show projects
+npx nx graph
+```
+
+Генератор может обновить конфигурации и добавить файлы, но он не знает всех архитектурных соглашений конкретного репозитория. Поэтому проверьте имена и теги в каждом `project.json`, убедитесь, что aliases указывают на существующие файлы, и только затем переходите к реализации. Границы импортов задаются отдельно в `eslint.config.mjs` через `@nx/enforce-module-boundaries`.
 
 **`facades` — прикладные сервисы и фасады API.** Здесь размещаются сервисы, через которые приложение взаимодействует с API и использует прикладные операции. В фасаде может быть координация вызовов и удобный контракт для потребителя, но не должна находиться UI-логика, специфичная для одного frontend-фреймворка. Например, Angular-компонент, его шаблон, UI-состояние или код представления не должны попадать в общую библиотеку фасадов только потому, что ими пользуется несколько экранов.
 
