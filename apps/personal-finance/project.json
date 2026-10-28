@@ -4,7 +4,10 @@
   "projectType": "application",
   "prefix": "app",
   "sourceRoot": "apps/personal-finance/src",
-  "tags": [],
+  "tags": [
+    "level:app",
+    "app:personal-finance"
+  ],
   "targets": {
     "build": {
       "executor": "@angular/build:application",
