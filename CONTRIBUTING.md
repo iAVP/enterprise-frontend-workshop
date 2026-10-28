@@ -84,7 +84,7 @@ Follow these rules every time an application or shared library is created:
 
 ### Shared library TypeScript path aliases
 
-Register a stable alias for each shared library in the root `tsconfig.base.json` under `compilerOptions.paths`. Use the required `@workshop:<library-name>` format and point each alias to the library's public entry point:
+Register a stable alias for each shared library in the root `tsconfig.base.json` under `compilerOptions.paths`. Use `@workshop:<library-name>` for the three general shared libraries. The `definitions` library is the exception: it has no root `src/index.ts`; expose each category through its own `src/<category>/index.ts` and use the `@workshop:def:<category>` alias:
 
 ```json
 {
@@ -93,13 +93,19 @@ Register a stable alias for each shared library in the root `tsconfig.base.json`
       "@workshop:facades": ["libs/shared/facades/src/index.ts"],
       "@workshop:dal": ["libs/shared/dal/src/index.ts"],
       "@workshop:base": ["libs/shared/base/src/index.ts"],
-      "@workshop:definitions": ["libs/shared/definitions/src/index.ts"]
+      "@workshop:def:consts": ["libs/shared/definitions/src/constants/index.ts"],
+      "@workshop:def:abstracts": ["libs/shared/definitions/src/abstracts/index.ts"],
+      "@workshop:def:classes": ["libs/shared/definitions/src/classes/index.ts"],
+      "@workshop:def:enums": ["libs/shared/definitions/src/enums/index.ts"],
+      "@workshop:def:types": ["libs/shared/definitions/src/types/index.ts"],
+      "@workshop:def:interfaces": ["libs/shared/definitions/src/interfaces/index.ts"],
+      "@workshop:def:records": ["libs/shared/definitions/src/records/index.ts"]
     }
   }
 }
 ```
 
-Add an alias when each library is created and ensure the target entry-point file exists. Import public APIs through these aliases rather than using relative paths that reach into another library's source tree. Path aliases make imports stable; they do not enforce dependency boundaries by themselves.
+Add aliases when each library/category is created and ensure each target entry-point file exists. The definitions library must not introduce a single root barrel; each category owns its own `index.ts`. Import public APIs through these aliases rather than using relative paths that reach into another library's source tree. Path aliases make imports stable; they do not enforce dependency boundaries by themselves.
 
 ### Shared library responsibilities
 
