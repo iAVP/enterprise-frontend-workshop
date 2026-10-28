@@ -11,9 +11,9 @@ This index is the single navigation source for the series. Article order reflect
 - **Repository:** [English](The-Road-to-Architecture/README.md) · [Русский](The-Road-to-Architecture/README.ru.md) · [Deutsch](The-Road-to-Architecture/README.de.md)
 
 ### 2. NX Fundamentals — Building an Enterprise Frontend Workspace
-**Status:** Work in progress
+**Status:** Work in progress. The English file is a detailed draft; the Russian and German files are structured outlines awaiting full translations.
 
-- **Repository draft:** [English](NX-Fundamentals/README.md) · [Русский](NX-Fundamentals/README.ru.md) · [Deutsch](NX-Fundamentals/README.de.md)
+- **Drafts:** [English](NX-Fundamentals/README.md) · [Русский outline](NX-Fundamentals/README.ru.md) · [Deutsch outline](NX-Fundamentals/README.de.md)
 - **Scope:** Workspace concepts, `apps/` and `libs/`, project configuration and targets, project/task graphs, caching, affected commands, and architecture boundaries. Initial setup and app generation belong to the preceding NX Workspace article.
 
 ### 3. Architecture in Practice: Decisions Behind Enterprise Frontend Systems
