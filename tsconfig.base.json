@@ -10,11 +10,30 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "strict": false,
-    "paths": {}
+    "paths": {
+      "@workshop:facades": [
+        "libs/shared/facades/src/index.ts"
+      ],
+      "@workshop:dal": [
+        "libs/shared/dal/src/index.ts"
+      ],
+      "@workshop:base": [
+        "libs/shared/base/src/index.ts"
+      ],
+      "@workshop:definitions": [
+        "libs/shared/definitions/src/index.ts"
+      ]
+    }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }
