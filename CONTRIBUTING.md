@@ -43,9 +43,10 @@ Apply these conventions whenever creating or updating NX projects in this worksh
 
 ### Application project tags
 
-- Every application project must include a tag in the form `app:<application-name>` in its `project.json` `tags` array.
-- Use the exact NX project name declared in that project's `project.json` `name` field. For example, the `personal-finance` application uses `"tags": ["app:personal-finance"]`.
-- Apply this convention to separately configured application-type projects such as E2E projects as well, using their exact project name (for example, `app:personal-finance-e2e`).
+- Every application-related NX project, including the main application and its E2E project, must include the shared level tag `level:app` in its `project.json` `tags` array.
+- Every application-related project must also include a project-specific tag in the form `app:<application-name>`, using the exact NX project name from `project.json`.
+- Use the exact NX project name declared in that project's `project.json` `name` field. For example, the `personal-finance` application uses `"tags": ["level:app", "app:personal-finance"]`.
+- Apply both tags to separately configured application-related projects such as E2E projects as well, using their exact project name (for example, `"tags": ["level:app", "app:personal-finance-e2e"]`).
 
 ### Shared libraries and required tags
 
@@ -55,6 +56,41 @@ Apply these conventions whenever creating or updating NX projects in this worksh
 - Therefore, a shared project named `facades` must include both `level:shared` and `tag:facades`, for example: `"tags": ["level:shared", "tag:facades"]`.
 - Do not create a library under `libs/shared` without both required tags. Additional tags may be added when an agreed architecture rule requires them.
 - When generating libraries with NX, verify the resulting `project.json` explicitly; directory location alone does not apply tags automatically.
+
+### NX module boundaries and allowed imports
+
+Use the following tags to classify projects and enforce allowed dependency directions. Every app-related project must have `level:app`; shared libraries must have `level:shared` plus their library-specific tag.
+
+| Importing project tag | Allowed dependency tags | Rationale |
+| --- | --- | --- |
+| `level:app` | `tag:facades`, `tag:definitions`, `tag:base` | Applications use application-facing services and stable shared contracts/utilities, but must not bypass facades to call the data-access layer directly. |
+| `tag:facades` | `tag:dal`, `tag:base`, `tag:definitions` | Facades orchestrate application operations and may coordinate data access while relying on foundational helpers and contracts. |
+| `tag:definitions` | `tag:base` only | Definitions remain foundational; allowing them to depend on facades or data access would invert the dependency direction and risk cycles. |
+| `tag:dal` | `tag:base`, `tag:definitions` | Data-access code may use foundational utilities and shared contracts, but must not depend on application orchestration. |
+| `tag:base` | No other shared-library tags | Base is the lowest-level shared layer and must not depend on higher-level libraries. |
+
+The `app:<project-name>` tag identifies a specific app-related project; it does not replace `level:app`. The E2E project receives the common app-level tag for classification, but its test tooling and configuration should remain separate from the application's runtime environment setup.
+
+Enforce these rules through the NX `@nx/enforce-module-boundaries` ESLint rule, using `depConstraints` keyed by `sourceTag` and `onlyDependOnLibsWithTags`. Check the actual ESLint configuration before claiming the constraints are enforced: documentation and tags alone do not block imports.
+
+### Shared library TypeScript path aliases
+
+Register a stable alias for each shared library in the root `tsconfig.base.json` under `compilerOptions.paths`. Use the required `@workshop:<library-name>` format and point each alias to the library's public entry point:
+
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "@workshop:facades": ["libs/shared/facades/src/index.ts"],
+      "@workshop:dal": ["libs/shared/dal/src/index.ts"],
+      "@workshop:base": ["libs/shared/base/src/index.ts"],
+      "@workshop:definitions": ["libs/shared/definitions/src/index.ts"]
+    }
+  }
+}
+```
+
+Add an alias when each library is created and ensure the target entry-point file exists. Import public APIs through these aliases rather than using relative paths that reach into another library's source tree. Path aliases make imports stable; they do not enforce dependency boundaries by themselves.
 
 ### Shared library responsibilities
 
