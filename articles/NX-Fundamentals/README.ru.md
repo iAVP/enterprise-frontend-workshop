@@ -173,7 +173,7 @@ libs/
 
 При создании каждой библиотеки в `libs/shared/` нужно не только настроить её NX-проект и обязательные теги, но и зарегистрировать публичный alias в корневом `tsconfig.base.json`. Это позволяет импортировать публичный API библиотеки по стабильному имени вместо длинных относительных путей.
 
-Формат alias в этом workspace: `@workshop:<название-библиотеки>`. Для четырёх общих библиотек конфигурация `compilerOptions.paths` должна выглядеть так:
+Для `facades`, `dal` и `base` используется формат `@workshop:<название-библиотеки>`. Для `definitions` применяется отдельное пространство имён `@workshop:def:<категория>`: общего `libs/shared/definitions/src/index.ts` не будет, вместо него каждая категория экспортируется через собственный `index.ts`.
 
 ```json
 {
@@ -182,18 +182,25 @@ libs/
       "@workshop:facades": ["libs/shared/facades/src/index.ts"],
       "@workshop:dal": ["libs/shared/dal/src/index.ts"],
       "@workshop:base": ["libs/shared/base/src/index.ts"],
-      "@workshop:definitions": ["libs/shared/definitions/src/index.ts"]
+      "@workshop:def:consts": ["libs/shared/definitions/src/constants/index.ts"],
+      "@workshop:def:abstracts": ["libs/shared/definitions/src/abstracts/index.ts"],
+      "@workshop:def:classes": ["libs/shared/definitions/src/classes/index.ts"],
+      "@workshop:def:enums": ["libs/shared/definitions/src/enums/index.ts"],
+      "@workshop:def:types": ["libs/shared/definitions/src/types/index.ts"],
+      "@workshop:def:interfaces": ["libs/shared/definitions/src/interfaces/index.ts"],
+      "@workshop:def:records": ["libs/shared/definitions/src/records/index.ts"]
     }
   }
 }
 ```
 
-Каждый alias должен указывать на публичную точку входа библиотеки, например `src/index.ts`; при создании библиотеки нужно убедиться, что файл существует и экспортирует предназначенный для потребителей API. Добавляйте соответствующий alias при создании новой библиотеки и поддерживайте его в актуальном состоянии при переименовании или перемещении проекта.
+Каждый alias должен указывать на публичную точку входа соответствующей библиотеки или категории. При создании новой категории `definitions` создайте её собственный `index.ts`, добавьте alias в `tsconfig.base.json` и экспортируйте из него только предназначенный для потребителей API. Не создавайте единый корневой `index.ts` для `definitions`.
 
 Пример импорта:
 
 ```typescript
-import { SomeDefinition } from '@workshop:definitions';
+import { SomeType } from '@workshop:def:types';
+import { SomeConstant } from '@workshop:def:consts';
 ```
 
 Импортировать внутренние файлы другой библиотеки через относительные пути не следует: потребитель должен использовать её публичный API. При этом path aliases решают задачу удобных и стабильных путей, но **не заменяют** module boundaries и сами по себе не запрещают запрещённые зависимости.
