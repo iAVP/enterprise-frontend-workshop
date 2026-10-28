@@ -387,20 +387,20 @@ done
 
 Скрипт создаёт `src/lib/<категория>/index.ts` для всех семи категорий, а затем создаёт корневой `src/index.ts` со строками `export * from './lib/<категория>';`. Это разные уровни экспорта: не помещайте реэкспорт `./lib/<категория>` внутрь `src/lib/<категория>/index.ts`, иначе путь будет вести не туда. Внутренние `index.ts` пока пустые — добавляйте в них реэкспорт конкретных файлов категории по мере появления таких файлов.
 
-Если нужно создать каталоги и файлы явными командами, без цикла, можно использовать следующий вариант:
+Создайте каталоги и файлы явными командами из корня репозитория:
 
 ```bash
-mkdir -p libs/shared/definitions/src/{constants,abstracts,classes,enums,types,interfaces,records}
-touch libs/shared/definitions/src/constants/index.ts
-touch libs/shared/definitions/src/abstracts/index.ts
-touch libs/shared/definitions/src/classes/index.ts
-touch libs/shared/definitions/src/enums/index.ts
-touch libs/shared/definitions/src/types/index.ts
-touch libs/shared/definitions/src/interfaces/index.ts
-touch libs/shared/definitions/src/records/index.ts
+mkdir -p libs/shared/definitions/src/lib/{constants,abstracts,classes,enums,types,interfaces,records}
+touch libs/shared/definitions/src/lib/constants/index.ts
+touch libs/shared/definitions/src/lib/abstracts/index.ts
+touch libs/shared/definitions/src/lib/classes/index.ts
+touch libs/shared/definitions/src/lib/enums/index.ts
+touch libs/shared/definitions/src/lib/types/index.ts
+touch libs/shared/definitions/src/lib/interfaces/index.ts
+touch libs/shared/definitions/src/lib/records/index.ts
 ```
 
-Этот вариант создаёт каталоги непосредственно в `src/`, без промежуточного `lib/`. Он альтернативен основному скрипту выше, который создаёт `src/lib/<категория>/` и корневой `src/index.ts`. **Не смешивайте эти два варианта**: выберите одну структуру и согласуйте с ней пути в `tsconfig.base.json`. Для текущей структуры статьи с aliases на `src/lib/<категория>/index.ts` используйте основной скрипт.
+Эти команды создают семь каталогов внутри `src/lib/` и пустой `index.ts` в каждом из них. Корневой `src/index.ts` создаётся отдельно и реэкспортирует категории через `export * from './lib/<категория>';` — для этого используйте основной скрипт выше либо добавьте эти строки вручную.
 
 Проверьте результат:
 
