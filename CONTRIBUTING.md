@@ -32,6 +32,15 @@ The goal is for the commit history to communicate the project's evolution withou
 
 Apply these conventions whenever creating or updating NX projects in this workshop. These are repository-level architecture rules, not merely suggestions for the article.
 
+### Workspace-level common resources
+
+- The `common/` directory belongs at the workspace root. It must not be nested inside an application under `apps/`.
+- Put shared global styles under `common/styles/` and environment configuration files under `common/environments/`.
+- Reference the global stylesheet from the application build configuration in that application's `project.json`; do not treat the stylesheet as application-local source by default.
+- The non-E2E application must support `dev`, `test`, and `prod` environment modes, with the corresponding environment files located in `common/environments/`. The E2E project is not required to have these application environment modes.
+- `common/common.ts` must export `export const COMMON = {};`. Each environment file must import `COMMON` from `common/common` (using the correct relative path) and expose `common = COMMON` alongside its standard environment properties.
+- Public and protected class members (methods and properties), as well as every class, must have English comments. Apply this consistently when creating or changing code.
+
 ### Application project tags
 
 - Every application project must include a tag in the form `app:<application-name>` in its `project.json` `tags` array.
@@ -54,7 +63,7 @@ The initial planned shared libraries are:
 - `facades`: API-facing/application services and service contracts. Keep UI logic that belongs to a specific frontend framework out of this library.
 - `dal`: data-access services for retrieving and persisting data from the backend and other sources.
 - `base`: foundational functionality intended to be available throughout the application, such as helpers for text internationalization.
-- `definitions`: shared constants, facade contracts/types, types, enums, records, and framework-independent functions. Keep this library foundational and avoid dependency cycles or dependencies on higher-level features.
+- `definitions`: shared constants, facade contracts, types, enums, records, and framework-independent functions; `abstracts` for TypeScript abstract classes; and `classes` for ordinary classes. Keep this library foundational and avoid dependency cycles or dependencies on higher-level features.
 
 Keep these responsibilities distinct. Do not move framework-specific UI behavior into shared libraries simply because multiple parts of the system need related functionality.
 
