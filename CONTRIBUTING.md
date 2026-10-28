@@ -131,9 +131,11 @@ Keep these responsibilities distinct. Do not move framework-specific UI behavior
 
 ## Article Index and Publication Status
 
-The files `articles/index.md`, `articles/index.ru.md`, and `articles/index.de.md` are the primary navigation and status records for the article series. They list articles, link to the relevant language versions, and indicate whether each article is planned or published.
+The files `articles/index.md`, `articles/index.ru.md`, and `articles/index.de.md` are the primary navigation and status records for the article series. They list every article in the agreed publication order, link to the relevant language versions, and indicate whether each article is planned or published.
 
 - Keep all three indexes in sync when adding, renaming, reorganizing, or publishing an article.
+- **Every article in the series must have a numbered entry in the index.** There are no unnumbered "related articles", supplementary article entries, or technical articles outside the numbered sequence. If an article belongs to the series, give it the next appropriate number and include it in the index-wide table of contents and the article-entry list.
+- The index files are the canonical navigation structure. Do not create a separate "related article" section to bypass the numbered article sequence. If an article is technically connected to another article, that relationship may be described in the article text or publication notes, but it does not change the article's numbered index entry.
 - Mark an article as **Published** only after the publication is live, and include the verified publication URL.
 - Treat `articles/README.md`, `articles/README.ru.md`, and `articles/README.de.md` as the editorial roadmap describing planned topics and learning order. They do not replace the indexes as the source of truth for publication status.
 
@@ -152,8 +154,9 @@ When preparing or editing an article, remove any existing embedded TOC from all 
 
 Every article entry in each language-specific index must follow the same structure. Localize the article title and the table-of-contents labels to the language of that index; keep the language-link labels exactly as specified below.
 
-1. Start each index with a **table of contents listing all articles** in the series, in the agreed publication order.
-2. For each article, include:
+1. Start each index with a **table of contents listing every numbered article** in the series, in the agreed publication order.
+2. Number every article entry consecutively according to that order. Never use an unnumbered "related article" or "technical article" heading as a separate category; relatedness does not exempt an article from the numbered sequence.
+3. For each article, include:
    1. The article title in the language of the current index.
    2. A nested **Repository materials** subsection containing links to all three language versions, in this order:
       - [englisch](relative-path-to-README.md) — English file: `README.md`
@@ -185,9 +188,9 @@ The index-level table of contents at the top must list every article and link to
 The three index files (`articles/index.md`, `articles/index.ru.md`, and `articles/index.de.md`) must use the **same structure**, not merely similar content.
 
 For every index:
-- Use the same top-level sections, in the same order: index title and introduction, index-wide table of contents, each article entry in the agreed order, related technical article entry (if present), and editorial rules.
+- Use the same top-level sections, in the same order: index title and introduction, index-wide table of contents, every numbered article entry in the agreed order, and editorial rules.
 - Give every article entry the same heading hierarchy and the same fields in the same order: status/publication information, repository materials, article contents, and GitHub branches. Publication links may appear before repository materials when they exist, but their placement must be identical across all three indexes.
-- Include the same set of articles and related articles in the same order. Localize headings, status text, article titles, and section labels; do not add or omit structural sections in one language.
+- Include the same complete set of numbered articles in the same order in all three indexes. Do not create a separate unnumbered section for related or technical articles. Localize headings, status text, article titles, and section labels; do not add or omit structural sections in one language.
 - List all three repository files in the exact order and with the exact link labels `englisch`, `русский`, `deutsch`.
 - Build each article's section-level table of contents from the headings in the corresponding language version of that article. Link to that language's file, and verify every anchor against the actual heading. Do not mix another language's section list into the current index.
 - If an article has no text yet, keep the same “Article contents” section and state that headings are not available yet; do not remove the section.
