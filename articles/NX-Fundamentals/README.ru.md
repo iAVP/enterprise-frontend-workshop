@@ -574,7 +574,9 @@ npx nx lint personal-finance-e2e
 
 Каждый alias категории должен указывать на публичную точку входа `src/lib/<категория>/index.ts`. Общего `src/index.ts` у библиотеки `definitions` нет: потребительский код использует конкретные aliases `@workshop:def:<категория>`. При добавлении категории создайте её каталог и `index.ts`, добавьте alias в `tsconfig.base.json` и экспортируйте из него только предназначенный для потребителей API.
 
-Если категория пока пустая, не оставляйте файл пустым и не используйте `export * from './';`: такая строка ссылается на тот же каталог и может вызвать циклическую ссылку. Используйте компилируемую заглушку, например для `libs/shared/definitions/src/lib/types/index.ts`:
+Пока категории пустые, оставьте в каждом категорийном `index.ts` временную компилируемую заглушку. Не используйте `export * from './';`: такая строка ссылается на тот же каталог и может вызвать циклическую ссылку.
+
+Для `libs/shared/definitions/src/lib/types/index.ts`:
 
 ```typescript
 /**
@@ -584,7 +586,18 @@ npx nx lint personal-finance-e2e
 export {};
 ```
 
-Для остальных категорий используйте аналогичный комментарий, изменив название категории. Когда появятся реальные файлы, добавьте явные экспорты, например `export * from './account.type';`, только для существующих файлов.
+Для остальных категорий используйте тот же шаблон, изменив комментарий в соответствии с назначением категории:
+- `constants/index.ts` — shared constants;
+- `abstracts/index.ts` — shared abstract classes;
+- `classes/index.ts` — shared classes;
+- `enums/index.ts` — shared enums;
+- `types/index.ts` — shared type definitions;
+- `interfaces/index.ts` — shared interfaces;
+- `records/index.ts` — shared records.
+
+Когда в категории появятся реальные файлы, замените временную заглушку явными экспортами существующих файлов, например `export * from './account.type';`.
+
+**Важно:** в библиотеке `definitions` не должно быть общего файла `libs/shared/definitions/src/index.ts`. Удалите его, если генератор NX создал такой файл. Это правило касается только корневого entry point библиотеки; категорийные `index.ts` внутри `src/lib/<категория>/` нужны и должны остаться.
 
 Поскольку в этом workspace `baseUrl` не задан, все значения путей в `paths` начинаются с `./`; без этого TypeScript может сообщить об ошибке `TS5090`.
 
