@@ -32,8 +32,8 @@
 
 ## 2. NX Fundamentals — основы NX Workspace
 
-### Материалы в репозитории
-[englisch](NX-Fundamentals/README.md) | [русский](NX-Fundamentals/README.ru.md) | [deutsch](NX-Fundamentals/README.de.md)
+### Repository materials
+[английский](NX-Fundamentals/README.md) | [русский](NX-Fundamentals/README.ru.md) | [немецкий](NX-Fundamentals/README.de.md)
 
 ### Содержание статьи
 - [Понятия NX Workspace и организация проектов](NX-Fundamentals/README.ru.md#понятия-nx-workspace-и-организация-проектов)
@@ -46,7 +46,9 @@
 - [Граф проекта и граф задач](NX-Fundamentals/README.ru.md#граф-проекта-и-граф-задач)
 - [Кэширование и команды affected](NX-Fundamentals/README.ru.md#кэширование-и-команды-affected)
 - [Первые архитектурные решения без преждевременных абстракций](NX-Fundamentals/README.ru.md#первые-архитектурные-решения-без-преждевременных-абстракций)
-- [Итоги: фундамент для будущего enterprise workspace](NX-Fundamentals/README.ru.md#итоги-фундамент-для-будущего-enterprise-workspace)
+- [Граница текущего этапа: подготовка каркаса](NX-Fundamentals/README.ru.md#граница-текущего-этапа-подготовка-каркаса)
+- [Текущее состояние реализации](NX-Fundamentals/README.ru.md#текущее-состояние-реализации)
+- [Дополнительные материалы](NX-Fundamentals/README.ru.md#дополнительные-материалы)
 
 ### Ветки GitHub
 - [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch)
