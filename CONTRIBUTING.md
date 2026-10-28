@@ -38,7 +38,7 @@ Apply these conventions whenever creating or updating NX projects in this worksh
 - Put shared global styles under `common/styles/` and environment configuration files under `common/environments/`.
 - Reference the global stylesheet from the application build configuration in that application's `project.json`; do not treat the stylesheet as application-local source by default.
 - The non-E2E application must support `dev`, `test`, and `prod` environment modes, with the corresponding environment files located in `common/environments/`. The E2E project is not required to have these application environment modes.
-- `common/common.ts` must export `export const COMMON = {};`. Each environment file must import `COMMON` from `common/common` (using the correct relative path) and expose `common = COMMON` alongside its standard environment properties.
+- `common/environments/common.ts` must export `export const COMMON = {};`. Each environment file must import `COMMON` from `common/environments/common` (using the correct relative path) and expose `common = COMMON` alongside its standard environment properties.
 - Public and protected class members (methods and properties), as well as every class, must have English comments. Apply this consistently when creating or changing code.
 
 ### Application project tags
