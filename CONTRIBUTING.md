@@ -40,6 +40,106 @@ Avoid examples such as:
 
 The goal is for the commit history to communicate the project's evolution without requiring readers to open every diff.
 
+## NX Project and Library Conventions
+
+Apply these conventions whenever creating or updating NX projects in this workshop. These are repository-level architecture rules, not merely suggestions for the article.
+
+### Workspace-level common resources
+
+- The `common/` directory belongs at the workspace root. It must not be nested inside an application under `apps/`.
+- Put shared global styles under `common/styles/` and environment configuration files under `common/environments/`.
+- Reference the global stylesheet from the application build configuration in that application's `project.json`; do not treat the stylesheet as application-local source by default.
+- The non-E2E application must support `dev`, `test`, and `prod` environment modes, with the corresponding environment files located in `common/environments/`. The E2E project is not required to have these application environment modes.
+- `common/environments/common.ts` must export `export const COMMON = {};`. Each environment file must import `COMMON` from `common/environments/common` (using the correct relative path) and expose `common = COMMON` alongside its standard environment properties.
+- Public and protected class members (methods and properties), as well as every class, must have English comments. Apply this consistently when creating or changing code.
+
+### Application project tags
+
+- Every application-related NX project, including the main application and its E2E project, must include the shared level tag `level:app` in its `project.json` `tags` array.
+- Every application-related project must also include a project-specific tag in the form `app:<application-name>`, using the exact NX project name from `project.json`.
+- Use the exact NX project name declared in that project's `project.json` `name` field. For example, the `personal-finance` application uses `"tags": ["level:app", "app:personal-finance"]`.
+- Apply both tags to separately configured application-related projects such as E2E projects as well, using their exact project name (for example, `"tags": ["level:app", "app:personal-finance-e2e"]`).
+
+### Shared libraries and required tags
+
+- Create reusable shared libraries under `libs/shared/<library-name>`.
+- Every library under `libs/shared` must include the `level:shared` tag in the `project.json` `tags` array.
+- Every individual library must also include `tag:<library-name>`, using the exact project name from that library's `project.json` `name` field.
+- Therefore, a shared project named `facades` must include both `level:shared` and `tag:facades`, for example: `"tags": ["level:shared", "tag:facades"]`.
+- Do not create a library under `libs/shared` without both required tags. Additional tags may be added when an agreed architecture rule requires them.
+- When generating libraries with NX, verify the resulting `project.json` explicitly; directory location alone does not apply tags automatically.
+
+### NX module boundaries and allowed imports
+
+Use the following tags to classify projects and enforce allowed dependency directions. Every app-related project must have `level:app`; shared libraries must have `level:shared` plus their library-specific tag.
+
+| Importing project tag | Allowed dependency tags | Rationale |
+| --- | --- | --- |
+| `level:app` | `tag:facades`, `tag:definitions`, `tag:base` | Applications use application-facing services and stable shared contracts/utilities, but must not bypass facades to call the data-access layer directly. |
+| `tag:facades` | `tag:dal`, `tag:base`, `tag:definitions` | Facades orchestrate application operations and may coordinate data access while relying on foundational helpers and contracts. |
+| `tag:definitions` | `tag:base` only | Definitions remain foundational; allowing them to depend on facades or data access would invert the dependency direction and risk cycles. |
+| `tag:dal` | `tag:base`, `tag:definitions` | Data-access code may use foundational utilities and shared contracts, but must not depend on application orchestration. |
+| `tag:base` | No other shared-library tags | Base is the lowest-level shared layer and must not depend on higher-level libraries. |
+
+The `app:<project-name>` tag identifies a specific app-related project; it does not replace `level:app`. The E2E project receives the common app-level tag for classification, but its test tooling and configuration should remain separate from the application's runtime environment setup.
+
+Enforce these rules through the NX `@nx/enforce-module-boundaries` ESLint rule, using `depConstraints` keyed by `sourceTag` and `onlyDependOnLibsWithTags`. Check the actual ESLint configuration before claiming the constraints are enforced: documentation and tags alone do not block imports.
+
+### Shared library TypeScript path aliases
+
+Register a stable alias for each shared library in the root `tsconfig.base.json` under `compilerOptions.paths`. Use the required `@workshop:<library-name>` format and point each alias to the library's public entry point:
+
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "@workshop:facades": ["libs/shared/facades/src/index.ts"],
+      "@workshop:dal": ["libs/shared/dal/src/index.ts"],
+      "@workshop:base": ["libs/shared/base/src/index.ts"],
+      "@workshop:definitions": ["libs/shared/definitions/src/index.ts"]
+    }
+  }
+}
+```
+
+Add an alias when each library is created and ensure the target entry-point file exists. Import public APIs through these aliases rather than using relative paths that reach into another library's source tree. Path aliases make imports stable; they do not enforce dependency boundaries by themselves.
+
+### NX module boundaries and allowed imports
+
+Enforce the dependency rules in the root `eslint.config.mjs` using `@nx/enforce-module-boundaries` and `depConstraints`:
+
+- `level:app` may depend on `tag:facades`, `tag:definitions`, and `tag:base`.
+- `tag:facades` may depend on `tag:dal`, `tag:base`, and `tag:definitions`.
+- `tag:definitions` may depend only on `tag:base`.
+- `tag:dal` may depend on `tag:base` and `tag:definitions`.
+- `tag:base` may not depend on other workspace projects.
+
+The project-specific `app:<project-name>` tag identifies an app-related project; it does not replace the shared `level:app` tag. All application-related projects, including E2E projects, must have `level:app`.
+
+These restrictions keep application code from bypassing facades, keep the data-access layer independent of orchestration, and preserve `base` as the lowest-level shared library. When changing project tags or adding a library, update and verify the ESLint constraints accordingly.
+
+### Shared library TypeScript path aliases
+
+Register public entry-point aliases in root `tsconfig.base.json` under `compilerOptions.paths`, using the format `@workshop:<library-name>`. The initial aliases are:
+
+- `@workshop:facades` → `libs/shared/facades/src/index.ts`
+- `@workshop:dal` → `libs/shared/dal/src/index.ts`
+- `@workshop:base` → `libs/shared/base/src/index.ts`
+- `@workshop:definitions` → `libs/shared/definitions/src/index.ts`
+
+Add or update the alias when creating, renaming, or moving a library. Ensure the referenced `src/index.ts` exists and exports the public API. Use these aliases instead of reaching into another library's source through relative paths. Aliases improve import stability but do not enforce module boundaries; ESLint does that.
+
+### Shared library responsibilities
+
+The initial planned shared libraries are:
+
+- `facades`: API-facing/application services and service contracts. Keep UI logic that belongs to a specific frontend framework out of this library.
+- `dal`: data-access services for retrieving and persisting data from the backend and other sources.
+- `base`: foundational functionality intended to be available throughout the application, such as helpers for text internationalization.
+- `definitions`: shared constants, facade contracts, types, enums, records, and framework-independent functions; `abstracts` for TypeScript abstract classes; and `classes` for ordinary classes. Keep this library foundational and avoid dependency cycles or dependencies on higher-level features.
+
+Keep these responsibilities distinct. Do not move framework-specific UI behavior into shared libraries simply because multiple parts of the system need related functionality.
+
 ## Article Index and Publication Status
 
 The files `articles/index.md`, `articles/index.ru.md`, and `articles/index.de.md` are the primary navigation and status records for the article series. They list articles, link to the relevant language versions, and indicate whether each article is planned or published.
