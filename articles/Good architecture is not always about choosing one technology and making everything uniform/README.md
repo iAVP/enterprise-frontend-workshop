@@ -1,5 +1,9 @@
 # Architecture in Practice: Decisions Behind Enterprise Frontend Systems
 
+> **Status:** Published on [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems).
+
+This article opens the theoretical thread of the Enterprise Frontend Workshop. It explores real architectural dilemmas and why different projects arrive at different solutions. The next step is to translate these ideas into the technical organization of an NX workspace.
+
 ## Architecture Before Technology
 
 When a new project begins, it is easy to become absorbed in choosing technologies. Which frontend framework should be used? How should the frontend communicate with the backend? What project structure will make development comfortable while allowing the application to evolve? Should reuse be designed in from the beginning, or should the team focus first on delivering the requirements?
@@ -207,4 +211,3 @@ Before moving to specific tools and project structures, it is therefore importan
 The point of architecture is not to make every part of a system identical. It is to understand why the parts are structured as they are, which differences are justified, and what must be protected from accidental change as the product continues to grow.
 
 Only then does it make sense to explore how those decisions can be expressed in the project structure and maintained throughout the product's lifecycle.
-
