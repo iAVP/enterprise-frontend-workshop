@@ -358,28 +358,47 @@ npx nx g @nx/js:lib libs/shared/definitions --tags="level:shared,tag:definitions
 - публичная точка входа `src/index.ts` для `facades`, `dal` и `base`;
 - алиас в корневом `tsconfig.base.json`, соответствующий правилам репозитория.
 
-Для `definitions` действует исключение: не создавайте и не поддерживайте единый `src/index.ts`. Вместо него создайте категории и их публичные точки входа:
+Для `definitions` категории хранятся в `src/lib/`. У каждой категории есть собственный `index.ts`, который служит публичной точкой входа именно этой категории. Корневой `src/index.ts` нужен для реэкспорта категорий из `./lib/<категория>`; это отдельный файл, его не следует путать с `index.ts` внутри каждой папки. Например, корневой файл содержит строки вида `export * from './lib/constants';`, а `src/lib/constants/index.ts` позднее экспортирует файлы, принадлежащие категории constants.
+
+Создайте каталоги и файлы одним Bash-скриптом из корня репозитория:
 
 ```bash
-mkdir -p libs/shared/definitions/src/{constants,abstracts,classes,enums,types,interfaces,records}
-touch libs/shared/definitions/src/constants/index.ts
-touch libs/shared/definitions/src/abstracts/index.ts
-touch libs/shared/definitions/src/classes/index.ts
-touch libs/shared/definitions/src/enums/index.ts
-touch libs/shared/definitions/src/types/index.ts
-touch libs/shared/definitions/src/interfaces/index.ts
-touch libs/shared/definitions/src/records/index.ts
+#!/usr/bin/env bash
+set -euo pipefail
+
+base="libs/shared/definitions/src"
+categories=(constants abstracts classes enums types interfaces records)
+
+for category in "${categories[@]}"; do
+  mkdir -p "${base}/lib/${category}"
+  touch "${base}/lib/${category}/index.ts"
+done
+
+{
+  for category in "${categories[@]}"; do
+    printf "export * from './lib/%s';\\n" "${category}"
+  done
+} > "${base}/index.ts"
 ```
 
-На Windows команды с фигурными скобками могут не поддерживаться используемой оболочкой. В таком случае создайте каталоги и файлы отдельно либо используйте терминал Git Bash. Не забудьте зарегистрировать алиасы категорий в `tsconfig.base.json`:
+Скрипт создаёт `src/lib/<категория>/index.ts` для всех семи категорий, а затем создаёт корневой `src/index.ts` со строками `export * from './lib/<категория>';`. Это разные уровни экспорта: не помещайте реэкспорт `./lib/<категория>` внутрь `src/lib/<категория>/index.ts`, иначе путь будет вести не туда. Внутренние `index.ts` пока пустые — добавляйте в них реэкспорт конкретных файлов категории по мере появления таких файлов.
 
-- `@workshop:def:consts` → `libs/shared/definitions/src/constants/index.ts`
-- `@workshop:def:abstracts` → `libs/shared/definitions/src/abstracts/index.ts`
-- `@workshop:def:classes` → `libs/shared/definitions/src/classes/index.ts`
-- `@workshop:def:enums` → `libs/shared/definitions/src/enums/index.ts`
-- `@workshop:def:types` → `libs/shared/definitions/src/types/index.ts`
-- `@workshop:def:interfaces` → `libs/shared/definitions/src/interfaces/index.ts`
-- `@workshop:def:records` → `libs/shared/definitions/src/records/index.ts`
+Проверьте результат:
+
+```bash
+find libs/shared/definitions/src -maxdepth 3 -type f -name 'index.ts' -print
+cat libs/shared/definitions/src/index.ts
+```
+
+На Windows используйте Git Bash или WSL для выполнения этого Bash-скрипта. Алиасы категорий в `tsconfig.base.json` должны указывать на `libs/shared/definitions/src/lib/<категория>/index.ts`:
+
+- `@workshop:def:consts` → `libs/shared/definitions/src/lib/constants/index.ts`
+- `@workshop:def:abstracts` → `libs/shared/definitions/src/lib/abstracts/index.ts`
+- `@workshop:def:classes` → `libs/shared/definitions/src/lib/classes/index.ts`
+- `@workshop:def:enums` → `libs/shared/definitions/src/lib/enums/index.ts`
+- `@workshop:def:types` → `libs/shared/definitions/src/lib/types/index.ts`
+- `@workshop:def:interfaces` → `libs/shared/definitions/src/lib/interfaces/index.ts`
+- `@workshop:def:records` → `libs/shared/definitions/src/lib/records/index.ts`
 
 После генерации проверьте обнаруженные проекты и граф:
 
@@ -501,7 +520,7 @@ npx nx lint personal-finance-e2e
 
 При создании каждой библиотеки в `libs/shared/` нужно не только настроить её NX-проект и обязательные теги, но и зарегистрировать публичный alias в корневом `tsconfig.base.json`. Это позволяет импортировать публичный API библиотеки по стабильному имени вместо длинных относительных путей.
 
-Для `facades`, `dal` и `base` используется формат `@workshop:<название-библиотеки>`. Для `definitions` применяется отдельное пространство имён `@workshop:def:<категория>`: общего `libs/shared/definitions/src/index.ts` не будет, вместо него каждая категория экспортируется через собственный `index.ts`.
+Для `facades`, `dal` и `base` используется формат `@workshop:<название-библиотеки>`. Для `definitions` применяется отдельное пространство имён `@workshop:def:<категория>`. Категории находятся в `libs/shared/definitions/src/lib/`, а их aliases указывают на соответствующие `index.ts`; корневой `src/index.ts` отдельно реэкспортирует категории через `export * from './lib/<категория>';`.
 
 ```json
 {
@@ -510,19 +529,19 @@ npx nx lint personal-finance-e2e
       "@workshop:facades": ["libs/shared/facades/src/index.ts"],
       "@workshop:dal": ["libs/shared/dal/src/index.ts"],
       "@workshop:base": ["libs/shared/base/src/index.ts"],
-      "@workshop:def:consts": ["libs/shared/definitions/src/constants/index.ts"],
-      "@workshop:def:abstracts": ["libs/shared/definitions/src/abstracts/index.ts"],
-      "@workshop:def:classes": ["libs/shared/definitions/src/classes/index.ts"],
-      "@workshop:def:enums": ["libs/shared/definitions/src/enums/index.ts"],
-      "@workshop:def:types": ["libs/shared/definitions/src/types/index.ts"],
-      "@workshop:def:interfaces": ["libs/shared/definitions/src/interfaces/index.ts"],
-      "@workshop:def:records": ["libs/shared/definitions/src/records/index.ts"]
+      "@workshop:def:consts": ["libs/shared/definitions/src/lib/constants/index.ts"],
+      "@workshop:def:abstracts": ["libs/shared/definitions/src/lib/abstracts/index.ts"],
+      "@workshop:def:classes": ["libs/shared/definitions/src/lib/classes/index.ts"],
+      "@workshop:def:enums": ["libs/shared/definitions/src/lib/enums/index.ts"],
+      "@workshop:def:types": ["libs/shared/definitions/src/lib/types/index.ts"],
+      "@workshop:def:interfaces": ["libs/shared/definitions/src/lib/interfaces/index.ts"],
+      "@workshop:def:records": ["libs/shared/definitions/src/lib/records/index.ts"]
     }
   }
 }
 ```
 
-Каждый alias должен указывать на публичную точку входа соответствующей библиотеки или категории. При создании новой категории `definitions` создайте её собственный `index.ts`, добавьте alias в `tsconfig.base.json` и экспортируйте из него только предназначенный для потребителей API. Не создавайте единый корневой `index.ts` для `definitions`.
+Каждый alias категории должен указывать на публичную точку входа `src/lib/<категория>/index.ts`. Корневой `src/index.ts` реэкспортирует категории, но потребительский код использует конкретные aliases `@workshop:def:<категория>`. При добавлении категории создайте её каталог и `index.ts`, добавьте alias в `tsconfig.base.json` и экспортируйте из него только предназначенный для потребителей API.
 
 Пример импорта:
 
