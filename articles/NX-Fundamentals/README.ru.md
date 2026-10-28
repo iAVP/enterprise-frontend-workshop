@@ -517,13 +517,21 @@ npx nx graph
 npm install --save-dev jiti
 ```
 
-Переименуйте все три файла, чтобы ссылки и соглашения были последовательными:
+Переименуйте все существующие ESLint-конфиги workspace с `.mjs` на `.mts`. Это относится не только к корневому конфигу, приложению и E2E-проекту, но и к каждой библиотеке, в которой есть собственный `eslint.config.mjs`.
+
+В текущей структуре workspace это следующие файлы:
 
 ```bash
 git mv eslint.config.mjs eslint.config.mts
 git mv apps/personal-finance/eslint.config.mjs apps/personal-finance/eslint.config.mts
 git mv apps/personal-finance-e2e/eslint.config.mjs apps/personal-finance-e2e/eslint.config.mts
+git mv libs/shared/base/eslint.config.mjs libs/shared/base/eslint.config.mts
+git mv libs/shared/dal/eslint.config.mjs libs/shared/dal/eslint.config.mts
+git mv libs/shared/definitions/eslint.config.mjs libs/shared/definitions/eslint.config.mts
+git mv libs/shared/facades/eslint.config.mjs libs/shared/facades/eslint.config.mts
 ```
+
+Перед выполнением проверьте, что эти пути существуют и файлы ещё имеют расширение `.mjs`: `git mv` не предназначен для повторного переименования уже переименованных файлов. Если структура библиотек изменится, найдите все конфиги в репозитории и добавьте фактические пути в список. Не переименовывайте файлы внутри `node_modules/`.
 
 В двух конфигурациях проектов обновите импорт корневой конфигурации. В `apps/personal-finance/eslint.config.mts` и `apps/personal-finance-e2e/eslint.config.mts` он должен ссылаться на `../../eslint.config.mts`:
 
