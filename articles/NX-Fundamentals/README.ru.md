@@ -548,7 +548,7 @@ npx nx lint personal-finance-e2e
 
 При создании каждой библиотеки в `libs/shared/` нужно не только настроить её NX-проект и обязательные теги, но и зарегистрировать публичный alias в корневом `tsconfig.base.json`. Это позволяет импортировать публичный API библиотеки по стабильному имени вместо длинных относительных путей.
 
-Для `facades`, `dal` и `base` используются отдельные aliases в формате `@workshop:<название-библиотеки>`, каждый из которых указывает на собственный `src/index.ts` библиотеки. Для `definitions` общий `src/index.ts` не создаётся: каждая категория имеет собственный `index.ts` в `libs/shared/definitions/src/lib/<категория>/`, а импорт выполняется через отдельный alias `@workshop:def:<категория>`.
+Для `facades`, `dal` и `base` используются отдельные aliases в формате `@workshop:<название-библиотеки>`, каждый из которых указывает на собственный `src/index.ts` библиотеки. Для `definitions` общий `src/index.ts` не используется: каждая категория имеет собственный `index.ts` в `libs/shared/definitions/src/lib/<категория>/`, а импорт выполняется через отдельный alias `@workshop:def:<категория>`. Если генератор библиотеки создал `libs/shared/definitions/src/index.ts`, удалите этот файл: публичный API `definitions` организован через отдельные entry points категорий, поэтому общий barrel не нужен. Не удаляйте `index.ts` внутри каталогов категорий.
 
 ```json
 {
@@ -564,7 +564,6 @@ npx nx lint personal-finance-e2e
       "@workshop:def:types": ["libs/shared/definitions/src/lib/types/index.ts"],
       "@workshop:def:interfaces": ["libs/shared/definitions/src/lib/interfaces/index.ts"],
       "@workshop:def:records": ["libs/shared/definitions/src/lib/records/index.ts"],
-      "definitions": ["libs/shared/definitions/src/index.ts"],
       "base": ["./libs/shared/base/src/index.ts"],
       "dal": ["./libs/shared/dal/src/index.ts"],
       "facades": ["./libs/shared/facades/src/index.ts"]
