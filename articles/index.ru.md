@@ -54,19 +54,19 @@
 - **Русская публикация:** [ВКонтакте](https://vk.ru/@-65490196-arhitektura-na-praktike-resh1?subtype=primary)
 
 ### Материалы в репозитории
-- [englisch](Good architecture is not always about choosing one technology and making everything uniform/README.md)
-- [русский](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md)
-- [deutsch](Good architecture is not always about choosing one technology and making everything uniform/README.de.md)
+- [englisch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.md)
+- [русский](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md)
+- [deutsch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md)
 
 ### Содержание статьи
-- [Архитектура прежде технологий](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#архитектура-прежде-технологий)
-- [Когда новое приложение не должно менять привычную работу людей](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#когда-новое-приложение-не-должно-менять-привычную-работу-людей)
-- [Когда один продукт развивается на нескольких frontend-фреймворках](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#когда-один-продукт-развивается-на-нескольких-frontend-фреймворках)
-- [Когда мобильному приложению нужна логика существующей десктопной системы](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#когда-мобильному-приложению-нужна-логика-существующей-десктопной-системы)
-- [Когда удобная конфигурация становится проблемой](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#когда-удобная-конфигурация-становится-проблемой)
-- [Почему технически неоднородное решение может быть оправданным](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#почему-технически-неоднородное-решение-может-быть-оправданным)
-- [Как решения постепенно меняют устройство проекта](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#как-решения-постепенно-меняют-устройство-проекта)
-- [От практических решений к NX Workspace](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#от-практических-решений-к-nx-workspace)
+- [Архитектура прежде технологий](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md#архитектура-прежде-технологий)
+- [Когда новое приложение не должно менять привычную работу людей](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md#когда-новое-приложение-не-должно-менять-привычную-работу-людей)
+- [Когда один продукт развивается на нескольких frontend-фреймворках](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md#когда-один-продукт-развивается-на-нескольких-frontend-фреймворках)
+- [Когда мобильному приложению нужна логика существующей десктопной системы](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md#когда-мобильному-приложению-нужна-логика-существующей-десктопной-системы)
+- [Когда удобная конфигурация становится проблемой](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md#когда-удобная-конфигурация-становится-проблемой)
+- [Почему технически неоднородное решение может быть оправданным](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md#почему-технически-неоднородное-решение-может-быть-оправданным)
+- [Как решения постепенно меняют устройство проекта](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md#как-решения-постепенно-меняют-устройство-проекта)
+- [От практических решений к NX Workspace](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md#от-практических-решений-к-nx-workspace)
 
 ### Ветки GitHub
 - Отдельная ветка для этой статьи пока не найдена.## Связанная техническая статья: NX Workspace — от архитектуры к инструментам
