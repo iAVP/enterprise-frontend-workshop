@@ -1,100 +1,38 @@
 # Индекс статей
 
-Это главный навигационный файл серии: порядок публикаций, языковые версии, статусы и оглавления разделов. Полная редакционная дорожная карта находится в [README.ru.md](README.ru.md).
+Этот файл — единый источник навигации по серии. Порядок статей соответствует истории публикаций и не должен изменяться.
 
-## Последовательность публикаций
-1. [The Road to Architecture](#1-the-road-to-architecture)
-2. [NX Fundamentals — основы NX](#2-nx-fundamentals--основы-nx)
-3. [Архитектура на практике: решения, которые определяют развитие frontend-систем](#3-архитектура-на-практике-решения-которые-определяют-развитие-frontend-систем)
+## Порядок публикаций
 
+### 1. The Road to Architecture
+**Статус:** опубликована
 
-## 1. The Road to Architecture
-**Статус:** опубликована на Hashnode.
+- **Публикация:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture)
+- **Материалы в репозитории:** [English](The-Road-to-Architecture/README.md) · [Русский](The-Road-to-Architecture/README.ru.md) · [Deutsch](The-Road-to-Architecture/README.de.md)
 
-- [Английская публикация](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture) · [Английская запись](The-Road-to-Architecture/README.md) · [Русская версия](The-Road-to-Architecture/README.ru.md) · [Немецкая версия](The-Road-to-Architecture/README.de.md)
+### 2. NX Fundamentals — основы NX Workspace
+**Статус:** в работе
 
-### Оглавление — русский текст
-- [Архитектура прежде технологий](The-Road-to-Architecture/README.ru.md#архитектура-прежде-технологий)
-  - [Что остаётся неизменным?](The-Road-to-Architecture/README.ru.md#что-остаётся-неизменным-когда-всё-остальное-меняется)
-- [Архитектура — это больше, чем технологии](The-Road-to-Architecture/README.ru.md#архитектура--это-больше-чем-технологии)
-- [Почему архитектура живёт дольше технологий?](The-Road-to-Architecture/README.ru.md#почему-архитектура-живёт-дольше-технологий)
-- [Архитектура как экономическое решение](The-Road-to-Architecture/README.ru.md#архитектура-как-экономическое-решение)
-- [Одна организация — разные приложения и технологические стеки](The-Road-to-Architecture/README.ru.md#одна-организация--разные-приложения-и-технологические-стеки)
-- [Общая кодовая база не означает общие процессы](The-Road-to-Architecture/README.ru.md#общая-кодовая-база-не-означает-общие-процессы)
-- [Когда backend и frontend устроены иначе, чем ожидаешь](The-Road-to-Architecture/README.ru.md#когда-backend-и-frontend-устроены-совсем-не-так-как-ожидаешь)
-- [Архитектура связывает технологии, людей и экономику](The-Road-to-Architecture/README.ru.md#архитектура-связывает-технологии-людей-и-экономику)
-- [От архитектурных решений к NX Workspace](The-Road-to-Architecture/README.ru.md#от-архитектурных-решений-к-nx-workspace)
-- [Что мы будем делать в этой статье?](The-Road-to-Architecture/README.ru.md#что-мы-будем-делать-в-этой-статье)
+- **Черновики:** [English](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.md) · [Русский](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md) · [Deutsch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md)
+- **Содержание:** понятия workspace, назначение `apps/` и `libs/`, конфигурация проектов и targets, графы проектов и задач, кэширование, команды affected и архитектурные границы. Первоначальная настройка и генерация приложения уже описаны в отдельной статье NX Workspace.
 
-### Inhaltsverzeichnis — deutscher Text
-- [Architektur vor Technologien](The-Road-to-Architecture/README.de.md#architektur-vor-technologien)
-- [Was bleibt bestehen?](The-Road-to-Architecture/README.de.md#was-bleibt-bestehen-während-sich-alles-andere-verändert)
-- [Architektur ist mehr als Technologie](The-Road-to-Architecture/README.de.md#architektur-ist-mehr-als-technologie)
-- [Warum lebt Architektur länger?](The-Road-to-Architecture/README.de.md#warum-lebt-architektur-länger-als-technologie)
-- [Architektur als wirtschaftliche Entscheidung](The-Road-to-Architecture/README.de.md#architektur-als-wirtschaftliche-entscheidung)
-- [Eine Organisation – unterschiedliche Anwendungen und Technologie-Stacks](The-Road-to-Architecture/README.de.md#eine-organisation--unterschiedliche-anwendungen-und-technologie-stacks)
-- [Eine gemeinsame Codebasis bedeutet nicht gemeinsame Prozesse](The-Road-to-Architecture/README.de.md#eine-gemeinsame-codebasis-bedeutet-nicht-gemeinsame-prozesse)
-- [Wenn Backend und Frontend anders zusammenspielen als erwartet](The-Road-to-Architecture/README.de.md#wenn-backend-und-frontend-ganz-anders-zusammenspielen-als-erwartet)
-- [Architektur verbindet Technologie, Menschen und Wirtschaftlichkeit](The-Road-to-Architecture/README.de.md#architektur-verbindet-technologie-menschen-und-wirtschaftlichkeit)
-- [Von Architekturentscheidungen zum NX Workspace](The-Road-to-Architecture/README.de.md#von-architekturentscheidungen-zum-nx-workspace)
-- [Was werden wir umsetzen?](The-Road-to-Architecture/README.de.md#was-werden-wir-in-diesem-artikel-umsetzen)
+### 3. Architecture in Practice: Decisions Behind Enterprise Frontend Systems
+**Статус:** опубликована на Hashnode; русская версия опубликована во ВКонтакте
 
-## Связанная статья: NX Workspace — от архитектуры к инструментам
-**Статус:** опубликована на Hashnode. Начальная настройка и генерация Angular-приложения не должны дублироваться в следующей статье.
+- **Английская публикация:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems)
+- **Русская публикация:** [ВКонтакте](https://vk.ru/@-65490196-arhitektura-na-praktike-resh1?subtype=primary)
+- **Полный русский текст в репозитории:** [README.ru.md](Architecture-in-Practice/README.ru.md)
+- **Содержание:** практические архитектурные решения при работе с существующей корпоративной средой, несколькими frontend-фреймворками, повторным использованием бизнес-логики, конфигурацией и безопасностью; компромиссы и переход к NX Workspace. Английский текст доступен по ссылке на публикацию; английский и немецкий переводы в репозитории не заявляются.
 
-- [Опубликованная статья на Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-workspace-from-architecture-to-tooling)
+## Связанная техническая статья: NX Workspace — From Architecture to Tooling
+**Статус:** опубликована
 
-- [Заметки на английском](NX-Workspace/README.md) · [Заметки на русском](NX-Workspace/README.ru.md) · [Заметки на немецком](NX-Workspace/README.de.md)
-- [Опубликованная статья на Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-workspace-from-architecture-to-tooling)
-- [Ветка NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace) · [Ветка NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace%2B1)
+- **Публикация:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-workspace-from-architecture-to-tooling)
+- **Материалы в репозитории:** [English](NX-Workspace/README.md) · [Русский](NX-Workspace/README.ru.md) · [Deutsch](NX-Workspace/README.de.md)
+- **Ветки:** [NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace) · [NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace%2B1)
 
-### Оглавление — русский текст
-- [Что такое NX и зачем он нужен](NX-Workspace/README.ru.md#что-такое-nx-и-зачем-он-нужен)
-- [Монорепозиторий и NX Workspace](NX-Workspace/README.ru.md#монорепозиторий-и-nx-workspace)
-- [Опыт использования NX](NX-Workspace/README.ru.md#опыт-использования-nx)
-- [Инициализация NX Workspace](NX-Workspace/README.ru.md#инициализация-nx-workspace)
-  - [Выбор способа установки](NX-Workspace/README.ru.md#выбор-способа-установки) · [Выбор режима настройки](NX-Workspace/README.ru.md#выбор-режима-настройки)
-  - [Настройка дополнительных возможностей](NX-Workspace/README.ru.md#настройка-дополнительных-возможностей) · [Результат инициализации](NX-Workspace/README.ru.md#результат-инициализации)
-- [Создание Angular-приложения](NX-Workspace/README.ru.md#создание-angular-приложения)
-  - [Почему Angular](NX-Workspace/README.ru.md#почему-angular) · [Генерация приложения](NX-Workspace/README.ru.md#генерация-приложения)
-  - [Что появилось в Workspace](NX-Workspace/README.ru.md#что-появилось-в-workspace) · [Проверка созданных проектов](NX-Workspace/README.ru.md#проверка-созданных-проектов)
-  - [Проверка end-to-end тестов](NX-Workspace/README.ru.md#проверка-end-to-end-тестов) · [Результат этапа](NX-Workspace/README.ru.md#результат-этапа)
-- [Ветки реализации](NX-Workspace/README.ru.md#ветки-реализации) · [Дополнительные материалы](NX-Workspace/README.ru.md#дополнительные-материалы) · [Состояние реализации](NX-Workspace/README.ru.md#состояние-реализации-и-границы-статьи)
-
-## 2. NX Fundamentals — основы NX
-**Статус:** в работе. Тексты и план находятся в соответствующей папке; статья продолжает NX Workspace, не повторяя начальную настройку.
-
-- [English](Good architecture is not always about choosing one technology and making everything uniform/README.md) · [Русский](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md) · [Deutsch](Good architecture is not always about choosing one technology and making everything uniform/README.de.md)
-
-### Оглавление — русский текст
-- [Понятия NX Workspace и организация проектов](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#понятия-nx-workspace-и-организация-проектов)
-- [Назначение apps/ и libs/](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#назначение-apps-и-libs)
-- [Конфигурация проектов и targets](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#конфигурация-проектов-и-targets)
-- [Как NX находит проекты и запускает задачи](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#как-nx-находит-проекты-и-запускает-задачи)
-- [Запуск, сборка, тестирование и lint](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#запуск-сборка-тестирование-и-lint)
-- [Граф проекта и граф задач](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#граф-проекта-и-граф-задач)
-- [Кэширование и команды affected](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#кэширование-и-команды-affected)
-- [Первые архитектурные решения без преждевременных абстракций](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#первые-архитектурные-решения-без-преждевременных-абстракций)
-- [Текущее состояние реализации](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#текущее-состояние-реализации) · [Дополнительные материалы](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#дополнительные-материалы)
-
-## 3. Архитектура на практике: решения, которые определяют развитие frontend-систем
-**Статус:** опубликована на Hashnode; русская версия также опубликована во ВКонтакте.
-
-- [Английская публикация — Architecture in Practice: Decisions Behind Enterprise Frontend Systems](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems)
-- [Русская публикация во ВКонтакте](https://vk.ru/@-65490196-arhitektura-na-praktike-resh1?subtype=primary)
-- [Русский текст в репозитории](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md) · [Немецкий текст в репозитории](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md)
-
-### Оглавление
-- [Расширение существующей корпоративной среды](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#расширение-существующей-корпоративной-среды)
-- [Работа с несколькими frontend-фреймворками](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#работа-с-несколькими-frontend-фреймворками)
-- [Общие модели, контракты и доступ к данным независимо от фреймворка](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#общие-модели-контракты-и-доступ-к-данным-независимо-от-фреймворка)
-- [Развитие от desktop к mobile](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#развитие-от-desktop-к-mobile)
-- [Конфигурация, секреты и границы безопасности](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#конфигурация-секреты-и-границы-безопасности)
-- [Архитектура как набор компромиссов](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#архитектура-как-набор-компромиссов)
-- [Роль NX в обеспечении архитектурных границ](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#роль-nx-в-обеспечении-архитектурных-границ)
-
-## Правила работы
-- Считать этот файл главным источником навигации и статусов.
-- При изменении заголовков обновлять оглавления и ссылки.
-- Не отмечать статью опубликованной до появления рабочей ссылки.
-- Добавлять ссылки на ветки только после проверки их существования.
+## Редакционные правила
+- Не менять установленный порядок публикаций.
+- Хранить текст каждой статьи отдельно от плана следующей статьи.
+- Добавлять ссылки на разделы только после сверки с реальными заголовками.
+- Не указывать перевод как существующий, если его нет в репозитории.
