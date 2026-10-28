@@ -11,9 +11,9 @@
 - **Материалы в репозитории:** [English](The-Road-to-Architecture/README.md) · [Русский](The-Road-to-Architecture/README.ru.md) · [Deutsch](The-Road-to-Architecture/README.de.md)
 
 ### 2. NX Fundamentals — основы NX Workspace
-**Статус:** в работе
+**Статус:** в работе. Английский файл содержит подробный черновик; русская и немецкая версии пока являются структурированными планами и ожидают полного перевода.
 
-- **Черновики:** [English](NX-Fundamentals/README.md) · [Русский](NX-Fundamentals/README.ru.md) · [Deutsch](NX-Fundamentals/README.de.md)
+- **Материалы:** [English draft](NX-Fundamentals/README.md) · [Русский план](NX-Fundamentals/README.ru.md) · [Deutsch outline](NX-Fundamentals/README.de.md)
 - **Содержание:** понятия workspace, назначение `apps/` и `libs/`, конфигурация проектов и targets, графы проектов и задач, кэширование, команды affected и архитектурные границы. Первоначальная настройка и генерация приложения уже описаны в отдельной статье NX Workspace.
 
 ### 3. Architecture in Practice: Decisions Behind Enterprise Frontend Systems
