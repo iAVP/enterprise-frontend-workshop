@@ -27,18 +27,29 @@ This index is the central navigation source for the article series. Keep the pub
 
 ## 2. NX Fundamentals — Building an Enterprise Frontend Workspace
 
-**Status:** Planned; all three article files are currently empty.
+**Status:** The Russian draft is prepared; English and German translations are pending.
 
 ### Repository materials
-- [englisch](NX-Fundamentals/README.md)
-- [русский](NX-Fundamentals/README.ru.md)
-- [deutsch](NX-Fundamentals/README.de.md)
+- [English](NX-Fundamentals/README.md)
+- [Русский](NX-Fundamentals/README.ru.md)
+- [Deutsch](NX-Fundamentals/README.de.md)
 
 ### Article contents
-- Article text and section headings have not been written yet.
+- NX Workspace concepts and project organization
+- Organizing `apps/` and `libs/`: common and shared resources
+- NX Module Boundaries and dependency rules
+- Creating shared libraries and TypeScript path aliases
+- Project and target configuration
+- How NX discovers projects and runs tasks
+- Running, building, testing, and linting
+- Project and task graphs
+- Caching and affected commands
+- Early architectural decisions without premature abstractions
+- Conclusion: a foundation for the future enterprise workspace
 
 ### GitHub branches
 - [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch)
+- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch%2B1)
 ## 3. Architecture in Practice: Decisions Behind Enterprise Frontend Systems
 
 **Status:** Published on Hashnode; the Russian version is also published on VK.
