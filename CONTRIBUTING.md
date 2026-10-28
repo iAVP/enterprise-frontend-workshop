@@ -98,7 +98,7 @@ The initial planned shared libraries are:
 
 - `facades`: API-facing/application services and service contracts. Keep UI logic that belongs to a specific frontend framework out of this library.
 - `dal`: data-access services for retrieving and persisting data from the backend and other sources.
-- `base`: foundational functionality intended to be available throughout the application, such as helpers for text internationalization. It must not import any other project in the workspace, now or in the future.
+- `base`: foundational functionality intended to be available throughout the application, such as helpers for text internationalization. It must not import any other project in the workspace, now or in the future. It must not import any other project in the workspace, now or in the future.
 - `definitions`: shared constants, facade contracts, types, enums, records, and framework-independent functions; `abstracts` for TypeScript abstract classes; and `classes` for ordinary classes. Keep this library foundational and avoid dependency cycles or dependencies on higher-level features.
 
 Keep these responsibilities distinct. Do not move framework-specific UI behavior into shared libraries simply because multiple parts of the system need related functionality.
