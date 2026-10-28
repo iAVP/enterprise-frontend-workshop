@@ -62,7 +62,7 @@
 ```text
 common/
 ├── styles/
-│   └── styles.scss
+│   └── common.scss
 └── environments/
     ├── common.ts
     ├── environment.dev.ts
@@ -76,7 +76,7 @@ apps/
 └── personal-finance-e2e/
 ```
 
-Глобальный файл стилей располагается в `common/styles/styles.scss` и должен быть указан в конфигурации сборки приложения в `apps/personal-finance/project.json`. Это именно настройка приложения: не нужно переносить каталог `common` внутрь приложения или полагаться на неявное подключение файла.
+Общие стили располагаются в `common/styles/common.scss` и подключаются отдельно от стилей самого приложения. В `apps/personal-finance/project.json` сначала указывается `apps/personal-finance/src/styles.scss`, затем `common/styles/common.scss`. Так сохраняется разделение: первый файл отвечает за локальные стили приложения, второй — за общие стили workspace. Каталог `common` находится в корне workspace.
 
 Для основного приложения должны быть предусмотрены три режима окружения: `dev`, `test` и `prod`. Соответствующие файлы создаются в `common/environments/`. Это требование относится к приложению, а не к E2E-проекту. Конкретный механизм выбора файла должен быть явно настроен в targets/configurations приложения и согласован с используемой версией Angular/NX.
 
@@ -111,11 +111,14 @@ export const environment = {
 mkdir -p common/styles common/assets common/environments
 ```
 
-Перенесём глобальные стили приложения:
+Файл `apps/personal-finance/src/styles.scss` оставляем на месте: он содержит стили самого приложения. Создадим отдельный файл для общих стилей workspace:
 
 ```bash
-mv apps/personal-finance/src/styles.scss common/styles/styles.scss
+mkdir -p common/styles
+ touch common/styles/common.scss
 ```
+
+Если общие правила уже существуют, перенесите их в `common/styles/common.scss`, не перемещая и не переименовывая файл стилей приложения.
 
 Сейчас в `apps/personal-finance/public/` находится один файл — `favicon.ico`. Перенесём его непосредственно в корень `common/assets/`: favicon является общим ресурсом workspace и в будущем может использоваться несколькими приложениями.
 
@@ -138,7 +141,7 @@ rmdir apps/personal-finance/public
 common/
 ├── assets/\n│   └── favicon.ico         # Shared workspace favicon
 ├── styles/
-│   └── styles.scss         # Global application styles
+│   └── common.scss         # Shared workspace styles
 └── environments/
     ├── common.ts           # Values shared by all environments
     ├── environment.dev.ts
@@ -197,7 +200,7 @@ export const environment = {
 
 #### Обновляем `apps/personal-finance/project.json`
 
-Путь к `styles.scss` и путь к статическим ресурсам задаются относительно корня workspace. В `build.options` замените прежние значения `assets` и `styles` на следующие:
+Пути к стилям и статическим ресурсам задаются относительно корня workspace. В `build.options` настройте `assets` и `styles` следующим образом. Стили приложения и общие стили подключаются двумя отдельными записями и именно в таком порядке:
 
 ```json
 "assets": [
@@ -208,7 +211,8 @@ export const environment = {
   }
 ],
 "styles": [
-  "common/styles/styles.scss"
+  "apps/personal-finance/src/styles.scss",
+  "common/styles/common.scss"
 ]
 ```
 
