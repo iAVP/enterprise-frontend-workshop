@@ -21,7 +21,7 @@ This index is the single navigation source for the series. Article order reflect
 
 - **English publication:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems)
 - **Russian publication:** [VK](https://vk.ru/@-65490196-arhitektura-na-praktike-resh1?subtype=primary)
-- **Repository source:** [Full Russian text](Architecture-in-Practice/README.ru.md)
+- **Repository source:** [Full Russian text](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md)
 - **Scope:** Practical architecture decisions involving existing corporate environments, multiple frontend frameworks, reuse of business logic, configuration and security, trade-offs, and the transition to NX Workspace. English and German repository translations are not maintained here; use the published English version linked above.
 
 ## Related technical article: NX Workspace — From Architecture to Tooling
