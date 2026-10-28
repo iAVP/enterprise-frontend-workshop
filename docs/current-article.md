@@ -9,17 +9,19 @@
 
 ## Last verified state
 Checked directly in the working branch on 2026-10-29:
-- `articles/NX-Fundamentals/README.ru.md`: exists, 50,870 characters.
-- `articles/NX-Fundamentals/README.md`: empty.
-- `articles/NX-Fundamentals/README.de.md`: empty.
-- `articles/index.md`, `articles/index.ru.md`, and `articles/index.de.md`: all three entries were rewritten to the shared four-part structure; both article-specific branches were verified through GitHub branch search. The updated files were fetched back successfully. Section links point to the planned translated headings and must be checked again after the English and German articles are written.
+- `articles/NX-Fundamentals/README.ru.md`: exists, 50,870 characters; 13 H2 sections; no TOC.
+- `articles/NX-Fundamentals/README.md`: translated into English, 50,154 characters; 13 H2 sections; 86 code fences; no TOC; no Cyrillic prose detected.
+- `articles/NX-Fundamentals/README.de.md`: translated into German, 55,970 characters; 13 H2 sections; 86 code fences; no TOC; no Cyrillic prose detected.
+- Both translated files were fetched back from GitHub after writing. English commit: `3836ef5585a5257fa7f245c733962ab5a60245f9`. German commit: `9d0b60370096f9dd2eeda23a225cf3a41e46aa2c`.
+- `articles/index.md`, `articles/index.ru.md`, and `articles/index.de.md` contain the article entry and links to all three language versions. The English and German index anchors were aligned with the actual translated H2 headings.
+- The three indexes have the same high-level structure and no standalone TOC in the article files.
+- Both article-specific branches were verified through GitHub branch search.
 
-## Remaining work
-1. Translate the complete Russian source into English in `README.md`, preserving all technical content and code.
-2. Translate the complete Russian source into German in `README.de.md`, preserving all technical content and code.
-3. Compare section coverage, code fences, commands, configuration snippets, and documentation URLs across all three versions.
-4. Update all three article index entries to the shared template, using verified branch links and language-specific section anchors.
-5. Fetch every changed file again and report only checks actually completed.
+## Remaining verification
+1. Review semantic fidelity across all translations, especially technical explanations and examples, rather than relying only on heading and code-fence counts.
+2. Verify every language-specific index anchor against the final rendered GitHub headings.
+3. Fetch all modified files again after any further corrections.
+4. Do not claim publication; repository preparation is not publication.
 
 ## Working protocol
-Work in small, verifiable stages. Do not mark any step complete until the corresponding repository content has been written and fetched back. Do not claim publication; repository preparation is not publication.
+Work in small, verifiable stages. Do not mark a step complete until the corresponding repository content has been written and fetched back. Report the branch, commit, and direct file link for repository changes.
