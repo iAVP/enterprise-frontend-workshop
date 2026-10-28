@@ -36,18 +36,29 @@
 
 ## 2. NX Fundamentals — основы NX Workspace
 
-**Статус:** Статья запланирована; все три файла пока пусты.
+**Статус:** Русский черновик подготовлен; английская и немецкая версии ожидают перевода.
 
 ### Материалы в репозитории
-- [englisch](NX-Fundamentals/README.md)
-- [русский](NX-Fundamentals/README.ru.md)
-- [deutsch](NX-Fundamentals/README.de.md)
+- [English](NX-Fundamentals/README.md)
+- [Русский](NX-Fundamentals/README.ru.md)
+- [Deutsch](NX-Fundamentals/README.de.md)
 
 ### Содержание статьи
-- Текст статьи и заголовки разделов пока не подготовлены.
+- [Понятия NX Workspace и организация проектов](NX-Fundamentals/README.ru.md#понятия-nx-workspace-и-организация-проектов)
+- [Организация `apps/` и `libs/`: common и shared](NX-Fundamentals/README.ru.md#организация-apps-и-libs-common-и-shared)
+- [NX Module Boundaries: правила зависимостей](NX-Fundamentals/README.ru.md#nx-module-boundaries-правила-зависимостей)
+- [Создание shared-библиотек и TypeScript path aliases](NX-Fundamentals/README.ru.md#создание-shared-библиотек-и-typescript-path-aliases)
+- [Конфигурация проектов и targets](NX-Fundamentals/README.ru.md#конфигурация-проектов-и-targets)
+- [Как NX находит проекты и запускает задачи](NX-Fundamentals/README.ru.md#как-nx-находит-проекты-и-запускает-задачи)
+- [Запуск, сборка, тестирование и lint](NX-Fundamentals/README.ru.md#запуск-сборка-тестирование-и-lint)
+- [Граф проекта и граф задач](NX-Fundamentals/README.ru.md#граф-проекта-и-граф-задач)
+- [Кэширование и команды affected](NX-Fundamentals/README.ru.md#кэширование-и-команды-affected)
+- [Первые архитектурные решения без преждевременных абстракций](NX-Fundamentals/README.ru.md#первые-архитектурные-решения-без-преждевременных-абстракций)
+- [Итоги: фундамент для будущего enterprise workspace](NX-Fundamentals/README.ru.md#итоги-фундамент-для-будущего-enterprise-workspace)
 
 ### Ветки GitHub
 - [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch)
+- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch%2B1)
 ## 3. Архитектура на практике: решения, которые определяют развитие frontend-систем
 
 **Статус:** Опубликована на Hashnode; русская версия также опубликована во ВКонтакте.
