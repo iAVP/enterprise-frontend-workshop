@@ -775,9 +775,8 @@ NX предоставляет механизмы для организации w
 
 Актуальные ветки NX Fundamentals:
 
-- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch)
-- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch%2B1)
-
+- [NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace) — инициализация NX workspace.
+- [NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace%2B1) — создание Angular-приложения и E2E-проекта.
 ## Дополнительные материалы
 
 - [Официальная документация NX](https://nx.dev/)
