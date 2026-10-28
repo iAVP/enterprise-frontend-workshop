@@ -1,5 +1,3 @@
-> **Article index and publication status:** See the [English article index](index.md) for the canonical list of articles, their publication status, and links to published versions. The [Russian index](index.ru.md) and [German index](index.de.md) provide the same navigation for localized readers. This roadmap explains the planned content and learning sequence; use the indexes as the source of truth for what is published.
-
 # Article Roadmap
 
 This document defines the planned technical publication series for the Enterprise Frontend Workshop.
@@ -50,6 +48,7 @@ This section records actual publication history. It is distinct from the planned
 | --- | --- | --- | --- | --- |
 | 1 | [The Road to Architecture](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture) | Published | Not recorded here | [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture) |
 | 2 | NX Fundamentals — Building an Enterprise Frontend Workspace from Scratch | Published | Not recorded here | Not recorded here |
+| 3 | [Architecture in Practice: Decisions Behind Enterprise Frontend Systems](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems) | Published | 2026-10-27 | [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems) |
 
 **Rules for all project chats and contributors:**
 
@@ -81,9 +80,15 @@ Planned topics:
 
 The article presents a personal perspective, not a mandatory architecture or a universal prescription. Readers remain free to make their own choices.
 
-### Stage 1 — NX Fundamentals
+### Theoretical companion — Architecture in Practice
 
-**Status: Published** — canonical publication URL not yet recorded in this repository.
+**Status: Published** — [Architecture in Practice: Decisions Behind Enterprise Frontend Systems](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems) (Russian and German translations are maintained in this repository).
+
+**Purpose:** develop the architectural reasoning behind real project decisions before moving into technical implementation. This article discusses preserving existing workflows, working across frontend frameworks, revisiting configuration decisions, and weighing technical choices against long-term cost.
+
+This is a recurring editorial pattern for the series: a theoretical article may precede a technical implementation article when the reasoning deserves a separate treatment.
+
+### Stage 1 — NX Fundamentals
 
 **Purpose:** establish the workspace and explain the NX development model.
 

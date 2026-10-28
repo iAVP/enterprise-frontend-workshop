@@ -2,6 +2,18 @@
 
 These guidelines apply to changes made to the Enterprise Frontend Workshop repository.
 
+## Mandatory User Review and Commit Approval
+
+**Never commit or push article content or other repository changes without the user's explicit approval.**
+
+- For every article, show the complete proposed text to the user in the chat before writing or committing it to GitHub.
+- Incorporate the user's feedback and show the revised complete text before making repository changes.
+- Wait for a clear, explicit confirmation from the user authorizing the commit. A request to draft, review, improve, translate, or prepare content is not commit approval.
+- Do not create a commit, push changes, or make other repository mutations before that confirmation.
+- The user's approval applies only to the specific content and change they reviewed. If the content changes materially afterward, show the new version and request approval again.
+- This approval requirement applies to article drafts and translations, indexes, roadmaps, configuration, and edits to these guidelines themselves.
+- The user may explicitly authorize a specific rules-only change and its commit in the same request; that authorization applies to that change only.
+
 ## Commit Messages
 
 Commit messages must be human-readable and explain the change clearly.

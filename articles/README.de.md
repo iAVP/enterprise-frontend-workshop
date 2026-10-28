@@ -43,6 +43,7 @@ Dieser Abschnitt dokumentiert die tatsächliche Veröffentlichungshistorie. Sie 
 | --- | --- | --- | --- | --- |
 | 1 | [The Road to Architecture](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture) | Veröffentlicht | Hier nicht erfasst | [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture) |
 | 2 | NX Fundamentals — Building an Enterprise Frontend Workspace from Scratch | Veröffentlicht | Hier nicht erfasst | Nicht erfasst |
+| 3 | [Architecture in Practice: Decisions Behind Enterprise Frontend Systems](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems) | Veröffentlicht | 2026-10-27 | [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems) |
 
 **Regeln für alle Projekt-Chats und Mitwirkenden:**
 
@@ -74,9 +75,15 @@ Geplante Themen:
 
 Der Artikel stellt eine persönliche Perspektive vor, keine verpflichtende Architektur und keine allgemeingültige Vorschrift. Die Leser können ihren eigenen Ansatz wählen.
 
-### Phase 1 — NX-Grundlagen
+### Theoretischer Begleitartikel — Architektur in der Praxis
 
-**Status: Veröffentlicht** — der kanonische Veröffentlichungslink ist im Repository noch nicht erfasst.
+**Status: Veröffentlicht** — [Architecture in Practice: Decisions Behind Enterprise Frontend Systems](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems) (russische und deutsche Fassungen werden in diesem Repository gepflegt).
+
+**Ziel:** die architektonischen Überlegungen hinter realen Projektentscheidungen erläutern, bevor die technische Umsetzung beginnt. Der Artikel behandelt den Erhalt bestehender Arbeitsabläufe, mehrere Frontend-Frameworks, die Neubewertung von Konfigurationsentscheidungen und die langfristigen Kosten technischer Entscheidungen.
+
+Damit wird ein redaktionelles Muster für die Serie festgehalten: Wenn die architektonische Begründung einen eigenen Artikel verdient, kann vor dem technischen Implementierungsartikel ein eigenständiger theoretischer Beitrag erscheinen.
+
+### Phase 1 — NX-Grundlagen
 
 **Ziel:** Den Workspace einrichten und das Entwicklungsmodell von NX erläutern.
 
