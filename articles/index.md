@@ -7,7 +7,7 @@ This index is the central navigation source for the article series. Keep the pub
 - [1. The Road to Architecture](#1-the-road-to-architecture)
 - [2. NX Fundamentals — Building an Enterprise Frontend Workspace](#2-nx-fundamentals--building-an-enterprise-frontend-workspace)
 - [3. Architecture in Practice: Decisions Behind Enterprise Frontend Systems](#3-architecture-in-practice-decisions-behind-enterprise-frontend-systems)
-- [Related technical article: NX Workspace — From Architecture to Tooling](#related-technical-article-nx-workspace-from-architecture-to-tooling)
+- [4. NX Workspace — From Architecture to Tooling](#4-nx-workspace--from-architecture-to-tooling)
 - [Editorial rules](#editorial-rules)
 
 ## 1. The Road to Architecture
@@ -64,7 +64,7 @@ This index is the central navigation source for the article series. Keep the pub
 ### GitHub branches
 - No dedicated article branch is currently available.
 
-## Related technical article: NX Workspace — From Architecture to Tooling
+## 4. NX Workspace — From Architecture to Tooling
 
 - **Publication:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-workspace-from-architecture-to-tooling)
 
