@@ -563,7 +563,11 @@ npx nx lint personal-finance-e2e
       "@workshop:def:enums": ["libs/shared/definitions/src/lib/enums/index.ts"],
       "@workshop:def:types": ["libs/shared/definitions/src/lib/types/index.ts"],
       "@workshop:def:interfaces": ["libs/shared/definitions/src/lib/interfaces/index.ts"],
-      "@workshop:def:records": ["libs/shared/definitions/src/lib/records/index.ts"]
+      "@workshop:def:records": ["libs/shared/definitions/src/lib/records/index.ts"],
+      "definitions": ["libs/shared/definitions/src/index.ts"],
+      "base": ["./libs/shared/base/src/index.ts"],
+      "dal": ["./libs/shared/dal/src/index.ts"],
+      "facades": ["./libs/shared/facades/src/index.ts"]
     }
   }
 }
