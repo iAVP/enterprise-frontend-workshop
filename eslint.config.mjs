@@ -57,8 +57,7 @@ export default [
                         },
                         {
                             sourceTag: "tag:base",
-                            onlyDependOnLibsWithTags: [],
-                            bannedExternalImports: ["*"]
+                            onlyDependOnLibsWithTags: []
                         }
                     ]
                 }
