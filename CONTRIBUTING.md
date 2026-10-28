@@ -67,9 +67,7 @@ Use this outline for each article entry (translate the structural headings for t
 ## 1. Article title in the index language
 
 ### Repository materials
-- [englisch](path/to/README.md)
-- [русский](path/to/README.ru.md)
-- [deutsch](path/to/README.de.md)
+[englisch](path/to/README.md) | [русский](path/to/README.ru.md) | [deutsch](path/to/README.de.md)
 
 ### Article contents
 - [Section heading](path/to/README.md#section-anchor)
