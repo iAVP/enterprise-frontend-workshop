@@ -776,9 +776,8 @@ In dieser Phase werden das Domänenmodell und die fachliche Funktionalität noch
 
 Aktuelle NX-Fundamentals-Branches:
 
-- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch)
-- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch%2B1)
-
+- [NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace) — Initialisierung des NX Workspace.
+- [NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace%2B1) — Erstellung der Angular-Anwendung und des E2E-Projekts.
 ## Weiterführende Materialien
 
 - [Offizielle NX-Dokumentation](https://nx.dev/)
