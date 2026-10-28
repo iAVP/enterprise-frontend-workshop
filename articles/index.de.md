@@ -12,12 +12,8 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 
 ## 1. Der Weg zur Architektur
 
-**Status:** Auf Hashnode veröffentlicht.
-
 ### Repository-Materialien
-- [englisch](The-Road-to-Architecture/README.md)
-- [русский](The-Road-to-Architecture/README.ru.md)
-- [deutsch](The-Road-to-Architecture/README.de.md)
+[englisch](The-Road-to-Architecture/README.md) | [русский](The-Road-to-Architecture/README.ru.md) | [deutsch](The-Road-to-Architecture/README.de.md)
 
 ### Artikelinhalte
 - [Architektur vor Technologien](The-Road-to-Architecture/README.de.md#architektur-vor-technologien)
@@ -36,12 +32,8 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 
 ## 2. NX Fundamentals — Grundlagen eines Enterprise-Frontend-Workspace
 
-**Status:** Der russische Entwurf ist vorbereitet; die englische und deutsche Übersetzung stehen noch aus.
-
 ### Repository-Materialien
-- [English](NX-Fundamentals/README.md)
-- [Русский](NX-Fundamentals/README.ru.md)
-- [Deutsch](NX-Fundamentals/README.de.md)
+[englisch](NX-Fundamentals/README.md) | [русский](NX-Fundamentals/README.ru.md) | [deutsch](NX-Fundamentals/README.de.md)
 
 ### Artikelinhalte
 - NX-Workspace-Konzepte und Projektorganisation
@@ -61,15 +53,11 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 - [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch%2B1)
 ## 3. Architektur in der Praxis: Entscheidungen für Enterprise-Frontend-Systeme
 
-**Status:** Auf Hashnode veröffentlicht; die russische Version ist auch auf VK veröffentlicht.
-
 - **Englische Veröffentlichung:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems)
 - **Russische Veröffentlichung:** [VK](https://vk.ru/@-65490196-arhitektura-na-praktike-resh1?subtype=primary)
 
 ### Repository-Materialien
-- [englisch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.md)
-- [русский](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md)
-- [deutsch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md)
+[englisch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.md) | [русский](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md) | [deutsch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md)
 
 ### Artikelinhalte
 - [Architektur vor Technologie](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md#architektur-vor-technologie)
@@ -85,14 +73,10 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 
 ## Verwandter technischer Artikel: NX Workspace — Von der Architektur zu den Werkzeugen
 
-**Status:** Auf Hashnode veröffentlicht.
-
 - **Veröffentlichung:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-workspace-from-architecture-to-tooling)
 
 ### Repository-Materialien
-- [englisch](NX-Workspace/README.md)
-- [русский](NX-Workspace/README.ru.md)
-- [deutsch](NX-Workspace/README.de.md)
+[englisch](NX-Workspace/README.md) | [русский](NX-Workspace/README.ru.md) | [deutsch](NX-Workspace/README.de.md)
 
 ### Artikelinhalte
 - [Was ist NX und wozu dient es?](NX-Workspace/README.de.md#was-ist-nx-und-wozu-dient-es)
