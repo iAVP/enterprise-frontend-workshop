@@ -13,7 +13,7 @@ This index is the single navigation source for the series. Article order reflect
 ### 2. NX Fundamentals — Building an Enterprise Frontend Workspace
 **Status:** Work in progress
 
-- **Repository draft:** [English](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.md) · [Русский](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md) · [Deutsch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md)
+- **Repository draft:** [English](NX-Fundamentals/README.md) · [Русский](NX-Fundamentals/README.ru.md) · [Deutsch](NX-Fundamentals/README.de.md)
 - **Scope:** Workspace concepts, `apps/` and `libs/`, project configuration and targets, project/task graphs, caching, affected commands, and architecture boundaries. Initial setup and app generation belong to the preceding NX Workspace article.
 
 ### 3. Architecture in Practice: Decisions Behind Enterprise Frontend Systems
