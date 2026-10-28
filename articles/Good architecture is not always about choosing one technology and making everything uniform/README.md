@@ -96,9 +96,9 @@ In our Personal Finance workspace, the Angular application and its end-to-end te
 
 Useful starting points are the official [Nx documentation](https://nx.dev/) and the reference for [project configuration](https://nx.dev/reference/project-configuration).
 
-## The Roles of `apps/` and `libs/`
+## The Roles of `../../apps` and `libs/`
 
-A common workspace convention is to place deployable applications under `apps/` and libraries under `libs/`.
+A common workspace convention is to place deployable applications under `../../apps` and libraries under `libs/`.
 
 An application usually represents something that can be built, deployed, or run as a product entry point. A library is a unit of code that other projects can depend on. Libraries can help make shared functionality explicit, but they also introduce boundaries that the team must understand and maintain.
 

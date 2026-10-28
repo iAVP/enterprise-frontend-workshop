@@ -50,18 +50,18 @@ Dies ist der zentrale Einstiegspunkt für Reihenfolge, Sprachversionen, Status u
 ## 3. NX Fundamentals
 **Status:** In Arbeit. Der Artikel setzt NX Workspace fort und wiederholt weder die initiale Einrichtung noch die Generierung der Angular-Anwendung.
 
-- [English](NX-Fundamentals/README.md) · [Russisch](NX-Fundamentals/README.ru.md) · [Deutsch](NX-Fundamentals/README.de.md)
+- [English](Good architecture is not always about choosing one technology and making everything uniform/README.md) · [Russisch](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md) · [Deutsch](Good architecture is not always about choosing one technology and making everything uniform/README.de.md)
 
 ### Inhaltsverzeichnis — deutscher Text
-- [NX-Workspace-Konzepte und Projektorganisation](NX-Fundamentals/README.de.md#nx-workspace-konzepte-und-projektorganisation)
-- [Rollen von apps/ und libs/](NX-Fundamentals/README.de.md#rollen-von-apps-und-libs)
-- [Projektkonfiguration und Targets](NX-Fundamentals/README.de.md#projektkonfiguration-und-targets)
-- [Wie NX Projekte findet und Tasks ausführt](NX-Fundamentals/README.de.md#wie-nx-projekte-findet-und-tasks-ausführt)
-- [Projekte starten, bauen, testen und linten](NX-Fundamentals/README.de.md#projekte-starten-bauen-testen-und-linten)
-- [Projektgraph und Task-Graph](NX-Fundamentals/README.de.md#projektgraph-und-task-graph)
-- [Caching und affected-Befehle](NX-Fundamentals/README.de.md#caching-und-affected-befehle)
-- [Architektur einführen, ohne zu früh zu abstrahieren](NX-Fundamentals/README.de.md#architektur-einführen-ohne-zu-früh-zu-abstrahieren)
-- [Aktueller Implementierungsstand](NX-Fundamentals/README.de.md#aktueller-implementierungsstand) · [Weiterführende Dokumentation](NX-Fundamentals/README.de.md#weiterführende-dokumentation)
+- [NX-Workspace-Konzepte und Projektorganisation](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#nx-workspace-konzepte-und-projektorganisation)
+- [Rollen von apps/ und libs/](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#rollen-von-apps-und-libs)
+- [Projektkonfiguration und Targets](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#projektkonfiguration-und-targets)
+- [Wie NX Projekte findet und Tasks ausführt](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#wie-nx-projekte-findet-und-tasks-ausführt)
+- [Projekte starten, bauen, testen und linten](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#projekte-starten-bauen-testen-und-linten)
+- [Projektgraph und Task-Graph](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#projektgraph-und-task-graph)
+- [Caching und affected-Befehle](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#caching-und-affected-befehle)
+- [Architektur einführen, ohne zu früh zu abstrahieren](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#architektur-einführen-ohne-zu-früh-zu-abstrahieren)
+- [Aktueller Implementierungsstand](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#aktueller-implementierungsstand) · [Weiterführende Dokumentation](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#weiterführende-dokumentation)
 
 ## Arbeitsregeln
 - Diese Datei ist die zentrale Quelle für Navigation und Artikelstatus.

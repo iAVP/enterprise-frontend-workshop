@@ -98,40 +98,40 @@ English article text is not mirrored into the repository yet. The following sect
 ## 3. NX Fundamentals
 **Status:** Work in progress. The English file contains the working outline; Russian and German files are aligned to it. This article builds on NX Workspace and does not repeat initial setup or app generation.
 
-- [English draft](NX-Fundamentals/README.md) · [Russian draft](NX-Fundamentals/README.ru.md) · [German draft](NX-Fundamentals/README.de.md)
+- [English draft](Good architecture is not always about choosing one technology and making everything uniform/README.md) · [Russian draft](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md) · [German draft](Good architecture is not always about choosing one technology and making everything uniform/README.de.md)
 
 ### Section TOC — English
-- [Workspace Concepts and Project Organization](NX-Fundamentals/README.md#workspace-concepts-and-project-organization)
-- [The Roles of apps/ and libs/](NX-Fundamentals/README.md#the-roles-of-apps-and-libs)
-- [Project Configuration and Targets](NX-Fundamentals/README.md#project-configuration-and-targets)
-- [How NX Discovers and Runs Projects](NX-Fundamentals/README.md#how-nx-discovers-and-runs-projects)
-- [Running, Building, Testing, and Linting Projects](NX-Fundamentals/README.md#running-building-testing-and-linting-projects)
-- [Project Graph and Task Graph](NX-Fundamentals/README.md#project-graph-and-task-graph)
-- [Caching and Affected Commands](NX-Fundamentals/README.md#caching-and-affected-commands)
-- [Introducing Architecture Without Premature Abstraction](NX-Fundamentals/README.md#introducing-architecture-without-premature-abstraction)
-- [Current Implementation Baseline](NX-Fundamentals/README.md#current-implementation-baseline) · [Further Reading](NX-Fundamentals/README.md#further-reading)
+- [Workspace Concepts and Project Organization](Good architecture is not always about choosing one technology and making everything uniform/README.md#workspace-concepts-and-project-organization)
+- [The Roles of apps/ and libs/](Good architecture is not always about choosing one technology and making everything uniform/README.md#the-roles-of-apps-and-libs)
+- [Project Configuration and Targets](Good architecture is not always about choosing one technology and making everything uniform/README.md#project-configuration-and-targets)
+- [How NX Discovers and Runs Projects](Good architecture is not always about choosing one technology and making everything uniform/README.md#how-nx-discovers-and-runs-projects)
+- [Running, Building, Testing, and Linting Projects](Good architecture is not always about choosing one technology and making everything uniform/README.md#running-building-testing-and-linting-projects)
+- [Project Graph and Task Graph](Good architecture is not always about choosing one technology and making everything uniform/README.md#project-graph-and-task-graph)
+- [Caching and Affected Commands](Good architecture is not always about choosing one technology and making everything uniform/README.md#caching-and-affected-commands)
+- [Introducing Architecture Without Premature Abstraction](Good architecture is not always about choosing one technology and making everything uniform/README.md#introducing-architecture-without-premature-abstraction)
+- [Current Implementation Baseline](Good architecture is not always about choosing one technology and making everything uniform/README.md#current-implementation-baseline) · [Further Reading](Good architecture is not always about choosing one technology and making everything uniform/README.md#further-reading)
 
 ### Section TOC — Russian
-- [Понятия NX Workspace и организация проектов](NX-Fundamentals/README.ru.md#понятия-nx-workspace-и-организация-проектов)
-- [Назначение apps/ и libs/](NX-Fundamentals/README.ru.md#назначение-apps-и-libs)
-- [Конфигурация проектов и targets](NX-Fundamentals/README.ru.md#конфигурация-проектов-и-targets)
-- [Как NX находит проекты и запускает задачи](NX-Fundamentals/README.ru.md#как-nx-находит-проекты-и-запускает-задачи)
-- [Запуск, сборка, тестирование и lint](NX-Fundamentals/README.ru.md#запуск-сборка-тестирование-и-lint)
-- [Граф проекта и граф задач](NX-Fundamentals/README.ru.md#граф-проекта-и-граф-задач)
-- [Кэширование и команды affected](NX-Fundamentals/README.ru.md#кэширование-и-команды-affected)
-- [Первые архитектурные решения без преждевременных абстракций](NX-Fundamentals/README.ru.md#первые-архитектурные-решения-без-преждевременных-абстракций)
-- [Текущее состояние реализации](NX-Fundamentals/README.ru.md#текущее-состояние-реализации) · [Дополнительные материалы](NX-Fundamentals/README.ru.md#дополнительные-материалы)
+- [Понятия NX Workspace и организация проектов](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#понятия-nx-workspace-и-организация-проектов)
+- [Назначение apps/ и libs/](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#назначение-apps-и-libs)
+- [Конфигурация проектов и targets](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#конфигурация-проектов-и-targets)
+- [Как NX находит проекты и запускает задачи](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#как-nx-находит-проекты-и-запускает-задачи)
+- [Запуск, сборка, тестирование и lint](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#запуск-сборка-тестирование-и-lint)
+- [Граф проекта и граф задач](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#граф-проекта-и-граф-задач)
+- [Кэширование и команды affected](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#кэширование-и-команды-affected)
+- [Первые архитектурные решения без преждевременных абстракций](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#первые-архитектурные-решения-без-преждевременных-абстракций)
+- [Текущее состояние реализации](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#текущее-состояние-реализации) · [Дополнительные материалы](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#дополнительные-материалы)
 
 ### Section TOC — German
-- [NX-Workspace-Konzepte und Projektorganisation](NX-Fundamentals/README.de.md#nx-workspace-konzepte-und-projektorganisation)
-- [Rollen von apps/ und libs/](NX-Fundamentals/README.de.md#rollen-von-apps-und-libs)
-- [Projektkonfiguration und Targets](NX-Fundamentals/README.de.md#projektkonfiguration-und-targets)
-- [Wie NX Projekte findet und Tasks ausführt](NX-Fundamentals/README.de.md#wie-nx-projekte-findet-und-tasks-ausführt)
-- [Projekte starten, bauen, testen und linten](NX-Fundamentals/README.de.md#projekte-starten-bauen-testen-und-linten)
-- [Projektgraph und Task-Graph](NX-Fundamentals/README.de.md#projektgraph-und-task-graph)
-- [Caching und affected-Befehle](NX-Fundamentals/README.de.md#caching-und-affected-befehle)
-- [Architektur einführen, ohne zu früh zu abstrahieren](NX-Fundamentals/README.de.md#architektur-einführen-ohne-zu-früh-zu-abstrahieren)
-- [Aktueller Implementierungsstand](NX-Fundamentals/README.de.md#aktueller-implementierungsstand) · [Weiterführende Dokumentation](NX-Fundamentals/README.de.md#weiterführende-dokumentation)
+- [NX-Workspace-Konzepte und Projektorganisation](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#nx-workspace-konzepte-und-projektorganisation)
+- [Rollen von apps/ und libs/](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#rollen-von-apps-und-libs)
+- [Projektkonfiguration und Targets](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#projektkonfiguration-und-targets)
+- [Wie NX Projekte findet und Tasks ausführt](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#wie-nx-projekte-findet-und-tasks-ausführt)
+- [Projekte starten, bauen, testen und linten](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#projekte-starten-bauen-testen-und-linten)
+- [Projektgraph und Task-Graph](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#projektgraph-und-task-graph)
+- [Caching und affected-Befehle](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#caching-und-affected-befehle)
+- [Architektur einführen, ohne zu früh zu abstrahieren](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#architektur-einführen-ohne-zu-früh-zu-abstrahieren)
+- [Aktueller Implementierungsstand](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#aktueller-implementierungsstand) · [Weiterführende Dokumentation](Good architecture is not always about choosing one technology and making everything uniform/README.de.md#weiterführende-dokumentation)
 
 ## Working rules
 - Use this file as the source of truth for navigation and article status.

@@ -60,21 +60,21 @@
   - [Проверка end-to-end тестов](NX-Workspace/README.ru.md#проверка-end-to-end-тестов) · [Результат этапа](NX-Workspace/README.ru.md#результат-этапа)
 - [Ветки реализации](NX-Workspace/README.ru.md#ветки-реализации) · [Дополнительные материалы](NX-Workspace/README.ru.md#дополнительные-материалы) · [Состояние реализации](NX-Workspace/README.ru.md#состояние-реализации-и-границы-статьи)
 
-## 3. NX Fundamentals — основы NX
+## 4. NX Fundamentals — основы NX
 **Статус:** в работе. Тексты и план находятся в соответствующей папке; статья продолжает NX Workspace, не повторяя начальную настройку.
 
-- [English](NX-Fundamentals/README.md) · [Русский](NX-Fundamentals/README.ru.md) · [Deutsch](NX-Fundamentals/README.de.md)
+- [English](Good architecture is not always about choosing one technology and making everything uniform/README.md) · [Русский](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md) · [Deutsch](Good architecture is not always about choosing one technology and making everything uniform/README.de.md)
 
 ### Оглавление — русский текст
-- [Понятия NX Workspace и организация проектов](NX-Fundamentals/README.ru.md#понятия-nx-workspace-и-организация-проектов)
-- [Назначение apps/ и libs/](NX-Fundamentals/README.ru.md#назначение-apps-и-libs)
-- [Конфигурация проектов и targets](NX-Fundamentals/README.ru.md#конфигурация-проектов-и-targets)
-- [Как NX находит проекты и запускает задачи](NX-Fundamentals/README.ru.md#как-nx-находит-проекты-и-запускает-задачи)
-- [Запуск, сборка, тестирование и lint](NX-Fundamentals/README.ru.md#запуск-сборка-тестирование-и-lint)
-- [Граф проекта и граф задач](NX-Fundamentals/README.ru.md#граф-проекта-и-граф-задач)
-- [Кэширование и команды affected](NX-Fundamentals/README.ru.md#кэширование-и-команды-affected)
-- [Первые архитектурные решения без преждевременных абстракций](NX-Fundamentals/README.ru.md#первые-архитектурные-решения-без-преждевременных-абстракций)
-- [Текущее состояние реализации](NX-Fundamentals/README.ru.md#текущее-состояние-реализации) · [Дополнительные материалы](NX-Fundamentals/README.ru.md#дополнительные-материалы)
+- [Понятия NX Workspace и организация проектов](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#понятия-nx-workspace-и-организация-проектов)
+- [Назначение apps/ и libs/](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#назначение-apps-и-libs)
+- [Конфигурация проектов и targets](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#конфигурация-проектов-и-targets)
+- [Как NX находит проекты и запускает задачи](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#как-nx-находит-проекты-и-запускает-задачи)
+- [Запуск, сборка, тестирование и lint](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#запуск-сборка-тестирование-и-lint)
+- [Граф проекта и граф задач](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#граф-проекта-и-граф-задач)
+- [Кэширование и команды affected](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#кэширование-и-команды-affected)
+- [Первые архитектурные решения без преждевременных абстракций](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#первые-архитектурные-решения-без-преждевременных-абстракций)
+- [Текущее состояние реализации](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#текущее-состояние-реализации) · [Дополнительные материалы](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#дополнительные-материалы)
 
 ## Правила работы
 - Считать этот файл главным источником навигации и статусов.
