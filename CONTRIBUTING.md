@@ -36,6 +36,17 @@ The files `articles/index.md`, `articles/index.ru.md`, and `articles/index.de.md
 - Mark an article as **Published** only after the publication is live, and include the verified publication URL.
 - Treat `articles/README.md`, `articles/README.ru.md`, and `articles/README.de.md` as the editorial roadmap describing planned topics and learning order. They do not replace the indexes as the source of truth for publication status.
 
+## Table of Contents Placement
+
+Do **not** include a table of contents inside any article text file (`README.md`, `README.ru.md`, or `README.de.md`). Article text is copied to external publishing platforms, some of which do not support or preserve an embedded table of contents.
+
+Keep navigation in the language-specific index files only:
+- Each `articles/index.md`, `articles/index.ru.md`, and `articles/index.de.md` starts with a table of contents for all articles.
+- Each article entry in those index files contains its own section-level table of contents with links to headings in the corresponding article file.
+- The article files themselves begin with the title and article content; omit the article-level TOC from all three language versions.
+
+When preparing or editing an article, remove any existing embedded TOC from all language versions while preserving the title, introduction, section headings, and body text.
+
 ## Article Index Entry Format
 
 Every article entry in each language-specific index must follow the same structure. Localize the article title and the table-of-contents labels to the language of that index; keep the language-link labels exactly as specified below.
