@@ -51,8 +51,8 @@
 - [Дополнительные материалы](NX-Fundamentals/README.ru.md#дополнительные-материалы)
 
 ### Ветки GitHub
-- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch)
-- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch%2B1)
+- [NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace)
+- [NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace%2B1)
 ## 3. Архитектура на практике: решения, которые определяют развитие frontend-систем
 
 - **Английская публикация:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems)
