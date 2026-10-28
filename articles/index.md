@@ -85,6 +85,8 @@ This index is the central navigation source for the article series. Keep the pub
 
 ## Editorial rules
 
+- Every article entry must follow the same template: `## N. Article title`, `### Repository materials` with all three language links on one line separated by ` | `, `### Article contents` with section links, and `### GitHub branches` with only branches belonging to that article. Do not insert a status line into the article-entry template.
+
 - Keep the publication order unchanged.
 - Keep the index-wide table of contents and each article's section-level contents here, not in copy-ready article files.
 - Keep all three indexes structurally equivalent; only language-specific titles, labels, and section headings should differ.
