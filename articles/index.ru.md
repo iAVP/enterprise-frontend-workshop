@@ -4,16 +4,9 @@
 
 ## Последовательность публикаций
 1. [The Road to Architecture](#1-the-road-to-architecture)
-2. [NX Workspace: от архитектуры к инструментам](#2-nx-workspace-от-архитектуры-к-инструментам)
-3. [NX Fundamentals — основы NX](#3-nx-fundamentals--основы-nx)
+2. [NX Fundamentals — основы NX](#2-nx-fundamentals--основы-nx)
+3. [Архитектура на практике: решения, которые определяют развитие frontend-систем](#3-архитектура-на-практике-решения-которые-определяют-развитие-frontend-систем)
 
-## Дополнительная опубликованная статья — архитектурные решения на практике
-
-**Статус:** опубликована на Hashnode.
-
-- [English publication — Architecture in Practice: Decisions Behind Enterprise Frontend Systems](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems)
-- [Русский текст в репозитории](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md) · [Deutsche Fassung](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md)
-- [Русская публикация во ВКонтакте](https://vk.ru/@-65490196-arhitektura-na-praktike-resh1?subtype=primary)
 
 ## 1. The Road to Architecture
 **Статус:** опубликована на Hashnode.
@@ -46,7 +39,7 @@
 - [Von Architekturentscheidungen zum NX Workspace](The-Road-to-Architecture/README.de.md#von-architekturentscheidungen-zum-nx-workspace)
 - [Was werden wir umsetzen?](The-Road-to-Architecture/README.de.md#was-werden-wir-in-diesem-artikel-umsetzen)
 
-## 2. NX Workspace: от архитектуры к инструментам
+## Связанная статья: NX Workspace — от архитектуры к инструментам
 **Статус:** опубликована на Hashnode. Начальная настройка и генерация Angular-приложения не должны дублироваться в следующей статье.
 
 - [Опубликованная статья на Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-workspace-from-architecture-to-tooling)
@@ -68,7 +61,7 @@
   - [Проверка end-to-end тестов](NX-Workspace/README.ru.md#проверка-end-to-end-тестов) · [Результат этапа](NX-Workspace/README.ru.md#результат-этапа)
 - [Ветки реализации](NX-Workspace/README.ru.md#ветки-реализации) · [Дополнительные материалы](NX-Workspace/README.ru.md#дополнительные-материалы) · [Состояние реализации](NX-Workspace/README.ru.md#состояние-реализации-и-границы-статьи)
 
-## 4. NX Fundamentals — основы NX
+## 2. NX Fundamentals — основы NX
 **Статус:** в работе. Тексты и план находятся в соответствующей папке; статья продолжает NX Workspace, не повторяя начальную настройку.
 
 - [English](Good architecture is not always about choosing one technology and making everything uniform/README.md) · [Русский](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md) · [Deutsch](Good architecture is not always about choosing one technology and making everything uniform/README.de.md)
@@ -83,6 +76,22 @@
 - [Кэширование и команды affected](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#кэширование-и-команды-affected)
 - [Первые архитектурные решения без преждевременных абстракций](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#первые-архитектурные-решения-без-преждевременных-абстракций)
 - [Текущее состояние реализации](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#текущее-состояние-реализации) · [Дополнительные материалы](Good architecture is not always about choosing one technology and making everything uniform/README.ru.md#дополнительные-материалы)
+
+## 3. Архитектура на практике: решения, которые определяют развитие frontend-систем
+**Статус:** опубликована на Hashnode; русская версия также опубликована во ВКонтакте.
+
+- [Английская публикация — Architecture in Practice: Decisions Behind Enterprise Frontend Systems](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems)
+- [Русская публикация во ВКонтакте](https://vk.ru/@-65490196-arhitektura-na-praktike-resh1?subtype=primary)
+- [Русский текст в репозитории](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md) · [Немецкий текст в репозитории](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md)
+
+### Оглавление
+- [Расширение существующей корпоративной среды](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#расширение-существующей-корпоративной-среды)
+- [Работа с несколькими frontend-фреймворками](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#работа-с-несколькими-frontend-фреймворками)
+- [Общие модели, контракты и доступ к данным независимо от фреймворка](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#общие-модели-контракты-и-доступ-к-данным-независимо-от-фреймворка)
+- [Развитие от desktop к mobile](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#развитие-от-desktop-к-mobile)
+- [Конфигурация, секреты и границы безопасности](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#конфигурация-секреты-и-границы-безопасности)
+- [Архитектура как набор компромиссов](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#архитектура-как-набор-компромиссов)
+- [Роль NX в обеспечении архитектурных границ](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems#роль-nx-в-обеспечении-архитектурных-границ)
 
 ## Правила работы
 - Считать этот файл главным источником навигации и статусов.
