@@ -774,10 +774,10 @@ The current workspace already contains the Personal Finance application and a se
 
 At this stage, the domain model and business functionality are not yet being implemented. DDD and domain modeling will remain a separate topic; here we are preparing the technical foundation for further work.
 
-Current NX Fundamentals branches:
+Current implementation branches:
 
 - [NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace) — NX Workspace initialization.
-- [NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace%2B1) — creating the Angular application and E2E project.
+- [NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace%2B1) — Creation of the Angular application and E2E project.
 ## Further Reading
 
 - [Official NX documentation](https://nx.dev/)
