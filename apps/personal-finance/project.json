@@ -86,6 +86,9 @@
         },
         "development": {
           "buildTarget": "personal-finance:build:development"
+        },
+        "test": {
+          "buildTarget": "personal-finance:build:test"
         }
       }
     },
