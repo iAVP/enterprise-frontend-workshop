@@ -23,8 +23,7 @@ This index is the central navigation source for the article series. Keep the pub
 - [The Road to Architecture](The-Road-to-Architecture/README.md)
 
 ### GitHub branches
-- [main](https://github.com/iAVP/enterprise-frontend-workshop/tree/main)
-## 2. NX Fundamentals — Building an Enterprise Frontend Workspace
+- No dedicated article branch is currently available.## 2. NX Fundamentals — Building an Enterprise Frontend Workspace
 
 **Status:** Planned; all three article files are currently empty.
 
@@ -60,8 +59,7 @@ This index is the central navigation source for the article series. Keep the pub
 - [From Architectural Thinking to Project Organization](Good architecture is not always about choosing one technology and making everything uniform/README.md#from-architectural-thinking-to-project-organization)
 
 ### GitHub branches
-- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch)
-## Related technical article: NX Workspace — From Architecture to Tooling
+- No dedicated article branch is currently available.## Related technical article: NX Workspace — From Architecture to Tooling
 
 **Status:** Published on Hashnode.
 
