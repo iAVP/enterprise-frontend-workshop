@@ -73,6 +73,15 @@ The `app:<project-name>` tag identifies a specific app-related project; it does 
 
 Enforce these rules through the NX `@nx/enforce-module-boundaries` ESLint rule, using `depConstraints` keyed by `sourceTag` and `onlyDependOnLibsWithTags`. Check the actual ESLint configuration before claiming the constraints are enforced: documentation and tags alone do not block imports.
 
+### Tag and alias naming rules
+
+Follow these rules every time an application or shared library is created:
+
+- **Application-related projects**, including E2E projects, must have both `level:app` and `app:<project-name>`. The project-specific suffix must exactly match the NX `name` in `project.json`; for example, `personal-finance` uses `app:personal-finance` and its E2E project uses `app:personal-finance-e2e`.
+- **Every library under `libs/shared/`** must have `level:shared` and `tag:<project-name>`. The tag suffix must exactly match the NX `name` in `project.json`; for example, a project named `facades` requires `tag:facades`.
+- **TypeScript path aliases** use `@workshop:<library-name>`, where `<library-name>` matches the shared library name and the alias target points to its `src/index.ts` public entry point. For example, `@workshop:facades` points to `libs/shared/facades/src/index.ts`.
+- Do not use alternate spellings, singular/plural variants, or alias names that differ from the project name. When renaming or moving a project, update its tags and alias together, then verify imports and lint rules.
+
 ### Shared library TypeScript path aliases
 
 Register a stable alias for each shared library in the root `tsconfig.base.json` under `compilerOptions.paths`. Use the required `@workshop:<library-name>` format and point each alias to the library's public entry point:
