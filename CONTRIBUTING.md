@@ -28,6 +28,36 @@ Avoid examples such as:
 
 The goal is for the commit history to communicate the project's evolution without requiring readers to open every diff.
 
+## NX Project and Library Conventions
+
+Apply these conventions whenever creating or updating NX projects in this workshop. These are repository-level architecture rules, not merely suggestions for the article.
+
+### Application project tags
+
+- Every application project must include a tag in the form `app:<application-name>` in its `project.json` `tags` array.
+- Use the exact NX project name declared in that project's `project.json` `name` field. For example, the `personal-finance` application uses `"tags": ["app:personal-finance"]`.
+- Apply this convention to separately configured application-type projects such as E2E projects as well, using their exact project name (for example, `app:personal-finance-e2e`).
+
+### Shared libraries and required tags
+
+- Create reusable shared libraries under `libs/shared/<library-name>`.
+- Every library under `libs/shared` must include the `level:shared` tag in the `project.json` `tags` array.
+- Every individual library must also include `tag:<library-name>`, using the exact project name from that library's `project.json` `name` field.
+- Therefore, a shared project named `facades` must include both `level:shared` and `tag:facades`, for example: `"tags": ["level:shared", "tag:facades"]`.
+- Do not create a library under `libs/shared` without both required tags. Additional tags may be added when an agreed architecture rule requires them.
+- When generating libraries with NX, verify the resulting `project.json` explicitly; directory location alone does not apply tags automatically.
+
+### Shared library responsibilities
+
+The initial planned shared libraries are:
+
+- `facades`: API-facing/application services and service contracts. Keep UI logic that belongs to a specific frontend framework out of this library.
+- `dal`: data-access services for retrieving and persisting data from the backend and other sources.
+- `base`: foundational functionality intended to be available throughout the application, such as helpers for text internationalization.
+- `definitions`: shared constants, facade contracts/types, types, enums, records, and framework-independent functions. Keep this library foundational and avoid dependency cycles or dependencies on higher-level features.
+
+Keep these responsibilities distinct. Do not move framework-specific UI behavior into shared libraries simply because multiple parts of the system need related functionality.
+
 ## Article Index and Publication Status
 
 The files `articles/index.md`, `articles/index.ru.md`, and `articles/index.de.md` are the primary navigation and status records for the article series. They list articles, link to the relevant language versions, and indicate whether each article is planned or published.
