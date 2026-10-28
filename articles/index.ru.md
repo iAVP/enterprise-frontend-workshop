@@ -7,6 +7,14 @@
 2. [NX Workspace: от архитектуры к инструментам](#2-nx-workspace-от-архитектуры-к-инструментам)
 3. [NX Fundamentals — основы NX](#3-nx-fundamentals--основы-nx)
 
+## Дополнительная опубликованная статья — архитектурные решения на практике
+
+**Статус:** опубликована на Hashnode.
+
+- [English publication — Architecture in Practice: Decisions Behind Enterprise Frontend Systems](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems)
+- [Русский текст в репозитории](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md) · [Deutsche Fassung](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md)
+- [Русская публикация во ВКонтакте](https://vk.ru/@-65490196-arhitektura-na-praktike-resh1?subtype=primary)
+
 ## 1. The Road to Architecture
 **Статус:** опубликована на Hashnode.
 
