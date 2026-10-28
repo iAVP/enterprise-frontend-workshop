@@ -27,8 +27,26 @@
       "@workshop:base": [
         "libs/shared/base/src/index.ts"
       ],
-      "@workshop:definitions": [
-        "libs/shared/definitions/src/index.ts"
+      "@workshop:def:consts": [
+        "libs/shared/definitions/src/constants/index.ts"
+      ],
+      "@workshop:def:abstracts": [
+        "libs/shared/definitions/src/abstracts/index.ts"
+      ],
+      "@workshop:def:classes": [
+        "libs/shared/definitions/src/classes/index.ts"
+      ],
+      "@workshop:def:enums": [
+        "libs/shared/definitions/src/enums/index.ts"
+      ],
+      "@workshop:def:types": [
+        "libs/shared/definitions/src/types/index.ts"
+      ],
+      "@workshop:def:interfaces": [
+        "libs/shared/definitions/src/interfaces/index.ts"
+      ],
+      "@workshop:def:records": [
+        "libs/shared/definitions/src/records/index.ts"
       ]
     }
   },
