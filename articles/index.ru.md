@@ -13,7 +13,7 @@
 ### 2. NX Fundamentals — основы NX Workspace
 **Статус:** в работе
 
-- **Черновики:** [English](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.md) · [Русский](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.ru.md) · [Deutsch](Good%20architecture%20is%20not%20always%20about%20choosing%20one%20technology%20and%20making%20everything%20uniform/README.de.md)
+- **Черновики:** [English](NX-Fundamentals/README.md) · [Русский](NX-Fundamentals/README.ru.md) · [Deutsch](NX-Fundamentals/README.de.md)
 - **Содержание:** понятия workspace, назначение `apps/` и `libs/`, конфигурация проектов и targets, графы проектов и задач, кэширование, команды affected и архитектурные границы. Первоначальная настройка и генерация приложения уже описаны в отдельной статье NX Workspace.
 
 ### 3. Architecture in Practice: Decisions Behind Enterprise Frontend Systems
