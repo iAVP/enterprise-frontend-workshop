@@ -67,7 +67,6 @@ Use the following tags to classify projects and enforce allowed dependency direc
 | `tag:facades` | `tag:dal`, `tag:base`, `tag:definitions` | Facades orchestrate application operations and may coordinate data access while relying on foundational helpers and contracts. |
 | `tag:definitions` | `tag:base` only | Definitions remain foundational; allowing them to depend on facades or data access would invert the dependency direction and risk cycles. |
 | `tag:dal` | `tag:base`, `tag:definitions` | Data-access code may use foundational utilities and shared contracts, but must not depend on application orchestration. |
-| `tag:base` | No other shared-library tags | Base is the lowest-level shared layer and must not depend on higher-level libraries. |
 
 The `app:<project-name>` tag identifies a specific app-related project; it does not replace `level:app`. The E2E project receives the common app-level tag for classification, but its test tooling and configuration should remain separate from the application's runtime environment setup.
 
@@ -84,7 +83,7 @@ Follow these rules every time an application or shared library is created:
 
 ### Shared library TypeScript path aliases
 
-Register a stable alias for each shared library in the root `tsconfig.base.json` under `compilerOptions.paths`. Use `@workshop:<library-name>` for the three general shared libraries. The `definitions` library is the exception: it has no root `src/index.ts`; expose each category through its own `src/<category>/index.ts` and use the `@workshop:def:<category>` alias:
+Register a stable alias for each shared library in the root `tsconfig.base.json` under `compilerOptions.paths`. Use `@workshop:<library-name>` for the `facades`, `dal`, and `base` libraries. The `definitions` library is the exception: it has no root `src/index.ts`; expose each category through its own `src/<category>/index.ts` and use the `@workshop:def:<category>` alias:
 
 ```json
 {
