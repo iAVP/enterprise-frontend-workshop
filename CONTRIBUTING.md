@@ -36,6 +36,17 @@ The files `articles/index.md`, `articles/index.ru.md`, and `articles/index.de.md
 - Mark an article as **Published** only after the publication is live, and include the verified publication URL.
 - Treat `articles/README.md`, `articles/README.ru.md`, and `articles/README.de.md` as the editorial roadmap describing planned topics and learning order. They do not replace the indexes as the source of truth for publication status.
 
+## Table of Contents Placement
+
+Do **not** include a table of contents inside any article text file (`README.md`, `README.ru.md`, or `README.de.md`). Article text is copied to external publishing platforms, some of which do not support or preserve an embedded table of contents.
+
+Keep navigation in the language-specific index files only:
+- Each `articles/index.md`, `articles/index.ru.md`, and `articles/index.de.md` starts with a table of contents for all articles.
+- Each article entry in those index files contains its own section-level table of contents with links to headings in the corresponding article file.
+- The article files themselves begin with the title and article content; omit the article-level TOC from all three language versions.
+
+When preparing or editing an article, remove any existing embedded TOC from all language versions while preserving the title, introduction, section headings, and body text.
+
 ## Article Index Entry Format
 
 Every article entry in each language-specific index must follow the same structure. Localize the article title and the table-of-contents labels to the language of that index; keep the language-link labels exactly as specified below.
@@ -69,6 +80,22 @@ Use this outline for each article entry (translate the structural headings for t
 ```
 
 The index-level table of contents at the top must list every article and link to its article entry below. The per-article table of contents is separate: it navigates the sections inside that article. Keep the English, Russian, and German indexes structurally equivalent, with localized article titles and section headings, the same article order, and matching repository and branch destinations.
+
+## Identical Structure Across Language Indexes
+
+The three index files (`articles/index.md`, `articles/index.ru.md`, and `articles/index.de.md`) must use the **same structure**, not merely similar content.
+
+For every index:
+- Use the same top-level sections, in the same order: index title and introduction, index-wide table of contents, each article entry in the agreed order, related technical article entry (if present), and editorial rules.
+- Give every article entry the same heading hierarchy and the same fields in the same order: status/publication information, repository materials, article contents, and GitHub branches. Publication links may appear before repository materials when they exist, but their placement must be identical across all three indexes.
+- Include the same set of articles and related articles in the same order. Localize headings, status text, article titles, and section labels; do not add or omit structural sections in one language.
+- List all three repository files in the exact order and with the exact link labels `englisch`, `русский`, `deutsch`.
+- Build each article's section-level table of contents from the headings in the corresponding language version of that article. Link to that language's file, and verify every anchor against the actual heading. Do not mix another language's section list into the current index.
+- If an article has no text yet, keep the same “Article contents” section and state that headings are not available yet; do not remove the section.
+- List only verified branches relevant to the article. If no dedicated branch exists, explicitly say so rather than linking an unrelated branch.
+- Before committing, compare all three indexes side by side and verify that their heading hierarchy, article count/order, and required fields match exactly, allowing only localized wording and language-specific article headings to differ.
+
+A difference in language must never result in a different information architecture for the index files.
 
 ## Article Directory and File Naming
 
