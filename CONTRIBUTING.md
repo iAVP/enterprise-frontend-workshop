@@ -39,3 +39,26 @@ Each article must be developed on a dedicated Git branch whose name corresponds 
 - Branch links must point to actual branches in the repository and must be verified before publication.
 
 The purpose of this convention is to let readers navigate the implementation history of each article and inspect the code at each stage.
+
+## Article Languages and Localization
+
+English is the canonical language for the full technical articles. Localized versions must preserve the technical meaning, implementation details, and conclusions of the canonical article.
+
+### German full article
+
+- `README.de.md` is the **complete German translation** of the corresponding article, not a short summary or promotional adaptation.
+- Preserve the original article's structure, explanations, technical depth, code examples, commands, links, caveats, and implementation results.
+- Do not omit theoretical explanations or shorten sections merely to make the German version more concise.
+- German wording may be adapted for natural, idiomatic technical writing, but the substance and level of detail must remain equivalent to the canonical article.
+- Where useful, explain technical concepts and engineering trade-offs clearly; do not invent implementation details or results that are not supported by the project.
+
+### LinkedIn and Xing announcements
+
+- LinkedIn and Xing posts are **announcements of the article**, not full translations of it.
+- An announcement must be substantial enough to provide useful context on its own. Do not make it extremely short or reduce it to a couple of sentences followed by a link.
+- Introduce the problem or motivation, explain the key ideas or engineering decisions, and tell readers what they can learn from the full article.
+- Include enough technical substance to make the post worthwhile while leaving the full walkthrough, detailed explanations, and code examples to the article.
+- Adapt the framing and wording to the professional audience of each platform, while keeping technical claims consistent with the canonical article.
+- Include the article link when it is available and verified.
+
+In short: `README.de.md` contains the complete German article; LinkedIn and Xing contain meaningful, sufficiently detailed German announcements that invite readers to continue to the full article.
