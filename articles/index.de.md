@@ -37,18 +37,18 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 
 ### Artikelinhalte
 - [NX-Workspace-Konzepte und Projektorganisation](NX-Fundamentals/README.de.md#nx-workspace-konzepte-und-projektorganisation)
-- [Organisation von `apps/` und `libs/`: `common` und `shared`](NX-Fundamentals/README.de.md#organisation-von-apps-und-libs-common-und-shared)
-- [NX Module Boundaries: Abhängigkeitsregeln](NX-Fundamentals/README.de.md#nx-module-boundaries-abhangigkeitsregeln)
-- [Gemeinsame Bibliotheken und TypeScript-Pfad-Aliase erstellen](NX-Fundamentals/README.de.md#gemeinsame-bibliotheken-und-typescript-pfad-aliases-erstellen)
+- [Organisation von `apps/` und `libs/`: `common` und `shared`](NX-Fundamentals/README.de.md#apps-und-libs-organisieren-common-und-shared)
+- [NX Module Boundaries: Abhängigkeitsregeln](NX-Fundamentals/README.de.md#nx-module-boundaries-regeln-fur-abhangigkeiten)
+- [Gemeinsame Bibliotheken und TypeScript-Pfad-Aliase erstellen](NX-Fundamentals/README.de.md#shared-bibliotheken-und-typescript-path-aliase-erstellen)
 - [Projektkonfiguration und Targets](NX-Fundamentals/README.de.md#projektkonfiguration-und-targets)
-- [Wie NX Projekte erkennt und Tasks ausführt](NX-Fundamentals/README.de.md#wie-nx-projekte-erkennt-und-tasks-ausfuhrt)
-- [Starten, Bauen, Testen und Linting](NX-Fundamentals/README.de.md#starten-bauen-testen-und-linting)
-- [Projektgraph und Taskgraph](NX-Fundamentals/README.de.md#projektgraph-und-taskgraph)
+- [Wie NX Projekte erkennt und Tasks ausführt](NX-Fundamentals/README.de.md#wie-nx-projekte-erkennt-und-aufgaben-ausfuhrt)
+- [Starten, Bauen, Testen und Linting](NX-Fundamentals/README.de.md#anwendung-starten-bauen-testen-und-linten)
+- [Projektgraph und Taskgraph](NX-Fundamentals/README.de.md#projektgraph-und-task-graph)
 - [Caching und Affected-Befehle](NX-Fundamentals/README.de.md#caching-und-affected-befehle)
-- [Erste Architekturentscheidungen ohne verfrühte Abstraktionen](NX-Fundamentals/README.de.md#erste-architekturentscheidungen-ohne-verfruhte-abstraktionen)
-- [Umfang dieser Phase: Das Workspace-Grundgerüst vorbereiten](NX-Fundamentals/README.de.md#umfang-dieser-phase-das-workspace-grundgerust-vorbereiten)
+- [Erste Architekturentscheidungen ohne verfrühte Abstraktionen](NX-Fundamentals/README.de.md#erste-architekturentscheidungen-ohne-vorschnelle-abstraktionen)
+- [Umfang dieser Phase: Das Workspace-Grundgerüst vorbereiten](NX-Fundamentals/README.de.md#umfang-dieser-phase-das-grundgerust-vorbereiten)
 - [Aktueller Implementierungsstand](NX-Fundamentals/README.de.md#aktueller-implementierungsstand)
-- [Weiterführende Dokumentation](NX-Fundamentals/README.de.md#weiterfuhrende-dokumentation)
+- [Weiterführende Dokumentation](NX-Fundamentals/README.de.md#weiterfuhrende-materialien)
 
 ### GitHub-Branches
 - [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch)
