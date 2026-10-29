@@ -771,6 +771,11 @@ Vorheriger Artikel: [Artikel 1: NX Workspace — Von der Architektur zu den Werk
 
 Im aktuellen Workspace gibt es bereits die Personal-Finance-Anwendung und ein separates E2E-Projekt. Dieser Artikel setzt die vorhandene Implementierung fort und konfiguriert gemeinsame Ressourcen, Shared-Bibliotheken, Aliase und Abhängigkeitsbeschränkungen. Workspace und Anwendung werden nicht neu erstellt.
 
+Implementierungs-Branches:
+
+- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch)
+- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch%2B1)
+
 ## Weiterführende Materialien
 
 - [Offizielle NX-Dokumentation](https://nx.dev/)
