@@ -294,11 +294,164 @@ Change Detection — механизм Angular, который определяе
 
 ## 5. Директивы: повторное использование поведения
 
-В текущем примере проверка email и пароля находится в `LoginComponent`. Для одной формы это понятно, но при появлении аналогичных полей в других компонентах правила пришлось бы повторять или выносить в отдельную абстракцию.
+В текущем варианте `LoginComponent` сам проверяет email. Для одной формы это допустимо, но если поле с теми же правилами появится в регистрации или настройках профиля, проверку придётся повторять. Атрибутная директива позволяет привязать поведение к элементу HTML и повторно использовать его в разных шаблонах.
 
-Директивы позволяют добавлять элементам интерфейса повторно используемое поведение. В следующем подразделе продолжим на тех же полях: сначала рассмотрим директиву проверки email, затем директиву проверки пароля.
+Важен не только факт проверки, но и контракт между директивой и компонентом. Директива должна сообщить результат проверки, а компонент — решить, как отобразить обратную связь пользователю. В нашем примере директива не меняет DOM и не управляет сообщениями об ошибках: она проверяет значение и выдаёт результат через `@Output()`.
 
-При этом ответственность должна оставаться явной: директива отвечает за поведение и проверку конкретного поля, а компонент — за состояние формы и сценарий входа. Прежде чем писать код, определим контракт между директивой и компонентом, чтобы не связывать их сильнее, чем необходимо.
+### 5.1. Контракт результата проверки
+
+Сначала определим небольшой тип результата. Он сообщает, корректно ли значение и какой текст ошибки следует показать. Пустое сообщение означает, что ошибка сейчас не должна отображаться.
+
+```typescript
+export interface FieldValidationResult {
+  valid: boolean;
+  message: string;
+}
+```
+
+### 5.2. EmailValidatorDirective
+
+Создадим standalone-директиву `EmailValidatorDirective`. Селектор `[appEmailValidator]` означает, что директива подключается как атрибут к существующему элементу, а не создаёт собственный HTML-элемент.
+
+```typescript
+import { Directive, ElementRef, EventEmitter, HostListener, Output } from '@angular/core';
+import { FieldValidationResult } from './field-validation-result';
+
+@Directive({
+  selector: '[appEmailValidator]',
+  standalone: true,
+})
+export class EmailValidatorDirective {
+  @Output() emailValidationChange =
+    new EventEmitter<FieldValidationResult>();
+
+  private readonly emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+  private touched = false;
+
+  constructor(private readonly elementRef: ElementRef<HTMLInputElement>) {}
+
+  @HostListener('input')
+  onInput(): void {
+    this.validate(this.touched);
+  }
+
+  @HostListener('blur')
+  onBlur(): void {
+    this.touched = true;
+    this.validate(true);
+  }
+
+  private validate(showRequiredError: boolean): void {
+    const value = this.elementRef.nativeElement.value.trim();
+
+    let result: FieldValidationResult;
+
+    if (!value) {
+      result = {
+        valid: false,
+        message: showRequiredError ? 'Login name is required.' : '',
+      };
+    } else if (!this.emailRegex.test(value)) {
+      result = {
+        valid: false,
+        message: 'Enter a valid email address.',
+      };
+    } else {
+      result = { valid: true, message: '' };
+    }
+
+    this.emailValidationChange.emit(result);
+  }
+}
+```
+
+Директива слушает два события DOM:
+
+- `input` — проверяет значение по мере ввода. Пока пользователь ещё не покинул пустое поле, обязательность поля не подсвечивается; после первого ухода из поля пустое значение уже сопровождается сообщением.
+- `blur` — отмечает поле как затронутое и проверяет его. Это позволяет не показывать ошибку обязательного поля сразу при открытии формы.
+
+Для чтения значения здесь используется `ElementRef`, но директива не записывает в элемент стили, классы или текст ошибки. Её задача — проверить значение и отправить результат через `emailValidationChange`. В более сложной форме можно предпочесть встроенную систему Angular Forms и интерфейс `Validator`; здесь мы сохраняем простой контракт событий, соответствующий текущему примеру.
+
+Регулярное выражение — только базовая проверка формата, а не доказательство существования адреса. Сервер всё равно должен самостоятельно проверять данные, необходимые для входа.
+
+### 5.3. Подключаем директиву к LoginComponent
+
+Standalone-директива должна быть импортирована в компонент, чей шаблон её использует. Добавим её в `imports` метаданных `LoginComponent`:
+
+```typescript
+import { Component, EventEmitter, Output } from '@angular/core';
+import { EmailValidatorDirective } from './email-validator.directive';
+
+@Component({
+  selector: 'app-login',
+  standalone: true,
+  imports: [EmailValidatorDirective],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.scss',
+})
+export class LoginComponent {
+  @Output() loginRequested = new EventEmitter<LoginCredentials>();
+
+  email = '';
+  password = '';
+  emailError = '';
+  passwordError = '';
+
+  onEmailInput(value: string): void {
+    this.email = value;
+  }
+
+  onEmailValidationChange(result: FieldValidationResult): void {
+    this.emailError = result.message;
+  }
+}
+```
+
+Это фрагмент изменений, а не полный файл компонента: остальные свойства и обработчики формы остаются на месте. Из `LoginComponent` нужно удалить прежние `emailRegex` и `validateEmail()`, поскольку теперь правило проверки принадлежит директиве. Компонент получает готовый результат и сохраняет текст ошибки для отображения.
+
+В шаблоне заменим привязку email-поля на следующую:
+
+```html
+<input
+  id="login-name"
+  type="email"
+  autocomplete="username"
+  [value]="email"
+  appEmailValidator
+  (input)="onEmailInput($any($event.target).value)"
+  (emailValidationChange)="onEmailValidationChange($event)"
+  [attr.aria-invalid]="!!emailError"
+  aria-describedby="email-error"
+/>
+@if (emailError) {
+  <p id="email-error" class="error" role="alert">
+    {{ emailError }}
+  </p>
+}
+```
+
+Здесь есть два независимых потока:
+
+1. `input` обновляет значение `email` в компоненте, чтобы оно было доступно при отправке формы.
+2. `emailValidationChange` передаёт результат директивы в компонент, а компонент обновляет `emailError`. Шаблон показывает сообщение, если строка ошибки непустая.
+
+Так директива не зависит от конкретного `LoginComponent`, а компонент не знает, каким регулярным выражением проверяется email. Их связывает небольшой явный контракт — объект `FieldValidationResult`.
+
+### 5.4. Что происходит при отправке формы
+
+Нельзя ограничиваться проверкой при вводе: пользователь может отправить форму, не покидая пустое поле. Поэтому при отправке формы компонент должен учитывать актуальное состояние проверки каждого поля. Для email директива должна предоставить способ принудительно выполнить проверку перед отправкой либо форма должна перейти на Angular Forms, где валидаторы интегрированы с состоянием формы.
+
+В рамках следующего шага мы согласуем единый способ запуска проверки при отправке и применим тот же контракт к паролю. Не стоит добавлять вторую копию регулярного выражения в `onSubmit()`: это снова создаст два источника правил и со временем позволит им разойтись.
+
+### 5.5. Что важно в архитектуре
+
+- Директива отвечает за правило и сообщает результат, но не решает, где и как показывать сообщение.
+- Компонент хранит состояние формы и определяет поведение интерфейса.
+- Шаблон связывает событие директивы с обработчиком компонента и отображает сообщение.
+- Правило проверки не должно дублироваться в компоненте и директиве.
+- Клиентская валидация помогает пользователю исправить ввод, но не заменяет серверную проверку.
+
+Следующим шагом добавим `PasswordValidatorDirective` и согласуем единый механизм валидации при отправке формы, чтобы `LoginComponent` мог корректно реагировать на ошибки обеих директив.
 
 ## 6. Pipes
 
