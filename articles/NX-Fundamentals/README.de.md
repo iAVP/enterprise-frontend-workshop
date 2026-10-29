@@ -765,19 +765,12 @@ Die strukturelle Aufteilung in Schichten und ausdrückliche Abhängigkeitsregeln
 
 ## Aktueller Implementierungsstand
 
-Dieser Artikel setzt die vorherigen Implementierungsschritte fort:
+Dies ist der zweite Artikel der Reihe. Die Branches `NX-Workspace` und `NX-Workspace+1` gehören zum ersten Artikel, nicht zu diesem Artikel. Sie beschreiben den historischen Ausgangspunkt, auf dem die Arbeit dieses Artikels aufbaut.
 
-- Branch `NX-Workspace` — Initialisierung des NX Workspace.
-- Branch `NX-Workspace+1` — Erstellung der minimalen Angular-Anwendung und des E2E-Projekts sowie erste Konfiguration der Entwicklungswerkzeuge.
+Vorheriger Artikel: [Artikel 1: NX Workspace — Von der Architektur zu den Werkzeugen](../NX-Workspace/README.de.md)
 
-Im aktuellen Workspace gibt es bereits die Personal-Finance-Anwendung und ein separates E2E-Projekt. Wir erstellen sie nicht erneut, sondern nutzen die vorhandene Implementierung, um gemeinsame Ressourcen, Shared-Bibliotheken, Aliase und Abhängigkeitsbeschränkungen zu konfigurieren.
+Im aktuellen Workspace gibt es bereits die Personal-Finance-Anwendung und ein separates E2E-Projekt. Dieser Artikel setzt die vorhandene Implementierung fort und konfiguriert gemeinsame Ressourcen, Shared-Bibliotheken, Aliase und Abhängigkeitsbeschränkungen. Workspace und Anwendung werden nicht neu erstellt.
 
-In dieser Phase werden das Domänenmodell und die fachliche Funktionalität noch nicht implementiert. DDD und die Modellierung der Fachdomäne bleiben ein eigenes Thema; hier bereiten wir die technische Grundlage für die weitere Arbeit vor.
-
-Implementierungs-Branches:
-
-- [NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace) — Initialisierung des NX Workspace.
-- [NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace%2B1) — Erstellung der Angular-Anwendung und des E2E-Projekts.
 ## Weiterführende Materialien
 
 - [Offizielle NX-Dokumentation](https://nx.dev/)
