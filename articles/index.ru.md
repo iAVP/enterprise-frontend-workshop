@@ -33,6 +33,7 @@
 ## 2. NX Fundamentals — основы NX Workspace
 
 - **Английская публикация:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-fundamentals-building-the-nx-workspace)
+
 ### Repository materials
 [английский](NX-Fundamentals/README.md) | [русский](NX-Fundamentals/README.ru.md) | [немецкий](NX-Fundamentals/README.de.md)
 
