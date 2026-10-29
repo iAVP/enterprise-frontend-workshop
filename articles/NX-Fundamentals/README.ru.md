@@ -770,6 +770,11 @@ NX предоставляет механизмы для организации w
 
 В текущем workspace уже есть приложение Personal Finance и отдельный E2E-проект. В этой статье мы продолжаем работу с существующей реализацией: настраиваем общие ресурсы, shared-библиотеки, aliases и ограничения зависимостей. Workspace и приложение заново не создаются.
 
+Ветки реализации:
+
+- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch)
+- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch%2B1)
+
 ## Дополнительные материалы
 
 - [Официальная документация NX](https://nx.dev/)
