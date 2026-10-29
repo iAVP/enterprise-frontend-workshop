@@ -32,6 +32,7 @@ interface LoginCredentials {
 })
 export class LoginComponent {
   @Output() loginRequested = new EventEmitter<LoginCredentials>();
+  @ViewChild(EmailValidatorDirective) private emailValidator!: EmailValidatorDirective;
 
   email = '';
   password = '';
@@ -341,6 +342,11 @@ export class EmailValidatorDirective {
     this.validate(true);
   }
 
+  validateNow(): void {
+    this.touched = true;
+    this.validate(true);
+  }
+
   private validate(showRequiredError: boolean): void {
     const value = this.elementRef.nativeElement.value.trim();
 
@@ -379,7 +385,7 @@ export class EmailValidatorDirective {
 Standalone-директива должна быть импортирована в компонент, чей шаблон её использует. Добавим её в `imports` метаданных `LoginComponent`:
 
 ```typescript
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { EmailValidatorDirective } from './email-validator.directive';
 
 @Component({
@@ -403,6 +409,18 @@ export class LoginComponent {
 
   onEmailValidationChange(result: FieldValidationResult): void {
     this.emailError = result.message;
+  }
+
+  onSubmit(event: SubmitEvent): void {
+    event.preventDefault();
+    this.emailValidator.validateNow();
+    this.validatePassword();
+
+    if (this.emailError || this.passwordError) {
+      return;
+    }
+
+    this.loginRequested.emit({ email: this.email, password: this.password });
   }
 }
 ```
@@ -439,9 +457,9 @@ export class LoginComponent {
 
 ### 5.4. Что происходит при отправке формы
 
-Нельзя ограничиваться проверкой при вводе: пользователь может отправить форму, не покидая пустое поле. Поэтому при отправке формы компонент должен учитывать актуальное состояние проверки каждого поля. Для email директива должна предоставить способ принудительно выполнить проверку перед отправкой либо форма должна перейти на Angular Forms, где валидаторы интегрированы с состоянием формы.
+Нельзя ограничиваться проверкой при вводе: пользователь может отправить форму, не покидая пустое поле. Поэтому директива предоставляет публичный метод `validateNow()`, который компонент вызывает перед отправкой. Метод выполняет ту же проверку и синхронно отправляет результат через `emailValidationChange`; обработчик компонента обновляет `emailError` до того, как `onSubmit()` проверит ошибки.
 
-В рамках следующего шага мы согласуем единый способ запуска проверки при отправке и применим тот же контракт к паролю. Не стоит добавлять вторую копию регулярного выражения в `onSubmit()`: это снова создаст два источника правил и со временем позволит им разойтись.
+В примере компонент обращается к директиве через `@ViewChild`. Это явный, но достаточно тесный контракт, который подходит для демонстрации взаимодействия. Для более сложных форм стоит рассмотреть Angular Forms и интерфейс `Validator`, чтобы состояние всех полей и запуск проверки при отправке управлялись формой единообразно. Не нужно добавлять вторую копию регулярного выражения в `onSubmit()`: это снова создаст два источника правил.
 
 ### 5.5. Что важно в архитектуре
 
