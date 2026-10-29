@@ -1,6 +1,6 @@
 # NX Fundamentals — Aufbau eines NX Workspace
 
-**Status:** In Arbeit. Dieser Artikel setzt [NX Workspace — von der Architektur zu den Werkzeugen](../NX-Workspace/README.de.md) fort: Wir bereiten das architektonische Grundgerüst des Workspace vor, bevor wir die fachliche Implementierung beginnen. Damit lernen wir erste Ansätze kennen, die auch in DDD verwendet werden; Domain-Driven Design und seine Prinzipien behandeln wir jedoch separat in einem anderen Artikel. Den Workspace und die Angular-Anwendung erstellen wir nicht erneut.
+**Status:** Veröffentlicht und abgeschlossen. Dieser Artikel setzt [NX Workspace — von der Architektur zu den Werkzeugen](../NX-Workspace/README.de.md) fort: Wir bereiten das architektonische Grundgerüst des Workspace vor, bevor wir die fachliche Implementierung beginnen. Damit lernen wir erste Ansätze kennen, die auch in DDD verwendet werden; Domain-Driven Design und seine Prinzipien behandeln wir jedoch separat in einem anderen Artikel. Den Workspace und die Angular-Anwendung erstellen wir nicht erneut.
 
 ## NX-Workspace-Konzepte und Projektorganisation
 
