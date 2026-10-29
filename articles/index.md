@@ -23,6 +23,7 @@ This index is the central navigation source for the article series. Keep the pub
 
 ## 2. NX Fundamentals — Building an Enterprise Frontend Workspace from Scratch
 
+- **English publication:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-fundamentals-building-the-nx-workspace)
 ### Repository materials
 [English](NX-Fundamentals/README.md) | [Russian](NX-Fundamentals/README.ru.md) | [German](NX-Fundamentals/README.de.md)
 
@@ -42,8 +43,8 @@ This index is the central navigation source for the article series. Keep the pub
 - [Further Reading](NX-Fundamentals/README.md#further-reading)
 
 ### GitHub branches
-- [NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace)
-- [NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace%2B1)
+- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch)
+- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch%2B1)
 ## 3. Architecture in Practice: Decisions Behind Enterprise Frontend Systems
 
 - **English publication:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems)
@@ -82,8 +83,8 @@ This index is the central navigation source for the article series. Keep the pub
 - [Implementation Status and Scope](NX-Workspace/README.md#implementation-status-and-scope)
 
 ### GitHub branches
-- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch)
-- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch%2B1)
+- [NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace)
+- [NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace%2B1)
 
 ## Editorial rules
 
