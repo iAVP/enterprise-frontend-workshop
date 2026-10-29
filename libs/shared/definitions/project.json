@@ -1,0 +1,12 @@
+{
+  "name": "definitions",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/definitions/src",
+  "projectType": "library",
+  "tags": [
+    "level:shared",
+    "tag:definitions"
+  ],
+  "// targets": "to see all targets run: nx show project definitions --web",
+  "targets": {}
+}

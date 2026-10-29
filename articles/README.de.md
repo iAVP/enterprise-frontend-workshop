@@ -1,3 +1,5 @@
+> **Artikelindex und Veröffentlichungsstatus:** Der [englische Artikelindex](index.md) ist die maßgebliche Übersicht über Artikel, Veröffentlichungsstatus und Links zu publizierten Versionen. Für die Navigation gibt es außerdem den [russischen Index](index.ru.md) und den [deutschen Index](index.de.md). Diese Roadmap beschreibt geplante Inhalte und die Lernreihenfolge; der aktuelle Veröffentlichungsstatus ist in den Indizes zu prüfen.
+
 # Publikations-Roadmap
 
 Dieses Dokument beschreibt die geplante technische Artikelserie für den Enterprise Frontend Workshop.
@@ -7,6 +9,8 @@ Die Artikel begleiten die Weiterentwicklung einer Beispielanwendung für persön
 Die Roadmap beschreibt geplante Inhalte. Ein Artikel darf erst dann als veröffentlicht markiert werden, wenn er tatsächlich verfügbar ist.
 
 ## 1. Redaktionelle Prinzipien
+
+- In einem Artikel dürfen nur Git-Branches aufgeführt werden, die zu diesem Artikel selbst gehören. Branches früherer Artikel oder anderer Phasen sowie eine Branch-Historie dürfen nicht aufgenommen werden. Vor dem Hinzufügen eines Links müssen die Existenz des Branches und die URL überprüft werden.
 
 Die Serie folgt mehreren Prinzipien:
 

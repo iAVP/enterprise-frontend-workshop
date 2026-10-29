@@ -1,0 +1,118 @@
+{
+  "name": "personal-finance",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/personal-finance/src",
+  "tags": [
+    "level:app",
+    "app:personal-finance"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@angular/build:application",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/personal-finance",
+        "browser": "apps/personal-finance/src/main.ts",
+        "tsConfig": "apps/personal-finance/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "common/assets",
+            "output": "/"
+          }
+        ],
+        "styles": [
+          "apps/personal-finance/src/styles.scss",
+          "common/styles/common.scss"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [],
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "fileReplacements": [
+            {
+              "replace": "common/environments/environment.prod.ts",
+              "with": "common/environments/environment.dev.ts"
+            }
+          ],
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        },
+        "test": {
+          "fileReplacements": [
+            {
+              "replace": "common/environments/environment.prod.ts",
+              "with": "common/environments/environment.test.ts"
+            }
+          ],
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      }
+    },
+    "serve": {
+      "continuous": true,
+      "readyWhen": {
+        "signal": true
+      },
+      "executor": "@angular/build:dev-server",
+      "defaultConfiguration": "development",
+      "configurations": {
+        "production": {
+          "buildTarget": "personal-finance:build:production"
+        },
+        "development": {
+          "buildTarget": "personal-finance:build:development"
+        },
+        "test": {
+          "buildTarget": "personal-finance:build:test"
+        }
+      }
+    },
+    "test": {
+      "executor": "@angular/build:unit-test",
+      "options": {
+        "watch": false
+      }
+    },
+    "serve-static": {
+      "continuous": true,
+      "readyWhen": {
+        "signal": true
+      },
+      "dependsOn": [
+        "build"
+      ],
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "personal-finance:build",
+        "port": 4200,
+        "staticFilePath": "dist/apps/personal-finance/browser",
+        "spa": true
+      }
+    }
+  }
+}
