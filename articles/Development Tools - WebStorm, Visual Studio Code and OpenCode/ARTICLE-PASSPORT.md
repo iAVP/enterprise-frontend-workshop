@@ -12,14 +12,13 @@
 - [x] Dedicated branch created from `main`
 - [x] Article directory created
 - [x] Russian draft added to `README.ru.md`
-- [x] English placeholder created in `README.md`
-- [x] German placeholder created in `README.de.md`
-- [x] Article index created in `index.md`
+- [x] Canonical English article added to `README.md`
+- [x] German translation added to `README.de.md`
+- [x] Shared screenshots inserted into all three language versions
+- [x] Three root article indexes updated: `articles/index.md`, `articles/index.ru.md`, and `articles/index.de.md`
+- [x] Confirmed that no nested `index.md` exists in the article directory
 - [ ] Verify current official product/licensing details and documentation links
-- [ ] Prepare and review the canonical English article
-- [ ] Prepare and review the German translation
 - [ ] Review and approve all content before publication
-- [ ] Update the three top-level article indexes using the shared template
 - [ ] Publish and record the canonical URL after actual publication
 
 ## Editorial constraints
@@ -30,6 +29,7 @@
 - Do not mark the article as published until publication is verified.
 
 ## Verification log
-- Repository branch list and current `main` tree checked before creation.
-- Branch created from `main`.
-- File creation and final branch contents must be verified after writes.
+- Repository branch list and current `main` tree were checked before creation.
+- Branch was created from `main`.
+- English and German article files were written and the three root indexes updated in the dedicated article branch.
+- Final tree was checked: the three language files, passport, and screenshots are present; no nested article `index.md` is present.
