@@ -8,6 +8,7 @@
 - [2. NX Fundamentals — основы NX Workspace](#2-nx-fundamentals-основы-nx-workspace)
 - [3. Архитектура на практике: решения, которые определяют развитие frontend-систем](#3-архитектура-на-практике-решения-которые-определяют-развитие-frontend-систем)
 - [4. NX Workspace — от архитектуры к инструментам](#4-nx-workspace--от-архитектуры-к-инструментам)
+- [5. Инструменты разработки: WebStorm, Visual Studio Code и OpenCode](#5-инструменты-разработки-webstorm-visual-studio-code-и-opencode)
 - [Редакционные правила](#редакционные-правила)
 
 ## 1. Дорога к архитектуре
@@ -96,6 +97,24 @@
 ### Ветки GitHub
 - [NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace)
 - [NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace%2B1)
+
+## 5. Инструменты разработки: WebStorm, Visual Studio Code и OpenCode
+
+### Материалы в репозитории
+[English](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.md) | [Русский](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.ru.md) | [Deutsch](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.de.md)
+
+### Содержание статьи
+- [Введение](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.ru.md#введение)
+- [WebStorm: полноценная IDE](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.ru.md#1-webstorm-полноценная-ide)
+- [Visual Studio Code: расширяемый редактор](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.ru.md#2-visual-studio-code-расширяемый-редактор)
+- [OpenCode: AI-агент для работы с кодом](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.ru.md#3-opencode-ai-агент-для-работы-с-кодом)
+- [Сравнение инструментов](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.ru.md#4-сравнение-инструментов)
+- [Что выбрать для NX и Angular](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.ru.md#5-что-выбрать-для-nx-и-angular)
+- [Практические рекомендации для команды](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.ru.md#6-практические-рекомендации-для-команды)
+- [Заключение](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.ru.md#заключение)
+
+### Ветки GitHub
+- [Development-Tools-WebStorm-Visual-Studio-Code-and-OpenCode](https://github.com/iAVP/enterprise-frontend-workshop/tree/Development-Tools-WebStorm-Visual-Studio-Code-and-OpenCode)
 
 ## Редакционные правила
 
