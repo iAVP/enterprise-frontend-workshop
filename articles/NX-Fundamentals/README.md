@@ -1,6 +1,6 @@
 # NX Fundamentals — Building the NX Workspace
 
-**Status:** Work in progress. This article continues [NX Workspace — From Architecture to Tooling](../NX-Workspace/README.md): we are preparing the workspace's architectural skeleton before implementing the business domain. This is an initial encounter with approaches also used in DDD, but Domain-Driven Design and its principles will be covered separately in another article. We will not recreate the workspace or the Angular application.
+**Status:** Published and completed. This article continues [NX Workspace — From Architecture to Tooling](../NX-Workspace/README.md): we are preparing the workspace's architectural skeleton before implementing the business domain. This is an initial encounter with approaches also used in DDD, but Domain-Driven Design and its principles will be covered separately in another article. We will not recreate the workspace or the Angular application.
 
 ## NX Workspace Concepts and Project Organization
 
