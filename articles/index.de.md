@@ -33,6 +33,7 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 ## 2. NX Fundamentals — Grundlagen eines Enterprise-Frontend-Workspace
 
 - **Englische Veröffentlichung:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-fundamentals-building-the-nx-workspace)
+
 ### Repository-Materialien
 [Englisch](NX-Fundamentals/README.md) | [Russisch](NX-Fundamentals/README.ru.md) | [Deutsch](NX-Fundamentals/README.de.md)
 
