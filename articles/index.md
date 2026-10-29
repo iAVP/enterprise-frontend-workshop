@@ -24,6 +24,7 @@ This index is the central navigation source for the article series. Keep the pub
 ## 2. NX Fundamentals — Building an Enterprise Frontend Workspace from Scratch
 
 - **English publication:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-fundamentals-building-the-nx-workspace)
+
 ### Repository materials
 [English](NX-Fundamentals/README.md) | [Russian](NX-Fundamentals/README.ru.md) | [German](NX-Fundamentals/README.de.md)
 
