@@ -8,7 +8,6 @@
 
 .angular
 
-__screenshots__/
 /dist/
 vitest.config.*.timestamp*
 .vitest
