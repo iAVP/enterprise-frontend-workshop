@@ -14,7 +14,11 @@
 
 Цель статьи — помочь выбрать подходящий рабочий инструмент, не превращая выбор редактора в обязательное условие для освоения NX.
 
+![Сравнение интерфейсов WebStorm, Visual Studio Code и OpenCode](../../__screenshots__/Developer%20Tools%20UI%20Comparison.png)
+
 ## 1. WebStorm: полноценная IDE
+
+![Интерфейс WebStorm](../../__screenshots__/JdxdMjv0q_5AFEI41C7-2Jxidzm7V0SzuUVAdzTm_0p_TkVc2c5xTMK6nFWalLSrKQ0VwFbA762JxVxyHyCTvjObD9NfagnILG_4rIm9wDYchFlAxIO2RmCXc2pRVMC0AH-XDFO-wSxinsSEPtFlSK6tlElToHYT6Z-Ft8ArxFMF8Vf--xYynefOB7dLyATV.jpg)
 
 WebStorm — интегрированная среда разработки от JetBrains, ориентированная на JavaScript, TypeScript и современные frontend-технологии.
 
@@ -53,6 +57,8 @@ WebStorm стоит рассмотреть, если:
 
 ## 2. Visual Studio Code: расширяемый редактор
 
+![Интерфейс Visual Studio Code](../../__screenshots__/H1Eyk6VA9-WM_eAE6T_YwYOZKnou7GUvH18RkA3BCLrWEk5WP4QgFnsAh4ocH45uEsLzej4Uupd29XRucVVwnstco-t5_vHpVwJg28rNm9MK5IezM4MLZbcwG0tncud3jnv35T2q-ptRn7mbaplfAL_bBeQdTLt-GMT4KklLlM_v4h1vLErkgoTCtBn6PNDm.jpg)
+
 Visual Studio Code (VS Code) — редактор кода от Microsoft. Он предоставляет базовые возможности разработки и позволяет расширять их через систему расширений.
 
 VS Code часто выбирают благодаря гибкости, доступности и возможности настроить рабочее окружение под конкретный проект.
@@ -90,6 +96,8 @@ VS Code стоит рассмотреть, если:
 Официальный сайт: https://code.visualstudio.com/
 
 ## 3. OpenCode: AI-агент для работы с кодом
+
+![Интерфейс OpenCode](../../__screenshots__/CBUIyw0rur9RAyGNowg8bzi2kOTZVYBrxWCwt0L-K0BbK96vJXuG4LUjxwINHmJyMhPx4zWssZT4Xda60Kt-ln9oubk9oqxD5HPc4fLdtoaqwD26NT8Nv8Zx7YrU8v8Gx7fXjy8tLnUGr9NQpIpF8TqhiFRrDsHU6DQonAoq86N83kNria_q5NR0VS99sXqz.jpg)
 
 OpenCode — open-source AI coding agent, предназначенный для помощи в выполнении задач разработки.
 
