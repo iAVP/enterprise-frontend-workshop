@@ -32,6 +32,7 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 
 ## 2. NX Fundamentals — Grundlagen eines Enterprise-Frontend-Workspace
 
+- **Englische Veröffentlichung:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/nx-fundamentals-building-the-nx-workspace)
 ### Repository-Materialien
 [Englisch](NX-Fundamentals/README.md) | [Russisch](NX-Fundamentals/README.ru.md) | [Deutsch](NX-Fundamentals/README.de.md)
 
@@ -51,8 +52,8 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 - [Weiterführende Dokumentation](NX-Fundamentals/README.de.md#weiterfuhrende-materialien)
 
 ### GitHub-Branches
-- [NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace)
-- [NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace%2B1)
+- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch)
+- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch%2B1)
 ## 3. Architektur in der Praxis: Entscheidungen für Enterprise-Frontend-Systeme
 
 - **Englische Veröffentlichung:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems)
@@ -91,8 +92,8 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 - [Implementierungsstatus und Umfang](NX-Workspace/README.de.md#implementierungsstatus-und-umfang)
 
 ### GitHub-Branches
-- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch)
-- [NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Fundamentals-Building-an-Enterprise-Frontend-Workspace-from-Scratch%2B1)
+- [NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace)
+- [NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace%2B1)
 
 ## Redaktionsregeln
 
