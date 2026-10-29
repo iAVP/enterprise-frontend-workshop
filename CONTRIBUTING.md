@@ -139,6 +139,21 @@ The files `articles/index.md`, `articles/index.ru.md`, and `articles/index.de.md
 - Mark an article as **Published** only after the publication is live, and include the verified publication URL.
 - Treat `articles/README.md`, `articles/README.ru.md`, and `articles/README.de.md` as the editorial roadmap describing planned topics and learning order. They do not replace the indexes as the source of truth for publication status.
 
+## Article Identity and Pre-publication Verification
+
+Before drafting, editing, translating, preparing a publication, or creating visual assets for an article, identify the article from the repository's canonical index. Do not infer its number, title, or relationship to other articles from conversation context or memory.
+
+Required workflow:
+
+1. Read `articles/index.md` and the corresponding localized index (`articles/index.ru.md` or `articles/index.de.md`) as needed. Find the article's numbered entry and confirm its position in the publication sequence.
+2. Open the article's source file in `articles/<article-directory>/README.md` and the relevant translated file when applicable. Use the actual H1 title as the exact title for publication copy, banners, descriptions, and related assets.
+3. Treat the index and source article as the authoritative references for article identity. Do not identify an article as the previous or next article based on a remembered title or nearby conversation. Determine sequence from the numbered index. If the index and source file disagree, report the discrepancy and resolve it before proceeding.
+4. Preserve the article's exact title unless the user explicitly asks to change it. Do not invent a replacement title, subtitle, or framing text for a banner or publication asset unless requested.
+5. Make only the changes requested by the user. When editing links or a specific section, preserve all unrelated article text and existing links.
+6. Before delivering the result, verify the article number, exact H1 title, language, cross-article references, and URLs against the index and source files. After GitHub edits, fetch the changed files again and verify the diff's intended scope.
+
+This workflow is mandatory for every session and every article-related task. The conversation history is not a substitute for checking the repository sources.
+
 ## Table of Contents Placement
 
 Do **not** include a table of contents inside any article text file (`README.md`, `README.ru.md`, or `README.de.md`). Article text is copied to external publishing platforms, some of which do not support or preserve an embedded table of contents.
