@@ -8,6 +8,7 @@ This index is the central navigation source for the article series. Keep the pub
 - [2. NX Fundamentals — Building an Enterprise Frontend Workspace](#2-nx-fundamentals--building-an-enterprise-frontend-workspace)
 - [3. Architecture in Practice: Decisions Behind Enterprise Frontend Systems](#3-architecture-in-practice-decisions-behind-enterprise-frontend-systems)
 - [4. NX Workspace — From Architecture to Tooling](#4-nx-workspace--from-architecture-to-tooling)
+- [5. Development Tools: WebStorm, Visual Studio Code and OpenCode](#5-development-tools-webstorm-visual-studio-code-and-opencode)
 - [Editorial rules](#editorial-rules)
 
 ## 1. The Road to Architecture
@@ -86,6 +87,24 @@ This index is the central navigation source for the article series. Keep the pub
 ### GitHub branches
 - [NX-Workspace](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace)
 - [NX-Workspace+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/NX-Workspace%2B1)
+
+## 5. Development Tools: WebStorm, Visual Studio Code and OpenCode
+
+### Repository materials
+[English](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.md) | [Русский](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.ru.md) | [Deutsch](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.de.md)
+
+### Article contents
+- [Introduction](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.md#introduction)
+- [WebStorm: A Full-Featured IDE](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.md#1-webstorm-a-full-featured-ide)
+- [Visual Studio Code: An Extensible Editor](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.md#2-visual-studio-code-an-extensible-editor)
+- [OpenCode: An AI Agent for Working with Code](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.md#3-opencode-an-ai-agent-for-working-with-code)
+- [Comparing the Tools](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.md#4-comparing-the-tools)
+- [Choosing Tools for NX and Angular](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.md#5-choosing-tools-for-nx-and-angular)
+- [Practical Recommendations for Teams](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.md#6-practical-recommendations-for-teams)
+- [Conclusion](Development%20Tools%20-%20WebStorm,%20Visual%20Studio%20Code%20and%20OpenCode/README.md#conclusion)
+
+### GitHub branches
+- [Development-Tools-WebStorm-Visual-Studio-Code-and-OpenCode](https://github.com/iAVP/enterprise-frontend-workshop/tree/Development-Tools-WebStorm-Visual-Studio-Code-and-OpenCode)
 
 ## Editorial rules
 
