@@ -255,6 +255,23 @@ Potential dedicated topics include:
 
 The focus will remain on practical engineering methods, reliable outcomes, and maintainable software.
 
+## Independent Article — System Thinking: Seeing the Whole Before Changing the Parts
+
+**Status: Planned.** This is an independent essay about system thinking as a transferable way of understanding and solving problems, rather than another stage in the Personal Finance implementation sequence.
+
+The central idea is that an architect must be able to step back far enough to stop seeing only components and begin seeing the system as a whole. The article connects two real-life examples:
+
+- **Software and business process:** a field-audit PWA project where the important contribution was to understand the end-to-end workflow, improve transparency, account for unreliable connectivity, and reduce the delay between field observation and a bank's response. The case includes the move from a paper- and laptop-heavy process to a mobile application, offline persistence, deferred synchronization, and field validation.
+- **Cooking:** recreating a Hungarian soup without a recipe by analyzing its aroma, flavor, texture, and balance, inferring the likely ingredients and cooking method, and testing that hypothesis at home.
+
+Both examples demonstrate the same reasoning pattern: observe the outcome, infer the underlying model, identify the relationships that matter, and validate the reconstruction in practice.
+
+**Editorial brief:** [articles/system-thinking/README.md](system-thinking/README.md)
+
+The article should emphasize system thinking beyond software architecture. Keep the client and bank anonymous, and exclude confidential operational procedures or security-sensitive details from any public version of the field-audit case.
+
+---
+
 ## 5. Additional Engineering Case Study
 
 A separate article may explore TypeScript, object-oriented design, and the value of encapsulation through a real-world refactoring case.
