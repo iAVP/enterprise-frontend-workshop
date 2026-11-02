@@ -1,5 +1,2 @@
-/**
- * Public exports for shared constants.
- * Add exports here when constants are introduced.
- */
-export {};
+/** Public exports for shared interfaces. */
+export * from './field-validation-result';

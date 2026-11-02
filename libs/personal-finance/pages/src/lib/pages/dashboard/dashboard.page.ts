@@ -1,0 +1,9 @@
+import { CurrencyPipe, DatePipe } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { COMMON } from '@workshop:common';
+import { ROUTE } from '@workshop:def:consts';
+import { TransactionStore } from '../../state/transaction.store';
+/** Displays the current balance and the transaction history. */
+@Component({selector:'app-dashboard-page',standalone:true,imports:[CurrencyPipe,DatePipe,RouterLink],templateUrl:'./dashboard.page.html',styleUrl:'./dashboard.page.scss'})
+export class DashboardPage{/** Provides shared transaction state. */readonly store=inject(TransactionStore);/** Exposes the configured currency. */readonly currency=COMMON.DEFAULT_CURRENCY;/** Exposes centralized route constants. */readonly routes=ROUTE;}

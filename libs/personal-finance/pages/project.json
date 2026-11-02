@@ -1,0 +1,1 @@
+{"name":"personal-finance-pages","$schema":"../../../node_modules/nx/schemas/project-schema.json","sourceRoot":"libs/personal-finance/pages/src","projectType":"library","tags":["level:app","app:personal-finance-pages","tag:personal-finance-pages"],"targets":{}}

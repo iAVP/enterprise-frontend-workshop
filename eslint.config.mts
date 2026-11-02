@@ -31,7 +31,9 @@ export default [
                             onlyDependOnLibsWithTags: [
                                 "tag:facades",
                                 "tag:definitions",
-                                "tag:base"
+                                "tag:base",
+                            "tag:ui",
+                            "tag:personal-finance-pages"
                             ]
                         },
                         {
@@ -58,6 +60,14 @@ export default [
                         {
                             sourceTag: "tag:base",
                             onlyDependOnLibsWithTags: []
+                        },
+                        {
+                            sourceTag: "tag:ui",
+                            onlyDependOnLibsWithTags: ["tag:definitions"]
+                        },
+                        {
+                            sourceTag: "tag:personal-finance-pages",
+                            onlyDependOnLibsWithTags: ["tag:ui", "tag:definitions"]
                         }
                     ]
                 }

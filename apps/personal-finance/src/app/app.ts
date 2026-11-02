@@ -1,13 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcome } from './nx-welcome';
-
-@Component({
-  imports: [NxWelcome, RouterModule],
-  selector: 'app-root',
-  templateUrl: './app.html',
-  styleUrl: './app.scss',
-})
-export class App {
-  protected title = 'personal-finance';
-}
+import { RouterOutlet } from '@angular/router';
+/** Provides the application shell and active routed page outlet. */
+@Component({imports:[RouterOutlet],selector:'app-root',templateUrl:'./app.html',styleUrl:'./app.scss'})
+export class App{}
