@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { COMMON } from '@workshop:common';
 import { ROUTE } from '@workshop:def:consts';
 import { TransactionStore } from '../../state/transaction.store';
+import { TransactionType } from '@workshop:def:enums';
 
 /** Displays the current balance and the transaction history. */
 @Component({
@@ -14,6 +15,8 @@ import { TransactionStore } from '../../state/transaction.store';
   styleUrl: './dashboard.page.scss',
 })
 export class DashboardPage {
+  protected readonly TransactionType = TransactionType;
+
   /** Provides shared transaction state to the dashboard template. */
   protected readonly store = inject(TransactionStore);
 
