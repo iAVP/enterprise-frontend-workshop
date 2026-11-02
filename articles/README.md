@@ -49,6 +49,7 @@ This section records actual publication history. It is distinct from the planned
 | 1 | [The Road to Architecture](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture) | Published | Not recorded here | [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture) |
 | 2 | NX Fundamentals — Building an Enterprise Frontend Workspace from Scratch | Published | Not recorded here | Not recorded here |
 | 3 | [Architecture in Practice: Decisions Behind Enterprise Frontend Systems](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems) | Published | 2026-10-27 | [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems) |
+| 6 | [Angular in Depth — Part 1: Architecture and Components](https://enterprise-frontend-workshop.hashnode.dev/angular-in-depth-part-1-architecture-and-components) | Published on Hashnode, VK, LinkedIn and XING | 2026-11-02 | [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/angular-in-depth-part-1-architecture-and-components) |
 
 **Rules for all project chats and contributors:**
 
@@ -116,6 +117,8 @@ A short, practical comparison will cover three options:
 OpenCode can be an alternative when access to VS Code or its extensions is restricted, although access to model providers may still depend on regional availability and network policies. The NX walkthrough itself will remain independent of any specific IDE or editor.
 
 ### Stage 2 — Angular in Depth
+
+**Status: In progress — Part 1 published on Hashnode, VK, LinkedIn and XING.**
 
 **Purpose:** establish the Angular application structure and the core frontend programming model.
 
