@@ -106,6 +106,25 @@ This index is the central navigation source for the article series. Keep the pub
 ### GitHub branches
 - [Development-Tools-WebStorm-Visual-Studio-Code-and-OpenCode](https://github.com/iAVP/enterprise-frontend-workshop/tree/Development-Tools-WebStorm-Visual-Studio-Code-and-OpenCode)
 
+## 6. Angular in Depth — Part 1: Architecture and Components
+
+### Repository materials
+[English](Angular-in-Depth/README.md) | [русский](Angular-in-Depth/README.ru.md) | [deutsch](Angular-in-Depth/README.de.md)
+
+### Article contents
+- [Architecture Before Components](Angular-in-Depth/README.md#architecture-before-components)
+- [LoginComponent: From User Input to an Updated View](Angular-in-Depth/README.md#logincomponent-from-user-input-to-an-updated-view)
+- [Change Detection: How Angular Updates the View](Angular-in-Depth/README.md#change-detection-how-angular-updates-the-view)
+- [Why We Use the input Event](Angular-in-Depth/README.md#why-we-use-the-input-event)
+- [Directives: Reusing Behavior](Angular-in-Depth/README.md#directives-reusing-behavior)
+- [Pipes: Formatting Display Values](Angular-in-Depth/README.md#pipes-formatting-display-values)
+- [Implementation: The Personal Finance Application](Angular-in-Depth/README.md#implementation-the-personal-finance-application)
+- [Verification Before Publication](Angular-in-Depth/README.md#verification-before-publication)
+- [Conclusion](Angular-in-Depth/README.md#conclusion)
+
+### GitHub branches
+- [Angular-in-Depth](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth)
+
 ## Editorial rules
 
 - Every article entry must follow the same template: `## N. Article title`, `### Repository materials` with all three language links on one line separated by ` | `, `### Article contents` with section links, and `### GitHub branches` with only branches belonging to that article. Do not insert a status line into the article-entry template.
