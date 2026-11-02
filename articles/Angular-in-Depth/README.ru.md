@@ -149,28 +149,26 @@ Angular предоставляет механизмы, помогающие вы
 В следующем разделе мы перейдём от архитектурных принципов к первому конкретному строительному блоку — компонентам Angular, шаблонам и директивам.
 
 
-# LoginComponent: от пользовательского ввода до обновления представления
+## 2. Компонент LoginComponent: от пользовательского ввода до обновления представления
 
-Чтобы разобраться в устройстве Angular-компонента, рассмотрим конкретный пример из нашего приложения Personal Finance — форму входа пользователя.
+Для практического примера рассмотрим форму входа Personal Finance. Компонент хранит введённые значения, принимает результаты проверки от директив и сообщает родительской странице об успешной локальной проверке.
 
-На странице будет белая панель с заголовком `Login`, полями `Login name` и `Password`, а также кнопками `OK` и `Cancel`. Компонент хранит введённые значения, проверяет их с помощью регулярных выражений и отображает сообщения об ошибках.
+LoginComponent и страницы приложения находятся в app-specific библиотеке `libs/personal-finance/pages`. Повторно используемые директивы вынесены в `libs/shared/ui`.
 
-Компонент размещается в библиотеке `Pages`: это UI конкретного приложения Personal Finance, а не универсальный компонент библиотеки `Shared`. Повторное использование само по себе не означает, что компонент должен находиться в Shared. Архитектурное размещение определяется его назначением и границами ответственности.
+### 2.1. Структура компонента
 
-## 1. Структура компонента
+Реализация LoginComponent разделена на три файла: `login.component.ts` содержит состояние и обработчики, `login.component.html` — разметку и привязки Angular, `login.component.scss` — локальные стили. Исходники находятся в `libs/personal-finance/pages/src/lib/components/login/`.
 
-Реализация разделена на три файла:
+#### 2.1.1. login.component.ts
 
-- `login.component.ts` — состояние компонента, проверки и обработчики событий;
-- `login.component.html` — HTML-шаблон и привязки Angular;
-- `login.component.scss` — стили компонента в SCSS.
-
-### 1.1. login.component.ts
+Компонент не содержит регулярных выражений. Он импортирует обе директивы из `@workshop:ui`, получает результаты проверки и хранит сообщения для шаблона.
 
 ```typescript
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import type { FieldValidationResult } from '@workshop:def:interfaces';
+import { EmailValidatorDirective, PasswordValidatorDirective } from '@workshop:ui';
 
-interface LoginCredentials {
+export interface LoginCredentials {
   email: string;
   password: string;
 }
@@ -178,65 +176,31 @@ interface LoginCredentials {
 @Component({
   selector: 'app-login',
   standalone: true,
+  imports: [EmailValidatorDirective, PasswordValidatorDirective],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  @Output() loginRequested = new EventEmitter<LoginCredentials>();
+  @Output() readonly loginRequested = new EventEmitter<LoginCredentials>();
   @ViewChild(EmailValidatorDirective) private emailValidator!: EmailValidatorDirective;
+  @ViewChild(PasswordValidatorDirective) private passwordValidator!: PasswordValidatorDirective;
 
   email = '';
   password = '';
   emailError = '';
   passwordError = '';
 
-  private readonly emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  private readonly passwordRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9\s]).{12,}$/;
-
-  validateEmail(): void {
-    if (!this.email) {
-      this.emailError = 'Login name is required.';
-    } else if (!this.emailRegex.test(this.email)) {
-      this.emailError = 'Enter a valid email address.';
-    } else {
-      this.emailError = '';
-    }
-  }
-
-  validatePassword(): void {
-    if (!this.password) {
-      this.passwordError = 'Password is required.';
-    } else if (!this.passwordRegex.test(this.password)) {
-      this.passwordError = 'Password does not meet the requirements.';
-    } else {
-      this.passwordError = '';
-    }
-  }
-
-  onEmailInput(value: string): void {
-    this.email = value;
-    this.validateEmail();
-  }
-
-  onPasswordInput(value: string): void {
-    this.password = value;
-    this.validatePassword();
-  }
+  onEmailInput(value: string): void { this.email = value; }
+  onPasswordInput(value: string): void { this.password = value; }
+  onEmailValidationChange(result: FieldValidationResult): void { this.emailError = result.message; }
+  onPasswordValidationChange(result: FieldValidationResult): void { this.passwordError = result.message; }
 
   onSubmit(event: SubmitEvent): void {
     event.preventDefault();
-    this.validateEmail();
-    this.validatePassword();
-
-    if (this.emailError || this.passwordError) {
-      return;
-    }
-
-    this.loginRequested.emit({
-      email: this.email,
-      password: this.password,
-    });
+    this.emailValidator.validateNow();
+    this.passwordValidator.validateNow();
+    if (this.emailError || this.passwordError) return;
+    this.loginRequested.emit({ email: this.email.trim(), password: this.password });
   }
 
   onCancel(): void {
@@ -244,192 +208,61 @@ export class LoginComponent {
     this.password = '';
     this.emailError = '';
     this.passwordError = '';
+    this.emailValidator.reset();
+    this.passwordValidator.reset();
   }
 }
 ```
 
-Состояние представлено обычными свойствами класса. Методы проверки отделены от обработчиков ввода: обработчик сохраняет новое значение и запускает соответствующую проверку. При успешной локальной проверке компонент генерирует событие `loginRequested`, чтобы родительский компонент мог продолжить сценарий входа.
+`ViewChild` предоставляет компоненту ссылки на директивы, чтобы перед отправкой формы явно запустить обе проверки. `EventEmitter` передаёт результат локальной проверки родительской странице. Это не аутентификация: сервер должен самостоятельно проверять учётные данные.
 
-Компонент не выполняет аутентификацию и не подтверждает личность пользователя. Реальная проверка учётных данных выполняется серверной частью приложения.
+#### 2.1.2. login.component.html
 
-### 1.2. login.component.html
+В шаблоне каждое поле связано с соответствующей директивой. Событие `input` сохраняет введённое значение, а output директивы передаёт результат проверки.
 
 ```html
-<div class="login-container">
-  <section class="login-panel">
-    <h1>Login</h1>
+<input
+  id="login-name"
+  type="email"
+  [value]="email"
+  appEmailValidator
+  (input)="onEmailInput($any($event.target).value)"
+  (emailValidationChange)="onEmailValidationChange($event)"
+  [attr.aria-invalid]="!!emailError"
+/>
 
-    <form (submit)="onSubmit($event)" novalidate>
-      <div class="form-field">
-        <label for="login-name">Login name</label>
-        <input
-          id="login-name"
-          type="email"
-          autocomplete="username"
-          [value]="email"
-          (input)="onEmailInput($any($event.target).value)"
-          [attr.aria-invalid]="!!emailError"
-          aria-describedby="email-error"
-        />
-        @if (emailError) {
-          <p id="email-error" class="error" role="alert">
-            {{ emailError }}
-          </p>
-        }
-      </div>
-
-      <div class="form-field">
-        <label for="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          autocomplete="current-password"
-          [value]="password"
-          (input)="onPasswordInput($any($event.target).value)"
-          [attr.aria-invalid]="!!passwordError"
-          aria-describedby="password-error"
-        />
-        @if (passwordError) {
-          <p id="password-error" class="error" role="alert">
-            {{ passwordError }}
-          </p>
-        }
-      </div>
-
-      <div class="actions">
-        <button type="submit">OK</button>
-        <button type="button" class="cancel" (click)="onCancel()">
-          Cancel
-        </button>
-      </div>
-    </form>
-  </section>
-</div>
+<input
+  id="password"
+  type="password"
+  [value]="password"
+  appPasswordValidator
+  (input)="onPasswordInput($any($event.target).value)"
+  (passwordValidationChange)="onPasswordValidationChange($event)"
+  [attr.aria-invalid]="!!passwordError"
+/>
 ```
 
-Здесь `[value]` передаёт значение свойства в поле, `(input)` вызывает обработчик при изменении значения, `@if` условно отображает сообщение, а интерполяция `{{ ... }}` выводит текст. Атрибут `novalidate` отключает встроенную браузерную валидацию, чтобы в этом примере мы могли сосредоточиться на логике компонента.
+Сообщения об ошибках выводятся через `@if`. Атрибут `novalidate` позволяет использовать наш обработчик отправки, а `required` сохраняет семантику обязательного поля.
 
-Подробнее о привязке событий: [Angular — Adding event listeners](https://angular.dev/guide/templates/event-listeners).
+#### 2.1.3. login.component.scss
 
-### 1.3. login.component.scss
+Локальные стили формы находятся в отдельном SCSS-файле. Общие стили приложения остаются в `common/styles/`. SCSS компилируется Angular builder в CSS; браузер получает уже скомпилированные стили.
 
-В проекте используется SCSS с Compass. SCSS помогает структурировать стили с помощью переменных, вложенных правил и миксинов и создаёт основу для дальнейшей работы с дизайн-токенами. Браузер непосредственно SCSS не обрабатывает: он компилируется в CSS. Подробно архитектуру стилей и Compass рассмотрим отдельно.
+### 2.2. Что делает компонент
 
-```scss
-:host {
-  display: block;
-  font-family: Arial, sans-serif;
-  color: #222;
-}
-
-.login-container {
-  display: flex;
-  justify-content: center;
-  padding: 32px 16px;
-}
-
-.login-panel {
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 320px;
-  padding: 24px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-
-  h1 {
-    margin: 0 0 24px;
-    font-size: 22px;
-    font-weight: 500;
-  }
-}
-
-.form-field {
-  margin-bottom: 18px;
-
-  label {
-    display: block;
-    margin-bottom: 6px;
-    font-size: 14px;
-  }
-
-  input {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 9px;
-    border: 1px solid #aaa;
-    border-radius: 3px;
-    font-size: 14px;
-
-    &:focus {
-      outline: 2px solid #9bbcf5;
-      outline-offset: 1px;
-    }
-
-    &[aria-invalid='true'] {
-      border-color: #c62828;
-    }
-  }
-}
-
-.error {
-  margin: 5px 0 0;
-  color: #c62828;
-  font-size: 12px;
-}
-
-.actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  margin-top: 24px;
-
-  button {
-    min-width: 72px;
-    padding: 8px 14px;
-    border: 1px solid #aaa;
-    border-radius: 3px;
-    background: #f5f5f5;
-    color: #222;
-    cursor: pointer;
-
-    &:hover {
-      background: #e9e9e9;
-    }
-
-    &:focus-visible {
-      outline: 2px solid #2563eb;
-      outline-offset: 2px;
-    }
-
-    &.cancel {
-      background: #fff;
-    }
-  }
-}
-```
-
-Вложенные правила позволяют связывать стили с соответствующими элементами интерфейса. На этом этапе мы не вводим переменные, миксины и дизайн-токены: сначала разбираемся с компонентом, а систему стилей рассмотрим отдельно. Compass — дополнительный инструмент; сам по себе SCSS не требует Compass, поэтому конкретные возможности инструмента должны соответствовать конфигурации проекта.
-
-## 2. Что делает компонент
-
-Компонент отображает форму, хранит введённые значения, проверяет их формат, показывает ошибки и генерирует событие при успешной локальной проверке.
-
-Регулярное выражение для email отсекает некоторые очевидно некорректные значения, но не гарантирует существование адреса. В примере пароль должен содержать не менее 12 символов, заглавную и строчную латинские буквы, цифру и специальный символ. Это демонстрационные правила, а не универсальная политика безопасности. Клиентскую проверку можно обойти, поэтому backend обязан самостоятельно проверять учётные данные.
+Компонент отвечает за состояние конкретной формы и координацию взаимодействия: хранит email и пароль, принимает результаты от директив, показывает сообщения, повторно запускает проверки при отправке и генерирует `loginRequested`, если локальная проверка прошла.
 
 ## 3. Change Detection: как Angular обновляет представление
 
-Change Detection — механизм Angular, который определяет, какие части представления необходимо проверить и обновить после изменения состояния приложения.
-
-Например, пользователь вводит символ в поле email. Браузер генерирует событие `input`, Angular вызывает обработчик, компонент обновляет свойство `email` и запускает проверку. Если изменилось сообщение об ошибке, Angular обновляет соответствующую часть представления.
+Change Detection — механизм Angular, который синхронизирует представление с состоянием приложения. Когда пользователь вводит символ, браузер генерирует событие `input`, Angular вызывает обработчики, компонент обновляет значение, а директива отправляет результат проверки. Изменение свойства с сообщением об ошибке приводит к обновлению соответствующей части шаблона.
 
 Последовательность выглядит так:
 
 1. Пользователь изменяет значение поля.
 2. Браузер генерирует событие `input`.
-3. Angular вызывает зарегистрированный обработчик.
-4. Обработчик обновляет состояние и выполняет проверку значения.
-5. Angular синхронизирует представление с состоянием приложения.
+3. Angular вызывает обработчики компонента и директивы.
+4. Компонент и директива обновляют своё состояние и передают результат проверки.
+5. Angular синхронизирует представление с новым состоянием.
 6. Пользователь видит актуальное значение и сообщение об ошибке, если оно необходимо.
 
 В этом примере нам не нужно вручную изменять DOM или запускать проверку представления. Мы изменяем состояние в обработчиках, зарегистрированных через шаблон Angular.
@@ -442,17 +275,15 @@ Change Detection — механизм Angular, который определяе
 
 Привязка `(input)` реагирует на изменение значения поля, а не только на нажатие клавиши. Значение можно изменить, например, вставкой текста через контекстное меню. Поэтому событие `input` лучше соответствует задаче проверки текущего значения поля.
 
-Сам обработчик `input` — обычная привязка к событию браузера, которую Angular обрабатывает в контексте своего шаблона. Это не отдельный механизм Change Detection.
-
 ## 5. Директивы: повторное использование поведения
 
-В текущем варианте `LoginComponent` сам проверяет email. Для одной формы это допустимо, но если поле с теми же правилами появится в регистрации или настройках профиля, проверку придётся повторять. Атрибутная директива позволяет привязать поведение к элементу HTML и повторно использовать его в разных шаблонах.
+Проверка email и пароля может понадобиться в разных формах. Поэтому обе директивы размещены в `libs/shared/ui`, а не внутри библиотеки Pages конкретного приложения.
 
-Важен не только факт проверки, но и контракт между директивой и компонентом. Директива должна сообщить результат проверки, а компонент — решить, как отобразить обратную связь пользователю. В нашем примере директива не меняет DOM и не управляет сообщениями об ошибках: она проверяет значение и выдаёт результат через `@Output()`.
+Сами регулярные выражения не принадлежат UI. Они вынесены в `libs/shared/definitions/src/lib/constants/validation.regex.ts`. Это позволяет использовать одни и те же правила в разных компонентах без копирования выражений.
 
 ### 5.1. Контракт результата проверки
 
-Сначала определим небольшой тип результата. Он сообщает, корректно ли значение и какой текст ошибки следует показать. Пустое сообщение означает, что ошибка сейчас не должна отображаться.
+Обе директивы передают компоненту одинаковую структуру:
 
 ```typescript
 export interface FieldValidationResult {
@@ -461,167 +292,129 @@ export interface FieldValidationResult {
 }
 ```
 
-### 5.2. EmailValidatorDirective
+Интерфейс расположен в `libs/shared/definitions/src/lib/interfaces/field-validation-result.ts` и экспортируется через `@workshop:def:interfaces`.
 
-Создадим standalone-директиву `EmailValidatorDirective`. Селектор `[appEmailValidator]` означает, что директива подключается как атрибут к существующему элементу, а не создаёт собственный HTML-элемент.
-
-```typescript
-import { Directive, ElementRef, EventEmitter, HostListener, Output } from '@angular/core';
-import { FieldValidationResult } from './field-validation-result';
-
-@Directive({
-  selector: '[appEmailValidator]',
-  standalone: true,
-})
-export class EmailValidatorDirective {
-  @Output() emailValidationChange =
-    new EventEmitter<FieldValidationResult>();
-
-  private readonly emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
-  private touched = false;
-
-  constructor(private readonly elementRef: ElementRef<HTMLInputElement>) {}
-
-  @HostListener('input')
-  onInput(): void {
-    this.validate(this.touched);
-  }
-
-  @HostListener('blur')
-  onBlur(): void {
-    this.touched = true;
-    this.validate(true);
-  }
-
-  validateNow(): void {
-    this.touched = true;
-    this.validate(true);
-  }
-
-  private validate(showRequiredError: boolean): void {
-    const value = this.elementRef.nativeElement.value.trim();
-
-    let result: FieldValidationResult;
-
-    if (!value) {
-      result = {
-        valid: false,
-        message: showRequiredError ? 'Login name is required.' : '',
-      };
-    } else if (!this.emailRegex.test(value)) {
-      result = {
-        valid: false,
-        message: 'Enter a valid email address.',
-      };
-    } else {
-      result = { valid: true, message: '' };
-    }
-
-    this.emailValidationChange.emit(result);
-  }
-}
-```
-
-Директива слушает два события DOM:
-
-- `input` — проверяет значение по мере ввода. Пока пользователь ещё не покинул пустое поле, обязательность поля не подсвечивается; после первого ухода из поля пустое значение уже сопровождается сообщением.
-- `blur` — отмечает поле как затронутое и проверяет его. Это позволяет не показывать ошибку обязательного поля сразу при открытии формы.
-
-Для чтения значения здесь используется `ElementRef`, но директива не записывает в элемент стили, классы или текст ошибки. Её задача — проверить значение и отправить результат через `emailValidationChange`. В более сложной форме можно предпочесть встроенную систему Angular Forms и интерфейс `Validator`; здесь мы сохраняем простой контракт событий, соответствующий текущему примеру.
-
-Регулярное выражение — только базовая проверка формата, а не доказательство существования адреса. Сервер всё равно должен самостоятельно проверять данные, необходимые для входа.
-
-### 5.3. Подключаем директиву к LoginComponent
-
-Standalone-директива должна быть импортирована в компонент, чей шаблон её использует. Добавим её в `imports` метаданных `LoginComponent`:
+### 5.2. Централизованные регулярные выражения
 
 ```typescript
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
-import { EmailValidatorDirective } from './email-validator.directive';
-
-@Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [EmailValidatorDirective],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
-})
-export class LoginComponent {
-  @Output() loginRequested = new EventEmitter<LoginCredentials>();
-
-  email = '';
-  password = '';
-  emailError = '';
-  passwordError = '';
-
-  onEmailInput(value: string): void {
-    this.email = value;
-  }
-
-  onEmailValidationChange(result: FieldValidationResult): void {
-    this.emailError = result.message;
-  }
-
-  onSubmit(event: SubmitEvent): void {
-    event.preventDefault();
-    this.emailValidator.validateNow();
-    this.validatePassword();
-
-    if (this.emailError || this.passwordError) {
-      return;
-    }
-
-    this.loginRequested.emit({ email: this.email, password: this.password });
-  }
-}
+export const VALIDATION_REGEX = {
+  EMAIL: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+  PASSWORD: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9\s]).{12,}$/,
+} as const;
 ```
 
-Это фрагмент изменений, а не полный файл компонента: остальные свойства и обработчики формы остаются на месте. Из `LoginComponent` нужно удалить прежние `emailRegex` и `validateEmail()`, поскольку теперь правило проверки принадлежит директиве. Компонент получает готовый результат и сохраняет текст ошибки для отображения.
+Файл экспортируется из `@workshop:def:consts`. Email-проверка отсекает часть очевидно некорректных значений, но не доказывает существование адреса. Правило пароля в этом учебном примере требует не менее 12 символов, заглавную и строчную латинские буквы, цифру и специальный символ. Это демонстрационная политика, а не универсальная рекомендация по безопасности.
 
-В шаблоне заменим привязку email-поля на следующую:
+### 5.3. EmailValidatorDirective и PasswordValidatorDirective
 
-```html
-<input
-  id="login-name"
-  type="email"
-  autocomplete="username"
-  [value]="email"
-  appEmailValidator
-  (input)="onEmailInput($any($event.target).value)"
-  (emailValidationChange)="onEmailValidationChange($event)"
-  [attr.aria-invalid]="!!emailError"
-  aria-describedby="email-error"
-/>
-@if (emailError) {
-  <p id="email-error" class="error" role="alert">
-    {{ emailError }}
-  </p>
-}
-```
+Директивы — standalone-классы, подключаемые к HTML-элементам через атрибуты `[appEmailValidator]` и `[appPasswordValidator]`. Они используют `ElementRef` только для чтения значения поля, слушают события `input` и `blur` и отправляют результат через `@Output()`.
 
-Здесь есть два независимых потока:
+Каждая директива предоставляет два публичных метода:
 
-1. `input` обновляет значение `email` в компоненте, чтобы оно было доступно при отправке формы.
-2. `emailValidationChange` передаёт результат директивы в компонент, а компонент обновляет `emailError`. Шаблон показывает сообщение, если строка ошибки непустая.
+- `validateNow()` — отмечает поле как затронутое, запускает проверку и возвращает её результат;
+- `reset()` — сбрасывает внутренний признак взаимодействия с полем и очищает сообщение.
 
-Так директива не зависит от конкретного `LoginComponent`, а компонент не знает, каким регулярным выражением проверяется email. Их связывает небольшой явный контракт — объект `FieldValidationResult`.
+Директива не меняет DOM и не отображает ошибки. Это ответственность компонента и его шаблона. Исходники обеих директив находятся в `libs/shared/ui/src/lib/directives/`.
 
-### 5.4. Что происходит при отправке формы
+### 5.4. Подключение директив к LoginComponent
 
-Нельзя ограничиваться проверкой при вводе: пользователь может отправить форму, не покидая пустое поле. Поэтому директива предоставляет публичный метод `validateNow()`, который компонент вызывает перед отправкой. Метод выполняет ту же проверку и синхронно отправляет результат через `emailValidationChange`; обработчик компонента обновляет `emailError` до того, как `onSubmit()` проверит ошибки.
+Standalone-директивы импортируются в `imports` компонента. Ссылки `@ViewChild` позволяют повторить проверку при отправке формы, даже если пользователь не покидал поле. События `EventEmitter` передают результаты в компонент, который принимает решение о выводе сообщений.
 
-В примере компонент обращается к директиве через `@ViewChild`. Это явный, но достаточно тесный контракт, который подходит для демонстрации взаимодействия. Для более сложных форм стоит рассмотреть Angular Forms и интерфейс `Validator`, чтобы состояние всех полей и запуск проверки при отправке управлялись формой единообразно. Не нужно добавлять вторую копию регулярного выражения в `onSubmit()`: это снова создаст два источника правил.
+Таким образом, `shared/definitions` хранит правила и типы, `shared/ui` реализует повторно используемое поведение, а `LoginComponent` управляет состоянием формы и отображением обратной связи.
 
 ### 5.5. Что важно в архитектуре
 
-- Директива отвечает за правило и сообщает результат, но не решает, где и как показывать сообщение.
+- Переиспользуемое UI-поведение находится в `shared/ui`.
+- Регулярные выражения находятся в `shared/definitions`, а не внутри директив или компонентов.
+- Директива проверяет значение и передаёт результат, но не управляет сообщениями.
 - Компонент хранит состояние формы и определяет поведение интерфейса.
-- Шаблон связывает событие директивы с обработчиком компонента и отображает сообщение.
-- Правило проверки не должно дублироваться в компоненте и директиве.
-- Клиентская валидация помогает пользователю исправить ввод, но не заменяет серверную проверку.
+- Клиентская проверка улучшает обратную связь, но не заменяет серверную проверку.
 
-Следующим шагом добавим `PasswordValidatorDirective` и согласуем единый механизм валидации при отправке формы, чтобы `LoginComponent` мог корректно реагировать на ошибки обеих директив.
+## 6. Pipes: форматирование отображаемых значений
 
-## 6. Pipes
+Pipe преобразует значение для отображения в шаблоне, не изменяя исходную модель. Для денежных значений используем встроенный `CurrencyPipe`. Валюта по умолчанию централизованно задаётся в `common/environments/common.ts`:
 
-Раздел о pipes будет добавлен после директив. На примере Personal Finance рассмотрим, для каких задач преобразования отображаемых значений подходят pipes и как они отличаются по назначению от компонентов и директив.
+```typescript
+export const COMMON = {
+  DEFAULT_CURRENCY: 'EUR' as const,
+};
+```
+
+Страница получает конфигурацию и передаёт валюту в pipe:
+
+```typescript
+readonly currency = COMMON.DEFAULT_CURRENCY;
+```
+
+```html
+<p>{{ store.balance() | currency: currency : 'symbol' : '1.2-2' }}</p>
+```
+
+`CurrencyPipe` форматирует числовое значение как денежное представление. Он не конвертирует валюту и не меняет сумму в модели. Если понадобится поддержка нескольких валют, конвертация станет отдельной бизнес-операцией с курсом, датой курса и правилами округления.
+
+`DatePipe` форматирует дату операции для интерфейса. Исходная дата остаётся строкой в модели и может использоваться для сортировки и фильтрации.
+
+Документация: [Angular — Pipes](https://angular.dev/guide/templates/pipes) и [CurrencyPipe API](https://angular.dev/api/common/CurrencyPipe).
+
+## 7. Implementation: приложение Personal Finance
+
+Страницы находятся в app-specific библиотеке `libs/personal-finance/pages`. Переиспользуемые директивы остаются в `libs/shared/ui`, общие типы и константы — в `libs/shared/definitions`.
+
+### 7.1. Модель и общее состояние
+
+Операция содержит идентификатор, тип, описание, сумму и дату. Сумма хранится положительным числом, направление задаётся типом `income` или `expense`.
+
+`TransactionStore` владеет коллекцией операций и предоставляет её через Signal. Вычисляемые сигналы рассчитывают баланс, сумму доходов и расходов. После изменения коллекции сервис сохраняет её в `localStorage`. Это демонстрационное клиентское хранилище, а не замена backend или синхронизации между устройствами.
+
+### 7.2. Страницы приложения
+
+`LoginPage` размещает `LoginComponent` и после успешной локальной проверки демонстрирует переход на Dashboard. Это не полноценная аутентификация.
+
+`DashboardPage` показывает баланс и историю операций. Для сумм используется `CurrencyPipe` с валютой из `COMMON.DEFAULT_CURRENCY`, для дат — `DatePipe`.
+
+`TransactionFormPage` обслуживает добавление дохода и расхода. Тип операции передаётся через `data` маршрута. Форма использует базовые HTML-атрибуты и обработчик отправки; Angular Forms в этой реализации не вводится.
+
+### 7.3. Централизованные маршруты
+
+Все значения маршрутов находятся в `libs/shared/definitions/src/lib/constants/routes.ts`:
+
+```typescript
+export const ROUTE = {
+  LOGIN: 'login',
+  DASHBOARD: 'dashboard',
+  ADD_INCOME: 'add-income',
+  ADD_EXPENSE: 'add-expense',
+  ROOT: '',
+  NOT_FOUND: '**',
+} as const;
+```
+
+`app.routes.ts` использует эти константы для lazy loading страниц. Корневой путь перенаправляет на Dashboard, неизвестный маршрут также возвращает пользователя на Dashboard. Маршрутизация сама по себе не обеспечивает авторизацию.
+
+## 8. Проверка перед публикацией
+
+После интеграции проверь проект в workspace:
+
+- `npx nx show projects` — убедиться, что NX обнаруживает новые библиотеки;
+- `npx nx lint personal-finance` — запустить lint, если цель настроена;
+- `npx nx build personal-finance` — проверить сборку приложения;
+- открыть `/login` и проверить обе директивы, сообщения об ошибках и сброс формы;
+- перейти на Dashboard, добавить доход и расход;
+- перезагрузить страницу и проверить восстановление списка из `localStorage`.
+
+Это план проверки, а не утверждение, что команды уже запускались. Сборку и lint необходимо выполнить в локальном workspace.
+
+## Итог
+
+Компоненты управляют представлением и локальным состоянием формы, директивы выносят повторно используемое поведение, pipes форматируют значения, а маршруты и общий сервис связывают страницы приложения.
+
+Размещение кода определяется его ответственностью: переиспользуемые UI-директивы находятся в Shared UI, общие правила и константы — в Definitions, а страницы Personal Finance — в app-specific библиотеке.
+
+## Официальная документация
+
+- [Angular — Components](https://angular.dev/guide/components)
+- [Angular — Templates](https://angular.dev/guide/templates)
+- [Angular — Directives](https://angular.dev/guide/directives)
+- [Angular — Pipes](https://angular.dev/guide/templates/pipes)
+- [Angular — Signals](https://angular.dev/guide/signals)
+- [Angular — Routing](https://angular.dev/guide/routing)
