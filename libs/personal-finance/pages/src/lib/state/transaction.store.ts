@@ -20,14 +20,14 @@ export class TransactionStore {
   /** Calculates total income. */
   readonly totalIncome = computed(() =>
     this.state()
-      .filter((transaction) => transaction.type === TransactionType.Income)
+      .filter((transaction) => transaction.type === TransactionType.income)
       .reduce((sum, transaction) => sum + transaction.amount, 0),
   );
 
   /** Calculates total expenses. */
   readonly totalExpense = computed(() =>
     this.state()
-      .filter((transaction) => transaction.type === TransactionType.Expense)
+      .filter((transaction) => transaction.type === TransactionType.expense)
       .reduce((sum, transaction) => sum + transaction.amount, 0),
   );
 
