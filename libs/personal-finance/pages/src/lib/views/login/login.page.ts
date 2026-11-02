@@ -12,10 +12,11 @@ import { LoginComponent } from '../../components/login/login.component';
   styleUrl: './login.page.scss',
 })
 export class LoginPage {
-  private readonly router = inject(Router);
+  /** Provides router navigation for the login flow. */
+  protected readonly router = inject(Router);
 
   /** Navigates to the dashboard after local validation succeeds. */
-  onLoginRequested(): void {
+  protected onLoginRequested(): void {
     void this.router.navigateByUrl('/' + ROUTE.DASHBOARD);
   }
 }

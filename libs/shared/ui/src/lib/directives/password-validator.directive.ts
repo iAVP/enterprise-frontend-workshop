@@ -1,4 +1,4 @@
-import { Directive, ElementRef, EventEmitter, HostListener, Output } from '@angular/core';
+import { Directive, ElementRef, HostListener, output } from '@angular/core';
 import { VALIDATION_REGEX } from '@workshop:def:consts';
 import type { FieldValidationResult } from '@workshop:def:interfaces';
 
@@ -9,22 +9,23 @@ import type { FieldValidationResult } from '@workshop:def:interfaces';
 })
 export class PasswordValidatorDirective {
   /** Emits the current password validation result. */
-  @Output() readonly passwordValidationChange = new EventEmitter<FieldValidationResult>();
+  readonly passwordValidationChange = output<FieldValidationResult>();
 
+  /** Tracks whether the host input has been visited. */
   private touched = false;
 
-  /** Creates the directive for the host input element. */
+  /** Provides access to the host input element. */
   constructor(private readonly elementRef: ElementRef<HTMLInputElement>) {}
 
   /** Validates the value whenever the user edits the input. */
   @HostListener('input')
-  onInput(): void {
+  protected onInput(): void {
     this.validate(this.touched);
   }
 
   /** Marks the input as touched and displays required feedback when needed. */
   @HostListener('blur')
-  onBlur(): void {
+  protected onBlur(): void {
     this.touched = true;
     this.validate(true);
   }
@@ -41,6 +42,7 @@ export class PasswordValidatorDirective {
     this.passwordValidationChange.emit({ valid: false, message: '' });
   }
 
+  /** Checks the host value and publishes the resulting validation state. */
   private validate(showRequiredError: boolean): FieldValidationResult {
     const value = this.elementRef.nativeElement.value;
     let result: FieldValidationResult;

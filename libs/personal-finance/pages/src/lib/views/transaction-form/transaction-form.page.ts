@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { COMMON } from '@workshop:common';
 import { ROUTE } from '@workshop:def:consts';
-import type { TransactionType } from '../../models/transaction.model';
+import type { TransactionType } from '@workshop:def:types';
 import { TransactionStore } from '../../state/transaction.store';
 
 /** Creates an income or expense according to the active route data. */
@@ -13,35 +13,40 @@ import { TransactionStore } from '../../state/transaction.store';
   styleUrl: './transaction-form.page.scss',
 })
 export class TransactionFormPage {
-  private readonly route = inject(ActivatedRoute);
-  private readonly router = inject(Router);
-  private readonly store = inject(TransactionStore);
+  /** Provides the active route data. */
+  protected readonly route = inject(ActivatedRoute);
+
+  /** Provides navigation after saving or cancelling the form. */
+  protected readonly router = inject(Router);
+
+  /** Provides access to the shared transaction state. */
+  protected readonly store = inject(TransactionStore);
 
   /** Determines the transaction kind from route data. */
-  readonly type = this.route.snapshot.data['type'] as TransactionType;
+  protected readonly type = this.route.snapshot.data['type'] as TransactionType;
 
   /** Provides the configured display currency. */
-  readonly currency = COMMON.DEFAULT_CURRENCY;
+  protected readonly currency = COMMON.DEFAULT_CURRENCY;
 
   /** Stores the transaction description entered by the user. */
-  description = '';
+  protected description = '';
 
   /** Stores the amount entered by the user before numeric conversion. */
-  amount = '';
+  protected amount = '';
 
   /** Stores the transaction date in ISO date format. */
-  date = new Date().toISOString().slice(0, 10);
+  protected date = new Date().toISOString().slice(0, 10);
 
   /** Holds validation feedback for the transaction form. */
-  errorMessage = '';
+  protected errorMessage = '';
 
   /** Returns the heading for the active transaction kind. */
-  get title(): string {
+  protected get title(): string {
     return this.type === 'income' ? 'Add income' : 'Add expense';
   }
 
   /** Validates the form, stores the transaction, and returns to the dashboard. */
-  onSubmit(event: SubmitEvent): void {
+  protected onSubmit(event: SubmitEvent): void {
     event.preventDefault();
 
     const numericAmount = Number(this.amount);
@@ -67,7 +72,7 @@ export class TransactionFormPage {
   }
 
   /** Cancels the form and returns to the dashboard without saving. */
-  onCancel(): void {
+  protected onCancel(): void {
     void this.router.navigateByUrl('/' + ROUTE.DASHBOARD);
   }
 }
