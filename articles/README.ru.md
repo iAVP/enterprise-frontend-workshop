@@ -46,6 +46,7 @@
 | 1 | [The Road to Architecture](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture) | Опубликована | Не зафиксирована здесь | [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture) |
 | 2 | NX Fundamentals — Building an Enterprise Frontend Workspace from Scratch | Опубликована | Не зафиксирована здесь | Не зафиксирована |
 | 3 | [Architecture in Practice: Decisions Behind Enterprise Frontend Systems](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems) (русская версия: [VK](https://vk.ru/@-65490196-arhitektura-na-praktike-resh1?subtype=primary)) | Опубликована | 2026-10-27 | [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems) |
+| 6 | [Angular in Depth — Part 1: Architecture and Components](https://enterprise-frontend-workshop.hashnode.dev/angular-in-depth-part-1-architecture-and-components) | Опубликована на Hashnode, VK, LinkedIn и XING | 2026-11-02 | [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/angular-in-depth-part-1-architecture-and-components) |
 
 **Правила для всех чатов проекта и участников:**
 
@@ -113,6 +114,8 @@
 OpenCode может стать альтернативой, если доступ к VS Code или его расширениям ограничен. При этом доступность моделей и провайдеров ИИ по-прежнему может зависеть от региона и сетевых ограничений. Инструкция по NX останется независимой от конкретной IDE или редактора.
 
 ### Этап 2 — Angular подробно
+
+**Статус: в работе — часть 1 опубликована на Hashnode, VK, LinkedIn и XING.**
 
 **Цель:** определить структуру Angular-приложения и освоить основные механизмы разработки frontend.
 
