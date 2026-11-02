@@ -18,7 +18,9 @@ These rules are mandatory for every contribution. Apply them to new code and whe
   - `@workshop:facades`, `@workshop:dal`, `@workshop:base`
   - `@workshop:def:consts`, `@workshop:def:abstracts`, `@workshop:def:classes`, `@workshop:def:enums`, `@workshop:def:types`, `@workshop:def:interfaces`, `@workshop:def:records`
   - `@workshop:ui`, `@workshop:mock`, `@workshop:personal-finance:pages`, `@workshop:common`
-- Do not add alternate aliases for the same library or use relative imports to bypass the established public aliases between libraries.
+- Do not add alternate aliases for the same library.
+- Use relative imports when referencing files or entry points within the same NX project.
+- Use established public TypeScript path aliases only when importing from a different NX project; do not use relative paths to bypass library boundaries.
 - Application-specific Angular components, directives, pipes, and services remain in their feature libraries, each in its own appropriately named file. Do not declare additional interfaces or types alongside them.
 - Every interface property and method must have an English documentation comment.
 - Every explicitly declared `protected` or `public` member must have an English documentation comment. Prefer `protected` for component-internal members; use `public` only when the member is intentionally part of a public API.
@@ -41,7 +43,9 @@ These rules are mandatory for every contribution. Apply them to new code and whe
 - All mock/demo data must live in the single shared library at `libs/mock`, not inside an application- or feature-specific library.
 - The `@workshop:mock` alias must point to `libs/mock/src/index.ts`.
 - The mock library has no tests and must not contain Vitest configuration or test targets.
-- Other libraries are expected to have tests. Keep their TypeScript test configuration and Vitest configuration in place, including `libs/shared/definitions`.
+- Every NX project except `libs/mock` must contain at least one executable test recognized by its configured test runner. This includes applications and libraries.
+- Minimal smoke tests are acceptable initially; they must compile and execute successfully. Expand them with meaningful behavior coverage in the dedicated testing articles.
+- Keep TypeScript test configuration and Vitest configuration in place for projects using Vitest, including `libs/shared/definitions`.
 - Do not embed mock/demo datasets in components, pages, stores, or services. Import them from `@workshop:mock`.
 
 ## Agent entry points
