@@ -700,3 +700,7 @@ export const ROUTE = {
 - [Angular — Pipes](https://angular.dev/guide/templates/pipes)
 - [Angular — Signals](https://angular.dev/guide/signals)
 - [Angular — Routing](https://angular.dev/guide/routing)
+
+## Ветка реализации
+
+Полная реализация, соответствующая этой статье, находится в [ветке `Angular-in-Depth`](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth) репозитория Enterprise Frontend Workshop.
