@@ -294,6 +294,7 @@ TypeScript path aliases определяются централизованно 
 | `@workshop:def:records` | Definitions: records |
 | `@workshop:def:types` | Definitions: types |
 | `@workshop:personal-finance:pages` | Страницы Personal Finance |
+| `@workshop:common` | Общая конфигурация приложения из `common/environments/common.ts` |
 
 Не следует добавлять короткие альтернативы вроде `base`, `dal` или `facades` для тех же самых библиотек. Два имени для одного и того же пути создают неоднозначность и постепенно приводят к разным стилям импортов. Алиас — это часть публичного контракта библиотеки, поэтому он должен быть единообразным.
 
