@@ -1,3 +1,5 @@
+import type { TransactionType } from '../types/transaction-type';
+
 /** Represents one income or expense entry in Personal Finance. */
 export interface Transaction {
   /** Identifies the transaction uniquely. */
