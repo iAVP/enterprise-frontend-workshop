@@ -1,12 +1,6 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
-import type { FieldValidationResult } from '@workshop:def:interfaces';
+import { Component, ViewChild, output } from '@angular/core';
+import type { FieldValidationResult, LoginCredentials } from '@workshop:def:interfaces';
 import { EmailValidatorDirective, PasswordValidatorDirective } from '@workshop:ui';
-
-/** Contains credentials emitted after successful local form validation. */
-export interface LoginCredentials {
-  email: string;
-  password: string;
-}
 
 /** Presents the login form and coordinates reusable field validators. */
 @Component({
@@ -18,53 +12,55 @@ export interface LoginCredentials {
 })
 export class LoginComponent {
   /** Emits credentials after both fields pass local validation. */
-  @Output() readonly loginRequested = new EventEmitter<LoginCredentials>();
+  readonly loginRequested = output<LoginCredentials>();
 
+  /** References the email validator hosted by the login form. */
   @ViewChild(EmailValidatorDirective)
   private emailValidator!: EmailValidatorDirective;
 
+  /** References the password validator hosted by the login form. */
   @ViewChild(PasswordValidatorDirective)
   private passwordValidator!: PasswordValidatorDirective;
 
   /** Stores the current email value. */
-  email = '';
+  protected email = '';
 
   /** Stores the current password value. */
-  password = '';
+  protected password = '';
 
   /** Holds the current email validation message. */
-  emailError = '';
+  protected emailError = '';
 
   /** Holds the current password validation message. */
-  passwordError = '';
+  protected passwordError = '';
 
   /** Stores the current email value. */
-  onEmailInput(value: string): void {
+  protected onEmailInput(value: string): void {
     this.email = value;
   }
 
   /** Stores the current password value. */
-  onPasswordInput(value: string): void {
+  protected onPasswordInput(value: string): void {
     this.password = value;
   }
 
   /** Updates the email validation feedback. */
-  onEmailValidationChange(result: FieldValidationResult): void {
+  protected onEmailValidationChange(result: FieldValidationResult): void {
     this.emailError = result.message;
   }
 
   /** Updates the password validation feedback. */
-  onPasswordValidationChange(result: FieldValidationResult): void {
+  protected onPasswordValidationChange(result: FieldValidationResult): void {
     this.passwordError = result.message;
   }
 
   /** Validates both fields and emits credentials when locally valid. */
-  onSubmit(event: SubmitEvent): void {
+  protected onSubmit(event: SubmitEvent): void {
     event.preventDefault();
-    this.emailValidator.validateNow();
-    this.passwordValidator.validateNow();
+    const emailResult = this.emailValidator.validateNow();
+    const passwordResult = this.passwordValidator.validateNow();
 
-    if (this.emailError || this.passwordError) {
+    if (!emailResult.valid || !passwordResult.valid) {
       return;
     }
 
@@ -75,7 +71,7 @@ export class LoginComponent {
   }
 
   /** Clears the form and resets the validation directives. */
-  onCancel(): void {
+  protected onCancel(): void {
     this.email = '';
     this.password = '';
     this.emailError = '';
