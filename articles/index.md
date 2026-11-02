@@ -9,6 +9,7 @@ This index is the central navigation source for the article series. Keep the pub
 - [3. Architecture in Practice: Decisions Behind Enterprise Frontend Systems](#3-architecture-in-practice-decisions-behind-enterprise-frontend-systems)
 - [4. NX Workspace — From Architecture to Tooling](#4-nx-workspace--from-architecture-to-tooling)
 - [5. Development Tools: WebStorm, Visual Studio Code and OpenCode](#5-development-tools-webstorm-visual-studio-code-and-opencode)
+- [6. Angular in Depth — Part 1: Architecture and Components](#6-angular-in-depth--part-1-architecture-and-components)
 - [Editorial rules](#editorial-rules)
 
 ## 1. The Road to Architecture
@@ -107,6 +108,8 @@ This index is the central navigation source for the article series. Keep the pub
 - [Development-Tools-WebStorm-Visual-Studio-Code-and-OpenCode](https://github.com/iAVP/enterprise-frontend-workshop/tree/Development-Tools-WebStorm-Visual-Studio-Code-and-OpenCode)
 
 ## 6. Angular in Depth — Part 1: Architecture and Components
+
+- **English publication:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/angular-in-depth-part-1-architecture-and-components)
 
 ### Repository materials
 [English](Angular-in-Depth/README.md) | [русский](Angular-in-Depth/README.ru.md) | [deutsch](Angular-in-Depth/README.de.md)
