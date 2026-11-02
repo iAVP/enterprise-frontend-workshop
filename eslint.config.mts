@@ -4,7 +4,8 @@ export default [
     ...nx.configs["flat/base"],
     ...nx.configs["flat/typescript"],
     ...nx.configs["flat/javascript"],
-    {      "ignores": [
+    {
+      "ignores": [
         "**/dist",
         "**/out-tsc",
         "**/vitest.config.*.timestamp*"
@@ -32,14 +33,22 @@ export default [
                                 "tag:facades",
                                 "tag:definitions",
                                 "tag:base",
-                            "tag:ui",
-                            "tag:personal-finance-pages"
+                                "tag:ui",
+                                "level:personal-finance-pages"
                             ]
                         },
                         {
                             sourceTag: "tag:facades",
                             onlyDependOnLibsWithTags: [
                                 "tag:dal",
+                                "tag:base",
+                                "tag:definitions"
+                            ]
+                        },
+                        {
+                            sourceTag: "tag:ui",
+                            onlyDependOnLibsWithTags: [
+                                "tag:facades",
                                 "tag:base",
                                 "tag:definitions"
                             ]
@@ -62,12 +71,13 @@ export default [
                             onlyDependOnLibsWithTags: []
                         },
                         {
-                            sourceTag: "tag:ui",
-                            onlyDependOnLibsWithTags: ["tag:definitions"]
-                        },
-                        {
-                            sourceTag: "tag:personal-finance-pages",
-                            onlyDependOnLibsWithTags: ["tag:ui", "tag:definitions"]
+                            sourceTag: "level:personal-finance-pages",
+                            onlyDependOnLibsWithTags: [
+                                "tag:ui",
+                                "tag:facades",
+                                "tag:base",
+                                "tag:definitions"
+                            ]
                         }
                     ]
                 }
