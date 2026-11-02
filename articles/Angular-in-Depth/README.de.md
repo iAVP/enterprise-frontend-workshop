@@ -680,3 +680,18 @@ Prüfen Sie nach dem Start der Anwendung die wichtigsten Benutzerabläufe:
 - die Seite neu laden und überprüfen, ob die Transaktionsliste aus `localStorage` wiederhergestellt wird.
 
 Die Personal-Finance-Anwendung verwendet Port `6333`. Die Links zu den lokalen Seiten befinden sich im Abschnitt mit den Screenshots.
+
+## Fazit
+
+Komponenten verwalten die Darstellung und den lokalen Zustand des Formulars, Direktiven kapseln wiederverwendbares Verhalten, Pipes formatieren Werte, und Routes sowie gemeinsame Services verbinden die Seiten der Anwendung.
+
+Die Platzierung des Codes richtet sich nach seiner Verantwortung: Wiederverwendbare UI-Direktiven gehören in Shared UI, gemeinsame Verträge und Definitionen nach Definitions, Demodaten in die gemeinsame Mock-Bibliothek und die Seiten sowie der derzeit lokale Zustand von Personal Finance in die anwendungsspezifische Bibliothek.
+
+## Offizielle Dokumentation
+
+- [Angular — Components](https://angular.dev/guide/components)
+- [Angular — Templates](https://angular.dev/guide/templates)
+- [Angular — Directives](https://angular.dev/guide/directives)
+- [Angular — Pipes](https://angular.dev/guide/templates/pipes)
+- [Angular — Signals](https://angular.dev/guide/signals)
+- [Angular — Routing](https://angular.dev/guide/routing)
