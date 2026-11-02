@@ -685,3 +685,18 @@ export const ROUTE = {
 - перезагрузить страницу и убедиться, что список транзакций восстановился из `localStorage`.
 
 Приложение Personal Finance использует порт `6333`. Ссылки на локальные страницы приведены в разделе со скриншотами.
+
+## Итог
+
+Компоненты управляют представлением и локальным состоянием формы, директивы выносят повторно используемое поведение, pipes форматируют значения, а маршруты и общий сервис связывают страницы приложения.
+
+Размещение кода определяется его ответственностью: переиспользуемые UI-директивы находятся в Shared UI, общие контракты и определения — в Definitions, демонстрационные данные — в общей Mock library, а страницы и пока локальное состояние Personal Finance — в app-specific библиотеке.
+
+## Официальная документация
+
+- [Angular — Components](https://angular.dev/guide/components)
+- [Angular — Templates](https://angular.dev/guide/templates)
+- [Angular — Directives](https://angular.dev/guide/directives)
+- [Angular — Pipes](https://angular.dev/guide/templates/pipes)
+- [Angular — Signals](https://angular.dev/guide/signals)
+- [Angular — Routing](https://angular.dev/guide/routing)

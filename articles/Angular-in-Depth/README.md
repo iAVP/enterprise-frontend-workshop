@@ -680,3 +680,18 @@ After the application starts, verify the main user scenarios:
 - reload the page and verify that the transaction list is restored from `localStorage`.
 
 The Personal Finance application uses port `6333`. Links to the local pages are provided in the screenshots section.
+
+## Conclusion
+
+Components manage presentation and local form state, directives extract reusable behavior, pipes format values, and routes and shared services connect the application pages.
+
+Code placement follows responsibility: reusable UI directives belong in Shared UI, shared contracts and definitions belong in Definitions, demonstration data belongs in the shared Mock library, and Personal Finance pages and their currently local state belong in the app-specific library.
+
+## Official Documentation
+
+- [Angular — Components](https://angular.dev/guide/components)
+- [Angular — Templates](https://angular.dev/guide/templates)
+- [Angular — Directives](https://angular.dev/guide/directives)
+- [Angular — Pipes](https://angular.dev/guide/templates/pipes)
+- [Angular — Signals](https://angular.dev/guide/signals)
+- [Angular — Routing](https://angular.dev/guide/routing)
