@@ -2,8 +2,6 @@ import { Injectable, computed, signal } from '@angular/core';
 import type { Transaction } from '@workshop:def:interfaces';
 import { DEMO_TRANSACTIONS } from '@workshop:mock';
 
-const STORAGE_KEY = 'personal-finance.transactions';
-
 /** Owns the Personal Finance transaction collection and its derived totals. */
 @Injectable({ providedIn: 'root' })
 export class TransactionStore {
@@ -45,7 +43,7 @@ export class TransactionStore {
     }
 
     try {
-      const saved = localStorage.getItem(STORAGE_KEY);
+      const saved = localStorage.getItem('personal-finance.transactions');
       if (saved === null) {
         return DEMO_TRANSACTIONS;
       }
@@ -61,7 +59,7 @@ export class TransactionStore {
   private saveTransactions(items: Transaction[]): void {
     this.state.set(items);
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+      localStorage.setItem('personal-finance.transactions', JSON.stringify(items));
     } catch {
       // The current session remains usable without browser storage.
     }
