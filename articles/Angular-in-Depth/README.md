@@ -695,3 +695,7 @@ Code placement follows responsibility: reusable UI directives belong in Shared U
 - [Angular — Pipes](https://angular.dev/guide/templates/pipes)
 - [Angular — Signals](https://angular.dev/guide/signals)
 - [Angular — Routing](https://angular.dev/guide/routing)
+
+## Implementation Branch
+
+The complete implementation accompanying this article is available in the [`Angular-in-Depth` branch](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth) of the Enterprise Frontend Workshop repository.
