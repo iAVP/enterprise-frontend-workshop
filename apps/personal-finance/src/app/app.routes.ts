@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { ROUTE } from '@workshop:def:consts';
+import { TransactionType } from '@workshop:def:enums';
 
 export const appRoutes: Routes = [
   {
@@ -14,13 +15,13 @@ export const appRoutes: Routes = [
   },
   {
     path: ROUTE.ADD_INCOME,
-    data: { type: 'income' },
+    data: { type: TransactionType.Income },
     loadComponent: () =>
       import('@workshop:personal-finance:pages').then((pages) => pages.TransactionFormPage),
   },
   {
     path: ROUTE.ADD_EXPENSE,
-    data: { type: 'expense' },
+    data: { type: TransactionType.Expense },
     loadComponent: () =>
       import('@workshop:personal-finance:pages').then((pages) => pages.TransactionFormPage),
   },

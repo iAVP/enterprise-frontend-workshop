@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { COMMON } from '@workshop:common';
 import { ROUTE } from '@workshop:def:consts';
-import type { TransactionType } from '@workshop:def:types';
+import { TransactionType } from '@workshop:def:enums';
 import { TransactionStore } from '../../state/transaction.store';
 
 /** Creates an income or expense according to the active route data. */
@@ -42,7 +42,7 @@ export class TransactionFormPage {
 
   /** Returns the heading for the active transaction kind. */
   protected get title(): string {
-    return this.type === 'income' ? 'Add income' : 'Add expense';
+    return this.type === TransactionType.Income ? 'Add income' : 'Add expense';
   }
 
   /** Validates the form, stores the transaction, and returns to the dashboard. */

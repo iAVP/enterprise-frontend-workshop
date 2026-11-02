@@ -44,6 +44,10 @@ These rules are mandatory for every contribution. Apply them to new code and whe
 - Other libraries are expected to have tests. Keep their TypeScript test configuration and Vitest configuration in place, including `libs/shared/definitions`.
 - Do not embed mock/demo datasets in components, pages, stores, or services. Import them from `@workshop:mock`.
 
+## Agent entry points
+
+- Keep `CLAUDE.md` as a regular text file containing exactly `@AGENTS.md`, so Claude Code imports these shared instructions. Do not make `CLAUDE.md` a filesystem symlink.
+
 ## Quality and workflow
 
 - Preserve the existing Nx project conventions, aliases, and module-boundary constraints.
