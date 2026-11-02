@@ -116,6 +116,25 @@
 ### Ветки GitHub
 - [Development-Tools-WebStorm-Visual-Studio-Code-and-OpenCode](https://github.com/iAVP/enterprise-frontend-workshop/tree/Development-Tools-WebStorm-Visual-Studio-Code-and-OpenCode)
 
+## 6. Angular in Depth — Часть 1: Архитектура и компоненты
+
+### Материалы в репозитории
+[English](Angular-in-Depth/README.md) | [Русский](Angular-in-Depth/README.ru.md) | [Deutsch](Angular-in-Depth/README.de.md)
+
+### Содержание статьи
+- [Архитектура до компонентов](Angular-in-Depth/README.ru.md#архитектура-до-компонентов)
+- [Компонент LoginComponent: от пользовательского ввода до обновления представления](Angular-in-Depth/README.ru.md#компонент-logincomponent-от-пользовательского-ввода-до-обновления-представления)
+- [Change Detection: как Angular обновляет представление](Angular-in-Depth/README.ru.md#change-detection-как-angular-обновляет-представление)
+- [Почему мы используем событие input](Angular-in-Depth/README.ru.md#почему-мы-используем-событие-input)
+- [Директивы: повторное использование поведения](Angular-in-Depth/README.ru.md#директивы-повторное-использование-поведения)
+- [Pipes: форматирование отображаемых значений](Angular-in-Depth/README.ru.md#pipes-форматирование-отображаемых-значений)
+- [Implementation: приложение Personal Finance](Angular-in-Depth/README.ru.md#implementation-приложение-personal-finance)
+- [Проверка перед публикацией](Angular-in-Depth/README.ru.md#проверка-перед-публикацией)
+- [Итог](Angular-in-Depth/README.ru.md#итог)
+
+### Ветки GitHub
+- [Angular-in-Depth](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth)
+
 ## Редакционные правила
 
 - Каждая запись статьи должна строго следовать одному шаблону: `## N. Название статьи`, `### Материалы в репозитории` с тремя ссылками на языковые версии в одной строке через ` | `, `### Содержание статьи` со ссылками на разделы и `### Ветки GitHub` только с ветками самой этой статьи. Не вставлять строку статуса в шаблон записи.
