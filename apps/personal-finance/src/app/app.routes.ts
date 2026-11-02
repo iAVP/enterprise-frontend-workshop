@@ -15,13 +15,13 @@ export const appRoutes: Routes = [
   },
   {
     path: ROUTE.ADD_INCOME,
-    data: { type: TransactionType.Income },
+    data: { type: TransactionType.income },
     loadComponent: () =>
       import('@workshop:personal-finance:pages').then((pages) => pages.TransactionFormPage),
   },
   {
     path: ROUTE.ADD_EXPENSE,
-    data: { type: TransactionType.Expense },
+    data: { type: TransactionType.expense },
     loadComponent: () =>
       import('@workshop:personal-finance:pages').then((pages) => pages.TransactionFormPage),
   },
