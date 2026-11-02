@@ -54,3 +54,22 @@ These rules are mandatory for every contribution. Apply them to new code and whe
 - When moving files, update all imports and public exports.
 - Verify the resulting Git tree and inspect changed files after committing.
 - Never claim tests, lint, or builds were run unless they were actually executed. Report any checks that could not be run.
+
+
+## Formatting and source-file readability
+
+- Create and modify source files with readable, conventional formatting. Never compress HTML templates, SCSS, or TypeScript into a single line to save space.
+- Use a tab character for indentation, with a tab width of 4 columns. Do not use spaces for indentation.
+- Preserve meaningful line breaks and indentation that reflect the document structure.
+- In HTML templates, put complex elements and their attributes on separate lines when this improves readability. Keep Angular control-flow blocks formatted with spaces, for example `@if (condition) {` and a separately indented body and closing brace.
+- In SCSS, put selectors and declarations on separate lines, use a separate line for each declaration, and format nested rules as clearly separated blocks. Keep blank lines between logically distinct nested blocks where useful.
+- Apply the same formatting discipline to code examples in articles. Examples must be copyable, readable source code, not minified snippets.
+- Do not introduce mixed indentation. Tabs are the required indentation character; spaces may be used only where syntax requires them, such as alignment inside string literals.
+
+## Type safety and enum usage
+
+- When a value is represented by a TypeScript enum, compare and assign enum members rather than string or numeric literals.
+- Never replace an enum comparison with a string comparison such as `type === 'income'` or `type === 'expense'`. Use the corresponding member, for example `type === TransactionType.income` or `type === TransactionType.expense`.
+- Import the enum from its established definitions alias. Do not duplicate enum values as string unions, magic strings, or local constants.
+- Keep route data, component logic, templates, mock data, and documentation consistent with the enum's actual member names and underlying values.
+- Before finishing a change, inspect all related templates and TypeScript files for string-based checks or assignments that bypass the enum contract.
