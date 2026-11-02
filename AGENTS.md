@@ -14,7 +14,11 @@ These rules are mandatory for every contribution. Apply them to new code and whe
   - interfaces: `interfaces/`
   - records: `records/`
 - Each definition file contains one definition only. Export definitions through the matching `index.ts`.
-- Use the established path aliases from `tsconfig.base.json`: `@workshop:def:consts`, `@workshop:def:abstracts`, `@workshop:def:classes`, `@workshop:def:enums`, `@workshop:def:types`, `@workshop:def:interfaces`, `@workshop:def:records`, and `@workshop:ui`.
+- All TypeScript path aliases must use the `@workshop:` namespace. Never create short or duplicate aliases without this prefix. Use the established names:
+  - `@workshop:facades`, `@workshop:dal`, `@workshop:base`
+  - `@workshop:def:consts`, `@workshop:def:abstracts`, `@workshop:def:classes`, `@workshop:def:enums`, `@workshop:def:types`, `@workshop:def:interfaces`, `@workshop:def:records`
+  - `@workshop:ui`, `@workshop:mock`, `@workshop:personal-finance:pages`, `@workshop:common`
+- Do not add alternate aliases for the same library or use relative imports to bypass the established public aliases between libraries.
 - Application-specific Angular components, directives, pipes, and services remain in their feature libraries, each in its own appropriately named file. Do not declare additional interfaces or types alongside them.
 - Every interface property and method must have an English documentation comment.
 - Every explicitly declared `protected` or `public` member must have an English documentation comment. Prefer `protected` for component-internal members; use `public` only when the member is intentionally part of a public API.
@@ -34,10 +38,11 @@ These rules are mandatory for every contribution. Apply them to new code and whe
 
 ## Mock data
 
-- All mock/demo data must live in a dedicated library at `libs/personal-finance/mock`.
+- All mock/demo data must live in the single shared library at `libs/mock`, not inside an application- or feature-specific library.
+- The `@workshop:mock` alias must point to `libs/mock/src/index.ts`.
 - The mock library has no tests and must not contain Vitest configuration or test targets.
 - Other libraries are expected to have tests. Keep their TypeScript test configuration and Vitest configuration in place, including `libs/shared/definitions`.
-- Do not embed mock/demo datasets in components, pages, stores, or services. Import them from the mock library.
+- Do not embed mock/demo datasets in components, pages, stores, or services. Import them from `@workshop:mock`.
 
 ## Quality and workflow
 

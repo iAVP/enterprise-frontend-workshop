@@ -1,8 +1,0 @@
-{
-  "name": "personal-finance-mock",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/personal-finance/mock/src",
-  "projectType": "library",
-  "tags": ["level:personal-finance-mock"],
-  "targets": {}
-}
