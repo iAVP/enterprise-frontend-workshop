@@ -612,13 +612,13 @@ export interface Transaction {
 
 **Dashboard**
 
-[Открыть Dashboard](http://localhost:4200/dashboard)
+Ссылка на Dashboard на вашей локальной машине: [http://localhost:4200/dashboard](http://localhost:4200/dashboard)
 
 ![Personal Finance — Dashboard](../../__screenshots__/personal-finance-dashboard.jpg)
 
 **Добавление дохода**
 
-[Открыть форму добавления дохода](http://localhost:4200/add-income)
+Ссылка на форму добавления дохода на вашей локальной машине: [http://localhost:4200/add-income](http://localhost:4200/add-income)
 
 ![Add income](../../__screenshots__/add-income.jpg)
 
@@ -628,7 +628,7 @@ export interface Transaction {
 
 **Добавление расхода**
 
-[Открыть форму добавления расхода](http://localhost:4200/add-expense)
+Ссылка на форму добавления расхода на вашей локальной машине: [http://localhost:4200/add-expense](http://localhost:4200/add-expense)
 
 ![Add expense](../../__screenshots__/add-expense.jpg)
 
@@ -638,7 +638,7 @@ export interface Transaction {
 
 **Login**
 
-[Открыть страницу Login](http://localhost:4200/login)
+Ссылка на страницу Login на вашей локальной машине: [http://localhost:4200/login](http://localhost:4200/login)
 
 Некорректные значения и сообщения валидации:
 
