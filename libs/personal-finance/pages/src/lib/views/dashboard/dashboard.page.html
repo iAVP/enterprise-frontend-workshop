@@ -1,33 +1,51 @@
 <main class="dashboard">
 	<header class="page-header">
-		<div><h1>Personal Finance</h1>
-			<p>Overview of your income and expenses</p></div>
-		<nav aria-label="Transaction actions"><a [routerLink]="'/'+routes.ADD_INCOME">Add income</a><a
-			[routerLink]="'/'+routes.ADD_EXPENSE">Add expense</a></nav>
+		<div>
+			<h1>Personal Finance</h1>
+			<p>Overview of your income and expenses</p>
+		</div>
+		<nav aria-label="Transaction actions">
+			<a [routerLink]="'/' + routes.ADD_INCOME">Add income</a>
+			<a [routerLink]="'/' + routes.ADD_EXPENSE">Add expense</a>
+		</nav>
 	</header>
+
 	<section class="summary" aria-label="Financial summary">
-		<article><h2>Current balance</h2>
-			<p class="amount">{{ store.balance()|currency:currency:'symbol':'1.2-2' }}</p></article>
-		<article><h2>Income</h2>
-			<p>{{ store.totalIncome()|currency:currency:'symbol':'1.2-2' }}</p></article>
-		<article><h2>Expenses</h2>
-			<p>{{ store.totalExpense()|currency:currency:'symbol':'1.2-2' }}</p></article>
+		<article>
+			<h2>Current balance</h2>
+			<p class="amount">{{ store.balance() | currency: currency : 'symbol' : '1.2-2' }}</p>
+		</article>
+		<article>
+			<h2>Income</h2>
+			<p>{{ store.totalIncome() | currency: currency : 'symbol' : '1.2-2' }}</p>
+		</article>
+		<article>
+			<h2>Expenses</h2>
+			<p>{{ store.totalExpense() | currency: currency : 'symbol' : '1.2-2' }}</p>
+		</article>
 	</section>
-	<section class="transactions"><h2>Transactions</h2>
+
+	<section class="transactions">
+		<h2>Transactions</h2>
 		@if (store.transactions().length) {
 			<ul>
 				@for (transaction of store.transactions(); track transaction.id) {
 					<li>
-						<time [attr.datetime]="transaction.date">{{ transaction.date|date:'mediumDate' }}</time>
-						<span>{{ transaction.description }}</span><span
-						[class.income]="transaction.type===TransactionType.Income">{{ transaction.type === TransactionType.Income ? '+' : '−' }}
-						{{
-									transaction.amount|currency:currency:'symbol':'1.2-2' }}</span>
+						<time [attr.datetime]="transaction.date">
+							{{ transaction.date | date: 'mediumDate' }}
+						</time>
+						<span>{{ transaction.description }}</span>
+						<span
+							[class.income]="transaction.type === TransactionType.income"
+						>
+							{{ transaction.type === TransactionType.income ? '+' : '−' }}
+							{{ transaction.amount | currency: currency : 'symbol' : '1.2-2' }}
+						</span>
 					</li>
 				}
 			</ul>
 		} @else {
 			<p>No transactions yet.</p>
-		}</section>
+		}
+	</section>
 </main>
-
