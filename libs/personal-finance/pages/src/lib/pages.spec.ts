@@ -1,3 +1,5 @@
+import '@angular/compiler';
+
 import { DashboardPage } from './views/dashboard/dashboard.page';
 import { LoginPage } from './views/login/login.page';
 import { TransactionFormPage } from './views/transaction-form/transaction-form.page';
