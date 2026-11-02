@@ -695,3 +695,7 @@ Die Platzierung des Codes richtet sich nach seiner Verantwortung: Wiederverwendb
 - [Angular — Pipes](https://angular.dev/guide/templates/pipes)
 - [Angular — Signals](https://angular.dev/guide/signals)
 - [Angular — Routing](https://angular.dev/guide/routing)
+
+## Implementierungs-Branch
+
+Die vollständige Implementierung zu diesem Artikel befindet sich im [Branch `Angular-in-Depth`](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth) des Repositorys Enterprise Frontend Workshop.
