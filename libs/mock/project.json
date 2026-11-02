@@ -3,6 +3,6 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/mock/src",
   "projectType": "library",
-  "tags": ["level:shared", "tag:mock"],
+  "tags": ["level:mock"],
   "targets": {}
 }

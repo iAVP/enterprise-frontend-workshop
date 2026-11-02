@@ -1,4 +1,4 @@
-import type { TransactionType } from '@workshop:def:enums';
+import type { TransactionType } from '../enums';
 
 /** Represents one income or expense entry in Personal Finance. */
 export interface Transaction {

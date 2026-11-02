@@ -34,11 +34,20 @@ export default [
                                 "tag:definitions",
                                 "tag:base",
                                 "tag:ui",
+                                "level:mock",
                                 "level:personal-finance-pages"
                             ]
                         },
                         {
                             sourceTag: "tag:facades",
+                            onlyDependOnLibsWithTags: [
+                                "tag:dal",
+                                "tag:base",
+                                "level:mock",
+                                "tag:definitions"
+                            ]
+                        },{
+                            sourceTag: "level:mock",
                             onlyDependOnLibsWithTags: [
                                 "tag:dal",
                                 "tag:base",
@@ -50,6 +59,7 @@ export default [
                             onlyDependOnLibsWithTags: [
                                 "tag:facades",
                                 "tag:base",
+                                "level:mock",
                                 "tag:definitions"
                             ]
                         },
@@ -76,6 +86,7 @@ export default [
                                 "tag:ui",
                                 "tag:facades",
                                 "tag:base",
+                                "level:mock",
                                 "tag:definitions"
                             ]
                         }
