@@ -606,7 +606,51 @@ export interface Transaction {
 
 `TransactionFormPage` обслуживает добавление дохода и расхода. Тип операции передаётся через `data` маршрута. Форма использует базовые HTML-атрибуты и обработчик отправки; Angular Forms в этой реализации не вводится.
 
-### 7.4. Централизованные маршруты
+### 7.4. Интерфейс приложения
+
+Ниже приведены основные страницы демонстрационного приложения и состояния форм. Ссылки открывают соответствующие маршруты локально запущенного приложения (по умолчанию NX использует адрес `http://localhost:4200`).
+
+**Dashboard**
+
+[Открыть Dashboard](http://localhost:4200/dashboard)
+
+![Personal Finance — Dashboard](../../__screenshots__/personal-finance-dashboard.jpg)
+
+**Добавление дохода**
+
+[Открыть форму добавления дохода](http://localhost:4200/add-income)
+
+![Add income](../../__screenshots__/add-income.jpg)
+
+Проверка формы при пустых или некорректных значениях:
+
+![Add income — validation error](../../__screenshots__/add-income-validation.jpg)
+
+**Добавление расхода**
+
+[Открыть форму добавления расхода](http://localhost:4200/add-expense)
+
+![Add expense](../../__screenshots__/add-expense.jpg)
+
+Проверка формы при пустых или некорректных значениях:
+
+![Add expense — validation error](../../__screenshots__/add-expense-validation.jpg)
+
+**Login**
+
+[Открыть страницу Login](http://localhost:4200/login)
+
+Некорректные значения и сообщения валидации:
+
+![Login — validation errors](../../__screenshots__/login-validation.jpg)
+
+Корректно заполненная демонстрационная форма:
+
+![Login — valid input](../../__screenshots__/login-valid.jpg)
+
+Login в этом примере демонстрирует только клиентскую валидацию и переход на Dashboard. Он не выполняет реальную аутентификацию и не должен восприниматься как готовый механизм безопасности.
+
+### 7.5. Централизованные маршруты
 
 Все значения маршрутов находятся в `libs/shared/definitions/src/lib/constants/routes.ts`:
 
