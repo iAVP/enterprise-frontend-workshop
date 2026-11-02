@@ -149,6 +149,163 @@ Angular предоставляет механизмы, помогающие вы
 В следующем разделе мы перейдём от архитектурных принципов к первому конкретному строительному блоку — компонентам Angular, шаблонам и директивам.
 
 
+
+### 1.7. Структура workspace: где размещается код и почему
+
+Теперь переведём архитектурные границы в структуру NX workspace. Каталог сам по себе не делает код переиспользуемым или независимым. Для каждого проекта и папки должна быть понятная ответственность, а направление зависимостей должно оставаться контролируемым.
+
+В нашем учебном workspace используются четыре основных области:
+
+- `apps` — точки сборки и запуска приложений.
+- `libs` — библиотеки с функциональностью и контрактами, разделённые по области ответственности.
+- `common` — ресурсы и конфигурация, общие для приложений, но не являющиеся самостоятельной библиотекой бизнес-логики.
+- корневые конфигурационные файлы — правила и настройки всего workspace: NX, TypeScript, ESLint, форматирование и инструкции для инструментов разработки.
+
+#### Приложение — composition root
+
+`apps/personal-finance` содержит конфигурацию конкретного приложения: bootstrap, маршруты верхнего уровня, providers, корневой компонент и настройки сборки. Здесь приложение собирает необходимые библиотеки и связывает их в работающую систему.
+
+Приложение не должно становиться местом хранения всей функциональности. Страницы, переиспользуемые компоненты, контракты и данные имеют собственные области ответственности.
+
+#### Feature libraries — функциональность конкретного продукта
+
+`libs/personal-finance/pages` содержит страницы и компоненты, относящиеся именно к Personal Finance:
+
+```text
+libs/personal-finance/pages/
+└── src/
+    ├── index.ts
+    └── lib/
+        ├── components/
+        │   └── login/
+        ├── state/
+        │   └── transaction.store.ts
+        └── views/
+            ├── dashboard/
+            ├── login/
+            └── transaction-form/
+```
+
+Папка `views` предназначена для страниц, которые участвуют в маршрутизации. `components` — для составных UI-компонентов, используемых страницами. `state` содержит состояние, пока оно имеет локальную область применения внутри этой библиотеки.
+
+Мы не создаём вложенный путь `pages/src/lib/pages`: название библиотеки уже определяет область ответственности. Повторять его в каждом уровне дерева нет смысла.
+
+В небольшом учебном приложении `TransactionStore` пока находится рядом со страницами, поскольку его потребитель и область использования ограничены этой feature library. Это осознанное упрощение, а не универсальное правило. Если состояние и прикладные операции понадобятся нескольким библиотекам или станут самостоятельной функциональной границей, их следует вынести, например, в `libs/personal-finance/facades`. Не нужно помещать feature-specific store в `libs/shared/facades`: shared предназначен для действительно общих возможностей, а не для кода, который просто используется несколькими компонентами одного приложения.
+
+#### Shared libraries — общие контракты и технические возможности
+
+`libs/shared` содержит код, который не принадлежит исключительно Personal Finance и может использоваться другими приложениями или feature libraries.
+
+| Библиотека | Ответственность |
+|---|---|
+| `shared/definitions` | Общие контракты и определения: interfaces, types, enums, constants, classes, abstracts и records |
+| `shared/ui` | Переиспользуемые UI-компоненты, директивы и pipes |
+| `shared/base` | Общая базовая функциональность, если она действительно нужна нескольким частям системы |
+| `shared/facades` | Общие фасады, координирующие взаимодействие с разделяемыми возможностями |
+| `shared/dal` | Общая инфраструктура доступа к данным, если она не зависит от конкретной feature |
+
+В текущем примере наиболее содержательные библиотеки — `definitions` и `ui`. `base`, `facades` и `dal` присутствуют как отдельные проекты workspace, но их наличие не означает, что в них нужно искусственно размещать код. Библиотека получает реализацию тогда, когда для неё появляется реальная ответственность.
+
+Feature-specific доступ к данным при необходимости следует размещать в области соответствующей функции, например `libs/personal-finance/dal`, а не автоматически в `libs/shared/dal`. Критерий — область ответственности и возможность независимого повторного использования.
+
+#### Definitions — определения по видам, а не по функциональным папкам
+
+В `libs/shared/definitions/src/lib` определения группируются по своей природе:
+
+```text
+definitions/src/lib/
+├── abstracts/
+├── classes/
+├── constants/
+├── enums/
+├── interfaces/
+├── records/
+└── types/
+```
+
+Каждое определение находится в собственном TypeScript-файле. Например:
+
+- `interfaces/transaction.ts` — контракт операции;
+- `enums/transaction-type.enum.ts` — числовой тип операции;
+- `interfaces/login-credentials.ts` — контракт данных формы входа;
+- `interfaces/field-validation-result.ts` — общий результат проверки;
+- `constants/routes.ts` — централизованные значения маршрутов;
+- `constants/validation.regex.ts` — общие регулярные выражения.
+
+Здесь не следует создавать папки `models`, `utils` или `helpers` для смешивания разных видов определений. Категория определяется видом сущности, а не тем, какая страница её использует.
+
+Публичные экспорты собраны в индексах соответствующих категорий и доступны через алиасы. Это даёт библиотеке явную публичную поверхность и избавляет потребителей от импорта по внутренним путям.
+
+#### Mock — отдельная общая библиотека
+
+Демонстрационные данные находятся в `libs/mock`, а не внутри `libs/personal-finance` и не внутри конкретной feature library:
+
+```text
+libs/mock/
+├── project.json
+├── tsconfig.json
+├── tsconfig.lib.json
+└── src/
+    ├── index.ts
+    └── lib/
+        └── demo-transactions.mock.ts
+```
+
+Mock-данные могут потребоваться не только Personal Finance, но и тестовым сценариям, демонстрационным страницам или другим приложениям. Поэтому библиотека является общей и имеет алиас `@workshop:mock`.
+
+Это не означает, что в mock нужно помещать любые тестовые fixtures всех библиотек без разбора. Здесь находятся общие демонстрационные наборы данных. Специфические тестовые fixtures, необходимые только одному тесту или одной библиотеке, могут оставаться рядом с этим тестом. Для учебного демонстрационного приложения отдельная общая mock library — единая точка хранения данных, которые используются как начальное содержимое приложения.
+
+Mock library намеренно не имеет собственного набора тестов и конфигурации Vitest: она содержит статические демонстрационные данные. Остальные библиотеки, включая `shared/definitions`, должны сохранять тестовую инфраструктуру.
+
+#### Common — общие ресурсы и конфигурация
+
+Каталог `common` не является ещё одной библиотекой бизнес-логики. Он предназначен для общих ресурсов, стилей и конфигурации:
+
+```text
+common/
+├── assets/
+├── environments/
+│   ├── common.ts
+│   ├── environment.dev.ts
+│   ├── environment.prod.ts
+│   └── environment.test.ts
+└── styles/
+    └── common.scss
+```
+
+Например, `COMMON.DEFAULT_CURRENCY` задаёт валюту по умолчанию, а `common/styles/common.scss` содержит общие стили. Общие assets не нужно копировать в каждое приложение.
+
+#### Алиасы — публичные имена библиотек
+
+TypeScript path aliases определяются централизованно в корневом `tsconfig.base.json`. В проекте используется единое пространство имён `@workshop:`:
+
+| Алиас | Назначение |
+|---|---|
+| `@workshop:ui` | Shared UI |
+| `@workshop:mock` | Общие mock-данные |
+| `@workshop:facades` | Shared facades |
+| `@workshop:dal` | Shared data access |
+| `@workshop:base` | Shared base |
+| `@workshop:def:consts` | Definitions: constants |
+| `@workshop:def:abstracts` | Definitions: abstract classes |
+| `@workshop:def:classes` | Definitions: classes |
+| `@workshop:def:enums` | Definitions: enums |
+| `@workshop:def:interfaces` | Definitions: interfaces |
+| `@workshop:def:records` | Definitions: records |
+| `@workshop:def:types` | Definitions: types |
+| `@workshop:personal-finance:pages` | Страницы Personal Finance |
+| `@workshop:common` | Общая конфигурация приложения из `common/environments/common.ts` |
+
+Не следует добавлять короткие альтернативы вроде `base`, `dal` или `facades` для тех же самых библиотек. Два имени для одного и того же пути создают неоднозначность и постепенно приводят к разным стилям импортов. Алиас — это часть публичного контракта библиотеки, поэтому он должен быть единообразным.
+
+#### Как это связано с NX boundaries
+
+Каталоги помогают человеку ориентироваться в workspace, но архитектурные ограничения должны проверяться инструментами. Для этого проекты NX получают теги, а правила module boundaries ограничивают допустимые зависимости.
+
+В нашем соглашении библиотеки помечаются уровнем `level:shared` и собственным тегом `tag:<library-name>`. Приложение получает `level:app` и `app:<app-name>`. Эти метки используются ESLint/NX для проверки зависимостей. В результате правило «shared не зависит от конкретного приложения» становится не только договорённостью команды, но и проверяемым ограничением.
+
+Структура папок отвечает на вопрос «где искать код?», публичные алиасы — «как к нему обращаться?», а NX boundaries — «кто имеет право от кого зависеть?». Это три разных механизма, которые дополняют друг друга.
+
 ## 2. Компонент LoginComponent: от пользовательского ввода до обновления представления
 
 Для практического примера рассмотрим форму входа Personal Finance. Компонент хранит введённые значения, принимает результаты проверки от директив и сообщает родительской странице об успешной локальной проверке.
@@ -164,15 +321,11 @@ LoginComponent и страницы приложения находятся в ap
 Компонент не содержит регулярных выражений. Он импортирует обе директивы из `@workshop:ui`, получает результаты проверки и хранит сообщения для шаблона.
 
 ```typescript
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
-import type { FieldValidationResult } from '@workshop:def:interfaces';
+import { Component, ViewChild, output } from '@angular/core';
+import type { FieldValidationResult, LoginCredentials } from '@workshop:def:interfaces';
 import { EmailValidatorDirective, PasswordValidatorDirective } from '@workshop:ui';
 
-export interface LoginCredentials {
-  email: string;
-  password: string;
-}
-
+/** Presents the login form and coordinates reusable field validators. */
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -181,29 +334,67 @@ export interface LoginCredentials {
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  @Output() readonly loginRequested = new EventEmitter<LoginCredentials>();
-  @ViewChild(EmailValidatorDirective) private emailValidator!: EmailValidatorDirective;
-  @ViewChild(PasswordValidatorDirective) private passwordValidator!: PasswordValidatorDirective;
+  /** Emits credentials after both fields pass local validation. */
+  readonly loginRequested = output<LoginCredentials>();
 
-  email = '';
-  password = '';
-  emailError = '';
-  passwordError = '';
+  /** References the email validator hosted by the login form. */
+  @ViewChild(EmailValidatorDirective)
+  private emailValidator!: EmailValidatorDirective;
 
-  onEmailInput(value: string): void { this.email = value; }
-  onPasswordInput(value: string): void { this.password = value; }
-  onEmailValidationChange(result: FieldValidationResult): void { this.emailError = result.message; }
-  onPasswordValidationChange(result: FieldValidationResult): void { this.passwordError = result.message; }
+  /** References the password validator hosted by the login form. */
+  @ViewChild(PasswordValidatorDirective)
+  private passwordValidator!: PasswordValidatorDirective;
 
-  onSubmit(event: SubmitEvent): void {
-    event.preventDefault();
-    this.emailValidator.validateNow();
-    this.passwordValidator.validateNow();
-    if (this.emailError || this.passwordError) return;
-    this.loginRequested.emit({ email: this.email.trim(), password: this.password });
+  /** Stores the current email value. */
+  protected email = '';
+
+  /** Stores the current password value. */
+  protected password = '';
+
+  /** Holds the current email validation message. */
+  protected emailError = '';
+
+  /** Holds the current password validation message. */
+  protected passwordError = '';
+
+  /** Stores the current email value. */
+  protected onEmailInput(value: string): void {
+    this.email = value;
   }
 
-  onCancel(): void {
+  /** Stores the current password value. */
+  protected onPasswordInput(value: string): void {
+    this.password = value;
+  }
+
+  /** Updates the email validation feedback. */
+  protected onEmailValidationChange(result: FieldValidationResult): void {
+    this.emailError = result.message;
+  }
+
+  /** Updates the password validation feedback. */
+  protected onPasswordValidationChange(result: FieldValidationResult): void {
+    this.passwordError = result.message;
+  }
+
+  /** Validates both fields and emits credentials when locally valid. */
+  protected onSubmit(event: SubmitEvent): void {
+    event.preventDefault();
+    const emailResult = this.emailValidator.validateNow();
+    const passwordResult = this.passwordValidator.validateNow();
+
+    if (!emailResult.valid || !passwordResult.valid) {
+      return;
+    }
+
+    this.loginRequested.emit({
+      email: this.email.trim(),
+      password: this.password,
+    });
+  }
+
+  /** Clears the form and resets the validation directives. */
+  protected onCancel(): void {
     this.email = '';
     this.password = '';
     this.emailError = '';
@@ -214,7 +405,7 @@ export class LoginComponent {
 }
 ```
 
-`ViewChild` предоставляет компоненту ссылки на директивы, чтобы перед отправкой формы явно запустить обе проверки. `EventEmitter` передаёт результат локальной проверки родительской странице. Это не аутентификация: сервер должен самостоятельно проверять учётные данные.
+`ViewChild` предоставляет компоненту ссылки на директивы, чтобы перед отправкой формы явно запустить обе проверки. Сигнальный `output()` передаёт событие `loginRequested` родительской странице. Контракт `LoginCredentials` импортируется из `@workshop:def:interfaces`, а не объявляется внутри файла компонента. Это не аутентификация: сервер должен самостоятельно проверять учётные данные.
 
 #### 2.1.2. login.component.html
 
@@ -287,7 +478,9 @@ Change Detection — механизм Angular, который синхрониз
 
 ```typescript
 export interface FieldValidationResult {
+  /** Indicates whether the field value passed validation. */
   valid: boolean;
+  /** Contains validation feedback for the user. */
   message: string;
 }
 ```
@@ -307,7 +500,7 @@ export const VALIDATION_REGEX = {
 
 ### 5.3. EmailValidatorDirective и PasswordValidatorDirective
 
-Директивы — standalone-классы, подключаемые к HTML-элементам через атрибуты `[appEmailValidator]` и `[appPasswordValidator]`. Они используют `ElementRef` только для чтения значения поля, слушают события `input` и `blur` и отправляют результат через `@Output()`.
+Директивы — standalone-классы, подключаемые к HTML-элементам через атрибуты `[appEmailValidator]` и `[appPasswordValidator]`. Они используют `ElementRef` только для чтения значения поля, слушают события `input` и `blur` и передают результат через signal-based `output()`.
 
 Каждая директива предоставляет два публичных метода:
 
@@ -318,7 +511,7 @@ export const VALIDATION_REGEX = {
 
 ### 5.4. Подключение директив к LoginComponent
 
-Standalone-директивы импортируются в `imports` компонента. Ссылки `@ViewChild` позволяют повторить проверку при отправке формы, даже если пользователь не покидал поле. События `EventEmitter` передают результаты в компонент, который принимает решение о выводе сообщений.
+Standalone-директивы импортируются в `imports` компонента. Ссылки `@ViewChild` позволяют повторить проверку при отправке формы, даже если пользователь не покидал поле. Каждая директива публикует результат через `output()`, а компонент принимает его и решает, когда и как показывать сообщения.
 
 Таким образом, `shared/definitions` хранит правила и типы, `shared/ui` реализует повторно используемое поведение, а `LoginComponent` управляет состоянием формы и отображением обратной связи.
 
@@ -358,15 +551,54 @@ readonly currency = COMMON.DEFAULT_CURRENCY;
 
 ## 7. Implementation: приложение Personal Finance
 
-Страницы находятся в app-specific библиотеке `libs/personal-finance/pages`. Переиспользуемые директивы остаются в `libs/shared/ui`, общие типы и константы — в `libs/shared/definitions`.
+Страницы находятся в app-specific библиотеке `libs/personal-finance/pages`. Переиспользуемые директивы остаются в `libs/shared/ui`, общие типы, интерфейсы, enum и константы — в `libs/shared/definitions`, а демонстрационные данные — в отдельной общей библиотеке `libs/mock`.
 
 ### 7.1. Модель и общее состояние
 
-Операция содержит идентификатор, тип, описание, сумму и дату. Сумма хранится положительным числом, направление задаётся типом `income` или `expense`.
+Операция содержит идентификатор, тип, описание, сумму и дату. Сумма хранится положительным числом, а направление задаётся числовым enum `TransactionType`: `income = 1`, `expense = -1`. Это позволяет рассчитывать баланс как сумму произведений `amount * type`, не сохраняя в JSON повторяющиеся строковые значения `income` и `expense`.
 
 `TransactionStore` владеет коллекцией операций и предоставляет её через Signal. Вычисляемые сигналы рассчитывают баланс, сумму доходов и расходов. После изменения коллекции сервис сохраняет её в `localStorage`. Это демонстрационное клиентское хранилище, а не замена backend или синхронизации между устройствами.
 
-### 7.2. Страницы приложения
+
+В текущей реализации определения разделены по отдельным файлам и экспортируются через публичные алиасы:
+
+```typescript
+// libs/shared/definitions/src/lib/enums/transaction-type.enum.ts
+export enum TransactionType {
+  /** Adds an amount to the account balance. */
+  income = 1,
+  /** Subtracts an amount from the account balance. */
+  expense = -1,
+}
+```
+
+```typescript
+// libs/shared/definitions/src/lib/interfaces/transaction.ts
+import type { TransactionType } from '@workshop:def:enums';
+
+export interface Transaction {
+  /** Identifies the transaction uniquely. */
+  id: string;
+  /** Identifies whether the transaction adds to or subtracts from the balance. */
+  type: TransactionType;
+  /** Describes the transaction. */
+  description: string;
+  /** Stores the transaction amount in the configured currency. */
+  amount: number;
+  /** Stores the transaction date in ISO date format. */
+  date: string;
+}
+```
+
+Здесь приведена сокращённая форма контракта; в исходном файле каждое свойство сопровождается английским documentation comment. Enum находится в категории `enums`, а интерфейс — в `interfaces`. Не следует объявлять их вместе в одном файле или дублировать enum как строковый union type. В коде используются имена `TransactionType.income` и `TransactionType.expense` — именно в таком виде они определены в enum.
+
+### 7.2. Mock-данные
+
+Начальный набор демонстрационных операций находится в `libs/mock/src/lib/demo-transactions.mock.ts` и экспортируется через `@workshop:mock`. Сейчас он содержит 240 записей. `TransactionStore` импортирует набор данных, но не владеет его определением.
+
+В JSON сериализуются числовые значения enum. Например, поле `type` содержит `1` или `-1`, а не строки `"income"` и `"expense"`. Это уменьшает объём повторяющихся значений и одновременно делает знак операции частью модели. При этом enum не заменяет проверку входящих данных: данные, восстановленные из внешнего JSON или полученные от backend, всё равно нужно валидировать на границе приложения.
+
+### 7.3. Страницы приложения
 
 `LoginPage` размещает `LoginComponent` и после успешной локальной проверки демонстрирует переход на Dashboard. Это не полноценная аутентификация.
 
@@ -374,7 +606,7 @@ readonly currency = COMMON.DEFAULT_CURRENCY;
 
 `TransactionFormPage` обслуживает добавление дохода и расхода. Тип операции передаётся через `data` маршрута. Форма использует базовые HTML-атрибуты и обработчик отправки; Angular Forms в этой реализации не вводится.
 
-### 7.3. Централизованные маршруты
+### 7.4. Централизованные маршруты
 
 Все значения маршрутов находятся в `libs/shared/definitions/src/lib/constants/routes.ts`:
 
@@ -408,7 +640,7 @@ export const ROUTE = {
 
 Компоненты управляют представлением и локальным состоянием формы, директивы выносят повторно используемое поведение, pipes форматируют значения, а маршруты и общий сервис связывают страницы приложения.
 
-Размещение кода определяется его ответственностью: переиспользуемые UI-директивы находятся в Shared UI, общие правила и константы — в Definitions, а страницы Personal Finance — в app-specific библиотеке.
+Размещение кода определяется его ответственностью: переиспользуемые UI-директивы находятся в Shared UI, общие контракты и определения — в Definitions, демонстрационные данные — в общей Mock library, а страницы и пока локальное состояние Personal Finance — в app-specific библиотеке.
 
 ## Официальная документация
 

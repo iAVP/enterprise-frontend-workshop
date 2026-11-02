@@ -42,7 +42,7 @@ export class TransactionFormPage {
 
   /** Returns the heading for the active transaction kind. */
   protected get title(): string {
-    return this.type === TransactionType.Income ? 'Add income' : 'Add expense';
+    return this.type === TransactionType.income ? 'Add income' : 'Add expense';
   }
 
   /** Validates the form, stores the transaction, and returns to the dashboard. */
