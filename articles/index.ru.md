@@ -9,6 +9,7 @@
 - [3. Архитектура на практике: решения, которые определяют развитие frontend-систем](#3-архитектура-на-практике-решения-которые-определяют-развитие-frontend-систем)
 - [4. NX Workspace — от архитектуры к инструментам](#4-nx-workspace--от-архитектуры-к-инструментам)
 - [5. Инструменты разработки: WebStorm, Visual Studio Code и OpenCode](#5-инструменты-разработки-webstorm-visual-studio-code-и-opencode)
+- [6. Angular in Depth — Часть 1: Архитектура и компоненты](#6-angular-in-depth--часть-1-архитектура-и-компоненты)
 - [Редакционные правила](#редакционные-правила)
 
 ## 1. Дорога к архитектуре
@@ -117,6 +118,8 @@
 - [Development-Tools-WebStorm-Visual-Studio-Code-and-OpenCode](https://github.com/iAVP/enterprise-frontend-workshop/tree/Development-Tools-WebStorm-Visual-Studio-Code-and-OpenCode)
 
 ## 6. Angular in Depth — Часть 1: Архитектура и компоненты
+
+- **Английская публикация:** [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/angular-in-depth-part-1-architecture-and-components)
 
 ### Материалы в репозитории
 [English](Angular-in-Depth/README.md) | [Русский](Angular-in-Depth/README.ru.md) | [Deutsch](Angular-in-Depth/README.de.md)
