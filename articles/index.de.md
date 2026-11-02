@@ -115,6 +115,25 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 ### GitHub-Branches
 - [Development-Tools-WebStorm-Visual-Studio-Code-and-OpenCode](https://github.com/iAVP/enterprise-frontend-workshop/tree/Development-Tools-WebStorm-Visual-Studio-Code-and-OpenCode)
 
+## 6. Angular in Depth — Teil 1: Architektur und Komponenten
+
+### Repository-Materialien
+[English](Angular-in-Depth/README.md) | [русский](Angular-in-Depth/README.ru.md) | [Deutsch](Angular-in-Depth/README.de.md)
+
+### Artikelinhalte
+- [Architektur vor den Komponenten](Angular-in-Depth/README.de.md#architektur-vor-den-komponenten)
+- [LoginComponent: Von der Benutzereingabe zur aktualisierten Ansicht](Angular-in-Depth/README.de.md#logincomponent-von-der-benutzereingabe-zur-aktualisierten-ansicht)
+- [Change Detection: Wie Angular die Ansicht aktualisiert](Angular-in-Depth/README.de.md#change-detection-wie-angular-die-ansicht-aktualisiert)
+- [Warum wir das input-Ereignis verwenden](Angular-in-Depth/README.de.md#warum-wir-das-input-ereignis-verwenden)
+- [Direktiven: Verhalten wiederverwenden](Angular-in-Depth/README.de.md#direktiven-verhalten-wiederverwenden)
+- [Pipes: Formatierung von Anzeigewerten](Angular-in-Depth/README.de.md#pipes-formatierung-von-anzeigewerten)
+- [Implementierung: Die Anwendung Personal Finance](Angular-in-Depth/README.de.md#implementierung-die-anwendung-personal-finance)
+- [Prüfung vor der Veröffentlichung](Angular-in-Depth/README.de.md#prüfung-vor-der-veröffentlichung)
+- [Fazit](Angular-in-Depth/README.de.md#fazit)
+
+### GitHub-Branches
+- [Angular-in-Depth](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth)
+
 ## Redaktionsregeln
 
 - Jeder Artikeleintrag muss exakt derselben Vorlage folgen: `## N. Artikeltitel`, `### Repository-Materialien` mit allen drei Sprachlinks in einer Zeile, getrennt durch ` | `, `### Artikelinhalte` mit Abschnittslinks und `### GitHub-Branches` ausschließlich mit Branches dieses Artikels. Keine Statuszeile in die Artikeleintragsvorlage einfügen.
