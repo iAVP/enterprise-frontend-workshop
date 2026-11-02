@@ -477,7 +477,9 @@ Change Detection — механизм Angular, который синхрониз
 
 ```typescript
 export interface FieldValidationResult {
+  /** Indicates whether the field value passed validation. */
   valid: boolean;
+  /** Contains validation feedback for the user. */
   message: string;
 }
 ```
@@ -552,7 +554,7 @@ readonly currency = COMMON.DEFAULT_CURRENCY;
 
 ### 7.1. Модель и общее состояние
 
-Операция содержит идентификатор, тип, описание, сумму и дату. Сумма хранится положительным числом, а направление задаётся числовым enum `TransactionType`: `Income = 1`, `Expense = -1`. Это позволяет рассчитывать баланс как сумму произведений `amount * type`, не сохраняя в JSON повторяющиеся строковые значения `income` и `expense`.
+Операция содержит идентификатор, тип, описание, сумму и дату. Сумма хранится положительным числом, а направление задаётся числовым enum `TransactionType`: `income = 1`, `expense = -1`. Это позволяет рассчитывать баланс как сумму произведений `amount * type`, не сохраняя в JSON повторяющиеся строковые значения `income` и `expense`.
 
 `TransactionStore` владеет коллекцией операций и предоставляет её через Signal. Вычисляемые сигналы рассчитывают баланс, сумму доходов и расходов. После изменения коллекции сервис сохраняет её в `localStorage`. Это демонстрационное клиентское хранилище, а не замена backend или синхронизации между устройствами.
 
@@ -562,8 +564,10 @@ readonly currency = COMMON.DEFAULT_CURRENCY;
 ```typescript
 // libs/shared/definitions/src/lib/enums/transaction-type.enum.ts
 export enum TransactionType {
-  Income = 1,
-  Expense = -1,
+  /** Adds an amount to the account balance. */
+  income = 1,
+  /** Subtracts an amount from the account balance. */
+  expense = -1,
 }
 ```
 
@@ -572,15 +576,20 @@ export enum TransactionType {
 import type { TransactionType } from '@workshop:def:enums';
 
 export interface Transaction {
+  /** Identifies the transaction uniquely. */
   id: string;
+  /** Identifies whether the transaction adds to or subtracts from the balance. */
   type: TransactionType;
+  /** Describes the transaction. */
   description: string;
+  /** Stores the transaction amount in the configured currency. */
   amount: number;
+  /** Stores the transaction date in ISO date format. */
   date: string;
 }
 ```
 
-Здесь приведена сокращённая форма контракта; в исходном файле каждое свойство сопровождается английским documentation comment. Enum находится в категории `enums`, а интерфейс — в `interfaces`. Не следует объявлять их вместе в одном файле или дублировать enum как строковый union type.
+Здесь приведена сокращённая форма контракта; в исходном файле каждое свойство сопровождается английским documentation comment. Enum находится в категории `enums`, а интерфейс — в `interfaces`. Не следует объявлять их вместе в одном файле или дублировать enum как строковый union type. В коде используются имена `TransactionType.income` и `TransactionType.expense` — именно в таком виде они определены в enum.
 
 ### 7.2. Mock-данные
 
