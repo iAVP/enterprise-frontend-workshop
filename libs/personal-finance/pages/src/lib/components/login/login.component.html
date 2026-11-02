@@ -1,4 +1,32 @@
-<div class="login-container"><section class="login-panel"><h1>Login</h1><form (submit)="onSubmit($event)" novalidate>
-<div class="form-field"><label for="login-name">Login name</label><input id="login-name" type="email" autocomplete="username" required [value]="email" appEmailValidator (input)="onEmailInput($any($event.target).value)" (emailValidationChange)="onEmailValidationChange($event)" [attr.aria-invalid]="!!emailError" [attr.aria-describedby]="emailError?'email-error':null" />@if(emailError){<p id="email-error" class="error" role="alert">{{emailError}}</p>}</div>
-<div class="form-field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required [value]="password" appPasswordValidator (input)="onPasswordInput($any($event.target).value)" (passwordValidationChange)="onPasswordValidationChange($event)" [attr.aria-invalid]="!!passwordError" [attr.aria-describedby]="passwordError?'password-error':null" />@if(passwordError){<p id="password-error" class="error" role="alert">{{passwordError}}</p>}</div>
-<div class="actions"><button type="submit">OK</button><button type="button" class="cancel" (click)="onCancel()">Cancel</button></div></form></section></div>
+<div class="login-container">
+	<section class="login-panel"><h1>Login</h1>
+		<form (submit)="onSubmit($event)" novalidate>
+			<div class="form-field">
+				<label for="login-name">Login name</label>
+				<input id="login-name" type="email"
+															 autocomplete="username" required
+															 [value]="email" appEmailValidator
+															 (input)="onEmailInput($any($event.target).value)"
+															 (emailValidationChange)="onEmailValidationChange($event)"
+															 [attr.aria-invalid]="!!emailError"
+															 [attr.aria-describedby]="emailError?'email-error':null"/>@if (emailError) {
+				<p id="email-error" class="error" role="alert">{{ emailError }}</p>
+			}</div>
+			<div class="form-field">
+				<label for="password">Password</label>
+				<input id="password" type="password"
+														 autocomplete="current-password" required
+														 [value]="password" appPasswordValidator
+														 (input)="onPasswordInput($any($event.target).value)"
+														 (passwordValidationChange)="onPasswordValidationChange($event)"
+														 [attr.aria-invalid]="!!passwordError"
+														 [attr.aria-describedby]="passwordError?'password-error':null"/>@if (passwordError) {
+				<p id="password-error" class="error" role="alert">{{ passwordError }}</p>
+			}</div>
+			<div class="actions">
+				<button type="submit">OK</button>
+				<button type="button" class="cancel" (click)="onCancel()">Cancel</button>
+			</div>
+		</form>
+	</section>
+</div>
