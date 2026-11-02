@@ -29,9 +29,6 @@
       "@workshop:mock": ["./libs/personal-finance/mock/src/index.ts"],
       "@workshop:personal-finance:pages": ["./libs/personal-finance/pages/src/index.ts"],
       "@workshop:common": ["./common/environments/common.ts"],
-      "base": ["./libs/shared/base/src/index.ts"],
-      "dal": ["./libs/shared/dal/src/index.ts"],
-      "facades": ["./libs/shared/facades/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
