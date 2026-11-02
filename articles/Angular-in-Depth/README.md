@@ -603,17 +603,17 @@ Numeric enum values are serialized into JSON. For example, the `type` field cont
 
 ### 7.4. Application Screens
 
-The following screenshots show the main pages of the demonstration application and the form validation states. The links open the corresponding routes in a locally running application (NX uses `http://localhost:4200` by default).
+The following screenshots show the main pages of the demonstration application and the form validation states. The links open the corresponding routes in a locally running application (the application runs locally on port `6333`).
 
 **Dashboard**
 
-Link to the Dashboard on your local machine: [http://localhost:4200/dashboard](http://localhost:4200/dashboard)
+Link to the Dashboard on your local machine: [http://localhost:6333/dashboard](http://localhost:6333/dashboard)
 
 ![Personal Finance — Dashboard](../../__screenshots__/personal-finance-dashboard.jpg)
 
 **Adding Income**
 
-Link to the income form on your local machine: [http://localhost:4200/add-income](http://localhost:4200/add-income)
+Link to the income form on your local machine: [http://localhost:6333/add-income](http://localhost:6333/add-income)
 
 ![Add income](../../__screenshots__/add-income.jpg)
 
@@ -623,7 +623,7 @@ Form validation with empty or invalid values:
 
 **Adding an Expense**
 
-Link to the expense form on your local machine: [http://localhost:4200/add-expense](http://localhost:4200/add-expense)
+Link to the expense form on your local machine: [http://localhost:6333/add-expense](http://localhost:6333/add-expense)
 
 ![Add expense](../../__screenshots__/add-expense.jpg)
 
@@ -633,7 +633,7 @@ Form validation with empty or invalid values:
 
 **Login**
 
-Link to the Login page on your local machine: [http://localhost:4200/login](http://localhost:4200/login)
+Link to the Login page on your local machine: [http://localhost:6333/login](http://localhost:6333/login)
 
 Invalid values and validation messages:
 
@@ -662,30 +662,21 @@ export const ROUTE = {
 
 `app.routes.ts` uses these constants for lazy loading pages. The root path redirects to the Dashboard, and unknown routes also return the user to the Dashboard. Routing alone does not provide authorization.
 
-## 8. Verification Before Publication
+## 8. Application Verification
 
-After integration, verify the project in the workspace:
+Use the npm scripts already defined in the root `package.json`. There is no need to type NX commands manually every time: open the **npm** tool window in WebStorm or the **NPM Scripts** panel in VS Code and run the required script directly from there.
 
-- `npx nx show projects` — confirm that NX detects the new libraries;
-- `npx nx lint personal-finance` — run lint if the target is configured;
-- `npx nx build personal-finance` — verify the application build;
-- open `/login` and check both directives, validation messages, and form reset;
+Run the following scripts:
+
+- `serve` — start the application in development mode;
+- `build` — build the application;
+- `test` — run tests for all workspace projects;
+- `lint` — run lint across all workspace projects.
+
+After the application starts, verify the main user scenarios:
+
+- open the Login page and check both directives, validation messages, and form reset;
 - navigate to the Dashboard and add income and an expense;
-- reload the page and verify that the list is restored from `localStorage`.
+- reload the page and verify that the transaction list is restored from `localStorage`.
 
-This is a verification plan, not a statement that the commands have already been run. The build and lint commands must be executed in the local workspace.
-
-## Conclusion
-
-Components manage presentation and local form state, directives extract reusable behavior, pipes format values, and routes and shared services connect the application pages.
-
-Code placement follows responsibility: reusable UI directives belong in Shared UI, shared contracts and definitions belong in Definitions, demonstration data belongs in the shared Mock library, and Personal Finance pages and their currently local state belong in the app-specific library.
-
-## Official Documentation
-
-- [Angular — Components](https://angular.dev/guide/components)
-- [Angular — Templates](https://angular.dev/guide/templates)
-- [Angular — Directives](https://angular.dev/guide/directives)
-- [Angular — Pipes](https://angular.dev/guide/templates/pipes)
-- [Angular — Signals](https://angular.dev/guide/signals)
-- [Angular — Routing](https://angular.dev/guide/routing)
+The Personal Finance application uses port `6333`. Links to the local pages are provided in the screenshots section.

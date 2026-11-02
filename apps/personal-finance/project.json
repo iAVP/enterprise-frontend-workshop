@@ -90,6 +90,9 @@
         "test": {
           "buildTarget": "personal-finance:build:test"
         }
+      },
+      "options": {
+        "port": 6333
       }
     },
     "test": {
@@ -109,7 +112,7 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "personal-finance:build",
-        "port": 4200,
+        "port": 6333,
         "staticFilePath": "dist/apps/personal-finance/browser",
         "spa": true
       }

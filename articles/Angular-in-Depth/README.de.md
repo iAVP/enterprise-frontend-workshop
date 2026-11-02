@@ -603,17 +603,17 @@ In JSON werden numerische Enum-Werte serialisiert. Das Feld `type` enthält beis
 
 ### 7.4. Anwendungsoberfläche
 
-Die folgenden Screenshots zeigen die wichtigsten Seiten der Demo-Anwendung und die Validierungszustände der Formulare. Die Links öffnen die entsprechenden Routen einer lokal gestarteten Anwendung (NX verwendet standardmäßig die Adresse `http://localhost:4200`).
+Die folgenden Screenshots zeigen die wichtigsten Seiten der Demo-Anwendung und die Validierungszustände der Formulare. Die Links öffnen die entsprechenden Routen einer lokal gestarteten Anwendung (die Anwendung läuft lokal auf Port `6333`).
 
 **Dashboard**
 
-Link zum Dashboard auf Ihrem lokalen Rechner: [http://localhost:4200/dashboard](http://localhost:4200/dashboard)
+Link zum Dashboard auf Ihrem lokalen Rechner: [http://localhost:6333/dashboard](http://localhost:6333/dashboard)
 
 ![Personal Finance — Dashboard](../../__screenshots__/personal-finance-dashboard.jpg)
 
 **Einnahmen hinzufügen**
 
-Link zum Formular für Einnahmen auf Ihrem lokalen Rechner: [http://localhost:4200/add-income](http://localhost:4200/add-income)
+Link zum Formular für Einnahmen auf Ihrem lokalen Rechner: [http://localhost:6333/add-income](http://localhost:6333/add-income)
 
 ![Add income](../../__screenshots__/add-income.jpg)
 
@@ -623,7 +623,7 @@ Formularvalidierung bei leeren oder ungültigen Werten:
 
 **Ausgaben hinzufügen**
 
-Link zum Formular für Ausgaben auf Ihrem lokalen Rechner: [http://localhost:4200/add-expense](http://localhost:4200/add-expense)
+Link zum Formular für Ausgaben auf Ihrem lokalen Rechner: [http://localhost:6333/add-expense](http://localhost:6333/add-expense)
 
 ![Add expense](../../__screenshots__/add-expense.jpg)
 
@@ -633,7 +633,7 @@ Formularvalidierung bei leeren oder ungültigen Werten:
 
 **Login**
 
-Link zur Login-Seite auf Ihrem lokalen Rechner: [http://localhost:4200/login](http://localhost:4200/login)
+Link zur Login-Seite auf Ihrem lokalen Rechner: [http://localhost:6333/login](http://localhost:6333/login)
 
 Ungültige Werte und Validierungsmeldungen:
 
@@ -662,30 +662,21 @@ export const ROUTE = {
 
 `app.routes.ts` verwendet diese Konstanten für das Lazy Loading der Seiten. Der Root-Pfad leitet zum Dashboard weiter; unbekannte Routen führen ebenfalls zurück zum Dashboard. Routing allein stellt keine Autorisierung bereit.
 
-## 8. Prüfung vor der Veröffentlichung
+## 8. Anwendung überprüfen
 
-Nach der Integration sollte das Projekt im Workspace überprüft werden:
+Verwenden Sie die npm-Scripts, die bereits in der Root-Datei `package.json` definiert sind. NX-Befehle müssen nicht jedes Mal manuell eingegeben werden: Öffnen Sie das **npm**-Toolfenster in WebStorm oder die Ansicht **NPM Scripts** in VS Code und starten Sie das gewünschte Script direkt von dort.
 
-- `npx nx show projects` — sicherstellen, dass NX die neuen Bibliotheken erkennt;
-- `npx nx lint personal-finance` — Lint ausführen, sofern das Target konfiguriert ist;
-- `npx nx build personal-finance` — den Build der Anwendung überprüfen;
-- `/login` öffnen und beide Direktiven, Fehlermeldungen und das Zurücksetzen des Formulars prüfen;
+Führen Sie folgende Scripts aus:
+
+- `serve` — Anwendung im Entwicklungsmodus starten;
+- `build` — Anwendung erstellen;
+- `test` — Tests aller Workspace-Projekte ausführen;
+- `lint` — Lint für alle Workspace-Projekte ausführen.
+
+Prüfen Sie nach dem Start der Anwendung die wichtigsten Benutzerabläufe:
+
+- die Login-Seite öffnen und beide Direktiven, Validierungsmeldungen sowie das Zurücksetzen des Formulars prüfen;
 - zum Dashboard wechseln und Einnahmen sowie Ausgaben hinzufügen;
-- die Seite neu laden und prüfen, ob die Liste aus `localStorage` wiederhergestellt wird.
+- die Seite neu laden und überprüfen, ob die Transaktionsliste aus `localStorage` wiederhergestellt wird.
 
-Dies ist ein Prüfplan und keine Aussage darüber, dass die Befehle bereits ausgeführt wurden. Build und Lint müssen im lokalen Workspace ausgeführt werden.
-
-## Fazit
-
-Komponenten verwalten Darstellung und lokalen Formularzustand, Direktiven kapseln wiederverwendbares Verhalten, Pipes formatieren Werte und Routes sowie gemeinsame Services verbinden die Anwendungsseiten.
-
-Die Platzierung des Codes richtet sich nach seiner Verantwortung: Wiederverwendbare UI-Direktiven gehören in Shared UI, gemeinsame Verträge und Definitionen nach Definitions, Demodaten in die gemeinsame Mock-Bibliothek und die Seiten sowie der derzeit lokale Zustand von Personal Finance in die anwendungsspezifische Bibliothek.
-
-## Offizielle Dokumentation
-
-- [Angular — Components](https://angular.dev/guide/components)
-- [Angular — Templates](https://angular.dev/guide/templates)
-- [Angular — Directives](https://angular.dev/guide/directives)
-- [Angular — Pipes](https://angular.dev/guide/templates/pipes)
-- [Angular — Signals](https://angular.dev/guide/signals)
-- [Angular — Routing](https://angular.dev/guide/routing)
+Die Personal-Finance-Anwendung verwendet Port `6333`. Die Links zu den lokalen Seiten befinden sich im Abschnitt mit den Screenshots.

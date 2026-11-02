@@ -608,17 +608,17 @@ export interface Transaction {
 
 ### 7.4. Интерфейс приложения
 
-Ниже приведены основные страницы демонстрационного приложения и состояния форм. Ссылки открывают соответствующие маршруты локально запущенного приложения (по умолчанию NX использует адрес `http://localhost:4200`).
+Ниже приведены основные страницы демонстрационного приложения и состояния форм. Ссылки открывают соответствующие маршруты локально запущенного приложения (приложение запускается локально на порту `6333`).
 
 **Dashboard**
 
-Ссылка на Dashboard на вашей локальной машине: [http://localhost:4200/dashboard](http://localhost:4200/dashboard)
+Ссылка на Dashboard на вашей локальной машине: [http://localhost:6333/dashboard](http://localhost:6333/dashboard)
 
 ![Personal Finance — Dashboard](../../__screenshots__/personal-finance-dashboard.jpg)
 
 **Добавление дохода**
 
-Ссылка на форму добавления дохода на вашей локальной машине: [http://localhost:4200/add-income](http://localhost:4200/add-income)
+Ссылка на форму добавления дохода на вашей локальной машине: [http://localhost:6333/add-income](http://localhost:6333/add-income)
 
 ![Add income](../../__screenshots__/add-income.jpg)
 
@@ -628,7 +628,7 @@ export interface Transaction {
 
 **Добавление расхода**
 
-Ссылка на форму добавления расхода на вашей локальной машине: [http://localhost:4200/add-expense](http://localhost:4200/add-expense)
+Ссылка на форму добавления расхода на вашей локальной машине: [http://localhost:6333/add-expense](http://localhost:6333/add-expense)
 
 ![Add expense](../../__screenshots__/add-expense.jpg)
 
@@ -638,7 +638,7 @@ export interface Transaction {
 
 **Login**
 
-Ссылка на страницу Login на вашей локальной машине: [http://localhost:4200/login](http://localhost:4200/login)
+Ссылка на страницу Login на вашей локальной машине: [http://localhost:6333/login](http://localhost:6333/login)
 
 Некорректные значения и сообщения валидации:
 
@@ -667,33 +667,21 @@ export const ROUTE = {
 
 `app.routes.ts` использует эти константы для lazy loading страниц. Корневой путь перенаправляет на Dashboard, неизвестный маршрут также возвращает пользователя на Dashboard. Маршрутизация сама по себе не обеспечивает авторизацию.
 
-## 8. Проверка перед публикацией
+## 8. Проверка приложения
 
-После интеграции проверь проект в workspace:
+Для проверки используйте готовые npm scripts, определённые в корневом `package.json`. Не нужно каждый раз вручную набирать команды NX: откройте панель **npm** в WebStorm или **NPM Scripts** в VS Code и запускайте нужный script непосредственно из неё.
 
-- `npx nx show projects` — убедиться, что NX обнаруживает новые библиотеки;
-- `npx nx lint personal-finance` — запустить lint, если цель настроена;
-- `npx nx build personal-finance` — проверить сборку приложения;
-- открыть `/login` и проверить обе директивы, сообщения об ошибках и сброс формы;
-- перейти на Dashboard, добавить доход и расход;
-- перезагрузить страницу и проверить восстановление списка из `localStorage`.
+Выполните следующие scripts:
 
-Это план проверки, а не утверждение, что команды уже запускались. Сборку и lint необходимо выполнить в локальном workspace.
+- `serve` — запустить приложение в режиме разработки;
+- `build` — собрать приложение;
+- `test` — запустить тесты всех проектов workspace;
+- `lint` — выполнить lint для всех проектов workspace.
 
-## Итог
+После запуска приложения проверьте основные пользовательские сценарии:
 
-Компоненты управляют представлением и локальным состоянием формы, директивы выносят повторно используемое поведение, 
-pipes форматируют значения, а маршруты и общий сервис связывают страницы приложения.
+- открыть страницу Login и проверить обе директивы, сообщения об ошибках и сброс формы;
+- перейти на Dashboard и добавить доход и расход;
+- перезагрузить страницу и убедиться, что список транзакций восстановился из `localStorage`.
 
-Размещение кода определяется его ответственностью: переиспользуемые UI-директивы находятся в Shared UI, общие контракты 
-и определения — в Definitions, демонстрационные данные — в общей Mock library, а страницы и пока локальное состояние 
-Personal Finance — в app-specific библиотеке.
-
-## Официальная документация
-
-- [Angular — Components](https://angular.dev/guide/components)
-- [Angular — Templates](https://angular.dev/guide/templates)
-- [Angular — Directives](https://angular.dev/guide/directives)
-- [Angular — Pipes](https://angular.dev/guide/templates/pipes)
-- [Angular — Signals](https://angular.dev/guide/signals)
-- [Angular — Routing](https://angular.dev/guide/routing)
+Приложение Personal Finance использует порт `6333`. Ссылки на локальные страницы приведены в разделе со скриншотами.
