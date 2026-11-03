@@ -197,5 +197,13 @@ export default [
             "@typescript-eslint/no-magic-numbers": "off",
             "workshop/no-magic-strings": "off"
         }
+    },
+    {
+        files: [
+            "apps/personal-finance-e2e/playwright.config.mts"
+        ],
+        rules: {
+            "workshop/one-definition-per-file": "off"
+        }
     }
 ];
