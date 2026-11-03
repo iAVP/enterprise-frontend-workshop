@@ -24,7 +24,6 @@
       "@workshop:def:enums": ["./libs/shared/definitions/src/lib/enums/index.ts"],
       "@workshop:def:types": ["./libs/shared/definitions/src/lib/types/index.ts"],
       "@workshop:def:interfaces": ["./libs/shared/definitions/src/lib/interfaces/index.ts"],
-      "@workshop:def:records": ["./libs/shared/definitions/src/lib/records/index.ts"],
       "@workshop:ui": ["./libs/shared/ui/src/index.ts"],
       "@workshop:mock": ["./libs/mock/src/index.ts"],
       "@workshop:personal-finance:pages": ["./libs/personal-finance/pages/src/index.ts"],
