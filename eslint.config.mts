@@ -146,7 +146,9 @@ export default [
     {
         files: [
             "**/*.ts",
-            "**/*.tsx"
+            "**/*.tsx",
+            "**/*.cts",
+            "**/*.mts"
         ],
         rules: {
             "@typescript-eslint/no-explicit-any": "error",
