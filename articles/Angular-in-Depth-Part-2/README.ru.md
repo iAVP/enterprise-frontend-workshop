@@ -226,30 +226,36 @@ Facade Service — это не просто сервис, в который пе
 Условный интерфейс фасада может выглядеть так:
 
 ```ts
-export class TransactionsFacade {
-  readonly transactions = /* read-only signal */;
-  readonly loading = /* read-only signal */;
-  readonly error = /* read-only signal */;
+import type { Signal } from '@angular/core';
 
-  readonly totalIncome = /* computed signal */;
-  readonly totalExpenses = /* computed signal */;
-  readonly balance = /* computed signal */;
+export interface Transaction {
+  id: string;
+  type: 'income' | 'expense';
+  amount: number;
+}
 
-  load(): void {
-    // Координация загрузки данных
-  }
+export interface CreateTransactionCommand {
+  amount: number;
+}
 
-  createIncome(command: CreateIncomeCommand): void {
-    // Создание дохода
-  }
+export interface UpdateTransactionCommand {
+  id: string;
+  amount: number;
+}
 
-  createExpense(command: CreateExpenseCommand): void {
-    // Создание расхода
-  }
+export interface TransactionFacade {
+  readonly transactions: Signal<readonly Transaction[]>;
+  readonly loading: Signal<boolean>;
+  readonly error: Signal<string | null>;
 
-  updateTransaction(command: UpdateTransactionCommand): void {
-    // Изменение существующей операции
-  }
+  readonly totalIncome: Signal<number>;
+  readonly totalExpenses: Signal<number>;
+  readonly balance: Signal<number>;
+
+  load(): Promise<void>;
+  createIncome(command: CreateTransactionCommand): Promise<void>;
+  createExpense(command: CreateTransactionCommand): Promise<void>;
+  updateTransaction(command: UpdateTransactionCommand): Promise<void>;
 }
 ```
 
@@ -268,29 +274,35 @@ Facade может содержать frontend-specific логику: подго�
 ```ts
 import { computed, signal } from '@angular/core';
 
-export class TransactionsFacade {
-  private readonly _transactions = signal<Transaction[]>([]);
+export interface Transaction {
+  id: string;
+  type: 'income' | 'expense';
+  amount: number;
+}
+
+export class TransactionFacade {
+  private readonly _transactions = signal<readonly Transaction[]>([]);
 
   readonly transactions = this._transactions.asReadonly();
 
   readonly totalIncome = computed(() =>
     this._transactions()
-      .filter(item => item.type === 'income')
-      .reduce((total, item) => total + item.amount, 0)
+      .filter(transaction => transaction.type === 'income')
+      .reduce((total, transaction) => total + transaction.amount, 0)
   );
 
   readonly totalExpenses = computed(() =>
     this._transactions()
-      .filter(item => item.type === 'expense')
-      .reduce((total, item) => total + item.amount, 0)
+      .filter(transaction => transaction.type === 'expense')
+      .reduce((total, transaction) => total + transaction.amount, 0)
   );
 
   readonly balance = computed(
     () => this.totalIncome() - this.totalExpenses()
   );
 
-  replaceTransactions(items: Transaction[]): void {
-    this._transactions.set(items);
+  replaceTransactions(transactions: readonly Transaction[]): void {
+    this._transactions.set([...transactions]);
   }
 }
 ```
