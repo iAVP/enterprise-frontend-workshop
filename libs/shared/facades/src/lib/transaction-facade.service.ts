@@ -13,23 +13,13 @@ export class TransactionFacadeService {
 	readonly transactions = this.state.asReadonly();
 
 	/** Calculates the current balance using the signed transaction type. */
-	readonly balance = computed(() =>
-		this.state().reduce((sum, transaction) => sum + transaction.amount * transaction.type, 0),
-	);
+	readonly balance = computed(() => this.state().reduce((sum, transaction) => sum + transaction.amount * transaction.type, 0));
 
 	/** Calculates the total income. */
-	readonly totalIncome = computed(() =>
-		this.state()
-			.filter((transaction) => transaction.type === TransactionType.income)
-			.reduce((sum, transaction) => sum + transaction.amount, 0),
-	);
+	readonly totalIncome = computed(() => this.state().filter((transaction) => transaction.type === TransactionType.income).reduce((sum, transaction) => sum + transaction.amount, 0));
 
 	/** Calculates the total expenses. */
-	readonly totalExpense = computed(() =>
-		this.state()
-			.filter((transaction) => transaction.type === TransactionType.expense)
-			.reduce((sum, transaction) => sum + transaction.amount, 0),
-	);
+	readonly totalExpense = computed(() => this.state().filter((transaction) => transaction.type === TransactionType.expense).reduce((sum, transaction) => sum + transaction.amount, 0));
 
 	/** Creates a transaction, updates the state, and delegates persistence. */
 	addTransaction(transaction: Omit<Transaction, 'id'>): Transaction {
