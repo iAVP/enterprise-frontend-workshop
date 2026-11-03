@@ -1,6 +1,7 @@
 import nx from "@nx/eslint-plugin";
 import oneDefinitionPerFile from "./tools/eslint-rules/one-definition-per-file.mjs";
 import singleLineArrowFunction from "./tools/eslint-rules/single-line-arrow-function.mjs";
+import noMagicStrings from "./tools/eslint-rules/no-magic-strings.mjs";
 
 export default [
     ...nx.configs["flat/base"],
@@ -112,7 +113,8 @@ export default [
             workshop: {
                 rules: {
                     "one-definition-per-file": oneDefinitionPerFile,
-                    "single-line-arrow-function": singleLineArrowFunction
+                    "single-line-arrow-function": singleLineArrowFunction,
+                    "no-magic-strings": noMagicStrings
                 }
             }
         },
@@ -144,6 +146,28 @@ export default [
     },
     {
         files: [
+            "apps/**/src/**/*.{ts,tsx,js,jsx}",
+            "libs/**/src/**/*.{ts,tsx,js,jsx}",
+            "common/**/*.{ts,tsx,js,jsx}"
+        ],
+        rules: {
+            "@typescript-eslint/no-magic-numbers": [
+                "error",
+                {
+                    ignore: [-1, 0, 1],
+                    ignoreArrayIndexes: true,
+                    ignoreDefaultValues: true,
+                    ignoreClassFieldInitialValues: true,
+                    ignoreEnums: true,
+                    ignoreNumericLiteralTypes: true,
+                    enforceConst: true
+                }
+            ],
+            "workshop/no-magic-strings": "error"
+        }
+    },
+    {
+        files: [
             "**/*.ts",
             "**/*.tsx",
             "**/*.cts",
@@ -162,6 +186,15 @@ export default [
         ],
         rules: {
             "workshop/single-line-arrow-function": "error"
+        }
+    },
+    {
+        files: [
+            "libs/shared/definitions/src/lib/constants/constants.ts"
+        ],
+        rules: {
+            "@typescript-eslint/no-magic-numbers": "off",
+            "workshop/no-magic-strings": "off"
         }
     }
 ];
