@@ -31,7 +31,7 @@ describe('StorageFacadeService', () => {
 		const transactions = [{ ...DEMO_TRANSACTIONS[0] }];
 		storageService.getFromLocalStorage.mockReturnValue(transactions);
 
-		expect(service.getTransactions()).toBe(transactions);
+		expect(service.getTransactions()).toEqual(transactions);
 	});
 
 	test('returns a copy of demo data when no stored collection exists', function () {
@@ -41,6 +41,12 @@ describe('StorageFacadeService', () => {
 
 		expect(transactions).toEqual(DEMO_TRANSACTIONS);
 		expect(transactions).not.toBe(DEMO_TRANSACTIONS);
+	});
+
+	test('returns demo data when persisted records do not match the transaction contract', function () {
+		storageService.getFromLocalStorage.mockReturnValue([{ id: 'broken', amount: 'not-a-number' }]);
+
+		expect(service.getTransactions()).toEqual(DEMO_TRANSACTIONS);
 	});
 
 	test('delegates transaction persistence to the data layer', function () {
