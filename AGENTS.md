@@ -32,6 +32,7 @@ These rules are mandatory for every contribution. Apply them to new code and whe
 - Component-internal properties and methods must use `protected` rather than `public`.
 - Keep one Angular definition per TypeScript file.
 - Use SCSS for component styles.
+- Use the `inject()` function for Angular dependency injection. Do not inject dependencies through constructors; constructor injection is supported by Angular but is not used in this repository.
 
 ## Paths and feature layout
 
