@@ -23,8 +23,8 @@
 | Ветка | Назначение | Статус |
 |---|---|---|
 | `Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking` | Основная ветка с черновиком статьи | Существует |
-| `Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1` | Практическая реализация Facades и Signals без Effect; формы доходов и расходов — отдельные страницы | Планируется |
-| `Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+2` | Следующий этап: Modal Dialogs и обоснованное применение Effect | Планируется |
+| `Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1` | Практическая реализация Facades и Signals без Effect; формы доходов и расходов — отдельные страницы | В работе |
+| `Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+2` | Следующий этап: Modal Dialogs и обоснованное применение Effect | Создана |
 
 ## Правила нумерации и Git
 
