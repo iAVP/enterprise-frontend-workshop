@@ -9,7 +9,7 @@ describe('StorageFacadeService', () => {
 	let service: StorageFacadeService;
 	let storageService: { getFromLocalStorage: ReturnType<typeof vi.fn>; saveToLocalStorage: ReturnType<typeof vi.fn> };
 
-	beforeEach(() => {
+	beforeEach(function () {
 		storageService = {
 			getFromLocalStorage: vi.fn(),
 			saveToLocalStorage: vi.fn(),
@@ -23,18 +23,18 @@ describe('StorageFacadeService', () => {
 		service = TestBed.inject(StorageFacadeService);
 	});
 
-	afterEach(() => {
+	afterEach(function () {
 		TestBed.resetTestingModule();
 	});
 
-	test('returns persisted transactions when available', () => {
+	test('returns persisted transactions when available', function () {
 		const transactions = [{ ...DEMO_TRANSACTIONS[0] }];
 		storageService.getFromLocalStorage.mockReturnValue(transactions);
 
 		expect(service.getTransactions()).toBe(transactions);
 	});
 
-	test('returns a copy of demo data when no stored collection exists', () => {
+	test('returns a copy of demo data when no stored collection exists', function () {
 		storageService.getFromLocalStorage.mockReturnValue(null);
 
 		const transactions = service.getTransactions();
@@ -43,7 +43,7 @@ describe('StorageFacadeService', () => {
 		expect(transactions).not.toBe(DEMO_TRANSACTIONS);
 	});
 
-	test('delegates transaction persistence to the data layer', () => {
+	test('delegates transaction persistence to the data layer', function () {
 		const transactions: Transaction[] = [];
 		storageService.saveToLocalStorage.mockReturnValue(true);
 
