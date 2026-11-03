@@ -1,4 +1,5 @@
 import { Injectable, inject } from '@angular/core';
+import { CONSTANTS } from '@workshop:def:consts';
 import { TransactionType } from '@workshop:def:enums';
 import type { Transaction } from '@workshop:def:interfaces';
 import { StorageService } from '@workshop:dal';
@@ -9,17 +10,15 @@ import { DEMO_TRANSACTIONS } from '@workshop:mock';
 export class StorageFacadeService {
 	private readonly storageService = inject(StorageService);
 
-	private readonly transactionsKey = 'personal-finance.transactions';
-
 	/** Returns valid persisted transactions or the shared demonstration dataset. */
 	getTransactions(): Transaction[] {
-		const transactions = this.storageService.getFromLocalStorage<unknown>(this.transactionsKey);
+		const transactions = this.storageService.getFromLocalStorage<unknown>(CONSTANTS.TRANSACTIONS.storageKey);
 		return this.isTransactionCollection(transactions) ? transactions : [...DEMO_TRANSACTIONS];
 	}
 
 	/** Persists the current transaction collection. */
 	saveTransactions(transactions: Transaction[]): boolean {
-		return this.storageService.saveToLocalStorage(this.transactionsKey, transactions);
+		return this.storageService.saveToLocalStorage(CONSTANTS.TRANSACTIONS.storageKey, transactions);
 	}
 
 	private isTransactionCollection(value: unknown): value is Transaction[] {
