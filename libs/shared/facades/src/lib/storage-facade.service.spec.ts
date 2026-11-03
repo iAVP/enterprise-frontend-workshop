@@ -1,5 +1,6 @@
 import '@angular/compiler';
 import { TestBed } from '@angular/core/testing';
+import { CONSTANTS } from '@workshop:def:consts';
 import { DEMO_TRANSACTIONS } from '@workshop:mock';
 import type { Transaction } from '@workshop:def:interfaces';
 import { StorageService } from '@workshop:dal';
@@ -32,6 +33,7 @@ describe('StorageFacadeService', () => {
 		storageService.getFromLocalStorage.mockReturnValue(transactions);
 
 		expect(service.getTransactions()).toEqual(transactions);
+		expect(storageService.getFromLocalStorage).toHaveBeenCalledWith(CONSTANTS.TRANSACTIONS.storageKey);
 	});
 
 	test('returns a copy of demo data when no stored collection exists', function () {
@@ -54,6 +56,6 @@ describe('StorageFacadeService', () => {
 		storageService.saveToLocalStorage.mockReturnValue(true);
 
 		expect(service.saveTransactions(transactions)).toBe(true);
-		expect(storageService.saveToLocalStorage).toHaveBeenCalledWith('personal-finance.transactions', transactions);
+		expect(storageService.saveToLocalStorage).toHaveBeenCalledWith(CONSTANTS.TRANSACTIONS.storageKey, transactions);
 	});
 });
