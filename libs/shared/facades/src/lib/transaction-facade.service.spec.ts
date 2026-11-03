@@ -9,7 +9,7 @@ describe('TransactionFacadeService', () => {
 	let service: TransactionFacadeService;
 	let storageFacade: { getTransactions: ReturnType<typeof vi.fn>; saveTransactions: ReturnType<typeof vi.fn> };
 
-	beforeEach(() => {
+	beforeEach(function () {
 		storageFacade = {
 			getTransactions: vi.fn().mockReturnValue([]),
 			saveTransactions: vi.fn().mockReturnValue(true),
@@ -24,12 +24,12 @@ describe('TransactionFacadeService', () => {
 		vi.stubGlobal('crypto', { randomUUID: vi.fn().mockReturnValue('generated-id') });
 	});
 
-	afterEach(() => {
+	afterEach(function () {
 		TestBed.resetTestingModule();
 		vi.unstubAllGlobals();
 	});
 
-	test('initializes its state from the storage facade', () => {
+	test('initializes its state from the storage facade', function () {
 		const transactions: Transaction[] = [{
 			id: 'existing',
 			type: TransactionType.income,
@@ -50,7 +50,7 @@ describe('TransactionFacadeService', () => {
 		expect(service.transactions()).toEqual(transactions);
 	});
 
-	test('calculates balance, income, and expenses', () => {
+	test('calculates balance, income, and expenses', function () {
 		service.addTransaction({
 			type: TransactionType.income,
 			description: 'Salary',
@@ -69,7 +69,7 @@ describe('TransactionFacadeService', () => {
 		expect(service.balance()).toBe(65);
 	});
 
-	test('adds a transaction and persists the updated collection', () => {
+	test('adds a transaction and persists the updated collection', function () {
 		const transaction = service.addTransaction({
 			type: TransactionType.income,
 			description: 'Salary',
