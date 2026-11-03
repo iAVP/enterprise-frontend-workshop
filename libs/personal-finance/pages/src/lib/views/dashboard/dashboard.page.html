@@ -13,31 +13,29 @@
 	<section class="summary" aria-label="Financial summary">
 		<article>
 			<h2>Current balance</h2>
-			<p class="amount">{{ store.balance() | currency: currency : 'symbol' : currencyFormat : currencyLocale }}</p>
+			<p class="amount">{{ facade.balance() | currency: currency : 'symbol' : currencyFormat : currencyLocale }}</p>
 		</article>
 		<article>
 			<h2>Income</h2>
-			<p>{{ store.totalIncome() | currency: currency : 'symbol' : currencyFormat : currencyLocale }}</p>
+			<p>{{ facade.totalIncome() | currency: currency : 'symbol' : currencyFormat : currencyLocale }}</p>
 		</article>
 		<article>
 			<h2>Expenses</h2>
-			<p>{{ store.totalExpense() | currency: currency : 'symbol' : currencyFormat : currencyLocale }}</p>
+			<p>{{ facade.totalExpense() | currency: currency : 'symbol' : currencyFormat : currencyLocale }}</p>
 		</article>
 	</section>
 
 	<section class="transactions">
 		<h2>Transactions</h2>
-		@if (store.transactions().length) {
+		@if (facade.transactions().length) {
 			<ul>
-				@for (transaction of store.transactions(); track transaction.id) {
+				@for (transaction of facade.transactions(); track transaction.id) {
 					<li>
 						<time [attr.datetime]="transaction.date">
 							{{ transaction.date | date: 'mediumDate' }}
 						</time>
 						<span>{{ transaction.description }}</span>
-						<span
-							[class.income]="transaction.type === TransactionType.income"
-						>
+						<span [class.income]="transaction.type === TransactionType.income">
 							{{ transaction.type === TransactionType.income ? '+' : '−' }}
 							{{ transaction.amount | currency: currency : 'symbol' : currencyFormat : currencyLocale }}
 						</span>
