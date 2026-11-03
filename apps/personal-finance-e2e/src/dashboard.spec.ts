@@ -2,9 +2,6 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Personal Finance dashboard', function () {
 	test.beforeEach(async function ({ page }) {
-		await page.addInitScript(function () {
-			window.localStorage.clear();
-		});
 		await page.goto('/dashboard');
 	});
 
@@ -40,6 +37,19 @@ test.describe('Personal Finance dashboard', function () {
 		expect(storedTransactions.some(function (transaction) {
 			return transaction.description === 'E2E salary adjustment';
 		})).toBe(true);
+	});
+
+	test('restores saved transactions after a full page reload', async function ({ page }) {
+		await page.getByRole('link', { name: 'Add income' }).click();
+		await page.getByLabel('Description').fill('Persisted after reload');
+		await page.getByLabel(/Amount/).fill('75');
+		await page.getByLabel('Date').fill('2026-11-04');
+		await page.getByRole('button', { name: 'Save' }).click();
+		await expect(page.getByText('Persisted after reload')).toBeVisible();
+
+		await page.reload();
+
+		await expect(page.getByText('Persisted after reload')).toBeVisible();
 	});
 
 	test('validates a transaction before saving', async function ({ page }) {
