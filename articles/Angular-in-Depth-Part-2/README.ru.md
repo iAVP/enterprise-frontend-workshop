@@ -592,10 +592,6 @@ Angular предоставляет механизмы взаимодействи
 - [RxJS interop with Angular signals](https://angular.dev/guide/signals/rxjs-interop) — взаимодействие Observable и Signals через `toSignal()` и `toObservable()`.
 - [Angular Effects](https://angular.dev/guide/signals/effect) — назначение Effect и рекомендации по его применению.
 
-### Ветка разработки
-
-Текущая редакция статьи находится в ветке [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1) репозитория [enterprise-frontend-workshop](https://github.com/iAVP/enterprise-frontend-workshop).
-
 
 ### Запуск приложения и проверок из npm-панели IDE
 
@@ -619,6 +615,12 @@ Angular предоставляет механизмы взаимодействи
 
 Перед первым запуском E2E-тестов выполните `e2e:install`. В Linux могут дополнительно потребоваться системные зависимости Playwright; в CI они устанавливаются автоматически.
 
+E2E-набор разделён на два сценарных файла: `dashboard.spec.ts` проверяет отображение Dashboard, начальный набор операций, создание транзакции, валидацию формы и восстановление сохранённых данных после полной перезагрузки страницы; `auth.spec.ts` проверяет обязательные поля, некорректные значения, сброс формы и переход на Dashboard после локально успешной проверки.
+
 Конфигурация Playwright самостоятельно запускает Angular-приложение на время тестирования и останавливает его после завершения. Отдельно запускать `serve` перед E2E-тестами не требуется.
 
 В текущем демонстрационном приложении форма Login проверяет корректность введённых значений на стороне клиента и после успешной локальной проверки переводит пользователя на Dashboard. Подключённого backend-сервиса аутентификации и проверки учётных данных пока нет. Поэтому E2E-тесты проверяют форму, валидацию и навигацию, но не подтверждают реальную аутентификацию пользователя.
+
+### Ветка разработки
+
+Текущая редакция статьи находится в ветке [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1) репозитория [enterprise-frontend-workshop](https://github.com/iAVP/enterprise-frontend-workshop).
