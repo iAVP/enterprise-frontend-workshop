@@ -3,8 +3,8 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { COMMON, defaultCurrencyFormat, defaultCurrencyLocale } from '@workshop:common';
 import { ROUTE } from '@workshop:def:consts';
-import { TransactionStore } from '../../state/transaction.store';
 import { TransactionType } from '@workshop:def:enums';
+import { TransactionFacadeService } from '@workshop:facades';
 
 /** Displays the current balance and the transaction history. */
 @Component({
@@ -14,11 +14,11 @@ import { TransactionType } from '@workshop:def:enums';
 	templateUrl: './dashboard.page.html',
 	styleUrl: './dashboard.page.scss',
 })
-export class DashboardPage {
+export class DashboardPageComponent {
 	protected readonly TransactionType = TransactionType;
 
-	/** Provides shared transaction state to the dashboard template. */
-	protected readonly store = inject(TransactionStore);
+	/** Provides the transaction state and business operations to the dashboard. */
+	protected readonly facade = inject(TransactionFacadeService);
 
 	/** Exposes the configured currency to the dashboard template. */
 	protected readonly currency = COMMON.DEFAULT_CURRENCY;
