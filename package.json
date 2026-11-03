@@ -9,6 +9,11 @@
     "build:prod": "nx build personal-finance --configuration=production",
     "test": "nx run-many -t test",
     "lint": "nx run-many -t lint",
+    "e2e": "nx e2e personal-finance-e2e",
+    "e2e:chromium": "nx e2e personal-finance-e2e --project=chromium",
+    "e2e:headed": "nx e2e personal-finance-e2e --headed",
+    "e2e:ui": "nx e2e personal-finance-e2e --ui",
+    "e2e:install": "playwright install",
     "nx:graph": "nx graph",
     "affected": "nx affected -t lint test build"
   },
