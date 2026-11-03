@@ -17,9 +17,9 @@ concurrency:
 
 jobs:
     quality:
-        name: Lint, test and build
+        name: Lint, unit test, E2E and build
         runs-on: ubuntu-latest
-        timeout-minutes: 20
+        timeout-minutes: 30
         env:
             CI: true
         steps:
@@ -35,11 +35,17 @@ jobs:
             - name: Install dependencies
               run: npm ci
 
+            - name: Install Playwright Chromium
+              run: npx playwright install --with-deps chromium
+
             - name: Run ESLint
               run: npm run lint
 
-            - name: Run tests
+            - name: Run unit tests
               run: npm test
+
+            - name: Run E2E tests
+              run: npm run e2e:chromium
 
             - name: Build application
               run: npm run build
