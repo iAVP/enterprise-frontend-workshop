@@ -1,1 +1,3 @@
-export * from './lib/facades';
+/** Public exports for application-facing facade services. */
+export * from './lib/storage-facade.service';
+export * from './lib/transaction-facade.service';
