@@ -14,7 +14,7 @@
 | 4 | NX Fundamentals — Building an Enterprise Frontend Workspace from Scratch | — | Опубликована |
 | 5 | Development Tools | — | Опубликована |
 | 6 | Angular in Depth | `Angular-in-Depth` | Завершена |
-| 7 | Эволюция Angular и архитектурного мышления разработчика | `Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking` | В разработке |
+| 7 | Эволюция Angular и архитектурного мышления разработчика | `Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking` | Историческая часть завершена; техническая часть в разработке |
 
 ## Статья №7 — этапы реализации
 
@@ -22,7 +22,7 @@
 
 | Ветка | Назначение | Статус |
 |---|---|---|
-| `Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking` | Основная ветка с черновиком статьи | Существует |
+| `Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking` | Завершённая историческая часть статьи | Завершена |
 | `Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1` | Практическая реализация Facades и Signals без Effect; формы доходов и расходов — отдельные страницы | В работе |
 | `Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+2` | Следующий этап: Modal Dialogs и обоснованное применение Effect | Создана |
 
