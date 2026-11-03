@@ -1,6 +1,7 @@
 name: CI
 
 on:
+    workflow_dispatch:
     push:
         branches:
             - "Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1"
