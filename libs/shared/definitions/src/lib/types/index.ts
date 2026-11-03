@@ -1,2 +1,2 @@
 /** Public exports for shared types. */
-export * from './constants';
+export * from './application-constants';
