@@ -24,7 +24,12 @@ export class StorageService {
 				return false;
 			}
 
-			localStorage.setItem(key, JSON.stringify(value));
+			const serializedValue = JSON.stringify(value);
+			if (serializedValue === undefined) {
+				return false;
+			}
+
+			localStorage.setItem(key, serializedValue);
 			return true;
 		} catch {
 			return false;
