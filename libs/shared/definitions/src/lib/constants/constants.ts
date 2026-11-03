@@ -1,4 +1,4 @@
-import type { AppConstants } from '../types';
+import type { AppConstants } from '../interfaces';
 
 /** Shared application constants. */
 export const CONSTANTS = {
