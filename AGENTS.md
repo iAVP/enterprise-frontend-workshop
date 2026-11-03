@@ -28,6 +28,8 @@ These rules are mandatory for every contribution. Apply them to new code and whe
 
 ## Angular conventions
 
+- Angular service class names must end with `Service` (for example, `TransactionService` or `StorageService`). Angular component class names must end with `Component` (for example, `TransactionListComponent`). Apply these suffixes consistently to all new and modified Angular services and components.
+
 - Do not use `@Input`, `@Output`, `EventEmitter`, or decorator-based input/output declarations. Use signal-based `input()` and `output()`.
 - Component-internal properties and methods must use `protected` rather than `public`.
 - Keep one Angular definition per TypeScript file.
