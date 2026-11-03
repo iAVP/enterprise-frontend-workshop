@@ -1,4 +1,6 @@
 import nx from "@nx/eslint-plugin";
+import oneDefinitionPerFile from "./tools/eslint-rules/one-definition-per-file.mjs";
+import singleLineArrowFunction from "./tools/eslint-rules/single-line-arrow-function.mjs";
 
 export default [
     ...nx.configs["flat/base"],
@@ -106,7 +108,49 @@ export default [
             "**/*.cjs",
             "**/*.mjs"
         ],
-        // Override or add rules here
-        rules: {}
+        plugins: {
+            workshop: {
+                rules: {
+                    "one-definition-per-file": oneDefinitionPerFile,
+                    "single-line-arrow-function": singleLineArrowFunction
+                }
+            }
+        },
+        rules: {
+            "workshop/single-line-arrow-function": "error",
+            "no-var": "error",
+            "prefer-const": [
+                "error",
+                {
+                    destructuring: "all"
+                }
+            ],
+            "curly": [
+                "error",
+                "all"
+            ],
+            "complexity": [
+                "error",
+                12
+            ],
+            "max-lines": [
+                "error",
+                {
+                    max: 400,
+                    skipBlankLines: true,
+                    skipComments: true
+                }
+            ]
+        }
+    },
+    {
+        files: [
+            "**/*.ts",
+            "**/*.tsx"
+        ],
+        rules: {
+            "@typescript-eslint/no-explicit-any": "error",
+            "workshop/one-definition-per-file": "error"
+        }
     }
 ];
