@@ -1,7 +1,7 @@
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { COMMON, defaultCurrencyFormat, defaultCurrencyLocale } from '@workshop:common';
+import { COMMON } from '@workshop:common';
 import { ROUTE } from '@workshop:def:consts';
 import { TransactionType } from '@workshop:def:enums';
 import { TransactionFacadeService } from '@workshop:facades';
@@ -24,8 +24,8 @@ export class DashboardPageComponent {
 	protected readonly currency = COMMON.DEFAULT_CURRENCY;
 
 	/** Exposes the shared currency formatting settings to the dashboard template. */
-	protected readonly currencyFormat = defaultCurrencyFormat;
-	protected readonly currencyLocale = defaultCurrencyLocale;
+	protected readonly currencyFormat = COMMON.defaultCurrencyFormat;
+	protected readonly currencyLocale = COMMON.defaultCurrencyLocale;
 
 	/** Exposes centralized route constants to the dashboard template. */
 	protected readonly routes = ROUTE;
