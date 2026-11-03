@@ -591,3 +591,7 @@ Angular предоставляет механизмы взаимодействи
 - [Angular Signals](https://angular.dev/guide/signals) — Writable Signals, read-only Signals, computed и реактивные зависимости.
 - [RxJS interop with Angular signals](https://angular.dev/guide/signals/rxjs-interop) — взаимодействие Observable и Signals через `toSignal()` и `toObservable()`.
 - [Angular Effects](https://angular.dev/guide/signals/effect) — назначение Effect и рекомендации по его применению.
+
+### Ветка разработки
+
+Текущая редакция статьи находится в ветке [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1) репозитория [enterprise-frontend-workshop](https://github.com/iAVP/enterprise-frontend-workshop).
