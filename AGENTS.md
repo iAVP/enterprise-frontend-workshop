@@ -4,6 +4,7 @@ These rules are mandatory for every contribution. Apply them to new code and whe
 
 ## TypeScript structure and definitions
 
+- `common/environments/common.ts` must expose shared environment entries only through properties of the exported `COMMON` object. Add every new entry inside `COMMON`; do not create standalone exported constants or other independent definitions for these entries. Consumers must access them through `COMMON.<property>`.
 - One TypeScript file contains exactly one definition. Do not declare a component class and an interface, type, enum, or another class in the same file.
 - Shared contracts and reusable definitions belong in `libs/shared/definitions/src/lib`, separated by kind:
   - constants: `constants/`
