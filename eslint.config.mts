@@ -171,12 +171,19 @@ export default [
         files: [
             "**/*.ts",
             "**/*.tsx",
-            "**/*.cts",
-            "**/*.mts"
+            "**/*.cts"
         ],
         rules: {
             "@typescript-eslint/no-explicit-any": "error",
             "workshop/one-definition-per-file": "error"
+        }
+    },
+    {
+        files: [
+            "**/*.mts"
+        ],
+        rules: {
+            "workshop/one-definition-per-file": "off"
         }
     },
     {
