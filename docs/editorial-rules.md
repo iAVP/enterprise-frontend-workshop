@@ -7,6 +7,11 @@
 - Do not claim an article is published without evidence of publication.
 - For changes that affect multiple language indexes, update and validate all three indexes in the same task.
 
+## Environment COMMON configuration
+- Treat `COMMON` as one configuration object. Never destructure it or copy its individual properties into separate exports, component properties, or local variables.
+- Environment files must expose the complete object through the local `common` property. Components must likewise expose it as `protected readonly common = COMMON;` and templates must access values as `common.<PROPERTY>`.
+- When an application or component needs different values, create or extend its own local `common` object (for example, `const common = { ...COMMON, SOME_PROPERTY: 'local-value' };`). Apply any further overrides to that local `common` object. Do not create standalone properties from individual members of the original `COMMON`.
+
 ## Article content
 - Articles are full technical texts. Translations must preserve the source's explanations, commands, configuration, code examples, caveats, and official documentation links. Do not silently summarize or omit sections.
 - Do not put a table of contents (TOC) inside article README files. Article section navigation belongs in the language indexes.
