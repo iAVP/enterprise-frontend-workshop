@@ -15,7 +15,7 @@
     "e2e:ui": "nx e2e personal-finance-e2e --ui",
     "e2e:install": "playwright install",
     "nx:graph": "nx graph",
-    "affected": "nx affected -t lint test build"
+    "affected": "nx affected -t lint test build --exclude=mock"
   },
   "devDependencies": {
     "@angular-devkit/core": "~22.2.0",
