@@ -20,12 +20,8 @@ export class DashboardPageComponent {
 	/** Provides the transaction state and business operations to the dashboard. */
 	protected readonly facade = inject(TransactionFacadeService);
 
-	/** Exposes the configured currency to the dashboard template. */
-	protected readonly currency = COMMON.DEFAULT_CURRENCY;
-
-	/** Exposes the shared currency formatting settings to the dashboard template. */
-	protected readonly currencyFormat = COMMON.defaultCurrencyFormat;
-	protected readonly currencyLocale = COMMON.defaultCurrencyLocale;
+	/** Exposes shared application configuration to the dashboard template. */
+	protected readonly common = COMMON;
 
 	/** Exposes centralized route constants to the dashboard template. */
 	protected readonly routes = ROUTE;
