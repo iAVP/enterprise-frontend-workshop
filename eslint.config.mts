@@ -117,7 +117,6 @@ export default [
             }
         },
         rules: {
-            "workshop/single-line-arrow-function": "error",
             "no-var": "error",
             "prefer-const": [
                 "error",
@@ -153,6 +152,16 @@ export default [
         rules: {
             "@typescript-eslint/no-explicit-any": "error",
             "workshop/one-definition-per-file": "error"
+        }
+    },
+    {
+        files: [
+            "apps/**/src/**/*.{ts,tsx,js,jsx}",
+            "libs/**/src/**/*.{ts,tsx,js,jsx}",
+            "common/**/*.{ts,tsx,js,jsx}"
+        ],
+        rules: {
+            "workshop/single-line-arrow-function": "error"
         }
     }
 ];
