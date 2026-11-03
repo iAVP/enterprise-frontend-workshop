@@ -2,9 +2,6 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Authentication form', function () {
 	test.beforeEach(async function ({ page }) {
-		await page.addInitScript(function () {
-			window.localStorage.clear();
-		});
 		await page.goto('/login');
 	});
 
