@@ -1,10 +1,10 @@
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { COMMON } from '@workshop:common';
 import { ROUTE } from '@workshop:def:consts';
 import { TransactionType } from '@workshop:def:enums';
-import { TransactionFacadeService } from '@workshop:facades';
+import { AuthFacadeService, TransactionFacadeService } from '@workshop:facades';
 
 /** Displays the current balance and the transaction history. */
 @Component({
@@ -25,4 +25,16 @@ export class DashboardPageComponent {
 
 	/** Exposes centralized route constants to the dashboard template. */
 	protected readonly routes = ROUTE;
+
+	/** Provides navigation after ending the local session. */
+	private readonly router = inject(Router);
+
+	/** Manages the local demonstration authentication session. */
+	private readonly authFacade = inject(AuthFacadeService);
+
+	/** Ends the local session and returns to the login page. */
+	protected onLogout(): void {
+		this.authFacade.logout();
+		void this.router.navigateByUrl('/' + ROUTE.LOGIN);
+	}
 }
