@@ -1,6 +1,6 @@
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { COMMON, defaultCurrencyFormat, defaultCurrencyLocale } from '@workshop:common';
+import { COMMON } from '@workshop:common';
 import { TransactionType } from '@workshop:def:enums';
 import type { Transaction } from '@workshop:def:interfaces';
 import { ModalDialogService } from '@workshop:ui';
@@ -25,8 +25,8 @@ export class DashboardPage {
 
   /** Exposes the configured currency to the dashboard template. */
   protected readonly currency = COMMON.DEFAULT_CURRENCY;
-  protected readonly currencyFormat = defaultCurrencyFormat;
-  protected readonly currencyLocale = defaultCurrencyLocale;
+  protected readonly currencyFormat = COMMON.defaultCurrencyFormat;
+  protected readonly currencyLocale = COMMON.defaultCurrencyLocale;
 
   /** Opens the generic dialog with transaction form content. */
   protected openTransactionDialog(type: TransactionType): void {
