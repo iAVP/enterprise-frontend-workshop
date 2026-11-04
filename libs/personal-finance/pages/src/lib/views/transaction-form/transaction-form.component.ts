@@ -26,11 +26,6 @@ export class TransactionFormComponent {
   protected date = new Date().toISOString().slice(0, 10);
   protected errorMessage = '';
 
-  /** Returns the heading for the active transaction kind. */
-  protected get title(): string {
-    return this.dialogData.type === TransactionType.income ? 'Add income' : 'Add expense';
-  }
-
   /** Validates the form and returns the transaction data to the dialog caller. */
   protected onSubmit(event: SubmitEvent): void {
     event.preventDefault();
