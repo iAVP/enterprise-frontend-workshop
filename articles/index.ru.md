@@ -15,6 +15,7 @@
 | 5 | Development Tools | — | Опубликована |
 | 6 | Angular in Depth | `Angular-in-Depth` | Завершена |
 | 7 | Эволюция Angular и архитектурного мышления разработчика | `Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking` | Историческая часть завершена; техническая часть в разработке |
+| 8 | TypeScript and Architectural Thinking — From C# Principles to Enterprise Frontend Development | `TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development` | Запланирована |
 
 Subtitle для опубликованных материалов ведутся отдельно, чтобы не перегружать индекс: [Article Subtitles](./SUBTITLES.md).
 
@@ -27,6 +28,13 @@ Subtitle для опубликованных материалов ведутся
 | `Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking` | Завершённая историческая часть статьи | Завершена |
 | `Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1` | Практическая реализация Facades и Signals без Effect; формы доходов и расходов — отдельные страницы | В работе |
 | `Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+2` | Следующий этап: Modal Dialogs и обоснованное применение Effect | Создана |
+
+## Статья №8 — TypeScript and Architectural Thinking — From C# Principles to Enterprise Frontend Development
+
+Статья запланирована. Рабочее название и номер утверждены; черновик ещё не начат.
+
+- [Рабочие заметки на русском](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.ru.md)
+- [GitHub-ветка статьи](https://github.com/iAVP/enterprise-frontend-workshop/tree/TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development)
 
 ## Правила нумерации и Git
 
