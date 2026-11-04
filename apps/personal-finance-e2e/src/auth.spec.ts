@@ -12,7 +12,7 @@ test.describe('Authentication form', function () {
 
 	test('redirects unauthenticated users from the application root to login', async function ({ page }) {
 		await page.goto('/');
-		await expect(page).toHaveURL(/\\/login$/);
+		await expect(page).toHaveURL(/\/login$/);
 	});
 
 	test('shows required field validation when submitted empty', async function ({ page }) {
