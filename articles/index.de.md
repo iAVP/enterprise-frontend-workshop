@@ -154,6 +154,18 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 - [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking%2B1)
 - [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+2](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking%2B2)
 
+- [8. TypeScript and Architectural Thinking — From C# Principles to Enterprise Frontend Development](#8-typescript-and-architectural-thinking--from-c-principles-to-enterprise-frontend-development)
+## 8. TypeScript and Architectural Thinking — From C# Principles to Enterprise Frontend Development
+
+### Repository-Materialien
+[English](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.md) | [Russisch](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.ru.md) | [Deutsch](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.de.md)
+
+### Artikelinhalte
+- [Arbeitsstruktur und Recherche-Checkliste](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.de.md#vorläufige-struktur)
+
+### GitHub-Branches
+- [TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development](https://github.com/iAVP/enterprise-frontend-workshop/tree/TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development)
+
 ## Redaktionsregeln
 
 - Jeder Artikeleintrag muss exakt derselben Vorlage folgen: `## N. Artikeltitel`, `### Repository-Materialien` mit allen drei Sprachlinks in einer Zeile, getrennt durch ` | `, `### Artikelinhalte` mit Abschnittslinks und `### GitHub-Branches` ausschließlich mit Branches dieses Artikels. Keine Statuszeile in die Artikeleintragsvorlage einfügen.
