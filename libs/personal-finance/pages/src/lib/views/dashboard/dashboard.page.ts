@@ -5,7 +5,7 @@ import { TransactionType } from '@workshop:def:enums';
 import type { Transaction } from '@workshop:def:interfaces';
 import { ModalDialogService } from '@workshop:ui';
 import { TransactionFormComponent } from '../transaction-form/transaction-form.component';
-import { TransactionStore } from '../../state/transaction.store';
+import { TransactionsFacade } from '@workshop:facades';
 
 /** Displays the current balance and transaction history and starts transaction dialogs. */
 @Component({
@@ -19,7 +19,7 @@ export class DashboardPage {
   protected readonly TransactionType = TransactionType;
 
   /** Provides shared transaction state to the dashboard template. */
-  protected readonly store = inject(TransactionStore);
+  protected readonly facade = inject(TransactionsFacade);
 
   private readonly modalDialog = inject(ModalDialogService);
 
@@ -41,7 +41,7 @@ export class DashboardPage {
       },
       (transaction) => {
         if (transaction) {
-          this.store.addTransaction(transaction);
+          this.facade.addTransaction(transaction);
         }
       },
     );

@@ -1,3 +1,2 @@
-export function facades(): string {
-  return 'facades';
-}
+/** Public exports for feature facade services. */
+export * from './transactions.facade';

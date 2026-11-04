@@ -7,11 +7,11 @@ import { StorageService } from '@workshop:dal';
 const TRANSACTIONS_STORAGE_KEY = 'personal-finance.transactions';
 
 /**
- * Owns transaction state and coordinates persistence with the data-access layer.
- * The effect is the boundary between an imperative storage write and reactive UI state.
+ * Coordinates transaction state and persistence for the Personal Finance feature.
+ * The effect bridges an imperative storage write with the reactive in-memory state.
  */
 @Injectable({ providedIn: 'root' })
-export class TransactionStore {
+export class TransactionsFacade {
   private readonly state = signal<Transaction[]>(DEMO_TRANSACTIONS);
   private readonly reloadRequested = signal(0);
 

@@ -2,9 +2,9 @@ import { TestBed } from '@angular/core/testing';
 import type { Transaction } from '@workshop:def:interfaces';
 import { TransactionType } from '@workshop:def:enums';
 import { StorageService } from '@workshop:dal';
-import { TransactionStore } from './transaction.store';
+import { TransactionsFacade } from './transactions.facade';
 
-describe('TransactionStore', () => {
+describe('TransactionsFacade', () => {
   let persisted: Transaction[] | null;
   let storage: {
     getItem: ReturnType<typeof vi.fn>;
@@ -23,7 +23,7 @@ describe('TransactionStore', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        TransactionStore,
+        TransactionsFacade,
         { provide: StorageService, useValue: storage },
       ],
     });
@@ -38,18 +38,18 @@ describe('TransactionStore', () => {
       date: '2026-11-04',
     }];
 
-    const store = TestBed.inject(TransactionStore);
+    const facade = TestBed.inject(TransactionsFacade);
     TestBed.tick();
 
-    expect(store.transactions()).toEqual(persisted);
-    expect(store.totalIncome()).toBe(125);
+    expect(facade.transactions()).toEqual(persisted);
+    expect(facade.totalIncome()).toBe(125);
   });
 
   it('persists a transaction and reloads the collection through the effect', () => {
-    const store = TestBed.inject(TransactionStore);
+    const facade = TestBed.inject(TransactionsFacade);
     TestBed.tick();
 
-    store.addTransaction({
+    facade.addTransaction({
       type: TransactionType.income,
       description: 'Consulting',
       amount: 250,
@@ -65,24 +65,24 @@ describe('TransactionStore', () => {
 
     TestBed.tick();
 
-    expect(store.transactions()).toEqual(persisted);
-    expect(store.transactions()[0].description).toBe('Consulting');
-    expect(store.totalIncome()).toBeGreaterThanOrEqual(250);
+    expect(facade.transactions()).toEqual(persisted);
+    expect(facade.transactions()[0].description).toBe('Consulting');
+    expect(facade.totalIncome()).toBeGreaterThanOrEqual(250);
   });
 
   it('updates in-memory state when browser storage is unavailable', () => {
     storage.setItem.mockReturnValue(false);
-    const store = TestBed.inject(TransactionStore);
+    const facade = TestBed.inject(TransactionsFacade);
     TestBed.tick();
 
-    store.addTransaction({
+    facade.addTransaction({
       type: TransactionType.expense,
       description: 'Fallback expense',
       amount: 35,
       date: '2026-11-04',
     });
 
-    expect(store.transactions()[0].description).toBe('Fallback expense');
-    expect(store.totalExpense()).toBeGreaterThanOrEqual(35);
+    expect(facade.transactions()[0].description).toBe('Fallback expense');
+    expect(facade.totalExpense()).toBeGreaterThanOrEqual(35);
   });
 });
