@@ -1,29 +1,23 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { COMMON } from '@workshop:common';
-import { ROUTE } from '@workshop:def:consts';
 import { TransactionType } from '@workshop:def:enums';
-import { TransactionStore } from '../../state/transaction.store';
+import type { Transaction } from '@workshop:def:interfaces';
+import { ModalDialogRef, MODAL_DIALOG_DATA } from '@workshop:ui';
 
-/** Creates an income or expense according to the active route data. */
+interface TransactionFormDialogData {
+  type: TransactionType;
+}
+
+/** Collects transaction details and returns them to the caller through ModalDialog. */
 @Component({
-  selector: 'app-transaction-form-page',
+  selector: 'app-transaction-form',
   standalone: true,
   templateUrl: './transaction-form.page.html',
   styleUrl: './transaction-form.page.scss',
 })
-export class TransactionFormPage {
-  /** Provides the active route data. */
-  protected readonly route = inject(ActivatedRoute);
-
-  /** Provides navigation after saving or cancelling the form. */
-  protected readonly router = inject(Router);
-
-  /** Provides access to the shared transaction state. */
-  protected readonly store = inject(TransactionStore);
-
-  /** Determines the transaction kind from route data. */
-  protected readonly type = this.route.snapshot.data['type'] as TransactionType;
+export class TransactionFormComponent {
+  private readonly dialogRef = inject(ModalDialogRef<Omit<Transaction, 'id'>>);
+  private readonly dialogData = inject(MODAL_DIALOG_DATA) as TransactionFormDialogData;
 
   /** Provides the configured display currency. */
   protected readonly currency = COMMON.DEFAULT_CURRENCY;
@@ -42,10 +36,10 @@ export class TransactionFormPage {
 
   /** Returns the heading for the active transaction kind. */
   protected get title(): string {
-    return this.type === TransactionType.income ? 'Add income' : 'Add expense';
+    return this.dialogData.type === TransactionType.income ? 'Add income' : 'Add expense';
   }
 
-  /** Validates the form, stores the transaction, and returns to the dashboard. */
+  /** Validates the form and returns the transaction data to the dialog caller. */
   protected onSubmit(event: SubmitEvent): void {
     event.preventDefault();
 
@@ -60,19 +54,16 @@ export class TransactionFormPage {
       return;
     }
 
-    this.store.addTransaction({
-      type: this.type,
+    this.dialogRef.close({
+      type: this.dialogData.type,
       description: this.description.trim(),
       amount: numericAmount,
       date: this.date,
     });
-
-    this.errorMessage = '';
-    void this.router.navigateByUrl('/' + ROUTE.DASHBOARD);
   }
 
-  /** Cancels the form and returns to the dashboard without saving. */
+  /** Closes the dialog without returning a transaction. */
   protected onCancel(): void {
-    void this.router.navigateByUrl('/' + ROUTE.DASHBOARD);
+    this.dialogRef.close();
   }
 }
