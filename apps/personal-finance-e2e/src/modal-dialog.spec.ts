@@ -1,7 +1,10 @@
 import { expect, test } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
-  await page.addInitScript(() => localStorage.clear());
+  await page.addInitScript(() => {
+    localStorage.clear();
+    indexedDB.deleteDatabase('personal-finance');
+  });
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Personal Finance' })).toBeVisible();
 });
@@ -23,9 +26,22 @@ test('creates an income through ModalDialog and restores it after reload', async
   await page.reload();
   await expect(page.getByText('Consulting invoice')).toBeVisible();
 
-  const storedTransactions = await page.evaluate(() =>
-    JSON.parse(localStorage.getItem('personal-finance.transactions') ?? '[]'),
-  );
+  const storedTransactions = await page.evaluate(async () => {
+    const database = await new Promise<IDBDatabase>((resolve, reject) => {
+      const request = indexedDB.open('personal-finance', 1);
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    });
+
+    return new Promise<Array<{ description: string; amount: number; date: string }>>((resolve, reject) => {
+      const request = database.transaction('key-value', 'readonly')
+        .objectStore('key-value')
+        .get('personal-finance.transactions');
+      request.onsuccess = () => resolve(request.result ?? []);
+      request.onerror = () => reject(request.error);
+    });
+  });
+
   expect(storedTransactions).toEqual(
     expect.arrayContaining([
       expect.objectContaining({
@@ -37,7 +53,7 @@ test('creates an income through ModalDialog and restores it after reload', async
   );
 });
 
-test('closes a dialog with Escape without persisting a transaction', async ({ page }) => {
+test('closes a dialog with Escape without adding a transaction', async ({ page }) => {
   await page.getByRole('button', { name: 'Add expense' }).click();
 
   const dialog = page.getByRole('dialog', { name: 'Add expense' });
@@ -45,7 +61,22 @@ test('closes a dialog with Escape without persisting a transaction', async ({ pa
   await page.keyboard.press('Escape');
 
   await expect(dialog).toBeHidden();
-  await expect
-    .poll(() => page.evaluate(() => localStorage.getItem('personal-finance.transactions')))
-    .toBeNull();
+
+  const storedTransactions = await page.evaluate(async () => {
+    const database = await new Promise<IDBDatabase>((resolve, reject) => {
+      const request = indexedDB.open('personal-finance', 1);
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    });
+
+    return new Promise<Array<unknown> | undefined>((resolve, reject) => {
+      const request = database.transaction('key-value', 'readonly')
+        .objectStore('key-value')
+        .get('personal-finance.transactions');
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    });
+  });
+
+  expect(storedTransactions).toBeUndefined();
 });
