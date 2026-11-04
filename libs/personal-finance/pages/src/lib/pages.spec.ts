@@ -1,13 +1,13 @@
 import '@angular/compiler';
 
-import { DashboardPageComponent } from './views/dashboard/dashboard.page';
-import { LoginPageComponent } from './views/login/login.page';
-import { TransactionFormPageComponent } from './views/transaction-form/transaction-form.page';
+import { DashboardPage } from './views/dashboard/dashboard.page';
+import { LoginPage } from './views/login/login.page';
+import { TransactionFormComponent } from './views/transaction-form/transaction-form.component';
 
 describe('Personal Finance pages', () => {
-	test('exports the application page components', function () {
-		expect(LoginPageComponent).toBeDefined();
-		expect(DashboardPageComponent).toBeDefined();
-		expect(TransactionFormPageComponent).toBeDefined();
-	});
+  test('exports the application page components', () => {
+    expect(LoginPage).toBeDefined();
+    expect(DashboardPage).toBeDefined();
+    expect(TransactionFormComponent).toBeDefined();
+  });
 });

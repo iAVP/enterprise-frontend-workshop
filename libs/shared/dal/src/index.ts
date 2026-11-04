@@ -1,2 +1,2 @@
-/** Public exports for data-access services. */
-export * from './lib/storage.service';
+/** Public API for shared data access functionality. */
+export * from './lib/storage/storage.service';
