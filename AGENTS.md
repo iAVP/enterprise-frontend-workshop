@@ -29,7 +29,6 @@ These rules are mandatory for every contribution. Apply them to new code and whe
 ## Angular conventions
 
 - Angular service class names must end with `Service` (for example, `TransactionService` or `StorageService`). Angular component class names must end with `Component` (for example, `TransactionListComponent`). Apply these suffixes consistently to all new and modified Angular services and components.
-
 - Do not use `@Input`, `@Output`, `EventEmitter`, or decorator-based input/output declarations. Use signal-based `input()` and `output()`.
 - Component-internal properties and methods must use `protected` rather than `public`.
 - Keep one Angular definition per TypeScript file.
@@ -63,7 +62,6 @@ These rules are mandatory for every contribution. Apply them to new code and whe
 - Verify the resulting Git tree and inspect changed files after committing.
 - Never claim tests, lint, or builds were run unless they were actually executed. Report any checks that could not be run.
 
-
 ## Formatting and source-file readability
 
 - Create and modify source files with readable, conventional formatting. Never compress HTML templates, SCSS, or TypeScript into a single line to save space.
@@ -81,3 +79,15 @@ These rules are mandatory for every contribution. Apply them to new code and whe
 - Import the enum from its established definitions alias. Do not duplicate enum values as string unions, magic strings, or local constants.
 - Keep route data, component logic, templates, mock data, and documentation consistent with the enum's actual member names and underlying values.
 - Before finishing a change, inspect all related templates and TypeScript files for string-based checks or assignments that bypass the enum contract.
+
+## Backward compatibility and regression prevention
+
+- Treat all existing application behavior as a required baseline. A task to add, refactor, or replace one feature does not grant permission to remove, weaken, bypass, or change unrelated existing functionality.
+- Before making changes, inspect the current implementation and the relevant history or base branch to identify existing features, route behavior, guards, authentication flows, persistence behavior, navigation, UI actions, and public APIs that must remain intact.
+- Make the smallest change that fulfills the requested task. Keep new functionality additive and isolated wherever possible.
+- Do not remove or alter an existing feature, route guard, redirect, authentication check, persisted setting, UI action, or user flow unless the user explicitly requests that change. If a requested change appears to require such a modification, explain the impact and ask before proceeding.
+- When replacing or restructuring a component, page, service, route configuration, or shared abstraction, first inventory its existing behavior and dependencies. Reimplement or preserve every behavior not explicitly marked for removal.
+- Before committing, review the complete diff against the base branch and check specifically for accidental deletions, weakened access control, lost navigation or UI controls, changed persistence semantics, and broken public exports.
+- Add or update regression tests for preserved behavior. For route or UI changes, verify the relevant user journeys end to end, including authentication and authorization where applicable.
+- Run the relevant existing checks after the change. A passing build or unit test suite alone does not prove that existing user-facing behavior was preserved; run the appropriate integration or E2E tests as well.
+- Do not declare a task complete while known regressions remain unresolved. Report any unverified behavior explicitly.
