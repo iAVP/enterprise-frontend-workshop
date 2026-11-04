@@ -226,6 +226,11 @@ Facade Service — это не просто сервис, в который пе
 Условный интерфейс фасада может выглядеть так:
 
 ```ts
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
 export class TransactionsFacade {
   readonly transactions = /* read-only signal */;
   readonly loading = /* read-only signal */;
@@ -254,6 +259,12 @@ export class TransactionsFacade {
 ```
 
 Это иллюстрация публичного контракта, а не готовая реализация с конкретной обработкой ошибок и HTTP-запросов. Важен сам принцип: компонент видит операции предметной области приложения, а не технические детали их выполнения.
+
+Здесь также важно обратить внимание на `providedIn: 'root'`. Эта декларация регистрирует Facade в корневом Injector Angular. Поэтому компоненты и сервисы, которые запрашивают `TransactionsFacade` через Dependency Injection, по умолчанию получают один и тот же экземпляр, созданный корневым Injector.
+
+Для нашего сценария это принципиально: Dashboard и модальная форма должны работать с одним состоянием транзакций. Когда форма передаёт новую операцию в Facade, он обновляет свой Signal, а Dashboard получает актуальное значение через тот же экземпляр сервиса. Компонентам не нужно синхронизировать между собой отдельные копии состояния или напрямую обращаться друг к другу.
+
+Если же зарегистрировать Facade в `providers` каждого компонента, Angular создаст отдельный экземпляр в каждом соответствующем дочернем Injector. Тогда Dashboard и форма могут получить разные экземпляры и, следовательно, разные состояния. Поэтому для общего состояния функциональности мы оставляем Facade в корневом Injector и не переопределяем его в локальных `providers` компонентов или маршрутов.
 
 Facade может содержать frontend-specific логику: подготовку данных для интерфейса, предварительную проверку пользовательского ввода, координацию нескольких запросов и управление состоянием загрузки. Но это не означает, что бизнес-правила backend следует переносить на frontend. Серверная бизнес-логика и проверка данных на стороне backend остаются ответственностью backend.
 
@@ -379,3 +390,4 @@ Angular предоставляет механизмы взаимодействи
 - [Angular Signals](https://angular.dev/guide/signals) — Writable Signals, read-only Signals, computed и реактивные зависимости.
 - [RxJS interop with Angular signals](https://angular.dev/guide/signals/rxjs-interop) — взаимодействие Observable и Signals через `toSignal()` и `toObservable()`.
 - [Angular Effects](https://angular.dev/guide/signals/effect) — назначение Effect и рекомендации по его применению.
+- [Defining dependency providers](https://angular.dev/guide/di/defining-dependency-providers) — регистрация сервисов через `providedIn` и области действия Dependency Injection.
