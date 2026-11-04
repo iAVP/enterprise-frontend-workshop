@@ -12,6 +12,11 @@
 - Environment files must expose the complete object through the local `common` property. Components must likewise expose it as `protected readonly common = COMMON;` and templates must access values as `common.<PROPERTY>`.
 - When an application or component needs different values, create or extend its own local `common` object (for example, `const common = { ...COMMON, SOME_PROPERTY: 'local-value' };`). Apply any further overrides to that local `common` object. Do not create standalone properties from individual members of the original `COMMON`.
 
+## Configuration constant declarations
+- `common/environments/common.ts` and `libs/shared/definitions/src/lib/constants/constants.ts` must each be self-contained: declare the relevant `interface` or `type`, describe every property and nested structure, and define the corresponding `COMMON` or `CONSTANTS` object in the same file.
+- These two files are explicit exceptions to the normal one-definition-per-file convention. Do not extract their type declarations or members into separate files.
+- Every type declaration, the exported configuration object declaration, and every member/property at every nesting level must have an English JSDoc comment describing its purpose. The root ESLint configuration enforces this with `workshop/require-jsdoc-for-configuration`, scoped exclusively to these two paths.
+
 ## Article content
 - Articles are full technical texts. Translations must preserve the source's explanations, commands, configuration, code examples, caveats, and official documentation links. Do not silently summarize or omit sections.
 - Do not put a table of contents (TOC) inside article README files. Article section navigation belongs in the language indexes.
