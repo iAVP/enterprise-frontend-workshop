@@ -40,3 +40,8 @@ Do not add status lines or unrelated branch history inside an article entry. Kee
 5. Update all three indexes consistently.
 6. Fetch the written files again and validate them.
 7. Update the current article passport with verified state, completed checks, and the next step.
+
+## EXXETA brand assets
+- When creating or editing article banners, presentation graphics, or other project visuals that include EXXETA branding, use only the two logo assets explicitly supplied and approved by the user: the standalone EXXETA symbol (the stylized X mark) and the EXXETA wordmark.
+- Do not recreate, redraw, stylize, recolor, distort, approximate, or generate alternative EXXETA logos. Do not use any other EXXETA logo variant, including generated interpretations or third-party versions.
+- Use the supplied symbol or wordmark as-is, preserving its original proportions and appearance. If the approved asset is not available in the current working context, ask the user to provide it again rather than substituting another version.
