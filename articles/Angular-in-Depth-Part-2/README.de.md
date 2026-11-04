@@ -547,6 +547,13 @@ Die Komponenten sind nicht direkt gekoppelt, und Effect wird nicht als Ersatz f�
 - [IndexedDB API](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) — asynchrone Speicherung strukturierter Daten im Browser.
 - [IDBDatabase](https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase) — Transaktionen öffnen und mit Object Stores arbeiten.
 
+### Offizielle Dokumentation
+
+- [Angular Signals](https://angular.dev/guide/signals) — reaktiver Zustand, Read-only Signals und berechnete Werte.
+- [Angular Effects](https://angular.dev/guide/signals/effect) — Zweck von Effect und Empfehlungen für seinen Einsatz.
+- [IndexedDB API](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) — asynchrone Speicherung strukturierter Daten im Browser.
+- [IDBDatabase](https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase) — Transaktionen öffnen und mit Object Stores arbeiten.
+
 [Branch +2 — Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+2](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+2)
 
 ---
