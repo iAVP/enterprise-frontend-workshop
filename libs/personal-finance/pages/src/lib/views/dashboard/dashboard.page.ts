@@ -4,7 +4,7 @@ import { COMMON, defaultCurrencyFormat, defaultCurrencyLocale } from '@workshop:
 import { TransactionType } from '@workshop:def:enums';
 import type { Transaction } from '@workshop:def:interfaces';
 import { ModalDialogService } from '@workshop:ui';
-import { TransactionFormComponent } from '../transaction-form/transaction-form.page';
+import { TransactionFormComponent } from '../transaction-form/transaction-form.component';
 import { TransactionStore } from '../../state/transaction.store';
 
 /** Displays the current balance and transaction history and starts transaction dialogs. */
