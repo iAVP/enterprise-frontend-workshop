@@ -48,16 +48,16 @@ test.describe('Authentication form', function () {
 		expect(storedValues).not.toContain('StrongPassword123!');
 
 		await page.reload();
-		await expect(page).toHaveURL(/\\/dashboard$/);
+		await expect(page).toHaveURL(/\/dashboard$/);
 	});
 
 	test('prefills the login field from local storage after logout', async function ({ page }) {
 		await page.getByLabel('Login name').fill('remember-me@example.com');
 		await page.getByLabel('Password').fill('StrongPassword123!');
 		await page.getByRole('button', { name: 'OK' }).click();
-		await expect(page).toHaveURL(/\\/dashboard$/);
+		await expect(page).toHaveURL(/\/dashboard$/);
 		await page.getByRole('button', { name: 'Logout' }).click();
-		await expect(page).toHaveURL(/\\/login$/);
+		await expect(page).toHaveURL(/\/login$/);
 		await expect(page.getByLabel('Login name')).toHaveValue('remember-me@example.com');
 		await expect(page.getByLabel('Password')).toHaveValue('');
 	});
