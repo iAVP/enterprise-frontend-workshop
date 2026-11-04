@@ -275,22 +275,31 @@ Potential dedicated topics include:
 
 The focus will remain on practical engineering methods, reliable outcomes, and maintainable software.
 
-## 5. Additional Engineering Case Study
+## 5. Article 8 — TypeScript and Architectural Thinking — From C# Principles to Enterprise Frontend Development
 
-A separate article may explore TypeScript, object-oriented design, and the value of encapsulation through a real-world refactoring case.
+**Status: Planned.** The working title and article number are approved. The article draft has not started.
 
-The intended theme is how a large amount of repetitive or overly complex code can sometimes be replaced by a small, well-defined abstraction.
+**Purpose:** tell the story of TypeScript as the language bridge that made the author's transition from C# to Angular feel natural, then examine the language through the lens of software architecture and day-to-day engineering.
 
-Before publication, the example must establish:
+The article should begin with the architectural and personal story, not with a language feature catalogue. It should explain how experience with C#, object-oriented design, type systems, and established coding principles carried over into frontend development.
 
-- The original problem and constraints.
-- What the original code actually did.
-- What the replacement abstraction encapsulates.
-- Why the change is correct and maintainable.
-- The relevant trade-offs and limitations.
+Planned structure and topics:
 
-The article should explain the engineering reasoning rather than rely on a dramatic line-count comparison.
+1. **From C# to Angular:** the transition to frontend development and why TypeScript felt familiar rather than like starting over.
+2. **TypeScript as an architectural bridge:** static typing, explicit contracts, maintainability, and the ability to carry established engineering practices into the JavaScript ecosystem.
+3. **The language features developers enjoy:** classes and OOP, interfaces and types, `switch` / `case`, `Record<K, V>`, generics, union types, type inference, and `async` / `await`.
+4. **TypeScript together with Angular:** practical examples of `Record`-based data structures and their interaction with Signals, including elegant ways to derive and navigate data with `computed`.
+5. **Real code, not isolated snippets:** inspect the existing Enterprise Frontend Workshop TypeScript code and select examples that demonstrate these ideas naturally. Do not invent examples when the repository already contains better ones.
+6. **ESLint as an architectural guardrail:** revisit the rules already established in the workspace and explain how static checks help preserve design intent. Verify the actual configuration before documenting individual rules, including the configured complexity limit (12), maximum file length (450 lines), and other custom or standard rules.
+7. **The role of AI:** acknowledge that AI-assisted coding has changed the experience of writing code, while understanding the language and evaluating generated code remain important engineering skills.
 
+The article should distinguish language features from architectural decisions: TypeScript provides expressive tools, but good architecture still depends on how developers apply them.
+
+**Expected outcome:** readers understand why TypeScript can feel like a natural continuation of C#-style engineering, and how its language features can support clear, maintainable enterprise frontend architecture.
+
+Before drafting, review the repository's existing TypeScript implementation and ESLint configuration. Record real file paths and verified rule names in the article notes before selecting examples.
+
+## 6. Publication Workflow
 ## 6. Publication Workflow
 
 The canonical technical material will be maintained in English.
