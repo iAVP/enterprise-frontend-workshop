@@ -6,6 +6,8 @@ The articles will follow the evolution of a sample Personal Finance application.
 
 The roadmap describes planned content. An article should be marked as published only after it is actually available.
 
+See [Article Subtitles](./SUBTITLES.md) for the approved subtitles and the editorial positioning rule.
+
 ## 1. Editorial Principles
 
 The series follows several principles:
