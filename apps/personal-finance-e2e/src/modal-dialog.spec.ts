@@ -54,6 +54,23 @@ test('creates an income through ModalDialog and restores it after reload', async
 });
 
 test('closes a dialog with Escape without adding a transaction', async ({ page }) => {
+  const readStoredTransactions = () => page.evaluate(async () => {
+    const database = await new Promise<IDBDatabase>((resolve, reject) => {
+      const request = indexedDB.open('personal-finance', 1);
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    });
+
+    return new Promise<Array<{ description: string }>>((resolve, reject) => {
+      const request = database.transaction('key-value', 'readonly')
+        .objectStore('key-value')
+        .get('personal-finance.transactions');
+      request.onsuccess = () => resolve(request.result ?? []);
+      request.onerror = () => reject(request.error);
+    });
+  });
+  const initialTransactions = await readStoredTransactions();
+
   await page.getByRole('button', { name: 'Add expense' }).click();
 
   const dialog = page.getByRole('dialog', { name: 'Add expense' });
@@ -62,21 +79,6 @@ test('closes a dialog with Escape without adding a transaction', async ({ page }
 
   await expect(dialog).toBeHidden();
 
-  const storedTransactions = await page.evaluate(async () => {
-    const database = await new Promise<IDBDatabase>((resolve, reject) => {
-      const request = indexedDB.open('personal-finance', 1);
-      request.onsuccess = () => resolve(request.result);
-      request.onerror = () => reject(request.error);
-    });
-
-    return new Promise<Array<unknown> | undefined>((resolve, reject) => {
-      const request = database.transaction('key-value', 'readonly')
-        .objectStore('key-value')
-        .get('personal-finance.transactions');
-      request.onsuccess = () => resolve(request.result);
-      request.onerror = () => reject(request.error);
-    });
-  });
-
-  expect(storedTransactions).toBeUndefined();
+  const storedTransactions = await readStoredTransactions();
+  expect(storedTransactions).toEqual(initialTransactions);
 });
