@@ -1,49 +1,50 @@
 <main class="dashboard">
-  <header class="page-header">
-    <div>
-      <h1>Personal Finance</h1>
-      <p>Overview of your income and expenses</p>
-    </div>
-    <nav aria-label="Transaction actions">
-      <button type="button" (click)="openTransactionDialog(TransactionType.income)">Add income</button>
-      <button type="button" (click)="openTransactionDialog(TransactionType.expense)">Add expense</button>
-    </nav>
-  </header>
+	<header class="page-header">
+		<div>
+			<h1>Personal Finance</h1>
+			<p>Overview of your income and expenses</p>
+		</div>
+		<nav aria-label="Transaction and session actions">
+			<button type="button" (click)="openTransactionDialog(TransactionType.income)">Add income</button>
+			<button type="button" (click)="openTransactionDialog(TransactionType.expense)">Add expense</button>
+			<button type="button" (click)="onLogout()">Logout</button>
+		</nav>
+	</header>
 
-  <section class="summary" aria-label="Financial summary">
-    <article>
-      <h2>Current balance</h2>
-      <p class="amount">{{ facade.balance() | currency: currency : 'symbol' : currencyFormat : currencyLocale }}</p>
-    </article>
-    <article>
-      <h2>Income</h2>
-      <p>{{ facade.totalIncome() | currency: currency : 'symbol' : currencyFormat : currencyLocale }}</p>
-    </article>
-    <article>
-      <h2>Expenses</h2>
-      <p>{{ facade.totalExpense() | currency: currency : 'symbol' : currencyFormat : currencyLocale }}</p>
-    </article>
-  </section>
+	<section class="summary" aria-label="Financial summary">
+		<article>
+			<h2>Current balance</h2>
+			<p class="amount">{{ facade.balance() | currency: currency : 'symbol' : currencyFormat : currencyLocale }}</p>
+		</article>
+		<article>
+			<h2>Income</h2>
+			<p>{{ facade.totalIncome() | currency: currency : 'symbol' : currencyFormat : currencyLocale }}</p>
+		</article>
+		<article>
+			<h2>Expenses</h2>
+			<p>{{ facade.totalExpense() | currency: currency : 'symbol' : currencyFormat : currencyLocale }}</p>
+		</article>
+	</section>
 
-  <section class="transactions">
-    <h2>Transactions</h2>
-    @if (facade.transactions().length) {
-      <ul>
-        @for (transaction of facade.transactions(); track transaction.id) {
-          <li>
-            <time [attr.datetime]="transaction.date">
-              {{ transaction.date | date: 'mediumDate' }}
-            </time>
-            <span>{{ transaction.description }}</span>
-            <span [class.income]="transaction.type === TransactionType.income">
-              {{ transaction.type === TransactionType.income ? '+' : '−' }}
-              {{ transaction.amount | currency: currency : 'symbol' : currencyFormat : currencyLocale }}
-            </span>
-          </li>
-        }
-      </ul>
-    } @else {
-      <p>No transactions yet.</p>
-    }
-  </section>
+	<section class="transactions">
+		<h2>Transactions</h2>
+		@if (facade.transactions().length) {
+			<ul>
+				@for (transaction of facade.transactions(); track transaction.id) {
+					<li>
+						<time [attr.datetime]="transaction.date">
+							{{ transaction.date | date: 'mediumDate' }}
+						</time>
+						<span>{{ transaction.description }}</span>
+						<span [class.income]="transaction.type === TransactionType.income">
+							{{ transaction.type === TransactionType.income ? '+' : '−' }}
+							{{ transaction.amount | currency: currency : 'symbol' : currencyFormat : currencyLocale }}
+						</span>
+					</li>
+				}
+			</ul>
+		} @else {
+			<p>No transactions yet.</p>
+		}
+	</section>
 </main>
