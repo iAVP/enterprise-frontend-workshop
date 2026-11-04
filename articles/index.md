@@ -10,6 +10,7 @@ This index is the central navigation source for the article series. Keep the pub
 - [4. NX Workspace — From Architecture to Tooling](#4-nx-workspace--from-architecture-to-tooling)
 - [5. Development Tools: WebStorm, Visual Studio Code and OpenCode](#5-development-tools-webstorm-visual-studio-code-and-opencode)
 - [6. Angular in Depth — Part 1: Architecture and Components](#6-angular-in-depth--part-1-architecture-and-components)
+- [7. Angular in Depth — Part 2: The Evolution of Angular and a Developer's Architectural Thinking](#7-angular-in-depth--part-2-the-evolution-of-angular-and-a-developers-architectural-thinking)
 - [Editorial rules](#editorial-rules)
 
 ## 1. The Road to Architecture
@@ -127,6 +128,22 @@ This index is the central navigation source for the article series. Keep the pub
 
 ### GitHub branches
 - [Angular-in-Depth](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth)
+
+## 7. Angular in Depth — Part 2: The Evolution of Angular and a Developer's Architectural Thinking
+
+### Repository materials
+[English](Angular-in-Depth-Part-2/README.md) | [Russian](Angular-in-Depth-Part-2/README.ru.md) | [German](Angular-in-Depth-Part-2/README.de.md)
+
+### Article contents
+- [Architectural Thinking Predates Angular](Angular-in-Depth-Part-2/README.md#architectural-thinking-predates-angular)
+- [The Evolution of Angular and Architectural Thinking](Angular-in-Depth-Part-2/README.md#the-evolution-of-angular-and-architectural-thinking)
+- [From Component Development to System Design](Angular-in-Depth-Part-2/README.md#from-component-development-to-system-design)
+- [Practical Implementation: Facades and Signals Without Effect](Angular-in-Depth-Part-2/README.md#practical-implementation-facades-and-signals-without-effect)
+- [Facades, Signals, and IndexedDB: Dashboard and Modal Form Interaction](Angular-in-Depth-Part-2/README.md#facades-signals-and-indexeddb-dashboard-and-modal-form-interaction)
+
+### GitHub branches
+- [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking%2B1)
+- [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+2](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking%2B2)
 
 ## Editorial rules
 
