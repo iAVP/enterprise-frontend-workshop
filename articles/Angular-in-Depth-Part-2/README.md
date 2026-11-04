@@ -160,246 +160,45 @@ Next, we will move from principles to their practical implementation: Facade Ser
 
 ---
 
-## 4. Practical Implementation: Stage +1 — Facades and Signals Without Effect
+## 4. Practical Implementation: Facades and Signals Without Effect
 
-The historical part of the article explained why responsibility, controlled dependencies, and the preservation of architectural boundaries matter to me. Now let's move from these principles to a practical implementation.
+The historical part of the article showed why responsibility, controlled dependencies, and the preservation of architectural boundaries matter to me. Now let's move from these principles to a practical implementation.
 
-We will use a Personal Finance application as an example. It allows users to work with income and expenses, display a summary on the Dashboard, and persist user data. Our focus is not the application's complete feature set, but the organization of interaction between the UI, state, WebAPI, and local storage.
+We will use a Personal Finance application as an example. It allows users to work with income and expenses, display a summary on the Dashboard, and persist user data. Our focus is not the application's complete feature set, but the organization of interaction between the UI, state, API, and local storage.
 
-In the first stage, we will build the structure around Facade Services and Signals. We will deliberately avoid introducing `effect()`, because it is not required by the user workflow we have chosen. We will return to its use in the next stage, when the way users interact with forms changes.
+We will first build the structure around Facade Services and Signals. We will deliberately avoid introducing `effect()`: it is not required by the user workflow we have chosen. We will return to the question of its use later, when the way users interact with forms changes.
 
 ### From User Workflow to Architectural Requirements
 
 Let's start with application behavior, not folders and classes.
 
-When the website opens, the application must check the authentication state. To do so, it communicates with the WebAPI through the appropriate Facade. If the user is not authenticated, they must be redirected to Login. The Dashboard is available only after successful authentication.
+When the website opens, the application must check the authentication state. To do so, it communicates with the API through the appropriate Facade. If the user is not authenticated, they must be taken to Login. The Dashboard is available only after successful authentication.
 
-After signing in, the user sees the Dashboard with an up-to-date summary of income and expenses. In the first stage, creating and editing transactions takes place on separate pages. The user opens a page to add or edit income or an expense, saves the data, and returns to the Dashboard.
+After signing in, the user sees the Dashboard with an up-to-date summary of income and expenses. Initially, creating and editing transactions takes place on separate pages. The user opens a page to add or edit income or an expense, saves the data, and returns to the Dashboard.
 
-After returning, the Dashboard must display the current state. The component does not need to know how the data was retrieved, where it is stored, or how the request is performed. Its job is to display the state and pass the user's action to the appropriate Facade.
+After returning, the Dashboard must display the current state. The component does not need to know how the data was obtained, where it is stored, or exactly how the request is performed. Its job is to display the state and pass the user's action to the appropriate Facade.
 
 This workflow leads to several basic requirements:
 
-- Components do not communicate with the WebAPI directly.
+- Components do not communicate with the API directly.
 - Components do not work directly with Local Storage, Session Storage, or IndexedDB.
 - State and operations are encapsulated in the appropriate Facade Services.
 - Low-level data access is separated from the UI.
 - State changes are performed through the Facade's public methods.
-- Dashboard's derived values are calculated reactively.
+- The Dashboard's derived values are calculated reactively.
 - The architecture remains simple enough and does not introduce abstractions without a practical need.
-
-### Dependency Injection (DI): Managing Dependencies
-
-Dependency Injection is a design principle in which an object does not create its dependencies itself, but receives them from an external source. This means a class does not need to know how the objects it uses are created or who is responsible for their lifecycle.
-
-Imagine a component that needs an authentication service and a data-loading service. Without DI, the component would have to create those objects itself, know their constructors, and perhaps manually create their entire dependency chains. This would lead to tight coupling: changing how a service is created would also affect its consumers.
-
-DI moves this responsibility to a separate mechanism—the dependency container. In Angular, this role is performed by injectors. They hold information about registered dependencies, create instances when needed, and provide them to consumers.
-
-Angular DI is based on three main concepts:
-
-- **Injection Token** — an identifier Angular uses to locate a value. A class, abstract class, or specially created `InjectionToken` object can serve as a token.
-- **Provider** — a description of which value should be supplied for a particular token and how to obtain it: by creating a class instance, using an existing value, or calling a factory.
-- **Injector** — the mechanism that resolves a dependency request: it finds the corresponding provider, obtains or creates the value, and returns it to the consumer.
-
-The consumer therefore requests a dependency by token, and the Angular Injector resolves that request using the registered provider. The consumer does not need to know which concrete object will be supplied or how it was created.
-
-#### Dependency Tokens
-
-Most often, the service class itself acts as the token in Angular. For example, when a component requests `AuthFacade`, Angular uses that class as a token and looks for a provider registered for it.
-
-But a dependency is not always represented by a class. Sometimes we need to inject application configuration, a string value, a function, or an object that does not need a dedicated class. Angular provides `InjectionToken` for such cases.
-
-Tokens allow the dependency contract to be separated from its concrete implementation. This is particularly useful when an implementation may change depending on application configuration or the environment.
-
-For now, we will limit ourselves to this overview. Different token types, creating custom `InjectionToken` instances, factory providers, multi providers, and practical use cases deserve a separate discussion and will be covered in another article.
-
-#### What It Looks Like in Angular
-
-In modern Angular, a dependency can be obtained using the `inject()` function. It accesses the current injection context and requests a value using the corresponding token:
-
-```ts
-import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class TransactionWebApi {
-  private readonly http = inject(HttpClient);
-}
-```
-
-Here, `HttpClient` acts as the dependency token, and Angular provides the instance registered for it. The class does not create `HttpClient` itself or manage its internals.
-
-In this project, we use `inject()` to obtain dependencies instead of constructor injection. This gives us a consistent Angular coding style that we will follow in the examples as well.
-
-DI is not limited to services: components, directives, pipes, and other classes supported by Angular DI can receive dependencies. Where a provider is registered and how long the resulting instance exists depend on the injector hierarchy and registration scope. This is directly related to service lifecycle, which we will discuss next.
-
-### Angular Services and Their Lifecycle
-
-Before discussing Facades, Signals, and application state, it is important to understand what Angular calls a service and how long its instances live. Without this, it is impossible to understand why state stored in a Signal inside a service sometimes survives navigation between pages and sometimes disappears.
-
-#### A Service as a Functional Unit and a Service in Angular DI
-
-In an architectural context, a service usually means a class assigned a specific functional responsibility. It may handle data, interact with a WebAPI, manage state, perform calculations, format values, validate input, or coordinate operations.
-
-But it is important to distinguish between two concepts: a functional service as an ordinary TypeScript class and a service whose instance is managed by Angular Dependency Injection. They are not the same thing.
-
-**An ordinary functional class does not need DI merely because it contains logic.** For example, a calculator, formatter, or data transformer can be an ordinary class. If it does not need to receive dependencies from Angular and its lifecycle does not need to be managed by Angular, its instance can be created directly:
-
-```ts
-export class TransactionCalculator {
-  calculateBalance(income: number, expenses: number): number {
-    return income - expenses;
-  }
-}
-
-const calculator = new TransactionCalculator();
-const balance = calculator.calculateBalance(1000, 350);
-```
-
-Here, `TransactionCalculator` performs an independent functional task. It is not registered in Angular DI, is not a provider, and does not need `@Injectable()`.
-
-**An Angular service obtained through DI is a class whose instance Angular provides to consumers.** For example, when several components or other services need to use the same instance, when the class itself receives dependencies through `inject()`, or when the scope of its state should be determined by an application injector, the class is connected to Angular DI.
-
-Two related but different mechanisms are used for this:
-
-- `@Injectable()` tells Angular that the class is prepared to participate in DI and allows Angular to generate a factory for its creation. The decorator alone, without `providedIn` or registration in `providers`, does not determine where the instance will be available.
-- **Provider** is a registration that associates a dependency token with a rule for obtaining its value. A provider can point to a class, an existing value, or a factory. It is not a service and does not have to provide a service: DI can also supply configuration, strings, functions, and other values.
-
-In other words, a service is a functional role of a class, while a provider is an instruction to Angular DI about which value to provide for a particular token and how to obtain it. Not every functional service is a provider, and not every provider supplies a service.
-
-If a class needs to receive dependencies through Angular DI, it must be prepared for DI and registered in an appropriate injector. In this project, dependencies inside Angular classes are obtained through `inject()`, not constructor injection. If a class does not need DI, we should not add `@Injectable()` and a registration merely to give it the formal status of a "service".
-
-Next, we will focus on services managed by Angular DI, because understanding Facades, Signals, and state lifecycle requires knowing where their instances are created and how long they exist.
-
-#### Root Services
-
-The most common option is to register a service in the application's root injector:
-
-```ts
-import { Injectable, computed, signal } from '@angular/core';
-
-export interface Transaction {
-  id: string;
-  type: 'income' | 'expense';
-  amount: number;
-}
-
-@Injectable({
-  providedIn: 'root'
-})
-export class TransactionState {
-  private readonly _transactions = signal<readonly Transaction[]>([]);
-
-  readonly transactions = this._transactions.asReadonly();
-
-  readonly transactionCount = computed(
-    () => this._transactions().length
-  );
-
-  replaceTransactions(transactions: readonly Transaction[]): void {
-    this._transactions.set([...transactions]);
-  }
-}
-```
-
-The value `providedIn: 'root'` registers the service in the root EnvironmentInjector. Within a single application instance, such a service usually exists as a single instance and can be injected into components, other services, and consumers that resolve the dependency through that root injector.
-
-The instance is not necessarily created when the application starts. Angular usually creates it when the service is first requested. Once created, it remains available for as long as the corresponding root injector exists.
-
-That is why root services are often suitable for state that must be shared across different application pages: for example, authentication state, user preferences, or loaded transactions.
-
-There is, however, an important limitation: root defines the lifecycle scope within a running Angular application instance, not persistent data storage. When the page is fully reloaded, the browser creates a new JavaScript environment and a new Angular application. The old service instances and the Signals they contained are destroyed together with the previous application. New instances are created after startup, and their initial state is built again.
-
-In other words, a root service preserves state across ordinary navigation within the application, but it does not survive a full page reload.
-
-#### Services with a Local Scope
-
-Not every service needs to be shared across the entire application. Angular allows providers to be registered at route, component, or directive level. In that case, the instance is available within the corresponding DI scope rather than throughout the application.
-
-For example, a service can be registered in a component's `providers`:
-
-```ts
-import { Component, Injectable, inject, signal } from '@angular/core';
-
-@Injectable()
-export class TransactionEditorState {
-  private readonly _description = signal('');
-
-  readonly description = this._description.asReadonly();
-
-  setDescription(description: string): void {
-    this._description.set(description);
-  }
-}
-
-@Component({
-  selector: 'app-transaction-editor',
-  standalone: true,
-  providers: [TransactionEditorState],
-  template: '<p>{{ state.description() }}</p>'
-})
-export class TransactionEditorComponent {
-  readonly state = inject(TransactionEditorState);
-}
-```
-
-Here, `TransactionEditorState` is registered not in the root injector, but in the scope of a specific component. Angular creates a separate instance for each `TransactionEditorComponent` instance. Child components can receive the same instance through the DI hierarchy unless they override the corresponding provider.
-
-When the component instance is destroyed, the scope of its provider ends as well. The service and all state stored in its fields and Signals disappear together.
-
-This approach is useful for state that belongs to a specific screen or UI instance: for example, a form draft, temporary editor parameters, or the state of a multi-step workflow.
-
-Providers can also be declared at route level. This allows services for a functional route area to be provided without registering them throughout the application. The lifecycle is determined by the corresponding route EnvironmentInjector; we should not automatically assume that such a service is destroyed on every navigation away from and back to the route.
-
-#### What Does It Mean for a Service to Be Registered as a Provider?
-
-A provider is not a separate kind of service or a base class. It is an instruction for DI that associates a dependency token with a way to obtain the corresponding value: create a class instance, use an existing value, or call a factory.
-
-`providedIn: 'root'` is a convenient way to register an injectable class in the root injector. The `providers` array in application, route, or component configuration allows explicit registration in the required scope.
-
-If a class is not registered through either `providedIn` or the corresponding `providers`, Angular cannot inject it as a dependency in that scope. The TypeScript class can still be instantiated manually with `new`, but such an instance is no longer managed by Angular DI: the developer must organize its dependencies and lifecycle independently.
-
-Therefore, when we talk about a root service or a service with a local scope, we are not describing different kinds of TypeScript classes. We are describing the provider registration location and the visibility scope of the created instance.
-
-#### What Do Signals Have to Do with This, and Why Does State Disappear?
-
-A Signal is not a service and is not registered as a provider. It is a reactive value container. Its lifecycle is determined by the object that created it and holds a reference to it.
-
-In the previous examples, the Signal is declared as a service field. Therefore, the lifetime of this state is effectively tied to the lifetime of the service instance:
-
-- A Signal inside a root service usually preserves its value during navigation between pages, as long as the application's root injector exists.
-- A Signal inside a service registered at component level exists within the lifetime of the corresponding component instance and its DI scope.
-- A Signal created directly in a component is tied to that component instance's lifecycle.
-- During a full page reload, all instances and Signals from the previous application disappear, regardless of whether they were root or local.
-
-Angular Signals have several main variants that are important to distinguish:
-
-- `signal()` creates a Writable Signal—a value that its owner can read and change using `set()` and `update()`.
-- `asReadonly()` provides a read-only interface to an existing Writable Signal. It prevents consumers from calling value-changing methods through the returned reference, but does not provide deep immutability for nested objects.
-- `computed()` creates a read-only Signal whose value is derived from other Signals. It is suitable for derived data and is recalculated automatically when dependencies change.
-
-The terms "root Signal" and "local Signal" are not separate Signal types in Angular. They are not classifications of the API itself. We may use them informally to describe a Signal's lifecycle scope based on where it was created—for example, in a root service or in a service registered at component level.
-
-This is where the answer to why data can disappear lies. A Signal stores its value in JavaScript memory, not on disk or in a browser database. The value is available as long as its owner exists. When the owner or the entire application is destroyed, the corresponding state is destroyed as well.
-
-If data must survive a page reload, it has to be stored separately—for example, on a backend or in browser storage. After the application starts, the data must be read and the Signals' state restored. Neither a root service nor a Signal is a persistent storage mechanism by itself.
-
-Now that we have covered services, providers, DI scopes, and state lifecycle, we can move on to Facades. A Facade is not a special type of Angular service, but an architectural role of a particular service: it provides components with a clear functional boundary and hides the internal implementation.
 
 ### Responsibility Boundaries
 
 For this application, it is sufficient to separate several main responsibilities.
 
-**UI components** are responsible for rendering, user input, and local interaction. They receive data through the public interfaces of Facades and call their methods. Components must not communicate with the backend directly or work with browser storage mechanisms themselves. They should not even need to know where the information they use is stored. That information is not merely unnecessary for them—it is dangerous and should be completely off-limits. A component should have as little logic as possible and strive for minimalism, like any W3C HTML tag.
+**UI components** are responsible for rendering, user input, and local interaction. They receive data through the public interfaces of Facades and call their methods. A component should not independently decide which HTTP endpoint to call, how to transform an API response, or how to write data to IndexedDB.
 
-**WebAPI Facade** provides the UI with a clear interface for communicating with the backend. It coordinates data retrieval and updates, manages state related to these operations, and uses lower-level WebAPI access services when necessary.
+**API Facade** provides the UI with a clear interface for backend operations. It coordinates data retrieval and updates, manages state related to these operations, and uses lower-level API access services when necessary.
 
 **Storage Facade** encapsulates the application's interaction with local storage. The UI and other parts of the application use its methods and contracts rather than a specific storage mechanism.
 
-**DAL (Data Access Layer)** contains the low-level implementation of data access. For example, IndexedDB initialization, object stores, transactions, and technical details of the browser API belong to the DAL. These details must not leak into components or become part of their responsibilities.
+**DAL (Data Access Layer)** contains the low-level implementation of data access. IndexedDB initialization, work with object stores and transactions, and technical details of the browser API belong to the DAL. These details must not leak into components or become part of their responsibilities.
 
 In simplified form, the interaction flow looks like this:
 
@@ -409,14 +208,14 @@ UI Component
     v
 Feature Facade
     |
-    +----> WebAPI / Data Service ----> HTTP Client ----> Backend
+    +----> API / Data Service ----> HTTP Client ----> Backend
     |
     +----> Storage Facade --------> DAL ------------> IndexedDB
 ```
 
 This is a responsibility diagram, not a requirement to create a separate service for every box. If a particular part has no independent responsibility, we should not artificially extract it into a separate abstraction.
 
-For example, at this stage a single Storage Facade is sufficient. A separate IndexedDB Facade is unnecessary: the low-level implementation is already isolated in the DAL, and an additional intermediary does not solve a separate problem yet.
+For example, a single Storage Facade is sufficient here. A separate IndexedDB Facade is unnecessary: the low-level implementation is already isolated in the DAL, and an additional intermediary does not solve a separate problem.
 
 ### A Facade as the Public Boundary of Functionality
 
@@ -427,39 +226,45 @@ The Dashboard component does not need to know exactly how transactions are loade
 A hypothetical Facade interface could look like this:
 
 ```ts
-import type { Signal } from '@angular/core';
+import { Injectable } from '@angular/core';
 
-export interface Transaction {
-  id: string;
-  type: 'income' | 'expense';
-  amount: number;
-}
+@Injectable({
+  providedIn: 'root'
+})
+export class TransactionsFacade {
+  readonly transactions = /* read-only signal */;
+  readonly loading = /* read-only signal */;
+  readonly error = /* read-only signal */;
 
-export interface CreateTransactionCommand {
-  amount: number;
-}
+  readonly totalIncome = /* computed signal */;
+  readonly totalExpenses = /* computed signal */;
+  readonly balance = /* computed signal */;
 
-export interface UpdateTransactionCommand {
-  id: string;
-  amount: number;
-}
+  load(): void {
+    // Coordinate data loading
+  }
 
-export interface TransactionFacade {
-  readonly transactions: Signal<readonly Transaction[]>;
-  readonly loading: Signal<boolean>;
-  readonly error: Signal<string | null>;
-  readonly totalIncome: Signal<number>;
-  readonly totalExpenses: Signal<number>;
-  readonly balance: Signal<number>;
+  createIncome(command: CreateIncomeCommand): void {
+    // Create income
+  }
 
-  load(): Promise<void>;
-  createIncome(command: CreateTransactionCommand): Promise<void>;
-  createExpense(command: CreateTransactionCommand): Promise<void>;
-  updateTransaction(command: UpdateTransactionCommand): Promise<void>;
+  createExpense(command: CreateExpenseCommand): void {
+    // Create an expense
+  }
+
+  updateTransaction(command: UpdateTransactionCommand): void {
+    // Update an existing transaction
+  }
 }
 ```
 
 This illustrates a public contract; it is not a complete implementation with specific error handling and HTTP requests. The principle is what matters: the component sees application-level operations, not the technical details of their execution.
+
+It is also important to pay attention to `providedIn: 'root'`. This declaration registers the Facade with Angular's root Injector. As a result, components and services that request `TransactionsFacade` through Dependency Injection receive the same instance by default, created by the root Injector.
+
+This is essential for our scenario: the Dashboard and the modal form must work with the same transaction state. When the form passes a new transaction to the Facade, it updates its Signal, and the Dashboard receives the current value through that same service instance. The components do not need to synchronize separate copies of state or communicate with each other directly.
+
+If, instead, the Facade were registered in the `providers` of each component, Angular would create a separate instance in each corresponding child Injector. The Dashboard and the form could then receive different instances and, consequently, different state. That is why we keep a Facade responsible for shared feature state in the root Injector and do not override it in local `providers` on components or routes.
 
 A Facade may contain frontend-specific logic: preparing data for the UI, preliminary validation of user input, coordinating several requests, and managing loading state. But this does not mean that backend business rules should be moved to the frontend. Server-side business logic and data validation on the backend remain the backend's responsibility.
 
@@ -474,35 +279,29 @@ A simplified example:
 ```ts
 import { computed, signal } from '@angular/core';
 
-export interface Transaction {
-  id: string;
-  type: 'income' | 'expense';
-  amount: number;
-}
-
-export class TransactionFacade {
-  private readonly _transactions = signal<readonly Transaction[]>([]);
+export class TransactionsFacade {
+  private readonly _transactions = signal<Transaction[]>([]);
 
   readonly transactions = this._transactions.asReadonly();
 
   readonly totalIncome = computed(() =>
     this._transactions()
-      .filter(transaction => transaction.type === 'income')
-      .reduce((total, transaction) => total + transaction.amount, 0)
+      .filter(item => item.type === 'income')
+      .reduce((total, item) => total + item.amount, 0)
   );
 
   readonly totalExpenses = computed(() =>
     this._transactions()
-      .filter(transaction => transaction.type === 'expense')
-      .reduce((total, transaction) => total + transaction.amount, 0)
+      .filter(item => item.type === 'expense')
+      .reduce((total, item) => total + item.amount, 0)
   );
 
   readonly balance = computed(
     () => this.totalIncome() - this.totalExpenses()
   );
 
-  replaceTransactions(transactions: readonly Transaction[]): void {
-    this._transactions.set([...transactions]);
+  replaceTransactions(items: Transaction[]): void {
+    this._transactions.set(items);
   }
 }
 ```
@@ -512,13 +311,13 @@ The example demonstrates several principles:
 1. The Writable Signal remains a private part of the Facade.
 2. A read-only representation of the state is exposed externally.
 3. State changes go through a Facade method.
-4. Income, expenses, and balance totals are not stored as separate copies of data; they are derived from the source state.
+4. Income, expense, and balance totals are not stored as separate copies of data; they are derived from the source state.
 
 A read-only Signal prevents consumers from directly calling `set()` and `update()` through the returned reference. However, this is not deep immutability: Angular does not prevent changes to nested properties of an object obtained through such a Signal. Therefore, state should be updated in a controlled way, preferably by replacing arrays and objects with new values rather than modifying their contents outside the Facade.
 
 ### Computed for Derived State, Not Data Loading
 
-`computed()` is suitable for values that are entirely determined by other Signals. In our example, total income, total expenses, and balance depend on the transaction list. There is no need to store them separately and synchronize them manually.
+`computed()` is suitable for values that are entirely determined by other Signals. In our example, total income, total expenses, and the balance depend on the transaction list. There is no need to store them separately and synchronize them manually.
 
 Computed Signals are evaluated lazily and cache their result until their dependencies change. Angular tracks the Signals read during the computation. Therefore, when the transaction list changes, derived values become stale and are recalculated the next time they are read.
 
@@ -536,9 +335,9 @@ RxJS remains an important tool for working with asynchronous streams: HTTP inter
 
 Angular provides mechanisms for interaction between these models. For example, `toSignal()` allows an Observable to be represented as a Signal, while `toObservable()` exposes a Signal as an Observable. These are integration tools, not a reason to mechanically convert every Observable into a Signal or vice versa.
 
-In our architecture, a Facade can use RxJS to coordinate an asynchronous operation and then update its internal Signals with the result. The component does not need to know which mechanism was used internally.
+Within our architecture, a Facade can use RxJS to coordinate an asynchronous operation and then update its internal Signals with the result. The component does not need to know which mechanism was used internally.
 
-### Why We Do Not Need Effect at This Stage
+### Why Effect Is Not Needed in This Scenario
 
 In the current user workflow, income and expense forms remain separate pages.
 
@@ -548,7 +347,7 @@ There is no need here to copy the value of one Signal into another or start an a
 
 That is why `effect()` is deliberately not used in this part. The current Angular documentation describes Effect primarily as a mechanism for synchronizing reactive state with imperative APIs and external systems. For derived values, `computed()` is recommended instead of copying state through an Effect.
 
-In the next stage, we will change the interaction workflow: forms will become Modal Dialogs, and a concrete task will emerge for which we can evaluate whether Effect is necessary. This will demonstrate its use in response to a real architectural need rather than merely to showcase an API.
+Later, we will change the interaction workflow: forms will become Modal Dialogs, and a concrete task will emerge for which we can separately evaluate whether Effect is necessary. This will demonstrate its use in response to a real architectural need rather than merely to showcase an API.
 
 ### State Restoration and Application Lifecycle
 
@@ -570,9 +369,9 @@ A local Signal is perfectly appropriate for such state. Moving it into a shared 
 
 Otherwise, the Facade will gradually turn into a store for every UI variable in the application, and its responsibility will become blurred. The goal of encapsulation is not to centralize absolutely everything, but to find the right place for each kind of state.
 
-### Result of Stage +1
+### Summary
 
-After this stage, we have a clear separation of responsibilities:
+This gives us a clear separation of responsibilities:
 
 - UI components display data and pass on user actions.
 - Facade Services provide public operations and encapsulate state.
@@ -584,65 +383,172 @@ After this stage, we have a clear separation of responsibilities:
 
 We did not introduce separate domains, a universal store, or additional abstraction layers without a need. The architecture grew out of a concrete user workflow and its requirements.
 
-This is the central principle of this stage: do not use Signals or Facades simply because they are available in Angular. Use them where they help make state, responsibilities, and interactions between system parts understandable.
+This is the central principle of this approach: do not use Signals or Facades simply because they are available in Angular. Use them where they help make state, responsibilities, and interactions between system parts understandable.
 
 ### Official Documentation
 
 - [Angular Signals](https://angular.dev/guide/signals) — Writable Signals, read-only Signals, computed values, and reactive dependencies.
 - [RxJS interop with Angular signals](https://angular.dev/guide/signals/rxjs-interop) — interaction between Observables and Signals through `toSignal()` and `toObservable()`.
 - [Angular Effects](https://angular.dev/guide/signals/effect) — the purpose of Effect and recommendations for its use.
+- [Defining dependency providers](https://angular.dev/guide/di/defining-dependency-providers) — registering services through `providedIn` and Dependency Injection scopes.
 
-### Running the Application and Checks from the IDE npm Panel
+[Part +1 branch — Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1)
 
-All major project commands are available through npm scripts in the root `package.json`. This means they can be run not only from a terminal, but also directly from the npm panel in WebStorm or IntelliJ IDEA.
+## 5. Facades, Signals, and IndexedDB: Dashboard and Modal Form Interaction
 
-Open the **npm** tool window in the IDE, select the root `package.json`, and double-click the required script. The IDE will execute the same command that could be run from the terminal.
+In the previous section, we looked at Facade Services and Signals using separate income and expense pages as an example. Now we will change the user workflow: forms will open in modal dialogs directly from the Dashboard.
 
-The main commands are:
+This change is about more than how the form is displayed. We need to preserve the separation of responsibilities: the Dashboard controls opening the dialog, the form handles data entry and validation, and the transaction Facade remains the single place responsible for managing the shared collection of transactions.
 
-| npm script | Purpose |
-|---|---|
-| `serve` | Start the development application |
-| `build` | Build the application |
-| `test` | Run unit tests |
-| `lint` | Run ESLint checks |
-| `e2e:chromium` | Run E2E tests in Chromium only |
-| `e2e:headed` | Run browsers in headed mode |
-| `e2e:ui` | Open the interactive Playwright interface |
-| `e2e:install` | Install the browsers required by Playwright |
+### From Separate Pages to Modal Dialogs
 
-Before running E2E tests for the first time, execute `e2e:install`. On Linux, additional Playwright system dependencies may be required; they are installed automatically in CI.
+In the previous version, the user navigated from the Dashboard to a separate page to add income or an expense. Now the user stays on the Dashboard and opens the required form in a Modal Dialog.
 
-The E2E suite is divided into two scenario files: `dashboard.spec.ts` checks Dashboard rendering, the initial set of transactions, transaction creation, form validation, and restoration of saved data after a full page reload; `auth.spec.ts` checks required fields, invalid values, form reset, navigation to Dashboard after a locally successful check, persistence of only the user name, and restoration of that name in the Login form.
+The Dashboard is responsible for opening the dialog and receiving its result when it closes. The form itself is responsible for data entry and validation. It should not need to know how the Dashboard updates the transaction list or where the data is stored.
 
-The Playwright configuration starts the Angular application for the duration of the tests and stops it after they finish. There is no need to run `serve` separately before E2E tests.
+After the form is confirmed, the result is passed to the calling component through the modal dialog API. The Dashboard receives an object containing the transaction data and passes it to the Facade. If the dialog is cancelled, there is no result, so no new transaction is created.
 
-In the current demo application, the Login form validates the entered values on the client side and navigates the user to the Dashboard after a successful local check. There is no connected backend authentication service or credential verification yet. Therefore, E2E tests verify the form, validation, and navigation, but do not confirm real user authentication.
+The interaction looks like this:
 
-### Saving the User Name on Login
+1. The user clicks Add income or Add expense on the Dashboard.
+2. The Dashboard opens the corresponding Modal Dialog and passes it the transaction type.
+3. The form collects the description, amount, and date, and validates the entered values.
+4. When confirmed, the form returns the transaction data through the Modal Dialog.
+5. The Dashboard receives the result and calls the Facade method to add the transaction.
+6. The Facade updates the shared state and saves the collection, while the Dashboard automatically displays the new values.
 
-The next small step is to improve the sign-in workflow. After the form passes local validation, the application saves the user name so that it does not have to be entered again the next time the Login page is opened.
+The form does not communicate with the Dashboard directly, and the Dashboard does not manage the form's internal state. Their only connection is the dialog interaction contract.
 
-The existing Storage Facade is responsible for persistence. The Auth Facade does not access browser storage directly: it receives the Storage Facade through Angular Dependency Injection and delegates saving and reading the user name to it. The Storage Facade, in turn, uses the DAL, which encapsulates the technical interaction with browser storage.
+### The Facade Remains the Single Point of Transaction Management
 
-The storage key is declared centrally in `CONSTANTS` as `CONSTANTS.AUTH_LOGIN.storageKey`. Therefore, the key name is not duplicated in the Auth Facade, Storage Facade, or components.
+The transaction Facade provides components with a read-only Signal containing the transaction collection, as well as computed values for the balance, income, and expenses. Changes to the collection are made through the Facade's public methods.
 
-When the user clicks OK after the Login fields have passed validation, the page passes the entered user name to the Auth Facade. The Facade saves only the login through the Storage Facade. The password is not stored in `localStorage` or in any other persistent application storage. The state of the demo authenticated session continues to be stored separately in `sessionStorage`.
+The Facade contains a Writable Signal:
 
-When the Login Component is created, the initial value of the Login name field is obtained through the Auth Facade. If no value has been saved previously, the Facade returns an empty string. The Password field remains empty every time the form is opened.
+~~~ts
+private state = signal<Transaction[]>([]);
 
-Responsibilities therefore remain separated:
+readonly transactions = this.state.asReadonly();
 
-- Login Component handles form rendering, input, and local validation.
-- Auth Facade coordinates the authentication workflow and provides the saved user name.
-- Storage Facade provides the application with clear operations for reading and saving the login.
-- DAL performs the actual work with `localStorage`.
-- `CONSTANTS` contains the single storage key.
+readonly balance = computed(() =>
+  this.state().reduce(
+    (sum, transaction) => sum + transaction.amount * transaction.type,
+    0
+  )
+);
+~~~
 
-This is a convenience feature for the demo, not a secure credential storage mechanism. A saved user name does not verify the user's identity and does not replace backend authentication.
+Components receive only the read-only representation. This preserves control over the state and avoids creating separate copies of the array in the Dashboard and the modal window.
 
-E2E checks now additionally confirm that after clicking OK successfully, only the user name appears in `localStorage`, the password is not stored there, and after Logout the Login name field is populated with the saved value. The Password field remains empty.
+When the Dashboard passes the confirmed data to the Facade, the Facade waits for the initial load to complete, creates an identifier for the new transaction, prepends it to the current collection, and updates the Signal. Components that use this state automatically receive the current values.
 
-### Development Branch
+It is important to distinguish between two mechanisms:
 
-The current edition of the article is maintained in the [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1) branch of the [enterprise-frontend-workshop](https://github.com/iAVP/enterprise-frontend-workshop) repository.
+- `computed()` calculates derived values from existing reactive state;
+- explicit Facade methods perform operations that change state or access storage.
+
+The balance, total income, and total expenses remain responsibilities of `computed()`. They should not be copied into separate Signals through an Effect.
+
+### Saving Transactions Without Effect
+
+In the actual Personal Finance implementation, transactions are not saved through `effect()`. The Facade uses an explicit method to add a transaction: after updating the Signal, it passes the new collection to the Storage Facade for persistence.
+
+The sequence can be simplified as follows:
+
+~~~ts
+async addTransaction(transaction: Omit<Transaction, 'id'>): Promise<Transaction> {
+  await this.initialization;
+
+  const newTransaction: Transaction = {
+    ...transaction,
+    id: crypto.randomUUID()
+  };
+
+  const updatedTransactions = [newTransaction, ...this.state()];
+  this.state.set(updatedTransactions);
+  await this.storageFacade.saveTransactions(updatedTransactions);
+
+  return newTransaction;
+}
+~~~
+
+There is no background Effect observing changes to the Signal. Updating the state and saving the data are part of one explicitly invoked Facade operation. This makes the sequence clear and avoids introducing an additional synchronization mechanism where it is not needed.
+
+`computed()` is still used only for derived values. In the current implementation, `effect()` is needed neither to calculate the balance nor to persist transactions.
+
+### Why IndexedDB Is Used for Transactions
+
+The application uses IndexedDB to store the collection of income and expenses.
+
+LocalStorage provides a synchronous interface for storing string values. Storing objects usually requires explicit JSON serialization, while reading and parsing are also performed synchronously.
+
+IndexedDB provides asynchronous browser storage for structured data. In the application, the transaction collection is stored as a single value under the key `personal-finance.transactions`. The DAL encapsulates database operations, so the Facade does not depend on the details of the IndexedDB API.
+
+`IndexedDbService` is responsible for opening the `personal-finance` database, creating the `key-value` object store, and reading, writing, and deleting values. The Storage Facade provides a function-oriented interface: the transaction Facade uses it rather than working with IndexedDB directly.
+
+### Migrating Previously Stored Data
+
+The move to IndexedDB takes into account data that may have been stored in LocalStorage by an earlier version of the application.
+
+When a particular key is read for the first time, the service checks IndexedDB first. If the value is not there, it checks LocalStorage for the old value. If one is found, the service parses the JSON and attempts to write the data to IndexedDB. The old value is removed from LocalStorage only after the write to IndexedDB succeeds.
+
+As a result, the existing transaction collection is migrated automatically on first read, without requiring the user to enter it again manually. Migration is performed separately for each key and does not require all data to be transferred in advance when the application starts.
+
+LocalStorage is not removed from the application entirely: it continues to be used to store the user name. Only the storage mechanism for the transaction collection changes. This avoids affecting unrelated data or changing authentication behavior.
+
+The Storage Facade preserves this separation at the application interface level. It uses IndexedDbService for transactions, while continuing to retrieve and save the user name through the existing StorageService. Therefore, migrating the transaction collection does not affect authentication data and does not require moving every LocalStorage value to IndexedDB.
+
+### Restoring State After a Page Reload
+
+After a full Angular application reload, Signals are created again, so the Facade must restore the collection from persistent storage.
+
+During initialization, the Facade asynchronously requests transactions through the Storage Facade. If a saved collection exists, it becomes the new value of the source Signal. If no data exists yet, the Storage Facade returns the demo collection.
+
+When a new transaction is added, the Facade first waits for the initial load to complete. This is important: the new transaction must be added to the already restored collection, not to an empty initial state. The Facade then updates the Signal and saves the updated array through the Storage Facade.
+
+As a result, the user workflow does not depend on whether the page has just been opened or the application has already been running for some time. The persistent data source remains the same, while the UI receives its state through the Facade and Signals.
+
+### Verifying the Implementation
+
+We need to verify more than the visual appearance of a new row on the Dashboard. Displaying data in the current session does not prove that it has actually been persisted.
+
+Verification should cover several separate conditions:
+
+- A new transaction appears on the Dashboard after the dialog is confirmed.
+- The data is actually written to IndexedDB under the expected key.
+- After a full page reload, the transaction is restored from IndexedDB.
+- Cancelling the dialog does not create a new transaction.
+- The old collection in LocalStorage is migrated to IndexedDB on first read.
+- After a successful migration, the old value is removed from LocalStorage.
+
+These checks cover three independent aspects: the user workflow, reactive state updates, and persistent data storage. Only successful verification of all three confirms that the implementation works as a whole.
+
+The E2E checks separate these scenarios. The modal dialog test verifies that income can be created through the form, that a record exists in IndexedDB, and that the data is restored after a page reload. Cancellation of the dialog with the Escape key is checked separately: closing the form must not add a transaction. The migration test creates an old record in LocalStorage, opens the application, checks that the restored transaction is displayed, verifies the value in IndexedDB, and confirms that the old key is removed after a successful migration.
+
+### Summary
+
+The application now has the following flow of responsibilities:
+
+- Modal Dialog handles form input and validation.
+- Dashboard opens the dialog and passes the confirmed result to the Facade.
+- The transaction Facade manages the shared state of operations.
+- Signals provide reactive updates to the Dashboard.
+- `computed()` calculates derived values.
+- An explicit Facade method updates the Signal and passes the collection to the Storage Facade for persistence.
+- DAL encapsulates the technical work with IndexedDB.
+- Storage Facade provides a functional interface for data access.
+
+The components are not directly coupled, and Effect is not used as a replacement for explicit Facade operations. Each mechanism has its own purpose: the Facade manages functionality, Signals represent state, `computed()` calculates derived data, and IndexedDB provides persistent storage for the transaction collection.
+
+### Official Documentation
+
+- [Angular Signals](https://angular.dev/guide/signals) — reactive state, read-only Signals, and computed values.
+- [Angular Effects](https://angular.dev/guide/signals/effect) — the purpose of Effect and recommendations for its use.
+- [IndexedDB API](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) — asynchronous storage of structured data in the browser.
+- [IDBDatabase](https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase) — opening transactions and working with object stores.
+
+[Part +2 branch — Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+2](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+2)
+
+---
+
+[Enterprise Frontend Workshop repository](https://github.com/iAVP/enterprise-frontend-workshop)
