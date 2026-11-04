@@ -10,6 +10,11 @@ test.describe('Authentication form', function () {
 		await expect(page).toHaveURL(/\/login$/);
 	});
 
+	test('redirects unauthenticated users from the application root to login', async function ({ page }) {
+		await page.goto('/');
+		await expect(page).toHaveURL(/\\/login$/);
+	});
+
 	test('shows required field validation when submitted empty', async function ({ page }) {
 		await page.getByRole('button', { name: 'OK' }).click();
 		await expect(page.getByRole('alert')).toHaveCount(2);
