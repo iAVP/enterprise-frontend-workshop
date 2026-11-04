@@ -166,7 +166,7 @@ The historical part of the article explained why responsibility, controlled depe
 
 We will use a Personal Finance application as an example. It allows users to work with income and expenses, display a summary on the Dashboard, and persist user data. Our focus is not the application's complete feature set, but the organization of interaction between the UI, state, WebAPI, and local storage.
 
-In the first stage, we will build the structure around Facade Services and Signals. We will deliberately avoid introducing \`effect()\`, because it is not required by the user workflow we have chosen. We will return to its use in the next stage, when the way users interact with forms changes.
+In the first stage, we will build the structure around Facade Services and Signals. We will deliberately avoid introducing `effect()`, because it is not required by the user workflow we have chosen. We will return to its use in the next stage, when the way users interact with forms changes.
 
 ### From User Workflow to Architectural Requirements
 
@@ -198,7 +198,7 @@ DI moves this responsibility to a separate mechanism—the dependency container.
 
 Angular DI is based on three main concepts:
 
-- **Injection Token** — an identifier Angular uses to locate a value. A class, abstract class, or specially created \`InjectionToken\` object can serve as a token.
+- **Injection Token** — an identifier Angular uses to locate a value. A class, abstract class, or specially created `InjectionToken` object can serve as a token.
 - **Provider** — a description of which value should be supplied for a particular token and how to obtain it: by creating a class instance, using an existing value, or calling a factory.
 - **Injector** — the mechanism that resolves a dependency request: it finds the corresponding provider, obtains or creates the value, and returns it to the consumer.
 
@@ -206,19 +206,19 @@ The consumer therefore requests a dependency by token, and the Angular Injector 
 
 #### Dependency Tokens
 
-Most often, the service class itself acts as the token in Angular. For example, when a component requests \`AuthFacade\`, Angular uses that class as a token and looks for a provider registered for it.
+Most often, the service class itself acts as the token in Angular. For example, when a component requests `AuthFacade`, Angular uses that class as a token and looks for a provider registered for it.
 
-But a dependency is not always represented by a class. Sometimes we need to inject application configuration, a string value, a function, or an object that does not need a dedicated class. Angular provides \`InjectionToken\` for such cases.
+But a dependency is not always represented by a class. Sometimes we need to inject application configuration, a string value, a function, or an object that does not need a dedicated class. Angular provides `InjectionToken` for such cases.
 
 Tokens allow the dependency contract to be separated from its concrete implementation. This is particularly useful when an implementation may change depending on application configuration or the environment.
 
-For now, we will limit ourselves to this overview. Different token types, creating custom \`InjectionToken\` instances, factory providers, multi providers, and practical use cases deserve a separate discussion and will be covered in another article.
+For now, we will limit ourselves to this overview. Different token types, creating custom `InjectionToken` instances, factory providers, multi providers, and practical use cases deserve a separate discussion and will be covered in another article.
 
 #### What It Looks Like in Angular
 
-In modern Angular, a dependency can be obtained using the \`inject()\` function. It accesses the current injection context and requests a value using the corresponding token:
+In modern Angular, a dependency can be obtained using the `inject()` function. It accesses the current injection context and requests a value using the corresponding token:
 
-\`\`\`ts
+```ts
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -228,11 +228,11 @@ import { HttpClient } from '@angular/common/http';
 export class TransactionWebApi {
   private readonly http = inject(HttpClient);
 }
-\`\`\`
+```
 
-Here, \`HttpClient\` acts as the dependency token, and Angular provides the instance registered for it. The class does not create \`HttpClient\` itself or manage its internals.
+Here, `HttpClient` acts as the dependency token, and Angular provides the instance registered for it. The class does not create `HttpClient` itself or manage its internals.
 
-In this project, we use \`inject()\` to obtain dependencies instead of constructor injection. This gives us a consistent Angular coding style that we will follow in the examples as well.
+In this project, we use `inject()` to obtain dependencies instead of constructor injection. This gives us a consistent Angular coding style that we will follow in the examples as well.
 
 DI is not limited to services: components, directives, pipes, and other classes supported by Angular DI can receive dependencies. Where a provider is registered and how long the resulting instance exists depend on the injector hierarchy and registration scope. This is directly related to service lifecycle, which we will discuss next.
 
@@ -248,7 +248,7 @@ But it is important to distinguish between two concepts: a functional service as
 
 **An ordinary functional class does not need DI merely because it contains logic.** For example, a calculator, formatter, or data transformer can be an ordinary class. If it does not need to receive dependencies from Angular and its lifecycle does not need to be managed by Angular, its instance can be created directly:
 
-\`\`\`ts
+```ts
 export class TransactionCalculator {
   calculateBalance(income: number, expenses: number): number {
     return income - expenses;
@@ -257,20 +257,20 @@ export class TransactionCalculator {
 
 const calculator = new TransactionCalculator();
 const balance = calculator.calculateBalance(1000, 350);
-\`\`\`
+```
 
-Here, \`TransactionCalculator\` performs an independent functional task. It is not registered in Angular DI, is not a provider, and does not need \`@Injectable()\`.
+Here, `TransactionCalculator` performs an independent functional task. It is not registered in Angular DI, is not a provider, and does not need `@Injectable()`.
 
-**An Angular service obtained through DI is a class whose instance Angular provides to consumers.** For example, when several components or other services need to use the same instance, when the class itself receives dependencies through \`inject()\`, or when the scope of its state should be determined by an application injector, the class is connected to Angular DI.
+**An Angular service obtained through DI is a class whose instance Angular provides to consumers.** For example, when several components or other services need to use the same instance, when the class itself receives dependencies through `inject()`, or when the scope of its state should be determined by an application injector, the class is connected to Angular DI.
 
 Two related but different mechanisms are used for this:
 
-- \`@Injectable()\` tells Angular that the class is prepared to participate in DI and allows Angular to generate a factory for its creation. The decorator alone, without \`providedIn\` or registration in \`providers\`, does not determine where the instance will be available.
+- `@Injectable()` tells Angular that the class is prepared to participate in DI and allows Angular to generate a factory for its creation. The decorator alone, without `providedIn` or registration in `providers`, does not determine where the instance will be available.
 - **Provider** is a registration that associates a dependency token with a rule for obtaining its value. A provider can point to a class, an existing value, or a factory. It is not a service and does not have to provide a service: DI can also supply configuration, strings, functions, and other values.
 
 In other words, a service is a functional role of a class, while a provider is an instruction to Angular DI about which value to provide for a particular token and how to obtain it. Not every functional service is a provider, and not every provider supplies a service.
 
-If a class needs to receive dependencies through Angular DI, it must be prepared for DI and registered in an appropriate injector. In this project, dependencies inside Angular classes are obtained through \`inject()\`, not constructor injection. If a class does not need DI, we should not add \`@Injectable()\` and a registration merely to give it the formal status of a "service".
+If a class needs to receive dependencies through Angular DI, it must be prepared for DI and registered in an appropriate injector. In this project, dependencies inside Angular classes are obtained through `inject()`, not constructor injection. If a class does not need DI, we should not add `@Injectable()` and a registration merely to give it the formal status of a "service".
 
 Next, we will focus on services managed by Angular DI, because understanding Facades, Signals, and state lifecycle requires knowing where their instances are created and how long they exist.
 
@@ -278,7 +278,7 @@ Next, we will focus on services managed by Angular DI, because understanding Fac
 
 The most common option is to register a service in the application's root injector:
 
-\`\`\`ts
+```ts
 import { Injectable, computed, signal } from '@angular/core';
 
 export interface Transaction {
@@ -303,9 +303,9 @@ export class TransactionState {
     this._transactions.set([...transactions]);
   }
 }
-\`\`\`
+```
 
-The value \`providedIn: 'root'\` registers the service in the root EnvironmentInjector. Within a single application instance, such a service usually exists as a single instance and can be injected into components, other services, and consumers that resolve the dependency through that root injector.
+The value `providedIn: 'root'` registers the service in the root EnvironmentInjector. Within a single application instance, such a service usually exists as a single instance and can be injected into components, other services, and consumers that resolve the dependency through that root injector.
 
 The instance is not necessarily created when the application starts. Angular usually creates it when the service is first requested. Once created, it remains available for as long as the corresponding root injector exists.
 
@@ -319,9 +319,9 @@ In other words, a root service preserves state across ordinary navigation within
 
 Not every service needs to be shared across the entire application. Angular allows providers to be registered at route, component, or directive level. In that case, the instance is available within the corresponding DI scope rather than throughout the application.
 
-For example, a service can be registered in a component's \`providers\`:
+For example, a service can be registered in a component's `providers`:
 
-\`\`\`ts
+```ts
 import { Component, Injectable, inject, signal } from '@angular/core';
 
 @Injectable()
@@ -344,9 +344,9 @@ export class TransactionEditorState {
 export class TransactionEditorComponent {
   readonly state = inject(TransactionEditorState);
 }
-\`\`\`
+```
 
-Here, \`TransactionEditorState\` is registered not in the root injector, but in the scope of a specific component. Angular creates a separate instance for each \`TransactionEditorComponent\` instance. Child components can receive the same instance through the DI hierarchy unless they override the corresponding provider.
+Here, `TransactionEditorState` is registered not in the root injector, but in the scope of a specific component. Angular creates a separate instance for each `TransactionEditorComponent` instance. Child components can receive the same instance through the DI hierarchy unless they override the corresponding provider.
 
 When the component instance is destroyed, the scope of its provider ends as well. The service and all state stored in its fields and Signals disappear together.
 
@@ -358,9 +358,9 @@ Providers can also be declared at route level. This allows services for a functi
 
 A provider is not a separate kind of service or a base class. It is an instruction for DI that associates a dependency token with a way to obtain the corresponding value: create a class instance, use an existing value, or call a factory.
 
-\`providedIn: 'root'\` is a convenient way to register an injectable class in the root injector. The \`providers\` array in application, route, or component configuration allows explicit registration in the required scope.
+`providedIn: 'root'` is a convenient way to register an injectable class in the root injector. The `providers` array in application, route, or component configuration allows explicit registration in the required scope.
 
-If a class is not registered through either \`providedIn\` or the corresponding \`providers\`, Angular cannot inject it as a dependency in that scope. The TypeScript class can still be instantiated manually with \`new\`, but such an instance is no longer managed by Angular DI: the developer must organize its dependencies and lifecycle independently.
+If a class is not registered through either `providedIn` or the corresponding `providers`, Angular cannot inject it as a dependency in that scope. The TypeScript class can still be instantiated manually with `new`, but such an instance is no longer managed by Angular DI: the developer must organize its dependencies and lifecycle independently.
 
 Therefore, when we talk about a root service or a service with a local scope, we are not describing different kinds of TypeScript classes. We are describing the provider registration location and the visibility scope of the created instance.
 
@@ -377,9 +377,9 @@ In the previous examples, the Signal is declared as a service field. Therefore, 
 
 Angular Signals have several main variants that are important to distinguish:
 
-- \`signal()\` creates a Writable Signal—a value that its owner can read and change using \`set()\` and \`update()\`.
-- \`asReadonly()\` provides a read-only interface to an existing Writable Signal. It prevents consumers from calling value-changing methods through the returned reference, but does not provide deep immutability for nested objects.
-- \`computed()\` creates a read-only Signal whose value is derived from other Signals. It is suitable for derived data and is recalculated automatically when dependencies change.
+- `signal()` creates a Writable Signal—a value that its owner can read and change using `set()` and `update()`.
+- `asReadonly()` provides a read-only interface to an existing Writable Signal. It prevents consumers from calling value-changing methods through the returned reference, but does not provide deep immutability for nested objects.
+- `computed()` creates a read-only Signal whose value is derived from other Signals. It is suitable for derived data and is recalculated automatically when dependencies change.
 
 The terms "root Signal" and "local Signal" are not separate Signal types in Angular. They are not classifications of the API itself. We may use them informally to describe a Signal's lifecycle scope based on where it was created—for example, in a root service or in a service registered at component level.
 
@@ -403,7 +403,7 @@ For this application, it is sufficient to separate several main responsibilities
 
 In simplified form, the interaction flow looks like this:
 
-\`\`\`text
+```text
 UI Component
     |
     v
@@ -412,7 +412,7 @@ Feature Facade
     +----> WebAPI / Data Service ----> HTTP Client ----> Backend
     |
     +----> Storage Facade --------> DAL ------------> IndexedDB
-\`\`\`
+```
 
 This is a responsibility diagram, not a requirement to create a separate service for every box. If a particular part has no independent responsibility, we should not artificially extract it into a separate abstraction.
 
@@ -426,7 +426,7 @@ The Dashboard component does not need to know exactly how transactions are loade
 
 A hypothetical Facade interface could look like this:
 
-\`\`\`ts
+```ts
 import type { Signal } from '@angular/core';
 
 export interface Transaction {
@@ -457,7 +457,7 @@ export interface TransactionFacade {
   createExpense(command: CreateTransactionCommand): Promise<void>;
   updateTransaction(command: UpdateTransactionCommand): Promise<void>;
 }
-\`\`\`
+```
 
 This illustrates a public contract; it is not a complete implementation with specific error handling and HTTP requests. The principle is what matters: the component sees application-level operations, not the technical details of their execution.
 
@@ -467,11 +467,11 @@ At the same time, we should not turn one Facade into a universal service for the
 
 ### Encapsulating State with Signals
 
-It is convenient to store the Facade's internal state in Writable Signals. Components receive read-only Signals and therefore cannot directly change the Facade's state through \`set()\` or \`update()\`.
+It is convenient to store the Facade's internal state in Writable Signals. Components receive read-only Signals and therefore cannot directly change the Facade's state through `set()` or `update()`.
 
 A simplified example:
 
-\`\`\`ts
+```ts
 import { computed, signal } from '@angular/core';
 
 export interface Transaction {
@@ -505,7 +505,7 @@ export class TransactionFacade {
     this._transactions.set([...transactions]);
   }
 }
-\`\`\`
+```
 
 The example demonstrates several principles:
 
@@ -514,15 +514,15 @@ The example demonstrates several principles:
 3. State changes go through a Facade method.
 4. Income, expenses, and balance totals are not stored as separate copies of data; they are derived from the source state.
 
-A read-only Signal prevents consumers from directly calling \`set()\` and \`update()\` through the returned reference. However, this is not deep immutability: Angular does not prevent changes to nested properties of an object obtained through such a Signal. Therefore, state should be updated in a controlled way, preferably by replacing arrays and objects with new values rather than modifying their contents outside the Facade.
+A read-only Signal prevents consumers from directly calling `set()` and `update()` through the returned reference. However, this is not deep immutability: Angular does not prevent changes to nested properties of an object obtained through such a Signal. Therefore, state should be updated in a controlled way, preferably by replacing arrays and objects with new values rather than modifying their contents outside the Facade.
 
 ### Computed for Derived State, Not Data Loading
 
-\`computed()\` is suitable for values that are entirely determined by other Signals. In our example, total income, total expenses, and balance depend on the transaction list. There is no need to store them separately and synchronize them manually.
+`computed()` is suitable for values that are entirely determined by other Signals. In our example, total income, total expenses, and balance depend on the transaction list. There is no need to store them separately and synchronize them manually.
 
 Computed Signals are evaluated lazily and cache their result until their dependencies change. Angular tracks the Signals read during the computation. Therefore, when the transaction list changes, derived values become stale and are recalculated the next time they are read.
 
-It is important to understand the boundary of \`computed()\`: it calculates a value from existing state, but it does not load data from a server or restore it from storage.
+It is important to understand the boundary of `computed()`: it calculates a value from existing state, but it does not load data from a server or restore it from storage.
 
 After a full application reload, in-memory state disappears. Therefore, data must be loaded through the Facade and DAL during application or feature initialization. Once the data has been received, the Facade updates the source Signal, and derived values are recalculated automatically.
 
@@ -530,11 +530,11 @@ After a full application reload, in-memory state disappears. Therefore, data mus
 
 The arrival of Signals does not mean that RxJS is no longer needed. These tools solve related, but different, problems.
 
-Signals are well suited to representing the current application state and its derived values. They are convenient to read in templates, use in Facades, and connect to other state through \`computed()\`.
+Signals are well suited to representing the current application state and its derived values. They are convenient to read in templates, use in Facades, and connect to other state through `computed()`.
 
 RxJS remains an important tool for working with asynchronous streams: HTTP interactions, event sequences, request cancellation and combination, stream processing, and other scenarios where Observables and operators are useful.
 
-Angular provides mechanisms for interaction between these models. For example, \`toSignal()\` allows an Observable to be represented as a Signal, while \`toObservable()\` exposes a Signal as an Observable. These are integration tools, not a reason to mechanically convert every Observable into a Signal or vice versa.
+Angular provides mechanisms for interaction between these models. For example, `toSignal()` allows an Observable to be represented as a Signal, while `toObservable()` exposes a Signal as an Observable. These are integration tools, not a reason to mechanically convert every Observable into a Signal or vice versa.
 
 In our architecture, a Facade can use RxJS to coordinate an asynchronous operation and then update its internal Signals with the result. The component does not need to know which mechanism was used internally.
 
@@ -544,9 +544,9 @@ In the current user workflow, income and expense forms remain separate pages.
 
 The user opens a form, saves a transaction, and returns to the Dashboard. After returning, the Dashboard receives the current state through the Facade. The Facade itself manages data loading and changes, while Signals update dependent views.
 
-There is no need here to copy the value of one Signal into another or start an additional synchronization chain. \`computed()\` is sufficient for calculated totals, while explicit Facade methods handle loading and saving.
+There is no need here to copy the value of one Signal into another or start an additional synchronization chain. `computed()` is sufficient for calculated totals, while explicit Facade methods handle loading and saving.
 
-That is why \`effect()\` is deliberately not used in this part. The current Angular documentation describes Effect primarily as a mechanism for synchronizing reactive state with imperative APIs and external systems. For derived values, \`computed()\` is recommended instead of copying state through an Effect.
+That is why `effect()` is deliberately not used in this part. The current Angular documentation describes Effect primarily as a mechanism for synchronizing reactive state with imperative APIs and external systems. For derived values, `computed()` is recommended instead of copying state through an Effect.
 
 In the next stage, we will change the interaction workflow: forms will become Modal Dialogs, and a concrete task will emerge for which we can evaluate whether Effect is necessary. This will demonstrate its use in response to a real architectural need rather than merely to showcase an API.
 
@@ -589,34 +589,34 @@ This is the central principle of this stage: do not use Signals or Facades simpl
 ### Official Documentation
 
 - [Angular Signals](https://angular.dev/guide/signals) — Writable Signals, read-only Signals, computed values, and reactive dependencies.
-- [RxJS interop with Angular signals](https://angular.dev/guide/signals/rxjs-interop) — interaction between Observables and Signals through \`toSignal()\` and \`toObservable()\`.
+- [RxJS interop with Angular signals](https://angular.dev/guide/signals/rxjs-interop) — interaction between Observables and Signals through `toSignal()` and `toObservable()`.
 - [Angular Effects](https://angular.dev/guide/signals/effect) — the purpose of Effect and recommendations for its use.
 
 ### Running the Application and Checks from the IDE npm Panel
 
-All major project commands are available through npm scripts in the root \`package.json\`. This means they can be run not only from a terminal, but also directly from the npm panel in WebStorm or IntelliJ IDEA.
+All major project commands are available through npm scripts in the root `package.json`. This means they can be run not only from a terminal, but also directly from the npm panel in WebStorm or IntelliJ IDEA.
 
-Open the **npm** tool window in the IDE, select the root \`package.json\`, and double-click the required script. The IDE will execute the same command that could be run from the terminal.
+Open the **npm** tool window in the IDE, select the root `package.json`, and double-click the required script. The IDE will execute the same command that could be run from the terminal.
 
 The main commands are:
 
 | npm script | Purpose |
 |---|---|
-| \`serve\` | Start the development application |
-| \`build\` | Build the application |
-| \`test\` | Run unit tests |
-| \`lint\` | Run ESLint checks |
-| \`e2e\` | Run all E2E tests in all configured browsers |
-| \`e2e:chromium\` | Run E2E tests in Chromium only |
-| \`e2e:headed\` | Run browsers in headed mode |
-| \`e2e:ui\` | Open the interactive Playwright interface |
-| \`e2e:install\` | Install the browsers required by Playwright |
+| `serve` | Start the development application |
+| `build` | Build the application |
+| `test` | Run unit tests |
+| `lint` | Run ESLint checks |
+| `e2e` | Run all E2E tests in all configured browsers |
+| `e2e:chromium` | Run E2E tests in Chromium only |
+| `e2e:headed` | Run browsers in headed mode |
+| `e2e:ui` | Open the interactive Playwright interface |
+| `e2e:install` | Install the browsers required by Playwright |
 
-Before running E2E tests for the first time, execute \`e2e:install\`. On Linux, additional Playwright system dependencies may be required; they are installed automatically in CI.
+Before running E2E tests for the first time, execute `e2e:install`. On Linux, additional Playwright system dependencies may be required; they are installed automatically in CI.
 
-The E2E suite is divided into two scenario files: \`dashboard.spec.ts\` checks Dashboard rendering, the initial set of transactions, transaction creation, form validation, and restoration of saved data after a full page reload; \`auth.spec.ts\` checks required fields, invalid values, form reset, navigation to Dashboard after a locally successful check, persistence of only the user name, and restoration of that name in the Login form.
+The E2E suite is divided into two scenario files: `dashboard.spec.ts` checks Dashboard rendering, the initial set of transactions, transaction creation, form validation, and restoration of saved data after a full page reload; `auth.spec.ts` checks required fields, invalid values, form reset, navigation to Dashboard after a locally successful check, persistence of only the user name, and restoration of that name in the Login form.
 
-The Playwright configuration starts the Angular application for the duration of the tests and stops it after they finish. There is no need to run \`serve\` separately before E2E tests.
+The Playwright configuration starts the Angular application for the duration of the tests and stops it after they finish. There is no need to run `serve` separately before E2E tests.
 
 In the current demo application, the Login form validates the entered values on the client side and navigates the user to the Dashboard after a successful local check. There is no connected backend authentication service or credential verification yet. Therefore, E2E tests verify the form, validation, and navigation, but do not confirm real user authentication.
 
@@ -626,9 +626,9 @@ The next small step is to improve the sign-in workflow. After the form passes lo
 
 The existing Storage Facade is responsible for persistence. The Auth Facade does not access browser storage directly: it receives the Storage Facade through Angular Dependency Injection and delegates saving and reading the user name to it. The Storage Facade, in turn, uses the DAL, which encapsulates the technical interaction with browser storage.
 
-The storage key is declared centrally in \`CONSTANTS\` as \`CONSTANTS.AUTH_LOGIN.storageKey\`. Therefore, the key name is not duplicated in the Auth Facade, Storage Facade, or components.
+The storage key is declared centrally in `CONSTANTS` as `CONSTANTS.AUTH_LOGIN.storageKey`. Therefore, the key name is not duplicated in the Auth Facade, Storage Facade, or components.
 
-When the user clicks OK after the Login fields have passed validation, the page passes the entered user name to the Auth Facade. The Facade saves only the login through the Storage Facade. The password is not stored in \`localStorage\` or in any other persistent application storage. The state of the demo authenticated session continues to be stored separately in \`sessionStorage\`.
+When the user clicks OK after the Login fields have passed validation, the page passes the entered user name to the Auth Facade. The Facade saves only the login through the Storage Facade. The password is not stored in `localStorage` or in any other persistent application storage. The state of the demo authenticated session continues to be stored separately in `sessionStorage`.
 
 When the Login Component is created, the initial value of the Login name field is obtained through the Auth Facade. If no value has been saved previously, the Facade returns an empty string. The Password field remains empty every time the form is opened.
 
@@ -637,12 +637,12 @@ Responsibilities therefore remain separated:
 - Login Component handles form rendering, input, and local validation.
 - Auth Facade coordinates the authentication workflow and provides the saved user name.
 - Storage Facade provides the application with clear operations for reading and saving the login.
-- DAL performs the actual work with \`localStorage\`.
-- \`CONSTANTS\` contains the single storage key.
+- DAL performs the actual work with `localStorage`.
+- `CONSTANTS` contains the single storage key.
 
 This is a convenience feature for the demo, not a secure credential storage mechanism. A saved user name does not verify the user's identity and does not replace backend authentication.
 
-E2E checks now additionally confirm that after clicking OK successfully, only the user name appears in \`localStorage\`, the password is not stored there, and after Logout the Login name field is populated with the saved value. The Password field remains empty.
+E2E checks now additionally confirm that after clicking OK successfully, only the user name appears in `localStorage`, the password is not stored there, and after Logout the Login name field is populated with the saved value. The Password field remains empty.
 
 ### Development Branch
 
