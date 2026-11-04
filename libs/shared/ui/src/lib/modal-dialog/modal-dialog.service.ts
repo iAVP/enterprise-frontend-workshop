@@ -7,6 +7,8 @@ import { ModalDialogRef } from './modal-dialog-ref';
 /** Creates and manages modal dialog instances independently of feature logic. */
 @Injectable({ providedIn: 'root' })
 export class ModalDialogService {
+  private activeDialog?: ModalDialogRef<unknown>;
+
   private readonly applicationRef = inject(ApplicationRef);
   private readonly environmentInjector = inject(EnvironmentInjector);
   private readonly document = inject(DOCUMENT);
@@ -17,8 +19,12 @@ export class ModalDialogService {
     config: ModalDialogConfig<TData>,
     onClose?: (result: TResult | undefined) => void,
   ): ModalDialogRef<TResult> {
+    this.activeDialog?.close();
+
     const hostElement = this.document.createElement('ui-modal-dialog-host');
     const previouslyFocused = this.document.activeElement as HTMLElement | null;
+    const previousBodyOverflow = this.document.body.style.overflow;
+    this.document.body.style.overflow = 'hidden';
     const componentRef = createComponent(ModalDialogComponent, {
       environmentInjector: this.environmentInjector,
       hostElement,
@@ -34,10 +40,15 @@ export class ModalDialogService {
         this.applicationRef.detachView(componentRef.hostView);
         componentRef.destroy();
         hostElement.remove();
+        this.document.body.style.overflow = previousBodyOverflow;
         previouslyFocused?.focus();
+        if (this.activeDialog === dialogRef) {
+          this.activeDialog = undefined;
+        }
       }
     });
 
+    this.activeDialog = dialogRef;
     componentRef.instance.configure(config, dialogRef);
     componentRef.changeDetectorRef.detectChanges();
     componentRef.instance.initialize(component);
