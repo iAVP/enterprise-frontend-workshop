@@ -2,6 +2,7 @@ import { Component, ViewChild, inject, output } from '@angular/core';
 import type { FieldValidationResult, LoginCredentials } from '@workshop:def:interfaces';
 import { EmailValidatorDirective, PasswordValidatorDirective } from '@workshop:ui';
 import { AuthFacadeService } from '@workshop:facades';
+import { AuthFacadeService } from '@workshop:facades';
 
 /** Presents the login form and coordinates reusable field validators. */
 @Component({
@@ -12,6 +13,9 @@ import { AuthFacadeService } from '@workshop:facades';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
+  /** Provides the previously saved login name for the form. */
+  private readonly authFacade = inject(AuthFacadeService);
+
   /** Emits credentials after both fields pass local validation. */
   readonly loginRequested = output<LoginCredentials>();
 
@@ -24,7 +28,7 @@ export class LoginComponent {
   private passwordValidator!: PasswordValidatorDirective;
 
   /** Stores the current email value. */
-  protected email = '';
+  protected email = this.authFacade.getSavedLogin();
 
   /** Stores the current password value. */
   protected password = '';
