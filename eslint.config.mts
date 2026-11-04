@@ -1,8 +1,8 @@
 import nx from "@nx/eslint-plugin";
-import oneDefinitionPerFile from "./tools/eslint-rules/one-definition-per-file.mjs";
-import singleLineArrowFunction from "./tools/eslint-rules/single-line-arrow-function.mjs";
-import noMagicStrings from "./tools/eslint-rules/no-magic-strings.mjs";
-import requireJsDocForConfiguration from "./tools/eslint-rules/require-jsdoc-for-configuration.mjs";
+import oneDefinitionPerFile from "./tools/workshop-eslint-rules/one-definition-per-file.mjs";
+import singleLineArrowFunction from "./tools/workshop-eslint-rules/single-line-arrow-function.mjs";
+import noMagicStrings from "./tools/workshop-eslint-rules/no-magic-strings.mjs";
+import requireJsDocForConfiguration from "./tools/workshop-eslint-rules/require-jsdoc-for-configuration.mjs";
 
 export default [
     ...nx.configs["flat/base"],
