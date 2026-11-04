@@ -31,14 +31,35 @@ test.describe('Authentication form', function () {
 		await expect(page).toHaveURL(/\/login$/);
 	});
 
-	test('accepts locally valid credentials and keeps the session after reload', async function ({ page }) {
+	test('accepts locally valid credentials, saves only the login, and keeps the session after reload', async function ({ page }) {
 		await page.getByLabel('Login name').fill('demo@example.com');
 		await page.getByLabel('Password').fill('StrongPassword123!');
 		await page.getByRole('button', { name: 'OK' }).click();
 		await expect(page).toHaveURL(/\/dashboard$/);
 		await expect(page.getByRole('heading', { name: 'Personal Finance' })).toBeVisible();
+
+		const storedLogin = await page.evaluate(function () {
+			return window.localStorage.getItem('personal-finance.login');
+		});
+		expect(storedLogin).toBe('"demo@example.com"');
+		const storedValues = await page.evaluate(function () {
+			return Object.values(window.localStorage).join(' ');
+		});
+		expect(storedValues).not.toContain('StrongPassword123!');
+
 		await page.reload();
-		await expect(page).toHaveURL(/\/dashboard$/);
+		await expect(page).toHaveURL(/\\/dashboard$/);
+	});
+
+	test('prefills the login field from local storage after logout', async function ({ page }) {
+		await page.getByLabel('Login name').fill('remember-me@example.com');
+		await page.getByLabel('Password').fill('StrongPassword123!');
+		await page.getByRole('button', { name: 'OK' }).click();
+		await expect(page).toHaveURL(/\\/dashboard$/);
+		await page.getByRole('button', { name: 'Logout' }).click();
+		await expect(page).toHaveURL(/\\/login$/);
+		await expect(page.getByLabel('Login name')).toHaveValue('remember-me@example.com');
+		await expect(page.getByLabel('Password')).toHaveValue('');
 	});
 
 	test('logs out and protects the dashboard again', async function ({ page }) {
