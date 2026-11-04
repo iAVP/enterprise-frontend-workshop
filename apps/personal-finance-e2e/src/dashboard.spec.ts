@@ -1,8 +1,16 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
+
+async function authenticate(page: Page): Promise<void> {
+	await page.goto('/login');
+	await page.getByLabel('Login name').fill('demo@example.com');
+	await page.getByLabel('Password').fill('StrongPassword123!');
+	await page.getByRole('button', { name: 'OK' }).click();
+	await expect(page).toHaveURL(/\\/dashboard$/);
+}
 
 test.describe('Personal Finance dashboard', function () {
 	test.beforeEach(async function ({ page }) {
-		await page.goto('/dashboard');
+		await authenticate(page);
 	});
 
 	test('renders the financial summary and demo transactions', async function ({ page }) {
@@ -15,9 +23,9 @@ test.describe('Personal Finance dashboard', function () {
 		await expect(page.locator('.transactions li').first()).toContainText('Salary');
 	});
 
-	test('redirects the application root to the dashboard', async function ({ page }) {
+	test('redirects the application root to the dashboard for an authenticated user', async function ({ page }) {
 		await page.goto('/');
-		await expect(page).toHaveURL(/\/dashboard$/);
+		await expect(page).toHaveURL(/\\/dashboard$/);
 		await expect(page.getByRole('heading', { name: 'Personal Finance' })).toBeVisible();
 	});
 
@@ -28,7 +36,7 @@ test.describe('Personal Finance dashboard', function () {
 		await page.getByLabel(/Amount/).fill('125.50');
 		await page.getByLabel('Date').fill('2026-11-04');
 		await page.getByRole('button', { name: 'Save' }).click();
-		await expect(page).toHaveURL(/\/dashboard$/);
+		await expect(page).toHaveURL(/\\/dashboard$/);
 		await expect(page.getByText('E2E salary adjustment')).toBeVisible();
 
 		const storedTransactions = await page.evaluate(function () {
@@ -56,6 +64,6 @@ test.describe('Personal Finance dashboard', function () {
 		await page.getByRole('link', { name: 'Add expense' }).click();
 		await page.getByRole('button', { name: 'Save' }).click();
 		await expect(page.getByRole('alert')).toContainText('Enter a description, a date, and an amount greater than zero.');
-		await expect(page).toHaveURL(/\/add-expense$/);
+		await expect(page).toHaveURL(/\\/add-expense$/);
 	});
 });
