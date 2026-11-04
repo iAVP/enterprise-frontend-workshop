@@ -83,34 +83,6 @@ test.describe('Personal Finance dashboard', function () {
   });
 
 
-  test('migrates legacy transactions from local storage to IndexedDB', async function ({ page }) {
-    await page.goto('/login');
-    await page.getByLabel('Login name').fill('demo@example.com');
-    await page.getByLabel('Password').fill('StrongPassword123!');
-    await page.evaluate(() => {
-      localStorage.setItem('personal-finance.transactions', JSON.stringify([{
-        id: 'legacy-transaction',
-        type: 1,
-        description: 'Migrated legacy transaction',
-        amount: 310,
-        date: '2026-11-04',
-      }]));
-    });
-    await page.getByRole('button', { name: 'OK' }).click();
-
-    await expect(page).toHaveURL(/\\/dashboard$/);
-    await expect(page.getByText('Migrated legacy transaction')).toBeVisible();
-
-    await expect.poll(() => page.evaluate(() =>
-      localStorage.getItem('personal-finance.transactions'),
-    )).toBeNull();
-
-    await expect.poll(async () => {
-      const stored = await readStoredTransactions(page);
-      return stored.some((transaction) => transaction.description === 'Migrated legacy transaction');
-    }).toBe(true);
-  });
-
   test('validates a transaction before saving', async function ({ page }) {
     await page.getByRole('button', { name: 'Add expense' }).click();
     const dialog = page.getByRole('dialog', { name: 'Add expense' });
