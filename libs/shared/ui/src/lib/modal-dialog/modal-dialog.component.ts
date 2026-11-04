@@ -94,12 +94,12 @@ export class ModalDialogComponent {
   private panel!: ElementRef<HTMLElement>;
 
   protected config!: ModalDialogConfig;
-  protected dialogRef!: ModalDialogRef;
+  protected dialogRef!: ModalDialogRef<any>;
 
   private readonly environmentInjector = inject(EnvironmentInjector);
 
   /** Sets dialog configuration before the shell's first change-detection pass. */
-  configure(config: ModalDialogConfig, dialogRef: ModalDialogRef): void {
+  configure(config: ModalDialogConfig, dialogRef: ModalDialogRef<any>): void {
     this.config = config;
     this.dialogRef = dialogRef;
   }
