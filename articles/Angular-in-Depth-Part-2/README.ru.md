@@ -538,3 +538,9 @@ LocalStorage при этом не удаляется из приложения �
 - [IndexedDB API](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) — асинхронное хранение структурированных данных в браузере.
 - [IDBDatabase](https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase) — открытие транзакций и работа с object stores.
 
+---
+
+Разработка статьи:
+
+- [Ветка +1 — Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1)
+- [Ветка +2 — Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+2](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+2)
