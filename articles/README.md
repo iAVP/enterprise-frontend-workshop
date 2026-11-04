@@ -169,7 +169,7 @@ Planned topics:
 
 **Expected outcome:** a practical understanding of how to integrate LLMs, MCP servers, and AI agents into frontend engineering workflows without sacrificing architectural integrity, code quality, security, or maintainability.
 
-### Stage 6 — Angular Microfrontends and Web Components
+### Stage 5 — Angular Microfrontends and Web Components
 
 **Purpose:** explore integration and reuse across frontend boundaries.
 
