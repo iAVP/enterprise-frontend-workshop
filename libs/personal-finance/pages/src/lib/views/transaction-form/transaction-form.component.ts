@@ -1,12 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { COMMON } from '@workshop:common';
-import { TransactionType } from '@workshop:def:enums';
 import type { Transaction } from '@workshop:def:interfaces';
 import { ModalDialogRef, MODAL_DIALOG_DATA } from '@workshop:ui';
+import type { TransactionFormDialogData } from './transaction-form-dialog-data';
 
-interface TransactionFormDialogData {
-  type: TransactionType;
-}
 
 /** Collects transaction details and returns them to the caller through ModalDialog. */
 @Component({
