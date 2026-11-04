@@ -3,8 +3,8 @@ import type { Transaction } from '@workshop:def:interfaces';
 import { TransactionType } from '@workshop:def:enums';
 import { DEMO_TRANSACTIONS } from '@workshop:mock';
 import { StorageService } from '@workshop:dal';
+import { CONSTANTS } from '@workshop:def:consts';
 
-const TRANSACTIONS_STORAGE_KEY = 'personal-finance.transactions';
 
 /**
  * Coordinates transaction state and persistence for the Personal Finance feature.
@@ -51,7 +51,7 @@ export class TransactionsFacade {
   addTransaction(item: Omit<Transaction, 'id'>): void {
     const updated = [{ ...item, id: crypto.randomUUID() }, ...this.state()];
 
-    if (!this.storage.setItem(TRANSACTIONS_STORAGE_KEY, updated)) {
+    if (!this.storage.setItem(CONSTANTS.TRANSACTIONS.storageKey, updated)) {
       this.state.set(updated);
       return;
     }
@@ -62,7 +62,7 @@ export class TransactionsFacade {
   /** Replaces in-memory state with the latest persisted collection. */
   private reloadTransactions(): void {
     this.state.set(
-      this.storage.getItem<Transaction[]>(TRANSACTIONS_STORAGE_KEY) ?? DEMO_TRANSACTIONS,
+      this.storage.getItem<Transaction[]>(CONSTANTS.TRANSACTIONS.storageKey) ?? DEMO_TRANSACTIONS,
     );
   }
 }
