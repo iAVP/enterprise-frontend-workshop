@@ -1,4 +1,4 @@
-import { Injectable, computed, effect, signal } from '@angular/core';
+import { Injectable, computed, effect, inject, signal } from '@angular/core';
 import type { Transaction } from '@workshop:def:interfaces';
 import { TransactionType } from '@workshop:def:enums';
 import { DEMO_TRANSACTIONS } from '@workshop:mock';
@@ -12,6 +12,7 @@ const TRANSACTIONS_STORAGE_KEY = 'personal-finance.transactions';
  */
 @Injectable({ providedIn: 'root' })
 export class TransactionsFacade {
+  private readonly storage = inject(StorageService);
   private readonly state = signal<Transaction[]>(DEMO_TRANSACTIONS);
   private readonly reloadRequested = signal(0);
 
@@ -42,8 +43,6 @@ export class TransactionsFacade {
       .filter((transaction) => transaction.type === TransactionType.expense)
       .reduce((sum, transaction) => sum + transaction.amount, 0),
   );
-
-  constructor(private readonly storage: StorageService) {}
 
   /**
    * Persists a new transaction and requests a fresh read.
