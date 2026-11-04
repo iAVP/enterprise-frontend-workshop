@@ -55,6 +55,8 @@ Apply these conventions whenever creating or updating NX projects in this worksh
 - In an application component, expose the configuration as one local property: `protected readonly common = COMMON;`. In the template, read values through `common.<PROPERTY>`; do not create separate properties such as `currency`, `currencyFormat`, or `currencyLocale` from individual `COMMON` members.
 - If an application, environment, or component needs to override configuration values, create or extend its own local `common` object and apply the overrides there (for example, `const common = { ...COMMON, SOME_PROPERTY: 'local-value' };`). Further overrides must be based on that local `common` object, not by extracting or redefining individual properties from the original `COMMON`.
 - Public and protected class members (methods and properties), as well as every class, must have English comments. Apply this consistently when creating or changing code.
+- The files `common/environments/common.ts` and `libs/shared/definitions/src/lib/constants/constants.ts` are explicit exceptions to the normal one-definition-per-file organization: each file must contain its own `interface` or `type` declaration, the complete description of all properties and nested structures, and the corresponding `COMMON` or `CONSTANTS` object. Do not move these declarations or members into separate definitions files.
+- Every type declaration, the exported configuration object declaration, and every member/property at every nesting level in those two files must have an English JSDoc comment describing its purpose. ESLint enforces this requirement only for these two files through `workshop/require-jsdoc-for-configuration`.
 
 ### Application project tags
 
