@@ -97,15 +97,14 @@ export class ModalDialogComponent {
 
   private readonly environmentInjector = inject(EnvironmentInjector);
 
-  /** Instantiates the requested content component with dialog-scoped DI values. */
-  initialize<T>(
-    component: Type<T>,
-    config: ModalDialogConfig,
-    dialogRef: ModalDialogRef,
-  ): ComponentRef<T> {
+  /** Sets dialog configuration before the shell's first change-detection pass. */
+  configure(config: ModalDialogConfig, dialogRef: ModalDialogRef): void {
     this.config = config;
     this.dialogRef = dialogRef;
+  }
 
+  /** Instantiates the requested content component with dialog-scoped DI values. */
+  initialize<T>(component: Type<T>): ComponentRef<T> {
     const dialogInjector = Injector.create({
       parent: this.environmentInjector,
       providers: [
