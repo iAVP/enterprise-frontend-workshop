@@ -145,6 +145,18 @@ This index is the central navigation source for the article series. Keep the pub
 - [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking%2B1)
 - [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+2](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking%2B2)
 
+- [8. TypeScript and Architectural Thinking — From C# Principles to Enterprise Frontend Development](#8-typescript-and-architectural-thinking--from-c-principles-to-enterprise-frontend-development)
+## 8. TypeScript and Architectural Thinking — From C# Principles to Enterprise Frontend Development
+
+### Repository materials
+[English](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.md) | [Russian](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.ru.md) | [German](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.de.md)
+
+### Article contents
+- [Working outline and research checklist](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.md#planned-structure)
+
+### GitHub branches
+- [TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development](https://github.com/iAVP/enterprise-frontend-workshop/tree/TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development)
+
 ## Editorial rules
 
 - Every article entry must follow the same template: `## N. Article title`, `### Repository materials` with all three language links on one line separated by ` | `, `### Article contents` with section links, and `### GitHub branches` with only branches belonging to that article. Do not insert a status line into the article-entry template.
