@@ -2,6 +2,7 @@ import nx from "@nx/eslint-plugin";
 import oneDefinitionPerFile from "./tools/eslint-rules/one-definition-per-file.mjs";
 import singleLineArrowFunction from "./tools/eslint-rules/single-line-arrow-function.mjs";
 import noMagicStrings from "./tools/eslint-rules/no-magic-strings.mjs";
+import requireJsDocForConfiguration from "./tools/eslint-rules/require-jsdoc-for-configuration.mjs";
 
 export default [
     ...nx.configs["flat/base"],
@@ -115,7 +116,8 @@ export default [
                 rules: {
                     "one-definition-per-file": oneDefinitionPerFile,
                     "single-line-arrow-function": singleLineArrowFunction,
-                    "no-magic-strings": noMagicStrings
+                    "no-magic-strings": noMagicStrings,
+                    "require-jsdoc-for-configuration": requireJsDocForConfiguration
                 }
             }
         },
@@ -198,11 +200,13 @@ export default [
     },
     {
         files: [
-            "libs/shared/definitions/src/lib/constants/constants.ts"
+            "libs/shared/definitions/src/lib/constants/constants.ts",
+            "common/environments/common.ts"
         ],
         rules: {
             "@typescript-eslint/no-magic-numbers": "off",
-            "workshop/no-magic-strings": "off"
+            "workshop/no-magic-strings": "off",
+            "workshop/require-jsdoc-for-configuration": "error"
         }
     },
     {
