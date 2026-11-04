@@ -161,7 +161,10 @@ export class ModalDialogComponent {
     if (!first || !last) {
       event.preventDefault();
       this.panel.nativeElement.focus();
-    } else if (event.shiftKey && this.documentActiveElement() === first) {
+    } else if (
+      event.shiftKey &&
+      (this.documentActiveElement() === first || this.documentActiveElement() === this.panel.nativeElement)
+    ) {
       event.preventDefault();
       last.focus();
     } else if (!event.shiftKey && this.documentActiveElement() === last) {
