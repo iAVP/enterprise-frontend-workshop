@@ -1,19 +1,23 @@
 import '@angular/compiler';
 import { TestBed } from '@angular/core/testing';
 import { CONSTANTS } from '@workshop:def:consts';
-import { DEMO_TRANSACTIONS } from '@workshop:mock';
+import { TransactionType } from '@workshop:def:enums';
 import type { Transaction } from '@workshop:def:interfaces';
+import { DEMO_TRANSACTIONS } from '@workshop:mock';
 import { StorageService } from '@workshop:dal';
 import { StorageFacadeService } from './storage-facade.service';
 
 describe('StorageFacadeService', () => {
 	let service: StorageFacadeService;
-	let storageService: { getFromLocalStorage: ReturnType<typeof vi.fn>; saveToLocalStorage: ReturnType<typeof vi.fn> };
+	let storageService: {
+		getItem: ReturnType<typeof vi.fn>;
+		setItem: ReturnType<typeof vi.fn>;
+	};
 
 	beforeEach(function () {
 		storageService = {
-			getFromLocalStorage: vi.fn(),
-			saveToLocalStorage: vi.fn(),
+			getItem: vi.fn(),
+			setItem: vi.fn(),
 		};
 		TestBed.configureTestingModule({
 			providers: [
@@ -30,14 +34,14 @@ describe('StorageFacadeService', () => {
 
 	test('returns persisted transactions when available', function () {
 		const transactions = [{ ...DEMO_TRANSACTIONS[0] }];
-		storageService.getFromLocalStorage.mockReturnValue(transactions);
+		storageService.getItem.mockReturnValue(transactions);
 
 		expect(service.getTransactions()).toEqual(transactions);
-		expect(storageService.getFromLocalStorage).toHaveBeenCalledWith(CONSTANTS.TRANSACTIONS.storageKey);
+		expect(storageService.getItem).toHaveBeenCalledWith(CONSTANTS.TRANSACTIONS.storageKey);
 	});
 
 	test('returns a copy of demo data when no stored collection exists', function () {
-		storageService.getFromLocalStorage.mockReturnValue(null);
+		storageService.getItem.mockReturnValue(null);
 
 		const transactions = service.getTransactions();
 
@@ -46,16 +50,39 @@ describe('StorageFacadeService', () => {
 	});
 
 	test('returns demo data when persisted records do not match the transaction contract', function () {
-		storageService.getFromLocalStorage.mockReturnValue([{ id: 'broken', amount: 'not-a-number' }]);
+		storageService.getItem.mockReturnValue([{ id: 'broken', amount: 'not-a-number' }]);
 
 		expect(service.getTransactions()).toEqual(DEMO_TRANSACTIONS);
 	});
 
 	test('delegates transaction persistence to the data layer', function () {
 		const transactions: Transaction[] = [];
-		storageService.saveToLocalStorage.mockReturnValue(true);
+		storageService.setItem.mockReturnValue(true);
 
 		expect(service.saveTransactions(transactions)).toBe(true);
-		expect(storageService.saveToLocalStorage).toHaveBeenCalledWith(CONSTANTS.TRANSACTIONS.storageKey, transactions);
+		expect(storageService.setItem).toHaveBeenCalledWith(CONSTANTS.TRANSACTIONS.storageKey, transactions);
+	});
+
+	test('returns the saved login from the data layer', function () {
+		storageService.getItem.mockReturnValue('remember-me@example.com');
+
+		expect(service.getLogin()).toBe('remember-me@example.com');
+		expect(storageService.getItem).toHaveBeenCalledWith(CONSTANTS.AUTH_LOGIN.storageKey);
+	});
+
+	test('returns an empty login when the stored value is not a string', function () {
+		storageService.getItem.mockReturnValue({ login: 'invalid' });
+
+		expect(service.getLogin()).toBe('');
+	});
+
+	test('delegates login persistence to the data layer', function () {
+		storageService.setItem.mockReturnValue(true);
+
+		expect(service.saveLogin('remember-me@example.com')).toBe(true);
+		expect(storageService.setItem).toHaveBeenCalledWith(
+			CONSTANTS.AUTH_LOGIN.storageKey,
+			'remember-me@example.com',
+		);
 	});
 });
