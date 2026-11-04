@@ -51,3 +51,18 @@ Each article must be developed on a dedicated Git branch whose name corresponds 
 - Branch links must point to actual branches in the repository and must be verified before publication.
 
 The purpose of this convention is to let readers navigate the implementation history of each article and inspect the code at each stage.
+
+## Strict Task Scope and Change Authorization
+
+**A task authorizes changes only to the explicitly named entities and the behavior directly required to fulfill that task. This is a strict boundary, not a suggestion.**
+
+- Do not modify neighboring or adjacent entities merely because they are nearby, related, convenient, or appear architecturally connected.
+- Do not change unrelated services, storage mechanisms, authentication behavior, login persistence, routes, guards, UI behavior, configuration, contracts, or data models unless the user explicitly includes them in the task.
+- A request to replace one persistence mechanism for a specific data collection authorizes changes only to that collection's persistence path. It does not authorize changing where credentials, login names, preferences, or other data are stored.
+- Do not expand the task, refactor adjacent code, clean up unrelated implementation, or introduce additional features based on assumptions or personal preference.
+- If completing the requested task appears to require touching an entity or behavior that the user did not name, stop before making that change. Explain exactly which neighboring entity would be affected, why the change appears necessary, and ask the user for explicit authorization.
+- When in doubt about whether a file, service, data key, API, or behavior is within scope, treat it as out of scope and ask first.
+- Before committing, inspect the diff and verify that every changed entity is directly within the user's requested scope. Revert or separate any unauthorized collateral changes.
+- These restrictions apply to code, tests, documentation, configuration, data migrations, and repository maintenance.
+
+The user defines the task boundary. The contributor or agent must not redefine it.
