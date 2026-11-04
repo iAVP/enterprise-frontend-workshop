@@ -206,6 +206,7 @@ export default [
         rules: {
             "@typescript-eslint/no-magic-numbers": "off",
             "workshop/no-magic-strings": "off",
+            "workshop/one-definition-per-file": "off",
             "workshop/require-jsdoc-for-configuration": "error"
         }
     },
