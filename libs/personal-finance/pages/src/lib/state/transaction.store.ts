@@ -31,9 +31,26 @@ export class TransactionStore {
       .reduce((sum, transaction) => sum + transaction.amount, 0),
   );
 
-  /** Adds a transaction and persists the updated collection. */
+  /** Adds a transaction, persists it, and refreshes state from the storage layer. */
   addTransaction(item: Omit<Transaction, 'id'>): void {
-    this.saveTransactions([{ ...item, id: crypto.randomUUID() }, ...this.state()]);
+    const updated = [{ ...item, id: crypto.randomUUID() }, ...this.state()];
+
+    try {
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem('personal-finance.transactions', JSON.stringify(updated));
+        this.reloadTransactions();
+        return;
+      }
+    } catch {
+      // Keep the current session usable when browser storage is unavailable.
+    }
+
+    this.state.set(updated);
+  }
+
+  /** Re-reads persisted transactions and updates the signal consumed by the UI. */
+  reloadTransactions(): void {
+    this.state.set(this.loadTransactions());
   }
 
   /** Loads persisted transactions or the dedicated demo dataset. */
@@ -52,16 +69,6 @@ export class TransactionStore {
       return Array.isArray(parsed) ? (parsed as Transaction[]) : DEMO_TRANSACTIONS;
     } catch {
       return DEMO_TRANSACTIONS;
-    }
-  }
-
-  /** Updates in-memory state and persists it when browser storage is available. */
-  private saveTransactions(items: Transaction[]): void {
-    this.state.set(items);
-    try {
-      localStorage.setItem('personal-finance.transactions', JSON.stringify(items));
-    } catch {
-      // The current session remains usable without browser storage.
     }
   }
 }
