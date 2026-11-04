@@ -12,6 +12,7 @@ import {
   inject,
 } from '@angular/core';
 import { ModalDialogConfig } from './modal-dialog-config';
+import { ModalDialogRef } from './modal-dialog-ref';
 import { MODAL_DIALOG_DATA } from './modal-dialog.tokens';
 
 /** Renders the shared modal shell and the caller-provided component. */
