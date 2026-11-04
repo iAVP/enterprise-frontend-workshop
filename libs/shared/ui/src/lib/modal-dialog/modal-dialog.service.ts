@@ -7,7 +7,7 @@ import { ModalDialogRef } from './modal-dialog-ref';
 /** Creates and manages modal dialog instances independently of feature logic. */
 @Injectable({ providedIn: 'root' })
 export class ModalDialogService {
-  private activeDialog?: ModalDialogRef<unknown>;
+  private activeDialog?: { close(): void };
 
   private readonly applicationRef = inject(ApplicationRef);
   private readonly environmentInjector = inject(EnvironmentInjector);
