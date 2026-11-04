@@ -268,22 +268,31 @@ Mögliche eigenständige Themen:
 
 Im Mittelpunkt stehen praktische Engineering-Methoden, zuverlässige Ergebnisse und wartbare Software.
 
-## 5. Zusätzliche Engineering-Fallstudie
+## 5. Artikel Nr. 8 — TypeScript and Architectural Thinking — From C# Principles to Enterprise Frontend Development
 
-Ein separater Artikel könnte TypeScript, objektorientiertes Design und den Nutzen von Kapselung anhand eines realen Refactoring-Falls untersuchen.
+**Status: Geplant.** Arbeitstitel und Artikelnummer sind bestätigt. Der Artikelentwurf wurde noch nicht begonnen.
 
-Die zentrale Idee ist zu zeigen, wie viel wiederholter oder unnötig komplexer Code sich manchmal durch eine kleine, klar definierte Abstraktion ersetzen lässt.
+**Ziel:** TypeScript als sprachliche Brücke beschreiben, die den Übergang des Autors von C# zu Angular natürlich gemacht hat, und anschließend die Sprache aus der Perspektive der Softwarearchitektur und der täglichen Engineering-Praxis betrachten.
 
-Vor der Veröffentlichung muss das Beispiel Folgendes erklären:
+Der Artikel soll mit der persönlichen und architektonischen Geschichte beginnen, nicht mit einem Katalog von Sprachfunktionen. Er soll zeigen, wie Erfahrungen mit C#, objektorientiertem Design, Typsystemen und etablierten Entwicklungsprinzipien in die Frontend-Entwicklung übertragen wurden.
 
-- Das ursprüngliche Problem und die Rahmenbedingungen.
-- Was der ursprüngliche Code tatsächlich getan hat.
-- Welche Verantwortung die neue Abstraktion kapselt.
-- Warum die Änderung korrekt und wartbar ist.
-- Welche Abwägungen und Grenzen bestehen.
+Vorläufige Struktur und Themen:
 
-Der Artikel soll die Engineering-Überlegungen vermitteln und sich nicht auf einen spektakulären Vergleich der Zeilenanzahl verlassen.
+1. **Von C# zu Angular:** der Wechsel zur Frontend-Entwicklung und warum sich TypeScript vertraut anfühlte, statt einen vollständigen Neuanfang zu verlangen.
+2. **TypeScript als architektonische Brücke:** statische Typisierung, explizite Verträge, Wartbarkeit und die Übertragung etablierter Engineering-Praktiken in das JavaScript-Ökosystem.
+3. **Sprachfunktionen, die Entwickler schätzen:** Klassen und OOP, Interfaces und Types, `switch` / `case`, `Record<K, V>`, Generics, Union Types, Type Inference und `async` / `await`.
+4. **TypeScript zusammen mit Angular:** praktische Beispiele für `Record`-basierte Datenstrukturen und deren Zusammenspiel mit Signals, einschließlich eleganter Möglichkeiten, Daten mit `computed` abzuleiten und zu durchlaufen.
+5. **Realer Code statt isolierter Beispiele:** den vorhandenen TypeScript-Code des Enterprise Frontend Workshop untersuchen und Beispiele auswählen, die diese Ideen auf natürliche Weise zeigen. Keine künstlichen Beispiele erfinden, wenn das Repository bereits bessere enthält.
+6. **ESLint als architektonische Leitplanke:** die bereits im Workspace eingeführten Regeln erneut betrachten und erklären, wie statische Prüfungen helfen, Architekturentscheidungen zu bewahren. Vor der Beschreibung die tatsächliche Konfiguration prüfen, einschließlich des Komplexitätslimits (12), der maximalen Dateilänge (450 Zeilen) und weiterer Standard- und eigener Regeln.
+7. **Die Rolle von KI:** anerkennen, dass AI-assisted Coding das Schreiben von Code verändert hat, während Sprachverständnis und die Bewertung generierten Codes wichtige Engineering-Kompetenzen bleiben.
 
+Der Artikel soll Sprachfunktionen von Architekturentscheidungen unterscheiden: TypeScript bietet ausdrucksstarke Werkzeuge, aber gute Architektur hängt davon ab, wie Entwickler sie einsetzen.
+
+**Erwartetes Ergebnis:** Leser verstehen, warum TypeScript eine natürliche Fortsetzung von C#-basierten Engineering-Erfahrungen sein kann und wie seine Sprachfunktionen eine klare und wartbare Enterprise-Frontend-Architektur unterstützen.
+
+Vor dem Schreiben müssen die vorhandene TypeScript-Implementierung und die ESLint-Konfiguration des Repositorys untersucht werden. Reale Dateipfade und verifizierte Regelbezeichnungen sind in den Artikelnotizen festzuhalten, bevor konkrete Beispiele ausgewählt werden.
+
+## 6. Veröffentlichungsprozess
 ## 6. Veröffentlichungsprozess
 
 Die maßgeblichen technischen Inhalte werden auf Englisch gepflegt.
