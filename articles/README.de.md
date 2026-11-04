@@ -166,7 +166,7 @@ Geplante Themen:
 
 **Erwartetes Ergebnis:** Ein praktisches Verständnis dafür, wie LLMs, MCP-Server und KI-Agenten in Frontend-Engineering-Workflows integriert werden können, ohne architektonische Integrität, Codequalität, Sicherheit oder Wartbarkeit zu beeinträchtigen.
 
-### Phase 6 — Angular-Microfrontends und Web Components
+### Phase 5 — Angular-Microfrontends und Web Components
 
 **Ziel:** Integration und Wiederverwendung über Frontend-Grenzen hinweg untersuchen.
 
