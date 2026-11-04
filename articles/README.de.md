@@ -141,7 +141,25 @@ Geplante Themen:
 
 **Erwartetes Ergebnis:** Ein modulares Frontend mit bewusst gestalteten und zunehmend durchsetzbaren Abhängigkeiten.
 
-### Phase 4 — Angular-Microfrontends und Web Components
+### Phase 4 — AI-Assisted Frontend Engineering: LLMs, MCP und agentenbasierte Entwicklung
+
+**Ziel:** untersuchen, wie Large Language Models, das Model Context Protocol und KI-Agenten professionelle Frontend-Engineering-Workflows unterstützen können, während die Verantwortung für Architektur und technische Entscheidungen unter menschlicher Kontrolle bleibt.
+
+Geplante Themen:
+
+- Grundlagen von Large Language Models (LLMs): Fähigkeiten, Grenzen, Context Windows, Tokens und praktische Auswirkungen auf die Softwareentwicklung.
+- Context Engineering: Strukturierung von Projektkontext, Anweisungen, Spezifikationen und technischem Wissen für eine zuverlässige KI-gestützte Entwicklung.
+- Model Context Protocol (MCP): Architektur, Clients, Server, Tools, Ressourcen, Prompts und Integrationsmuster.
+- KI-Agenten und agentenbasierte Entwicklungsabläufe: Planung, Aufgabenzerlegung, Tool-Nutzung, Ausführung und Ergebnisprüfung.
+- Praktische Anwendung in einem Angular- und NX-Workspace.
+- Anbindung von KI-Agenten an Entwicklungstools und Projektkontext über MCP.
+- KI-gestützte Implementierung, Refactoring, Tests und Code Reviews.
+- Durchsetzung architektonischer Grenzen und Überprüfung generierter Änderungen anhand der Projektkonventionen.
+- Governance, Sicherheit, Berechtigungen, menschliche Kontrolle und Qualitätssicherung.
+
+**Erwartetes Ergebnis:** Ein praktisches Verständnis dafür, wie LLMs, MCP-Server und KI-Agenten in Frontend-Engineering-Workflows integriert werden können, ohne architektonische Integrität, Codequalität, Sicherheit oder Wartbarkeit zu beeinträchtigen.
+
+### Phase 6 — Angular-Microfrontends und Web Components
 
 **Ziel:** Integration und Wiederverwendung über Frontend-Grenzen hinweg untersuchen.
 
@@ -155,7 +173,7 @@ Geplante Themen:
 
 **Erwartetes Ergebnis:** Ein praktisches Verständnis dafür, wann Web Components helfen und welche zusätzliche Architektur Microfrontends erfordern.
 
-### Phase 5 — npm-Packages und Azure DevOps Artifacts
+### Phase 6 — npm-Packages und Azure DevOps Artifacts
 
 **Ziel:** Kontrollierte Verteilung und Wiederverwendung von Frontend-Bibliotheken zeigen.
 
@@ -170,7 +188,7 @@ Geplante Themen:
 
 **Erwartetes Ergebnis:** Ein nachvollziehbarer Paketlebenszyklus für wiederverwendbaren Code, ohne Bibliotheken verfrüht zu veröffentlichen.
 
-### Phase 6 — Next.js-Backend und REST API
+### Phase 7 — Next.js-Backend und REST API
 
 **Ziel:** Die Beispielanwendung zu einer Fullstack-Architektur erweitern.
 
@@ -185,7 +203,7 @@ Geplante Themen:
 
 **Erwartetes Ergebnis:** Ein dokumentiertes Interaktionsmodell zwischen Frontend und Backend für die Beispielanwendung.
 
-### Phase 7 — Einführung in Vue.js
+### Phase 8 — Einführung in Vue.js
 
 **Ziel:** Vue.js als alternatives Frontend-Framework im Kontext des bestehenden Projekts vorstellen.
 
@@ -200,7 +218,7 @@ Geplante Themen:
 
 **Erwartetes Ergebnis:** Eine Grundlage für ein Vue-Frontend und ein klares Verständnis seiner zentralen Konzepte.
 
-### Phase 8 — Vue.js, DDD und das bestehende Backend
+### Phase 9 — Vue.js, DDD und das bestehende Backend
 
 **Ziel:** Explizite Architekturgrenzen im Vue-Frontend anwenden und dabei das vorhandene Backend weiterverwenden.
 
@@ -215,7 +233,7 @@ Geplante Themen:
 
 **Erwartetes Ergebnis:** Eine Vue-Implementierung, die das vorhandene Backend nutzt und konsistente Architekturprinzipien anwendet.
 
-### Phase 9 — Vue.js mit Angular Elements
+### Phase 10 — Vue.js mit Angular Elements
 
 **Ziel:** Ausgewählte Angular-Komponenten in eine Vue-Anwendung integrieren.
 
