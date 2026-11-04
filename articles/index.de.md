@@ -10,6 +10,7 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 - [4. NX Workspace — Von der Architektur zu den Werkzeugen](#4-nx-workspace--von-der-architektur-zu-den-werkzeugen)
 - [5. Development Tools: WebStorm, Visual Studio Code und OpenCode](#5-development-tools-webstorm-visual-studio-code-und-opencode)
 - [6. Angular in Depth — Teil 1: Architektur und Komponenten](#6-angular-in-depth--teil-1-architektur-und-komponenten)
+- [7. Angular in Depth — Teil 2: Die Evolution von Angular und des architektonischen Denkens eines Entwicklers](#7-angular-in-depth--teil-2-die-evolution-von-angular-und-des-architektonischen-denkens-eines-entwicklers)
 - [Redaktionsregeln](#redaktionsregeln)
 
 ## 1. Der Weg zur Architektur
@@ -136,6 +137,22 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 
 ### GitHub-Branches
 - [Angular-in-Depth](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth)
+
+## 7. Angular in Depth — Teil 2: Die Evolution von Angular und des architektonischen Denkens eines Entwicklers
+
+### Repository-Materialien
+[English](Angular-in-Depth-Part-2/README.md) | [Русский](Angular-in-Depth-Part-2/README.ru.md) | [Deutsch](Angular-in-Depth-Part-2/README.de.md)
+
+### Artikelinhalte
+- [Architektonisches Denken ist älter als Angular](Angular-in-Depth-Part-2/README.de.md#1-architektonisches-denken-ist-älter-als-angular)
+- [Die Evolution von Angular und des architektonischen Denkens](Angular-in-Depth-Part-2/README.de.md#2-die-evolution-von-angular-und-des-architektonischen-denkens)
+- [Von der Komponentenentwicklung zum Systemdesign](Angular-in-Depth-Part-2/README.de.md#3-von-der-komponentenentwicklung-zum-systemdesign)
+- [Praktische Umsetzung: Facades und Signals ohne Effect](Angular-in-Depth-Part-2/README.de.md#4-praktische-umsetzung-facades-und-signals-ohne-effect)
+- [Facades, Signals und IndexedDB: Interaktion zwischen Dashboard und modalen Formularen](Angular-in-Depth-Part-2/README.de.md#5-facades-signals-und-indexeddb-interaktion-zwischen-dashboard-und-modalen-formularen)
+
+### GitHub-Branches
+- [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking%2B1)
+- [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+2](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking%2B2)
 
 ## Redaktionsregeln
 
