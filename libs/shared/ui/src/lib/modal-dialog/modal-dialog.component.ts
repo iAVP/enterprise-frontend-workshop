@@ -137,11 +137,40 @@ export class ModalDialogComponent {
     }
   }
 
-  /** Handles Escape consistently for every dialog content component. */
-  @HostListener('document:keydown.escape')
-  protected onEscape(): void {
-    if (!this.config.disableClose) {
-      this.dialogRef.close();
+  /** Handles Escape and keeps keyboard focus inside the active dialog. */
+  @HostListener('document:keydown', ['$event'])
+  protected onKeydown(event: KeyboardEvent): void {
+    if (event.key === 'Escape') {
+      if (!this.config.disableClose) {
+        event.preventDefault();
+        this.dialogRef.close();
+      }
+      return;
     }
+
+    if (event.key !== 'Tab') {
+      return;
+    }
+
+    const focusable = this.panel.nativeElement.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    );
+    const first = focusable.item(0);
+    const last = focusable.item(focusable.length - 1);
+
+    if (!first || !last) {
+      event.preventDefault();
+      this.panel.nativeElement.focus();
+    } else if (event.shiftKey && this.documentActiveElement() === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && this.documentActiveElement() === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
+  private documentActiveElement(): Element | null {
+    return this.panel.nativeElement.ownerDocument.activeElement;
   }
 }
