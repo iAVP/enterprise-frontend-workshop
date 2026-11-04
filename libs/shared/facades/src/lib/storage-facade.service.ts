@@ -12,24 +12,24 @@ export class StorageFacadeService {
 
 	/** Returns the previously saved login or an empty string. */
 	getLogin(): string {
-		const login = this.storageService.getFromLocalStorage<unknown>(CONSTANTS.AUTH_LOGIN.storageKey);
+		const login = this.storageService.getItem<unknown>(CONSTANTS.AUTH_LOGIN.storageKey);
 		return typeof login === 'string' ? login : '';
 	}
 
 	/** Persists the login name without storing authentication credentials. */
 	saveLogin(login: string): boolean {
-		return this.storageService.saveToLocalStorage(CONSTANTS.AUTH_LOGIN.storageKey, login);
+		return this.storageService.setItem(CONSTANTS.AUTH_LOGIN.storageKey, login);
 	}
 
 	/** Returns valid persisted transactions or the shared demonstration dataset. */
 	getTransactions(): Transaction[] {
-		const transactions = this.storageService.getFromLocalStorage<unknown>(CONSTANTS.TRANSACTIONS.storageKey);
+		const transactions = this.storageService.getItem<unknown>(CONSTANTS.TRANSACTIONS.storageKey);
 		return this.isTransactionCollection(transactions) ? transactions : [...DEMO_TRANSACTIONS];
 	}
 
 	/** Persists the current transaction collection. */
 	saveTransactions(transactions: Transaction[]): boolean {
-		return this.storageService.saveToLocalStorage(CONSTANTS.TRANSACTIONS.storageKey, transactions);
+		return this.storageService.setItem(CONSTANTS.TRANSACTIONS.storageKey, transactions);
 	}
 
 	private isTransactionCollection(value: unknown): value is Transaction[] {
