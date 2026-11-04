@@ -157,6 +157,18 @@ Subtitle для опубликованных материалов ведутся
 - [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking%2B1)
 - [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+2](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking%2B2)
 
+- [8. TypeScript and Architectural Thinking — From C# Principles to Enterprise Frontend Development](#8-typescript-and-architectural-thinking--from-c-principles-to-enterprise-frontend-development)
+## 8. TypeScript and Architectural Thinking — From C# Principles to Enterprise Frontend Development
+
+### Материалы в репозитории
+[английский](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.md) | [русский](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.ru.md) | [немецкий](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.de.md)
+
+### Содержание статьи
+- [Рабочая структура и исследовательский список](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.ru.md#предварительная-структура)
+
+### Ветки GitHub
+- [TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development](https://github.com/iAVP/enterprise-frontend-workshop/tree/TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development)
+
 ## Редакционные правила
 
 - Каждая запись статьи должна строго следовать одному шаблону: `## N. Название статьи`, `### Материалы в репозитории` с тремя ссылками на языковые версии в одной строке через ` | `, `### Содержание статьи` со ссылками на разделы и `### Ветки GitHub` только с ветками самой этой статьи. Не вставлять строку статуса в шаблон записи.
