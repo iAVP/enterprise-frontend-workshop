@@ -10,6 +10,17 @@ import { DEMO_TRANSACTIONS } from '@workshop:mock';
 export class StorageFacadeService {
 	private readonly storageService = inject(StorageService);
 
+	/** Returns the previously saved login or an empty string. */
+	getLogin(): string {
+		const login = this.storageService.getFromLocalStorage<unknown>(CONSTANTS.AUTH_LOGIN.storageKey);
+		return typeof login === 'string' ? login : '';
+	}
+
+	/** Persists the login name without storing authentication credentials. */
+	saveLogin(login: string): boolean {
+		return this.storageService.saveToLocalStorage(CONSTANTS.AUTH_LOGIN.storageKey, login);
+	}
+
 	/** Returns valid persisted transactions or the shared demonstration dataset. */
 	getTransactions(): Transaction[] {
 		const transactions = this.storageService.getFromLocalStorage<unknown>(CONSTANTS.TRANSACTIONS.storageKey);
