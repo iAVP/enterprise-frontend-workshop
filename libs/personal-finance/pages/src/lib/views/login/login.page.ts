@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { ROUTE } from '@workshop:def:consts';
+import type { LoginCredentials } from '@workshop:def:interfaces';
 import { AuthFacadeService } from '@workshop:facades';
 import { LoginComponent } from '../../components/login/login.component';
 
@@ -20,8 +21,8 @@ export class LoginPageComponent {
 	private readonly authFacade = inject(AuthFacadeService);
 
 	/** Starts the local session and navigates to the dashboard after form validation succeeds. */
-	protected onLoginRequested(): void {
-		this.authFacade.login();
+	protected onLoginRequested(credentials: LoginCredentials): void {
+		this.authFacade.login(credentials.email);
 		void this.router.navigateByUrl('/' + ROUTE.DASHBOARD);
 	}
 }
