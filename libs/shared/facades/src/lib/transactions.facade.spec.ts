@@ -65,6 +65,7 @@ describe('TransactionsFacade', () => {
 
     TestBed.tick();
 
+    expect(storage.getItem).toHaveBeenCalledTimes(2);
     expect(facade.transactions()).toEqual(persisted);
     expect(facade.transactions()[0].description).toBe('Consulting');
     expect(facade.totalIncome()).toBeGreaterThanOrEqual(250);
