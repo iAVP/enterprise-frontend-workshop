@@ -2,6 +2,8 @@
 
 # Publikations-Roadmap
 
+Die freigegebenen Untertitel und die redaktionelle Positionierungsregel stehen in [Article Subtitles](./SUBTITLES.md).
+
 Dieses Dokument beschreibt die geplante technische Artikelserie für den Enterprise Frontend Workshop.
 
 Die Artikel begleiten die Weiterentwicklung einer Beispielanwendung für persönliche Finanzen (Personal Finance). Jede Etappe führt ein technisches oder architektonisches Konzept ein, zeigt dessen praktische Anwendung und erläutert die damit verbundenen Abwägungen.
