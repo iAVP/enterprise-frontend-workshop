@@ -91,3 +91,19 @@ These rules are mandatory for every contribution. Apply them to new code and whe
 - Add or update regression tests for preserved behavior. For route or UI changes, verify the relevant user journeys end to end, including authentication and authorization where applicable.
 - Run the relevant existing checks after the change. A passing build or unit test suite alone does not prove that existing user-facing behavior was preserved; run the appropriate integration or E2E tests as well.
 - Do not declare a task complete while known regressions remain unresolved. Report any unverified behavior explicitly.
+
+## Strict Task Scope — Mandatory
+
+**Change only the entities and behavior explicitly requested by the user. Never expand the task scope on your own.**
+
+- A request concerning one entity or data collection does not authorize changes to adjacent or related entities.
+- Do not alter neighboring services, storage mechanisms, login or credential persistence, authentication, routes, guards, UI behavior, configuration, contracts, or data models unless the user explicitly requests those changes.
+- For example, replacing LocalStorage with IndexedDB for the income/expense transaction collection authorizes changing only that collection's persistence path. It does not authorize moving login-name storage or any other unrelated LocalStorage key.
+- Do not perform opportunistic refactoring, cleanup, redesign, or feature additions outside the requested scope.
+- If a required implementation step appears to affect an entity or behavior not named by the user, stop and ask for explicit approval before touching it. State the exact entity, the proposed change, and why it may be necessary.
+- If scope is uncertain, assume the entity is out of scope. Ask rather than infer permission.
+- Tests and documentation must also remain within the requested scope. Do not modify unrelated tests or documentation to accommodate an unrequested implementation change.
+- Before committing, inspect the complete diff and verify that every modified file and behavior is authorized by the user's request. Remove unauthorized collateral changes.
+- This rule overrides convenience, architectural preference, and assumptions about what would be a cleaner implementation.
+
+The user's explicit instructions define the scope. Do not reinterpret or enlarge it.
