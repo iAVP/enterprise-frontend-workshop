@@ -40,6 +40,20 @@ Avoid examples such as:
 
 The goal is for the commit history to communicate the project's evolution without requiring readers to open every diff.
 
+## Editorial Continuity and Avoiding Repetition
+
+Every new publication must build on the material already published in the Workshop rather than repeat it.
+
+- Before outlining or writing an article, review the relevant previously published articles and project materials. Identify topics, explanations, examples, and author stories that have already been covered.
+- Do not repeat explanations, arguments, or personal stories that have already appeared in earlier publications.
+- When a concept has already been explained, briefly refer readers to the earlier article where it was covered, then move on to the new aspect. Do not reproduce the earlier explanation.
+- Focus each new publication on new examples, technical observations, practical findings, and architectural conclusions.
+- Do not introduce personal or biographical stories merely to create an opening. Use them only when they add genuinely new context or are essential to the article's technical argument.
+- Treat this as an editorial review requirement, not as a prohibition on revisiting important concepts. A concept may be revisited when the new article examines a meaningfully different angle, deeper implication, or practical application; make that distinction explicit.
+- Before finalizing the outline, compare it with the relevant earlier publications and adjust sections that would otherwise duplicate their content.
+
+The objective is a coherent body of publications in which each article contributes something new while remaining connected to the Workshop's broader architectural narrative.
+
 ## Article Branching and Versioning
 
 Each article must be developed on a dedicated Git branch whose name corresponds to the article title.
