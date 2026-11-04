@@ -151,7 +151,25 @@ Planned topics:
 
 **Expected outcome:** a modular frontend whose dependencies are deliberate and increasingly enforceable.
 
-### Stage 4 — Angular Microfrontends and Web Components
+### Stage 4 — AI-Assisted Frontend Engineering: LLMs, MCP, and Agentic Development
+
+**Purpose:** explore how Large Language Models, Model Context Protocol, and AI agents can support professional frontend engineering workflows, while keeping architectural responsibility and engineering decisions under human control.
+
+Planned topics:
+
+- Fundamentals of Large Language Models (LLMs): capabilities, limitations, context windows, tokens, and practical implications for software development.
+- Context Engineering: structuring project context, instructions, specifications, and engineering knowledge for reliable AI-assisted development.
+- Model Context Protocol (MCP): architecture, clients, servers, tools, resources, prompts, and integration patterns.
+- AI agents and agentic development workflows: planning, task decomposition, tool usage, execution, and verification.
+- Practical application in an Angular and NX workspace.
+- Connecting AI agents to development tools and project context through MCP.
+- AI-assisted implementation, refactoring, testing, and code review.
+- Enforcing architectural boundaries and validating generated changes against project conventions.
+- Governance, security, permissions, human oversight, and quality assurance.
+
+**Expected outcome:** a practical understanding of how to integrate LLMs, MCP servers, and AI agents into frontend engineering workflows without sacrificing architectural integrity, code quality, security, or maintainability.
+
+### Stage 6 — Angular Microfrontends and Web Components
 
 **Purpose:** explore integration and reuse across frontend boundaries.
 
@@ -165,7 +183,7 @@ Planned topics:
 
 **Expected outcome:** a practical understanding of when Web Components help and what additional architecture is required for microfrontends.
 
-### Stage 5 — npm Packages and Azure DevOps Artifacts
+### Stage 6 — npm Packages and Azure DevOps Artifacts
 
 **Purpose:** demonstrate controlled distribution and reuse of frontend libraries.
 
@@ -180,7 +198,7 @@ Planned topics:
 
 **Expected outcome:** an understandable package lifecycle for reusable code, without publishing libraries prematurely.
 
-### Stage 6 — Next.js Backend and REST API
+### Stage 7 — Next.js Backend and REST API
 
 **Purpose:** extend the sample application toward a fullstack architecture.
 
@@ -195,7 +213,7 @@ Planned topics:
 
 **Expected outcome:** a documented frontend/backend interaction model for the sample application.
 
-### Stage 7 — Introduction to Vue.js
+### Stage 8 — Introduction to Vue.js
 
 **Purpose:** introduce Vue.js as an alternative frontend framework using the existing project context.
 
@@ -210,7 +228,7 @@ Planned topics:
 
 **Expected outcome:** a Vue frontend foundation with a clear understanding of its core concepts.
 
-### Stage 8 — Vue.js, DDD, and the Existing Backend
+### Stage 9 — Vue.js, DDD, and the Existing Backend
 
 **Purpose:** apply explicit architectural boundaries to the Vue frontend while reusing the existing backend.
 
@@ -225,7 +243,7 @@ Planned topics:
 
 **Expected outcome:** a Vue implementation that uses the existing backend and applies consistent architectural principles.
 
-### Stage 9 — Vue.js with Angular Elements
+### Stage 10 — Vue.js with Angular Elements
 
 **Purpose:** demonstrate selected Angular components integrated into a Vue application.
 
