@@ -119,8 +119,12 @@ export class ModalDialogComponent {
       injector: dialogInjector,
     });
 
-    this.panel?.nativeElement.focus();
     return componentRef;
+  }
+
+  /** Moves keyboard focus to the dialog panel after its view has rendered. */
+  focusPanel(): void {
+    this.panel?.nativeElement.focus();
   }
 
   /** Closes the dialog when the user clicks the backdrop, if enabled. */
