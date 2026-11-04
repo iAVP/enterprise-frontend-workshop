@@ -16,6 +16,8 @@ test.describe('Authentication form', function () {
 	});
 
 	test('shows required field validation when submitted empty', async function ({ page }) {
+		await expect(page.getByLabel('Login name')).toHaveValue('');
+		await expect(page.getByLabel('Password')).toHaveValue('');
 		await page.getByRole('button', { name: 'OK' }).click();
 		await expect(page.getByRole('alert')).toHaveCount(2);
 		await expect(page.getByText('Login name is required.')).toBeVisible();
