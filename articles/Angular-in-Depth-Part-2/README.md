@@ -606,7 +606,6 @@ The main commands are:
 | `build` | Build the application |
 | `test` | Run unit tests |
 | `lint` | Run ESLint checks |
-| `e2e` | Run all E2E tests in all configured browsers |
 | `e2e:chromium` | Run E2E tests in Chromium only |
 | `e2e:headed` | Run browsers in headed mode |
 | `e2e:ui` | Open the interactive Playwright interface |
