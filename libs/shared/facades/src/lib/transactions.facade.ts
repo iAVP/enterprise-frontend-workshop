@@ -2,24 +2,28 @@ import { Injectable, computed, effect, inject, signal } from '@angular/core';
 import type { Transaction } from '@workshop:def:interfaces';
 import { TransactionType } from '@workshop:def:enums';
 import { DEMO_TRANSACTIONS } from '@workshop:mock';
-import { StorageService } from '@workshop:dal';
+import { IndexedDbService } from '@workshop:dal';
 import { CONSTANTS } from '@workshop:def:consts';
 
-
 /**
- * Coordinates transaction state and persistence for the Personal Finance feature.
- * The effect bridges an imperative storage write with the reactive in-memory state.
+ * Coordinates transaction state and IndexedDB persistence for Personal Finance.
+ * The effect synchronizes the reactive collection with the external IndexedDB API.
  */
 @Injectable({ providedIn: 'root' })
 export class TransactionsFacade {
-  private readonly storage = inject(StorageService);
+  private readonly storage = inject(IndexedDbService);
   private readonly state = signal<Transaction[]>(DEMO_TRANSACTIONS);
-  private readonly reloadRequested = signal(0);
+  private readonly initialized = signal(false);
+  private readonly initialization = this.loadTransactions();
 
-  /** Re-reads persisted data whenever a completed storage mutation requests synchronization. */
-  private readonly reloadEffect = effect(() => {
-    this.reloadRequested();
-    this.reloadTransactions();
+  /** Persists state changes after the initial IndexedDB read has completed. */
+  private readonly persistenceEffect = effect(() => {
+    if (!this.initialized()) {
+      return;
+    }
+
+    const transactions = this.state();
+    void this.storage.setItem(CONSTANTS.TRANSACTIONS.storageKey, transactions);
   });
 
   /** Exposes the current transaction collection as a read-only signal. */
@@ -44,25 +48,15 @@ export class TransactionsFacade {
       .reduce((sum, transaction) => sum + transaction.amount, 0),
   );
 
-  /**
-   * Persists a new transaction and requests a fresh read.
-   * If browser storage is unavailable, the current session still receives the new state.
-   */
-  addTransaction(item: Omit<Transaction, 'id'>): void {
-    const updated = [{ ...item, id: crypto.randomUUID() }, ...this.state()];
-
-    if (!this.storage.setItem(CONSTANTS.TRANSACTIONS.storageKey, updated)) {
-      this.state.set(updated);
-      return;
-    }
-
-    this.reloadRequested.update((revision) => revision + 1);
+  /** Waits for initial persistence loading, then adds the transaction to the reactive collection. */
+  async addTransaction(item: Omit<Transaction, 'id'>): Promise<void> {
+    await this.initialization;
+    this.state.update((transactions) => [{ ...item, id: crypto.randomUUID() }, ...transactions]);
   }
 
-  /** Replaces in-memory state with the latest persisted collection. */
-  private reloadTransactions(): void {
-    this.state.set(
-      this.storage.getItem<Transaction[]>(CONSTANTS.TRANSACTIONS.storageKey) ?? DEMO_TRANSACTIONS,
-    );
+  private async loadTransactions(): Promise<void> {
+    const stored = await this.storage.getItem<Transaction[]>(CONSTANTS.TRANSACTIONS.storageKey);
+    this.state.set(stored ?? DEMO_TRANSACTIONS);
+    this.initialized.set(true);
   }
 }
