@@ -12,7 +12,6 @@ import {
   inject,
 } from '@angular/core';
 import { ModalDialogConfig } from './modal-dialog-config';
-import { ModalDialogRef } from './modal-dialog-ref';
 import { MODAL_DIALOG_DATA } from './modal-dialog.tokens';
 
 /** Renders the shared modal shell and the caller-provided component. */
@@ -95,14 +94,14 @@ export class ModalDialogComponent {
   private panel!: ElementRef<HTMLElement>;
 
   protected config!: ModalDialogConfig;
-  protected dialogRef!: ModalDialogRef<any>;
+  protected dialogRef!: { close(): void };
 
   private readonly environmentInjector = inject(EnvironmentInjector);
   private contentComponentRef?: ComponentRef<unknown>;
   private contentInjector?: DestroyableInjector;
 
   /** Sets dialog configuration before the shell's first change-detection pass. */
-  configure(config: ModalDialogConfig, dialogRef: ModalDialogRef<any>): void {
+  configure(config: ModalDialogConfig, dialogRef: { close(): void }): void {
     this.config = config;
     this.dialogRef = dialogRef;
   }
