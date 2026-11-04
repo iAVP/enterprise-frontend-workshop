@@ -5,7 +5,7 @@ async function authenticate(page: Page): Promise<void> {
   await page.getByLabel('Login name').fill('demo@example.com');
   await page.getByLabel('Password').fill('StrongPassword123!');
   await page.getByRole('button', { name: 'OK' }).click();
-  await expect(page).toHaveURL(/\\/dashboard$/);
+  await expect(page).toHaveURL(/\/dashboard$/);
 }
 
 async function readStoredTransactions(page: Page): Promise<Array<{ description: string }>> {
@@ -48,7 +48,7 @@ test.describe('Personal Finance dashboard', function () {
 
   test('redirects the application root to the dashboard for an authenticated user', async function ({ page }) {
     await page.goto('/');
-    await expect(page).toHaveURL(/\\/dashboard$/);
+    await expect(page).toHaveURL(/\/dashboard$/);
     await expect(page.getByRole('heading', { name: 'Personal Finance' })).toBeVisible();
   });
 
