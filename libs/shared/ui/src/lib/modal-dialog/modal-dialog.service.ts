@@ -1,5 +1,5 @@
-import { ApplicationRef, EnvironmentInjector, Injectable, Type, createComponent, inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { ApplicationRef, EnvironmentInjector, Injectable, Type, createComponent, inject } from '@angular/core';
 import { ModalDialogComponent } from './modal-dialog.component';
 import { ModalDialogConfig } from './modal-dialog-config';
 import { ModalDialogRef } from './modal-dialog-ref';
@@ -13,7 +13,10 @@ export class ModalDialogService {
   private readonly environmentInjector = inject(EnvironmentInjector);
   private readonly document = inject(DOCUMENT);
 
-  /** Opens a component in the shared modal shell and reports its result before destruction. */
+  /**
+   * Opens a component in the shared modal shell.
+   * The callback receives the result before dynamic content and shell destruction.
+   */
   open<TComponent, TData = unknown, TResult = unknown>(
     component: Type<TComponent>,
     config: ModalDialogConfig<TData>,
@@ -25,6 +28,7 @@ export class ModalDialogService {
     const previouslyFocused = this.document.activeElement as HTMLElement | null;
     const previousBodyOverflow = this.document.body.style.overflow;
     this.document.body.style.overflow = 'hidden';
+
     const componentRef = createComponent(ModalDialogComponent, {
       environmentInjector: this.environmentInjector,
       hostElement,
@@ -37,11 +41,13 @@ export class ModalDialogService {
       try {
         onClose?.(result);
       } finally {
+        componentRef.instance.destroyContent();
         this.applicationRef.detachView(componentRef.hostView);
         componentRef.destroy();
         hostElement.remove();
         this.document.body.style.overflow = previousBodyOverflow;
         previouslyFocused?.focus();
+
         if (this.activeDialog === dialogRef) {
           this.activeDialog = undefined;
         }

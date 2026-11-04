@@ -1,18 +1,30 @@
-import { Injectable, computed, signal } from '@angular/core';
+import { Injectable, computed, effect, signal } from '@angular/core';
 import type { Transaction } from '@workshop:def:interfaces';
 import { TransactionType } from '@workshop:def:enums';
 import { DEMO_TRANSACTIONS } from '@workshop:mock';
+import { StorageService } from '@workshop:dal';
 
-/** Owns the Personal Finance transaction collection and its derived totals. */
+const TRANSACTIONS_STORAGE_KEY = 'personal-finance.transactions';
+
+/**
+ * Owns transaction state and coordinates persistence with the data-access layer.
+ * The effect is the boundary between an imperative storage write and reactive UI state.
+ */
 @Injectable({ providedIn: 'root' })
 export class TransactionStore {
-  /** Holds the writable transaction state internally. */
-  private readonly state = signal<Transaction[]>(this.loadTransactions());
+  private readonly state = signal<Transaction[]>(DEMO_TRANSACTIONS);
+  private readonly reloadRequested = signal(0);
+
+  /** Re-reads persisted data whenever a completed storage mutation requests synchronization. */
+  private readonly reloadEffect = effect(() => {
+    this.reloadRequested();
+    this.reloadTransactions();
+  });
 
   /** Exposes the current transaction collection as a read-only signal. */
   readonly transactions = this.state.asReadonly();
 
-  /** Calculates the current balance using the signed transaction type. */
+  /** Calculates the current balance from the signed transaction type. */
   readonly balance = computed(() =>
     this.state().reduce((sum, transaction) => sum + transaction.amount * transaction.type, 0),
   );
@@ -31,44 +43,27 @@ export class TransactionStore {
       .reduce((sum, transaction) => sum + transaction.amount, 0),
   );
 
-  /** Adds a transaction, persists it, and refreshes state from the storage layer. */
+  constructor(private readonly storage: StorageService) {}
+
+  /**
+   * Persists a new transaction and requests a fresh read.
+   * If browser storage is unavailable, the current session still receives the new state.
+   */
   addTransaction(item: Omit<Transaction, 'id'>): void {
     const updated = [{ ...item, id: crypto.randomUUID() }, ...this.state()];
 
-    try {
-      if (typeof localStorage !== 'undefined') {
-        localStorage.setItem('personal-finance.transactions', JSON.stringify(updated));
-        this.reloadTransactions();
-        return;
-      }
-    } catch {
-      // Keep the current session usable when browser storage is unavailable.
+    if (!this.storage.setItem(TRANSACTIONS_STORAGE_KEY, updated)) {
+      this.state.set(updated);
+      return;
     }
 
-    this.state.set(updated);
+    this.reloadRequested.update((revision) => revision + 1);
   }
 
-  /** Re-reads persisted transactions and updates the signal consumed by the UI. */
-  reloadTransactions(): void {
-    this.state.set(this.loadTransactions());
-  }
-
-  /** Loads persisted transactions or the dedicated demo dataset. */
-  private loadTransactions(): Transaction[] {
-    if (typeof localStorage === 'undefined') {
-      return DEMO_TRANSACTIONS;
-    }
-
-    try {
-      const saved = localStorage.getItem('personal-finance.transactions');
-      if (saved === null) {
-        return DEMO_TRANSACTIONS;
-      }
-
-      const parsed: unknown = JSON.parse(saved);
-      return Array.isArray(parsed) ? (parsed as Transaction[]) : DEMO_TRANSACTIONS;
-    } catch {
-      return DEMO_TRANSACTIONS;
-    }
+  /** Replaces in-memory state with the latest persisted collection. */
+  private reloadTransactions(): void {
+    this.state.set(
+      this.storage.getItem<Transaction[]>(TRANSACTIONS_STORAGE_KEY) ?? DEMO_TRANSACTIONS,
+    );
   }
 }

@@ -1,6 +1,7 @@
 import {
   Component,
   ComponentRef,
+  DestroyableInjector,
   ElementRef,
   EnvironmentInjector,
   HostListener,
@@ -97,6 +98,8 @@ export class ModalDialogComponent {
   protected dialogRef!: ModalDialogRef<any>;
 
   private readonly environmentInjector = inject(EnvironmentInjector);
+  private contentComponentRef?: ComponentRef<unknown>;
+  private contentInjector?: DestroyableInjector;
 
   /** Sets dialog configuration before the shell's first change-detection pass. */
   configure(config: ModalDialogConfig, dialogRef: ModalDialogRef<any>): void {
@@ -105,8 +108,8 @@ export class ModalDialogComponent {
   }
 
   /** Instantiates the requested content component with dialog-scoped DI values. */
-  initialize<T>(component: Type<T>): ComponentRef<T> {
-    const dialogInjector = Injector.create({
+  initialize<T>(component: Type<T>): void {
+    this.contentInjector = Injector.create({
       parent: this.environmentInjector,
       providers: [
         { provide: ModalDialogRef, useValue: this.dialogRef },
@@ -114,12 +117,18 @@ export class ModalDialogComponent {
       ],
     });
 
-    const componentRef = this.content.createComponent(component, {
+    this.contentComponentRef = this.content.createComponent(component, {
       environmentInjector: this.environmentInjector,
-      injector: dialogInjector,
+      injector: this.contentInjector,
     });
+  }
 
-    return componentRef;
+  /** Destroys dynamic content and its child injector before the dialog shell. */
+  destroyContent(): void {
+    this.contentComponentRef?.destroy();
+    this.contentComponentRef = undefined;
+    this.contentInjector?.destroy();
+    this.contentInjector = undefined;
   }
 
   /** Moves keyboard focus to the dialog panel after its view has rendered. */
