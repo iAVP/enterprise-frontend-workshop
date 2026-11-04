@@ -1,5 +1,10 @@
 function hasJsDoc(context, node) {
-    return context.sourceCode.getJSDocComment(node) !== null;
+    const commentTarget =
+        node.parent.type === "ExportNamedDeclaration" && node.parent.declaration === node
+            ? node.parent
+            : node;
+
+    return context.sourceCode.getJSDocComment(commentTarget) !== null;
 }
 
 export default {
