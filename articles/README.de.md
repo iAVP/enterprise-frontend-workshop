@@ -6,6 +6,8 @@ Die Artikel begleiten die Weiterentwicklung einer Beispielanwendung für persön
 
 Die Roadmap beschreibt geplante Inhalte. Ein Artikel darf erst dann als veröffentlicht markiert werden, wenn er tatsächlich verfügbar ist.
 
+Die freigegebenen Untertitel und die redaktionelle Positionierungsregel stehen in [Article Subtitles](./SUBTITLES.md).
+
 ## 1. Redaktionelle Prinzipien
 
 Die Serie folgt mehreren Prinzipien:
