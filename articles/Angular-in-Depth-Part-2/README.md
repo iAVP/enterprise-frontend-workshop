@@ -540,21 +540,14 @@ The application now has the following flow of responsibilities:
 
 The components are not directly coupled, and Effect is not used as a replacement for explicit Facade operations. Each mechanism has its own purpose: the Facade manages functionality, Signals represent state, `computed()` calculates derived data, and IndexedDB provides persistent storage for the transaction collection.
 
-### Official Documentation
-
-- [Angular Signals](https://angular.dev/guide/signals) — reactive state, read-only Signals, and computed values.
-- [Angular Effects](https://angular.dev/guide/signals/effect) — the purpose of Effect and recommendations for its use.
-- [IndexedDB API](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) — asynchronous storage of structured data in the browser.
-- [IDBDatabase](https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase) — opening transactions and working with object stores.
-
-### Official Documentation
-
-- [Angular Signals](https://angular.dev/guide/signals) — reactive state, read-only Signals, and computed values.
-- [Angular Effects](https://angular.dev/guide/signals/effect) — the purpose of Effect and recommendations for its use.
-- [IndexedDB API](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) — asynchronous storage of structured data in the browser.
-- [IDBDatabase](https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase) — opening transactions and working with object stores.
-
 [Part +2 branch — Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+2](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+2)
+
+# Official Documentation
+
+- [Angular Signals](https://angular.dev/guide/signals) — reactive state, read-only Signals, and computed values.
+- [Angular Effects](https://angular.dev/guide/signals/effect) — the purpose of Effect and recommendations for its use.
+- [IndexedDB API](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) — asynchronous storage of structured data in the browser.
+- [IDBDatabase](https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase) — opening transactions and working with object stores.
 
 ---
 
