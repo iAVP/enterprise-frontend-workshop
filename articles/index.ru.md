@@ -10,6 +10,7 @@
 - [4. NX Workspace — от архитектуры к инструментам](#4-nx-workspace--от-архитектуры-к-инструментам)
 - [5. Инструменты разработки: WebStorm, Visual Studio Code и OpenCode](#5-инструменты-разработки-webstorm-visual-studio-code-и-opencode)
 - [6. Angular in Depth — Часть 1: Архитектура и компоненты](#6-angular-in-depth--часть-1-архитектура-и-компоненты)
+- [7. Angular in Depth — Часть 2: Эволюция Angular и архитектурного мышления разработчика](#7-angular-in-depth--часть-2-эволюция-angular-и-архитектурного-мышления-разработчика)
 - [Редакционные правила](#редакционные-правила)
 
 ## 1. Дорога к архитектуре
@@ -137,6 +138,22 @@
 
 ### Ветки GitHub
 - [Angular-in-Depth](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth)
+
+## 7. Angular in Depth — Часть 2: Эволюция Angular и архитектурного мышления разработчика
+
+### Материалы в репозитории
+[английский](Angular-in-Depth-Part-2/README.md) | [русский](Angular-in-Depth-Part-2/README.ru.md) | [немецкий](Angular-in-Depth-Part-2/README.de.md)
+
+### Содержание статьи
+- [Архитектурное мышление старше Angular](Angular-in-Depth-Part-2/README.ru.md#1-архитектурное-мышление-старше-angular)
+- [Эволюция Angular и архитектурного мышления](Angular-in-Depth-Part-2/README.ru.md#2-эволюция-angular-и-архитектурного-мышления)
+- [От разработки компонентов к проектированию системы](Angular-in-Depth-Part-2/README.ru.md#3-от-разработки-компонентов-к-проектированию-системы)
+- [Практическая реализация: Facades и Signals без Effect](Angular-in-Depth-Part-2/README.ru.md#4-практическая-реализация-facades-и-signals-без-effect)
+- [Facades, Signals и IndexedDB: взаимодействие Dashboard и модальных форм](Angular-in-Depth-Part-2/README.ru.md#5-facades-signals-и-indexeddb-взаимодействие-dashboard-и-модальных-форм)
+
+### Ветки GitHub
+- [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking%2B1)
+- [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+2](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking%2B2)
 
 ## Редакционные правила
 
