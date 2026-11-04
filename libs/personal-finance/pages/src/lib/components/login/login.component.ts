@@ -1,6 +1,7 @@
-import { Component, ViewChild, output } from '@angular/core';
+import { Component, ViewChild, inject, output } from '@angular/core';
 import type { FieldValidationResult, LoginCredentials } from '@workshop:def:interfaces';
 import { EmailValidatorDirective, PasswordValidatorDirective } from '@workshop:ui';
+import { AuthFacadeService } from '@workshop:facades';
 
 /** Presents the login form and coordinates reusable field validators. */
 @Component({
