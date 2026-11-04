@@ -5,7 +5,7 @@ export const appRoutes: Routes = [
   {
     path: ROUTE.LOGIN,
     loadComponent: () =>
-      import('@workshop:personal-finance:pages').then((pages) => pages.LoginPage),
+      import('@workshop:personal-finance:pages').then((pages) => pages.LoginPageComponent),
   },
   {
     path: ROUTE.DASHBOARD,
