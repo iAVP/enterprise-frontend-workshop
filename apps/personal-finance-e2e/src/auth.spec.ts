@@ -5,6 +5,11 @@ test.describe('Authentication form', function () {
 		await page.goto('/login');
 	});
 
+	test('redirects unauthenticated users from the dashboard to login', async function ({ page }) {
+		await page.goto('/dashboard');
+		await expect(page).toHaveURL(/\/login$/);
+	});
+
 	test('shows required field validation when submitted empty', async function ({ page }) {
 		await page.getByRole('button', { name: 'OK' }).click();
 		await expect(page.getByRole('alert')).toHaveCount(2);
@@ -21,12 +26,25 @@ test.describe('Authentication form', function () {
 		await expect(page).toHaveURL(/\/login$/);
 	});
 
-	test('accepts locally valid credentials and navigates to the dashboard', async function ({ page }) {
+	test('accepts locally valid credentials and keeps the session after reload', async function ({ page }) {
 		await page.getByLabel('Login name').fill('demo@example.com');
 		await page.getByLabel('Password').fill('StrongPassword123!');
 		await page.getByRole('button', { name: 'OK' }).click();
 		await expect(page).toHaveURL(/\/dashboard$/);
 		await expect(page.getByRole('heading', { name: 'Personal Finance' })).toBeVisible();
+		await page.reload();
+		await expect(page).toHaveURL(/\/dashboard$/);
+	});
+
+	test('logs out and protects the dashboard again', async function ({ page }) {
+		await page.getByLabel('Login name').fill('demo@example.com');
+		await page.getByLabel('Password').fill('StrongPassword123!');
+		await page.getByRole('button', { name: 'OK' }).click();
+		await expect(page).toHaveURL(/\/dashboard$/);
+		await page.getByRole('button', { name: 'Logout' }).click();
+		await expect(page).toHaveURL(/\/login$/);
+		await page.goto('/dashboard');
+		await expect(page).toHaveURL(/\/login$/);
 	});
 
 	test('clears entered values and validation feedback when cancelled', async function ({ page }) {
