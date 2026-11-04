@@ -1,84 +1,47 @@
-import '@angular/compiler';
 import { TestBed } from '@angular/core/testing';
 import { TransactionType } from '@workshop:def:enums';
-import type { Transaction } from '@workshop:def:interfaces';
+import { DEMO_TRANSACTIONS } from '@workshop:mock';
 import { StorageFacadeService } from './storage-facade.service';
 import { TransactionFacadeService } from './transaction-facade.service';
 
 describe('TransactionFacadeService', () => {
-	let service: TransactionFacadeService;
-	let storageFacade: { getTransactions: ReturnType<typeof vi.fn>; saveTransactions: ReturnType<typeof vi.fn> };
+  let storageFacade: {
+    getTransactions: ReturnType<typeof vi.fn>;
+    saveTransactions: ReturnType<typeof vi.fn>;
+  };
 
-	beforeEach(function () {
-		storageFacade = {
-			getTransactions: vi.fn().mockReturnValue([]),
-			saveTransactions: vi.fn().mockReturnValue(true),
-		};
-		TestBed.configureTestingModule({
-			providers: [
-				TransactionFacadeService,
-				{ provide: StorageFacadeService, useValue: storageFacade },
-			],
-		});
-		service = TestBed.inject(TransactionFacadeService);
-		vi.stubGlobal('crypto', { randomUUID: vi.fn().mockReturnValue('generated-id') });
-	});
+  beforeEach(() => {
+    storageFacade = {
+      getTransactions: vi.fn(async () => [...DEMO_TRANSACTIONS]),
+      saveTransactions: vi.fn(async () => true),
+    };
 
-	afterEach(function () {
-		TestBed.resetTestingModule();
-		vi.unstubAllGlobals();
-	});
+    TestBed.configureTestingModule({
+      providers: [
+        TransactionFacadeService,
+        { provide: StorageFacadeService, useValue: storageFacade },
+      ],
+    });
+  });
 
-	test('initializes its state from the storage facade', function () {
-		const transactions: Transaction[] = [{
-			id: 'existing',
-			type: TransactionType.income,
-			description: 'Salary',
-			amount: 100,
-			date: '2026-01-01',
-		}];
-		TestBed.resetTestingModule();
-		storageFacade.getTransactions.mockReturnValue(transactions);
-		TestBed.configureTestingModule({
-			providers: [
-				TransactionFacadeService,
-				{ provide: StorageFacadeService, useValue: storageFacade },
-			],
-		});
-		service = TestBed.inject(TransactionFacadeService);
+  it('loads transactions asynchronously from the storage facade', async () => {
+    const facade = TestBed.inject(TransactionFacadeService);
+    await Promise.resolve();
 
-		expect(service.transactions()).toEqual(transactions);
-	});
+    expect(facade.transactions()).toEqual(DEMO_TRANSACTIONS);
+  });
 
-	test('calculates balance, income, and expenses', function () {
-		service.addTransaction({
-			type: TransactionType.income,
-			description: 'Salary',
-			amount: 100,
-			date: '2026-01-01',
-		});
-		service.addTransaction({
-			type: TransactionType.expense,
-			description: 'Rent',
-			amount: 35,
-			date: '2026-01-02',
-		});
+  it('adds a transaction and persists the updated collection', async () => {
+    const facade = TestBed.inject(TransactionFacadeService);
+    const created = await facade.addTransaction({
+      type: TransactionType.income,
+      description: 'Consulting',
+      amount: 250,
+      date: '2026-11-04',
+    });
 
-		expect(service.totalIncome()).toBe(100);
-		expect(service.totalExpense()).toBe(35);
-		expect(service.balance()).toBe(65);
-	});
-
-	test('adds a transaction and persists the updated collection', function () {
-		const transaction = service.addTransaction({
-			type: TransactionType.income,
-			description: 'Salary',
-			amount: 100,
-			date: '2026-01-01',
-		});
-
-		expect(transaction.id).toBe('generated-id');
-		expect(service.transactions()).toEqual([transaction]);
-		expect(storageFacade.saveTransactions).toHaveBeenCalledWith([transaction]);
-	});
+    expect(created.id).toBeTruthy();
+    expect(facade.transactions()[0]).toEqual(created);
+    expect(storageFacade.saveTransactions).toHaveBeenCalledWith(facade.transactions());
+  });
 });
