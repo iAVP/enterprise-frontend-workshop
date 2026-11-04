@@ -1,6 +1,6 @@
 import {
   Component,
-  ComponentRef,
+  ElementRef,
   EnvironmentInjector,
   HostListener,
   Injector,
@@ -39,7 +39,7 @@ import { MODAL_DIALOG_DATA } from './modal-dialog.tokens';
           >×</button>
         </header>
         <div class="modal-content">
-          <ng-container #content />
+          <ng-container #content></ng-container>
         </div>
       </section>
     </div>
@@ -90,7 +90,7 @@ export class ModalDialogComponent {
   private content!: ViewContainerRef;
 
   @ViewChild('panel')
-  private panel!: { nativeElement: HTMLElement };
+  private panel!: ElementRef<HTMLElement>;
 
   protected config!: ModalDialogConfig;
   protected dialogRef!: ModalDialogRef;
