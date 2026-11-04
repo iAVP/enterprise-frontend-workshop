@@ -1,5 +1,6 @@
 import {
   Component,
+  ComponentRef,
   ElementRef,
   EnvironmentInjector,
   HostListener,
@@ -108,8 +109,8 @@ export class ModalDialogComponent {
     const dialogInjector = Injector.create({
       parent: this.environmentInjector,
       providers: [
-        { provide: ModalDialogRef, useValue: dialogRef },
-        { provide: MODAL_DIALOG_DATA, useValue: config.data },
+        { provide: ModalDialogRef, useValue: this.dialogRef },
+        { provide: MODAL_DIALOG_DATA, useValue: this.config.data },
       ],
     });
 
