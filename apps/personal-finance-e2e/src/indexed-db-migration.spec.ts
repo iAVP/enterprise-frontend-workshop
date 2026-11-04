@@ -17,7 +17,7 @@ test('migrates the legacy transaction collection from localStorage to IndexedDB'
   await page.getByLabel('Password').fill('StrongPassword123!');
   await page.getByRole('button', { name: 'OK' }).click();
 
-  await expect(page).toHaveURL(/\\/dashboard$/);
+  await expect(page).toHaveURL(/\/dashboard$/);
   await expect(page.getByText('Migrated legacy transaction')).toBeVisible();
 
   await expect.poll(() => page.evaluate(() =>
