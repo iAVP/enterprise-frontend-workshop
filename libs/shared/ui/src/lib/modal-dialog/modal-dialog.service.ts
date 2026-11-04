@@ -38,9 +38,9 @@ export class ModalDialogService {
       }
     });
 
-    componentRef.changeDetectorRef.detectChanges();
     componentRef.instance.initialize(component, config, dialogRef);
     componentRef.changeDetectorRef.detectChanges();
+    componentRef.instance.focusPanel();
 
     return dialogRef;
   }
