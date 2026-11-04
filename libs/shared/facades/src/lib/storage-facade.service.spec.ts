@@ -1,7 +1,6 @@
 import '@angular/compiler';
 import { TestBed } from '@angular/core/testing';
 import { CONSTANTS } from '@workshop:def:consts';
-import { TransactionType } from '@workshop:def:enums';
 import type { Transaction } from '@workshop:def:interfaces';
 import { DEMO_TRANSACTIONS } from '@workshop:mock';
 import { StorageService } from '@workshop:dal';
