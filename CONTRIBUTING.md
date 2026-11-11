@@ -66,6 +66,31 @@ Each article must be developed on a dedicated Git branch whose name corresponds 
 
 The purpose of this convention is to let readers navigate the implementation history of each article and inspect the code at each stage.
 
+## Reverse Synchronization from Article Branches to main
+
+Reverse synchronization means bringing selected documentation from an article or working branch back into `main`. It is a selective documentation operation, not a branch merge.
+
+**The only files permitted in a reverse synchronization are:**
+
+- `articles/index.md`
+- `articles/index.ru.md`
+- `articles/index.de.md`
+- `articles/SUBTITLES.md`
+- `CONTRIBUTING.md`, only when the synchronization rules themselves need to be updated.
+
+**Do not bring any other files from the working branch into `main`.** In particular, this excludes article bodies and translations, article notes and drafts, application source code, tests, screenshots, build or workspace configuration, and other project files. The fact that such files are present in the working branch does not make them eligible for reverse synchronization.
+
+When synchronizing an allowed file:
+
+- Compare the working-branch version with the current `main` version before editing.
+- Preserve independent changes already present in `main`; do not blindly replace a whole file when the two versions contain different valid information.
+- Reconcile only the relevant navigation, numbering, subtitle, or editorial-rule content.
+- Keep the three language indexes structurally equivalent and preserve the agreed publication order.
+- Verify article numbering, section anchors, repository paths, publication URLs, and branch links.
+- Inspect the final diff and confirm that every changed path is on the allowlist above. If any other path appears, stop and remove it from the reverse-synchronization change.
+
+Never merge the entire working branch into `main` for the purpose of reverse synchronization. Transfer only the explicitly allowed files.
+
 ## Strict Task Scope and Change Authorization
 
 **A task authorizes changes only to the explicitly named entities and the behavior directly required to fulfill that task. This is a strict boundary, not a suggestion.**
