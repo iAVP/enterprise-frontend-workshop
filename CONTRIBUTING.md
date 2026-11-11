@@ -231,6 +231,20 @@ Each article directory must contain exactly these three language entry files:
 
 Do not use names such as `README.en.md`, `article.en.md`, or language-specific alternative filenames. Preserve the language convention consistently for existing and new article directories.
 
+## Editorial Continuity and Avoiding Repetition
+
+Every new publication must build on the material already published in the Workshop rather than repeat it.
+
+- Before outlining or writing an article, review the relevant previously published articles and project materials. Identify topics, explanations, examples, and author stories that have already been covered.
+- Do not repeat explanations, arguments, or personal stories that have already appeared in earlier publications.
+- When a concept has already been explained, briefly refer readers to the earlier article where it was covered, then move on to the new aspect. Do not reproduce the earlier explanation.
+- Focus each new publication on new examples, technical observations, practical findings, and architectural conclusions.
+- Do not introduce personal or biographical stories merely to create an opening. Use them only when they add genuinely new context or are essential to the article's technical argument.
+- Treat this as an editorial review requirement, not as a prohibition on revisiting important concepts. A concept may be revisited when the new article examines a meaningfully different angle, deeper implication, or practical application; make that distinction explicit.
+- Before finalizing the outline, compare it with the relevant earlier publications and adjust sections that would otherwise duplicate their content.
+
+The objective is a coherent body of publications in which each article contributes something new while remaining connected to the Workshop's broader architectural narrative.
+
 ## Article Branching and Versioning
 
 Each article must be developed on a dedicated Git branch whose name corresponds to the article title.
@@ -258,3 +272,18 @@ The purpose of this convention is to let readers navigate the implementation his
 - This rule overrides convenience, architectural preference, and assumptions about what would be a cleaner implementation.
 
 The user's explicit instructions define the scope. Do not reinterpret or enlarge it.
+
+## Strict Task Scope and Change Authorization
+
+**A task authorizes changes only to the explicitly named entities and the behavior directly required to fulfill that task. This is a strict boundary, not a suggestion.**
+
+- Do not modify neighboring or adjacent entities merely because they are nearby, related, convenient, or appear architecturally connected.
+- Do not change unrelated services, storage mechanisms, authentication behavior, login persistence, routes, guards, UI behavior, configuration, contracts, or data models unless the user explicitly includes them in the task.
+- A request to replace one persistence mechanism for a specific data collection authorizes changes only to that collection's persistence path. It does not authorize changing where credentials, login names, preferences, or other data are stored.
+- Do not expand the task, refactor adjacent code, clean up unrelated implementation, or introduce additional features based on assumptions or personal preference.
+- If completing the requested task appears to require touching an entity or behavior that the user did not name, stop before making that change. Explain exactly which neighboring entity would be affected, why the change appears necessary, and ask the user for explicit authorization.
+- When in doubt about whether a file, service, data key, API, or behavior is within scope, treat it as out of scope and ask first.
+- Before committing, inspect the diff and verify that every changed entity is directly within the user's requested scope. Revert or separate any unauthorized collateral changes.
+- These restrictions apply to code, tests, documentation, configuration, data migrations, and repository maintenance.
+
+The user defines the task boundary. The contributor or agent must not redefine it.

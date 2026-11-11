@@ -8,6 +8,8 @@ The roadmap describes planned content. An article should be marked as published 
 
 See [Article Subtitles](./SUBTITLES.md) for the approved subtitles and the editorial positioning rule.
 
+See [Article Subtitles](./SUBTITLES.md) for the approved subtitles and the editorial positioning rule.
+
 ## 1. Editorial Principles
 
 The series follows several principles:
@@ -41,6 +43,65 @@ Planned functional areas include:
 - Backend integration.
 
 The application is a practical context for discussing architecture. Features should be implemented when they support the subject of an article, not merely to make the application appear complete.
+
+### Application Implementation Plan
+
+The Personal Finance application will evolve through the following implementation sequence. This sequence describes the practical evolution of the sample application; it does not change the publication numbering or the existing article publication record.
+
+#### 1. Google Sheets as an Initial Backend
+
+Before introducing a dedicated application backend, the application will explore Google Sheets as a lightweight cloud data provider.
+
+The implementation will use Google Apps Script to expose a REST API and Google Sheets to persist application data.
+
+Planned topics:
+
+- Google Sheets API and Google Apps Script.
+- Exposing spreadsheet operations through REST endpoints.
+- CRUD operations for financial records.
+- Authentication and authorization checks.
+- User identification and data isolation.
+- Data validation and error handling.
+- Import and export of application data.
+- Evaluating API quotas, concurrency, and storage limitations.
+
+**Expected outcome:** a working cloud-backed application with a real UI, authentication checks, and data import/export capabilities. The implementation will also help identify the limitations that justify moving to a dedicated backend later.
+
+#### 2. Web Client
+
+Develop a fully functional Angular Web client for the Personal Finance application.
+
+Planned topics:
+
+- Responsive application layout.
+- Dashboard and financial statistics.
+- Transaction management.
+- Data import and export.
+- Authentication and session handling.
+- Integration with the Google Sheets backend.
+- User experience and accessibility.
+
+**Expected outcome:** a usable browser-based application.
+
+#### 3. Hybrid Mobile Client with Ionic
+
+Extend the application to mobile platforms using Ionic and Capacitor.
+
+Planned topics:
+
+- Ionic with Angular.
+- Shared application logic between Web and Mobile.
+- Platform-specific UI components.
+- Authentication and backend integration.
+- Mobile navigation and interaction patterns.
+- Native capabilities through Capacitor.
+- Building and distributing Android applications.
+
+**Expected outcome:** a hybrid mobile application sharing the application logic and backend with the Web client.
+
+#### 4. Dedicated Backend and Additional Frontend
+
+After the Google Sheets-based implementation and its Web and hybrid mobile clients, the roadmap proceeds to the dedicated Next.js REST API and then the additional Vue.js frontend described in the existing learning stages below.
 
 ## Publication Record and Source of Truth
 
@@ -173,6 +234,24 @@ Planned topics:
 
 ### Stage 5 — Angular Microfrontends and Web Components
 
+**Purpose:** explore how Large Language Models, Model Context Protocol, and AI agents can support professional frontend engineering workflows, while keeping architectural responsibility and engineering decisions under human control.
+
+Planned topics:
+
+- Fundamentals of Large Language Models (LLMs): capabilities, limitations, context windows, tokens, and practical implications for software development.
+- Context Engineering: structuring project context, instructions, specifications, and engineering knowledge for reliable AI-assisted development.
+- Model Context Protocol (MCP): architecture, clients, servers, tools, resources, prompts, and integration patterns.
+- AI agents and agentic development workflows: planning, task decomposition, tool usage, execution, and verification.
+- Practical application in an Angular and NX workspace.
+- Connecting AI agents to development tools and project context through MCP.
+- AI-assisted implementation, refactoring, testing, and code review.
+- Enforcing architectural boundaries and validating generated changes against project conventions.
+- Governance, security, permissions, human oversight, and quality assurance.
+
+**Expected outcome:** a practical understanding of how to integrate LLMs, MCP servers, and AI agents into frontend engineering workflows without sacrificing architectural integrity, code quality, security, or maintainability.
+
+### Stage 5 — Angular Microfrontends and Web Components
+
 **Purpose:** explore integration and reuse across frontend boundaries.
 
 Planned topics:
@@ -278,22 +357,31 @@ Potential dedicated topics include:
 
 The focus will remain on practical engineering methods, reliable outcomes, and maintainable software.
 
-## 5. Additional Engineering Case Study
+## 5. Article 8 — TypeScript and Architectural Thinking — From C# Principles to Enterprise Frontend Development
 
-A separate article may explore TypeScript, object-oriented design, and the value of encapsulation through a real-world refactoring case.
+**Status: Planned.** The working title and article number are approved. The article draft has not started.
 
-The intended theme is how a large amount of repetitive or overly complex code can sometimes be replaced by a small, well-defined abstraction.
+**Purpose:** tell the story of TypeScript as the language bridge that made the author's transition from C# to Angular feel natural, then examine the language through the lens of software architecture and day-to-day engineering.
 
-Before publication, the example must establish:
+The article should begin with the architectural and personal story, not with a language feature catalogue. It should explain how experience with C#, object-oriented design, type systems, and established coding principles carried over into frontend development.
 
-- The original problem and constraints.
-- What the original code actually did.
-- What the replacement abstraction encapsulates.
-- Why the change is correct and maintainable.
-- The relevant trade-offs and limitations.
+Planned structure and topics:
 
-The article should explain the engineering reasoning rather than rely on a dramatic line-count comparison.
+1. **From C# to Angular:** the transition to frontend development and why TypeScript felt familiar rather than like starting over.
+2. **TypeScript as an architectural bridge:** static typing, explicit contracts, maintainability, and the ability to carry established engineering practices into the JavaScript ecosystem.
+3. **The language features developers enjoy:** classes and OOP, interfaces and types, `switch` / `case`, `Record<K, V>`, generics, union types, type inference, and `async` / `await`.
+4. **TypeScript together with Angular:** practical examples of `Record`-based data structures and their interaction with Signals, including elegant ways to derive and navigate data with `computed`.
+5. **Real code, not isolated snippets:** inspect the existing Enterprise Frontend Workshop TypeScript code and select examples that demonstrate these ideas naturally. Do not invent examples when the repository already contains better ones.
+6. **ESLint as an architectural guardrail:** revisit the rules already established in the workspace and explain how static checks help preserve design intent. Verify the actual configuration before documenting individual rules, including the configured complexity limit (12), maximum file length (450 lines), and other custom or standard rules.
+7. **The role of AI:** acknowledge that AI-assisted coding has changed the experience of writing code, while understanding the language and evaluating generated code remain important engineering skills.
 
+The article should distinguish language features from architectural decisions: TypeScript provides expressive tools, but good architecture still depends on how developers apply them.
+
+**Expected outcome:** readers understand why TypeScript can feel like a natural continuation of C#-style engineering, and how its language features can support clear, maintainable enterprise frontend architecture.
+
+Before drafting, review the repository's existing TypeScript implementation and ESLint configuration. Record real file paths and verified rule names in the article notes before selecting examples.
+
+## 6. Publication Workflow
 ## 6. Publication Workflow
 
 The canonical technical material will be maintained in English.

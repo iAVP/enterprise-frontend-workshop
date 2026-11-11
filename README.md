@@ -8,7 +8,7 @@ The goal is not to demonstrate isolated framework features, but to show how arch
 
 ## Project Overview
 
-The workshop follows the development of a Personal Finance application, evolving from an Angular frontend into a fullstack solution with a shared backend and an additional Vue frontend.
+The workshop follows the development of a Personal Finance application. The application will first explore Google Sheets with Google Apps Script as a lightweight cloud backend, then provide Web and hybrid mobile clients. Later stages introduce a dedicated Next.js backend and an additional Vue frontend.
 
 The same application serves as a continuous example throughout the series. Each stage builds on previous work and introduces new architectural concepts when they become relevant.
 
@@ -17,7 +17,9 @@ The same application serves as a continuous example throughout the series. Each 
 - **Workspace and tooling:** NX, npm, TypeScript
 - **Primary frontend:** Angular
 - **Frontend architecture:** Domain-driven design, modular libraries, explicit dependency boundaries, encapsulated state
-- **Backend:** Next.js, REST API
+- **Initial cloud backend:** Google Sheets, Google Apps Script, REST API
+- **Dedicated backend:** Next.js, REST API
+- **Frontend clients:** Angular Web and Ionic with Capacitor for hybrid mobile
 - **Additional frontend:** Vue.js
 - **Component interoperability:** Angular Elements and Web Components
 - **UI technologies:** Angular UI components and Bootstrap for the Vue frontend
@@ -77,6 +79,16 @@ The application will evolve as new architectural concepts are introduced. Potent
 - Import and export of financial data
 - Validation and error handling
 - Backend integration
+
+#### Application Implementation Plan
+
+The application will evolve through the following implementation sequence:
+
+1. **Google Sheets Backend:** use Google Sheets for persistence and Google Apps Script to expose a REST API. Validate authentication and authorization, user identification and data isolation, CRUD operations, validation, error handling, and API limitations.
+2. **Web Client:** build a functional Angular browser application with a real UI, dashboard, transaction management, data import and export, authentication and session handling, and integration with the Google Sheets backend.
+3. **Hybrid Mobile Client:** extend the application with Ionic and Capacitor, sharing application logic and backend integration with the Web client while providing mobile-specific UI, navigation, and native capabilities.
+4. **Dedicated Backend:** introduce the planned Next.js REST API as the application evolves beyond the Google Sheets-based backend.
+5. **Additional Frontend:** introduce Vue.js as an additional client using the existing backend.
 
 The functional scope will grow incrementally. Features will be added when they help demonstrate a specific implementation or architectural decision.
 
