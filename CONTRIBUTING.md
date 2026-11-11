@@ -79,6 +79,19 @@ Each article must be developed on a dedicated Git branch whose name corresponds 
 
 The purpose of this convention is to let readers navigate the implementation history of each article and inspect the code at each stage.
 
+## Index File Link Policy
+
+**Internal repository file links in article index files may point only to article content files named `README.md`, `README.ru.md`, or `README.de.md`. Linking to notes, planning documents, drafts, implementation files, configuration, or any other technical/supporting files is prohibited.**
+
+- Apply this rule to all three index files: `articles/index.md`, `articles/index.ru.md`, and `articles/index.de.md`.
+- Links in the article materials section must target the available language editions of the article itself, using the corresponding `README` files.
+- Links in article contents or table-of-contents entries may target headings inside those same article `README` files.
+- Do not expose internal notes, roadmaps, research checklists, working drafts, or technical documentation through the article indexes.
+- External publication links and GitHub branch links are allowed where required by the index structure; this restriction applies to internal repository file links.
+- Before committing index changes, scan all three indexes for links to non-article files and verify that every internal article-file link targets an existing `README` file.
+- If a language edition of an article does not yet have its own `README` file, do not substitute a notes or draft file. Omit that unavailable language link until the article edition exists.
+- Keep this rule consistent across all language indexes.
+
 ## Reverse Synchronization from Article Branches to main
 
 Reverse synchronization means bringing selected documentation from an article or working branch back into `main`. It is a selective documentation operation, not a branch merge.
