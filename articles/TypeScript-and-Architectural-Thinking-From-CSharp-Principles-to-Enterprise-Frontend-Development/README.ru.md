@@ -432,7 +432,7 @@ async addTransaction(
     id: crypto.randomUUID()
   };
 
-  // Сохранение транзакции
+  // Persist the transaction
   return createdTransaction;
 }
 ```
@@ -470,7 +470,7 @@ function updateTransaction(
   id: string,
   changes: Partial<Transaction>
 ): void {
-  // Обновление только переданных свойств
+  // Update only the provided fields
 }
 ```
 
@@ -485,8 +485,8 @@ function updateTransaction(
 ```ts
 const transactionLabels:
   Record<TransactionType, string> = {
-    [TransactionType.income]: 'Доход',
-    [TransactionType.expense]: 'Расход'
+    [TransactionType.income]: 'Income',
+    [TransactionType.expense]: 'Expense'
   };
 ```
 
