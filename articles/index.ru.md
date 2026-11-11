@@ -174,7 +174,7 @@ Subtitle для опубликованных материалов ведутся
 - ИИ и изменение процесса разработки.
 
 ### Ветки GitHub
-- Отдельная ветка для этой статьи пока не создана.
+- [TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development](https://github.com/iAVP/enterprise-frontend-workshop/tree/TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development)
 
 
 ## Правила нумерации и Git
