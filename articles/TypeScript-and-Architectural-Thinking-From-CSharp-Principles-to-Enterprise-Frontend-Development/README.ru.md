@@ -959,6 +959,66 @@ export class Transaction implements TransactionDto {
 5. **Папку назначения.** Генератор знал, в какой каталог должен быть помещён результат.
 6. **Правила именования.** Например, PascalCase или другой согласованный формат имени класса или интерфейса.
 
+Рассмотрим, как такие настройки могли выглядеть непосредственно в C#-модели. В следующем примере атрибут явно указывает генератору создать TypeScript-интерфейс, задать его имя, каталог назначения и необходимые импорты:
+
+```csharp
+[TypeScriptModel(
+    Generate = true,
+    Name = "TransactionDto",
+    Type = TypeScriptType.Interface,
+    OutputDirectory = "models",
+    Imports = new[] { "TransactionType" },
+    NamingConvention = NamingConvention.PascalCase)]
+public class TransactionDto
+{
+    public Guid Id { get; set; }
+
+    public decimal Amount { get; set; }
+
+    public string Description { get; set; }
+
+    public TransactionType Type { get; set; }
+}
+```
+
+Для перечислений применялся тот же принцип. Атрибут определяет, что enum также должен попасть в клиентский контракт:
+
+```csharp
+[TypeScriptModel(
+    Generate = true,
+    Name = "TransactionType",
+    Type = TypeScriptType.Enum,
+    OutputDirectory = "models",
+    NamingConvention = NamingConvention.PascalCase)]
+public enum TransactionType
+{
+    Income = 1,
+    Expense = 2
+}
+```
+
+Результатом генерации становятся соответствующие TypeScript-определения:
+
+```typescript
+export enum TransactionType {
+  Income = 1,
+  Expense = 2
+}
+```
+
+```typescript
+import { TransactionType } from './TransactionType';
+
+export interface TransactionDto {
+  id: string;
+  amount: number;
+  description: string;
+  type: TransactionType;
+}
+```
+
+В этом примере атрибуты выступают декларативной конфигурацией генератора. Разработчик задаёт правила рядом с серверной моделью, а Reflection позволяет прочитать метаданные и сформировать согласованный клиентский контракт.
+
 Такие же принципы применялись и к перечислениям.
 
 То есть мы не просто считывали серверную модель и механически копировали её структуру. Мы создавали управляемое отображение Backend-моделей в архитектуру Frontend.
