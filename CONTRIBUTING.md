@@ -40,6 +40,19 @@ Avoid examples such as:
 
 The goal is for the commit history to communicate the project's evolution without requiring readers to open every diff.
 
+## Code Examples and Cross-Language Consistency
+
+**All code examples in the Workshop must be written in English and must remain identical across every language edition of an article. This is a mandatory editorial rule.**
+
+- Write all source-code comments, string literals, sample values, mock data, labels, messages, expected output, identifiers, and other content inside code examples in English.
+- Do not translate, localize, or otherwise adapt code examples when preparing Russian, German, or other language editions.
+- Reuse the same canonical code blocks verbatim in every language edition. The code, comments, literal values, formatting, and language identifier must remain identical; only the explanatory prose outside code blocks may be translated.
+- If an example contains user-facing text, keep that text in English as well. Explain its meaning in the surrounding localized prose when necessary.
+- When an example must differ because of a genuine technical or platform constraint, do not silently localize it. Document the reason and keep the difference to the smallest necessary scope.
+- Before publication, compare all language editions and verify that their code blocks match exactly and contain no non-English comments, string literals, sample values, or output.
+
+This rule applies to every article, code sample, configuration fragment, command-line example, test, and translation in the Workshop. It is not optional and takes precedence over language-specific localization of code examples.
+
 ## Editorial Continuity and Avoiding Repetition
 
 Every new publication must build on the material already published in the Workshop rather than repeat it.
