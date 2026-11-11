@@ -154,23 +154,6 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 - [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking%2B1)
 - [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+2](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking%2B2)
 
-## 8. TypeScript and Architectural Thinking — From C# Principles to Enterprise Frontend Development
-
-### Repository-Materialien
-[englische Notizen](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.md) | [russische Notizen](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.ru.md) | [deutsche Notizen](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.de.md)
-
-### Artikelinhalte
-- Von C# zu Angular: Übertragung vertrauter Engineering-Prinzipien auf die Frontend-Entwicklung.
-- TypeScript als architektonische Brücke: statische Typisierung, explizite Verträge und Wartbarkeit.
-- Sprachfunktionen: Klassen, Interfaces, Typen, `Record<K, V>`, Generics, Union Types, Type Inference und `async` / `await`.
-- TypeScript und Angular Signals: Datenstrukturen und abgeleitete Werte mit `computed`.
-- Praktische Beispiele aus der bestehenden Codebasis.
-- ESLint als Schutz architektonischer Konventionen.
-- KI und der Wandel des Entwicklungsworkflows.
-
-### GitHub-Branches
-- [TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development](https://github.com/iAVP/enterprise-frontend-workshop/tree/TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development)
-
 ## Redaktionsregeln
 
 - Jeder Artikeleintrag muss exakt derselben Vorlage folgen: `## N. Artikeltitel`, `### Repository-Materialien` mit allen drei Sprachlinks in einer Zeile, getrennt durch ` | `, `### Artikelinhalte` mit Abschnittslinks und `### GitHub-Branches` ausschließlich mit Branches dieses Artikels. Keine Statuszeile in die Artikeleintragsvorlage einfügen.
