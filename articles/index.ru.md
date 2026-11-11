@@ -159,24 +159,6 @@ Subtitle для опубликованных материалов ведутся
 - [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking%2B1)
 - [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+2](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking%2B2)
 
-## 8. TypeScript and Architectural Thinking — From C# Principles to Enterprise Frontend Development
-
-### Материалы в репозитории
-[английские заметки](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.md) | [русские заметки](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.ru.md) | [немецкие заметки](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.de.md)
-
-### Содержание статьи
-- От C# к Angular: перенос знакомых инженерных принципов во frontend.
-- TypeScript как архитектурный мост: статическая типизация, контракты и сопровождаемость.
-- Возможности языка: классы, интерфейсы, типы, `Record<K, V>`, generics, union types, вывод типов и `async` / `await`.
-- TypeScript и Angular Signals: структуры данных и производные значения с помощью `computed`.
-- Примеры из существующей кодовой базы.
-- ESLint как средство защиты архитектурных договорённостей.
-- ИИ и изменение процесса разработки.
-
-### Ветки GitHub
-- [TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development](https://github.com/iAVP/enterprise-frontend-workshop/tree/TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development)
-
-
 ## Правила нумерации и Git
 
 1. Перед обсуждением номера статьи сверяться с этим индексом.
