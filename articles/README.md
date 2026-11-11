@@ -42,6 +42,65 @@ Planned functional areas include:
 
 The application is a practical context for discussing architecture. Features should be implemented when they support the subject of an article, not merely to make the application appear complete.
 
+### Application Implementation Plan
+
+The Personal Finance application will evolve through the following implementation sequence. This sequence describes the practical evolution of the sample application; it does not change the publication numbering or the existing article publication record.
+
+#### 1. Google Sheets as an Initial Backend
+
+Before introducing a dedicated application backend, the application will explore Google Sheets as a lightweight cloud data provider.
+
+The implementation will use Google Apps Script to expose a REST API and Google Sheets to persist application data.
+
+Planned topics:
+
+- Google Sheets API and Google Apps Script.
+- Exposing spreadsheet operations through REST endpoints.
+- CRUD operations for financial records.
+- Authentication and authorization checks.
+- User identification and data isolation.
+- Data validation and error handling.
+- Import and export of application data.
+- Evaluating API quotas, concurrency, and storage limitations.
+
+**Expected outcome:** a working cloud-backed application with a real UI, authentication checks, and data import/export capabilities. The implementation will also help identify the limitations that justify moving to a dedicated backend later.
+
+#### 2. Web Client
+
+Develop a fully functional Angular Web client for the Personal Finance application.
+
+Planned topics:
+
+- Responsive application layout.
+- Dashboard and financial statistics.
+- Transaction management.
+- Data import and export.
+- Authentication and session handling.
+- Integration with the Google Sheets backend.
+- User experience and accessibility.
+
+**Expected outcome:** a usable browser-based application.
+
+#### 3. Hybrid Mobile Client with Ionic
+
+Extend the application to mobile platforms using Ionic and Capacitor.
+
+Planned topics:
+
+- Ionic with Angular.
+- Shared application logic between Web and Mobile.
+- Platform-specific UI components.
+- Authentication and backend integration.
+- Mobile navigation and interaction patterns.
+- Native capabilities through Capacitor.
+- Building and distributing Android applications.
+
+**Expected outcome:** a hybrid mobile application sharing the application logic and backend with the Web client.
+
+#### 4. Dedicated Backend and Additional Frontend
+
+After the Google Sheets-based implementation and its Web and hybrid mobile clients, the roadmap proceeds to the dedicated Next.js REST API and then the additional Vue.js frontend described in the existing learning stages below.
+
 ## Publication Record and Source of Truth
 
 This section records actual publication history. It is distinct from the planned learning sequence below.
