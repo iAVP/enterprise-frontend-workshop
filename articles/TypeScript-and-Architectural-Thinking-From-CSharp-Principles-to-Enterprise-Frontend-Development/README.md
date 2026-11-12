@@ -1212,6 +1212,3 @@ The examples in this article are based on the Enterprise Frontend Workshop codeb
 - `libs/shared/ui/src/lib/modal-dialog/modal-dialog.service.ts`
 - `libs/shared/definitions/src/lib/constants/routes.ts`
 
-### GitHub Branch
-
-- [TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development](https://github.com/iAVP/enterprise-frontend-workshop/tree/TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development)
