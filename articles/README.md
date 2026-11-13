@@ -24,7 +24,7 @@ The series follows several principles:
 
 Each article is developed on its own Git branch named after the article title, using hyphens instead of spaces. When an article needs multiple implementation stages, append `+` and the branch number for that article, for example `NX-Workspace+1` and `NX-Workspace+2`.
 
-An article may list only Git branches that belong to that article itself. Do not include branches belonging to previous articles or other stages, and do not include a history of branches. Verify that every listed branch exists and that its URL is correct.
+At the bottom of the article, list the relevant branch names and their GitHub URLs. Add links only after the branches exist and their URLs have been verified. This allows readers to inspect the code corresponding to each stage of the article.
 
 
 ## 2. Sample Application
@@ -42,6 +42,65 @@ Planned functional areas include:
 
 The application is a practical context for discussing architecture. Features should be implemented when they support the subject of an article, not merely to make the application appear complete.
 
+### Application Implementation Plan
+
+The Personal Finance application will evolve through the following implementation sequence. This sequence describes the practical evolution of the sample application; it does not change the publication numbering or the existing article publication record.
+
+#### 1. Google Sheets as an Initial Backend
+
+Before introducing a dedicated application backend, the application will explore Google Sheets as a lightweight cloud data provider.
+
+The implementation will use Google Apps Script to expose a REST API and Google Sheets to persist application data.
+
+Planned topics:
+
+- Google Sheets API and Google Apps Script.
+- Exposing spreadsheet operations through REST endpoints.
+- CRUD operations for financial records.
+- Authentication and authorization checks.
+- User identification and data isolation.
+- Data validation and error handling.
+- Import and export of application data.
+- Evaluating API quotas, concurrency, and storage limitations.
+
+**Expected outcome:** a working cloud-backed application with a real UI, authentication checks, and data import/export capabilities. The implementation will also help identify the limitations that justify moving to a dedicated backend later.
+
+#### 2. Web Client
+
+Develop a fully functional Angular Web client for the Personal Finance application.
+
+Planned topics:
+
+- Responsive application layout.
+- Dashboard and financial statistics.
+- Transaction management.
+- Data import and export.
+- Authentication and session handling.
+- Integration with the Google Sheets backend.
+- User experience and accessibility.
+
+**Expected outcome:** a usable browser-based application.
+
+#### 3. Hybrid Mobile Client with Ionic
+
+Extend the application to mobile platforms using Ionic and Capacitor.
+
+Planned topics:
+
+- Ionic with Angular.
+- Shared application logic between Web and Mobile.
+- Platform-specific UI components.
+- Authentication and backend integration.
+- Mobile navigation and interaction patterns.
+- Native capabilities through Capacitor.
+- Building and distributing Android applications.
+
+**Expected outcome:** a hybrid mobile application sharing the application logic and backend with the Web client.
+
+#### 4. Dedicated Backend and Additional Frontend
+
+After the Google Sheets-based implementation and its Web and hybrid mobile clients, the roadmap proceeds to the dedicated Next.js REST API and then the additional Vue.js frontend described in the existing learning stages below.
+
 ## Publication Record and Source of Truth
 
 This section records actual publication history. It is distinct from the planned learning sequence below.
@@ -51,7 +110,6 @@ This section records actual publication history. It is distinct from the planned
 | 1 | [The Road to Architecture](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture) | Published | Not recorded here | [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/the-road-to-architecture) |
 | 2 | NX Fundamentals — Building an Enterprise Frontend Workspace from Scratch | Published | Not recorded here | Not recorded here |
 | 3 | [Architecture in Practice: Decisions Behind Enterprise Frontend Systems](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems) | Published | 2026-10-27 | [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/architecture-in-practice-decisions-behind-enterprise-frontend-systems) |
-| 6 | [Angular in Depth — Part 1: Architecture and Components](https://enterprise-frontend-workshop.hashnode.dev/angular-in-depth-part-1-architecture-and-components) | Published on Hashnode, VK, LinkedIn and XING | 2026-11-02 | [Hashnode](https://enterprise-frontend-workshop.hashnode.dev/angular-in-depth-part-1-architecture-and-components) |
 
 **Rules for all project chats and contributors:**
 
@@ -120,8 +178,6 @@ OpenCode can be an alternative when access to VS Code or its extensions is restr
 
 ### Stage 2 — Angular in Depth
 
-**Status: In progress — Part 1 published on Hashnode, VK, LinkedIn and XING.**
-
 **Purpose:** establish the Angular application structure and the core frontend programming model.
 
 Planned topics:
@@ -138,6 +194,8 @@ Planned topics:
 **Expected outcome:** an Angular frontend with clear component responsibilities and an understandable state model.
 
 ### Stage 3 — Domain-Driven Design and Library Boundaries
+
+**Article 10:** see the dedicated publication plan in Section 7.
 
 **Purpose:** evolve the workspace toward explicit functional and architectural boundaries.
 
@@ -280,7 +338,7 @@ The focus will remain on practical engineering methods, reliable outcomes, and m
 
 ## 5. Article 8 — TypeScript and Architectural Thinking — From C# Principles to Enterprise Frontend Development
 
-**Status: Planned.** The working title and article number are approved. The article draft has not started.
+**Status: Draft completed; publication pending.**
 
 **Purpose:** tell the story of TypeScript as the language bridge that made the author's transition from C# to Angular feel natural, then examine the language through the lens of software architecture and day-to-day engineering.
 
@@ -302,8 +360,50 @@ The article should distinguish language features from architectural decisions: T
 
 Before drafting, review the repository's existing TypeScript implementation and ESLint configuration. Record real file paths and verified rule names in the article notes before selecting examples.
 
-## 6. Publication Workflow
-## 6. Publication Workflow
+## 6. Article 9 — Angular Material 3 — Building a Consistent UI Foundation
+
+**Status: Planned.** The working title and article number are approved. The article outline is prepared; implementation and drafting are pending.
+
+**Purpose:** turn the Personal Finance interface into a consistent, usable application UI by using Angular Material and Material 3 as its foundation. The article focuses on practical UI implementation rather than a standalone UX-design methodology or building a component library from scratch.
+
+Planned topics:
+
+1. **Angular Material as the UI foundation:** selecting and applying Material components in the application.
+2. **Material 3 theming:** configuring themes, color schemes, typography, and component states.
+3. **Design Tokens:** centralizing colors, typography, dimensions, spacing, radii, and other visual parameters.
+4. **SCSS integration:** organizing styles and aligning custom styles with Angular Material and the design tokens.
+5. **Reusable UI components:** creating shared components on top of Angular Material only where reuse is justified.
+6. **Dashboard:** presenting financial balances, income, expenses, and key indicators.
+7. **Transaction Management UI:** developing the transaction list, forms, filters, categories, and transaction actions.
+8. **Consistent application UI:** bringing screens, dialogs, menus, tables, and forms into one coherent visual system.
+
+**Expected outcome:** the Personal Finance application has a consistent UI foundation based on Angular Material 3, centralized design tokens, and reusable components where appropriate.
+
+The implementation must be based on the actual state of the application. Verify the existing components, theme configuration, SCSS structure, and library boundaries before documenting implementation details.
+
+### Stage 3 — Domain-Driven Design and Library Boundaries
+
+## 7. Article 10 — Domain-Driven Design and Library Boundaries
+
+**Status: Initial Russian outline exists in the dedicated article branch; full article drafting is pending.**
+
+**Purpose:** evolve the workspace toward explicit functional and architectural boundaries without applying DDD mechanically or introducing layers for their own sake.
+
+Planned topics:
+
+- Applying DDD concepts in frontend development.
+- Organizing applications and libraries around functional areas and responsibilities.
+- Separating UI, facades, use cases, and data access where justified.
+- Defining and enforcing dependency directions.
+- NX project tags and `@nx/enforce-module-boundaries`.
+- Sharing UI components and design tokens without creating oversized shared libraries.
+- Avoiding unnecessary layers and accidental coupling.
+
+**Expected outcome:** a modular frontend whose responsibilities and dependencies are explicit, deliberate, and increasingly enforceable.
+
+The article builds on NX Fundamentals and the Angular in Depth series. It should focus on applying those concepts to the evolving Personal Finance application rather than repeating their introductory explanations.
+
+## 8. Publication Workflow
 
 The canonical technical material will be maintained in English.
 
@@ -317,7 +417,7 @@ Platform-specific posts may differ in length and framing, but should preserve th
 
 Use `HASHTAGS.md` as the controlled vocabulary for publication hashtags.
 
-## 7. Status and Scope
+## 9. Status and Scope
 
 All articles in this roadmap are planned unless explicitly marked otherwise.
 
