@@ -11,6 +11,7 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 - [5. Development Tools: WebStorm, Visual Studio Code und OpenCode](#5-development-tools-webstorm-visual-studio-code-und-opencode)
 - [6. Angular in Depth — Teil 1: Architektur und Komponenten](#6-angular-in-depth--teil-1-architektur-und-komponenten)
 - [7. Angular in Depth — Teil 2: Die Evolution von Angular und des architektonischen Denkens eines Entwicklers](#7-angular-in-depth--teil-2-die-evolution-von-angular-und-des-architektonischen-denkens-eines-entwicklers)
+- [8. TypeScript and Architectural Thinking — From C# Principles to Enterprise Frontend Development](#8-typescript-and-architectural-thinking--from-c-principles-to-enterprise-frontend-development)
 - [Redaktionsregeln](#redaktionsregeln)
 
 ## 1. Der Weg zur Architektur
@@ -154,14 +155,22 @@ Dieser Index ist die zentrale Navigation der Artikelserie. Die Veröffentlichung
 - [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+1](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking%2B1)
 - [Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking+2](https://github.com/iAVP/enterprise-frontend-workshop/tree/Angular-in-Depth-Part-2-Evolution-of-Angular-and-Architectural-Thinking%2B2)
 
-- [8. TypeScript and Architectural Thinking — From C# Principles to Enterprise Frontend Development](#8-typescript-and-architectural-thinking--from-c-principles-to-enterprise-frontend-development)
 ## 8. TypeScript and Architectural Thinking — From C# Principles to Enterprise Frontend Development
 
 ### Repository-Materialien
-[English](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.md) | [Russisch](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.ru.md) | [Deutsch](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.de.md)
+[English](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.md) | [Russisch](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.ru.md) | [Deutsch](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.de.md)
 
 ### Artikelinhalte
-- [Arbeitsstruktur und Recherche-Checkliste](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.de.md#vorläufige-struktur)
+- [Architecture Before Language](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.md#architecture-before-language)
+- [JavaScript, TypeScript, and the Cost of Dynamic Typing](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.md#javascript-typescript-and-the-cost-of-dynamic-typing)
+- [TypeScript and JavaScript: Two Sides of Modern Development](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.md#typescript-and-javascript-two-sides-of-modern-development)
+- [OOP in TypeScript: Familiar Principles, Different Ways of Expressing Them](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.md#oop-in-typescript-familiar-principles-different-ways-of-expressing-them)
+- [SOLID and Clean Code: Not a Set of Rules, but a Way to Manage Complexity](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.md#solid-and-clean-code-not-a-set-of-rules-but-a-way-to-manage-complexity)
+- [TypeScript Features That Are Particularly Useful in Practice](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.md#typescript-features-that-are-particularly-useful-in-practice)
+- [AI-Assisted Development: A Tool, Not a Replacement for Engineering Judgment](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.md#ai-assisted-development-a-tool-not-a-replacement-for-engineering-judgment)
+- [TypeScript as a Tool for Engineering Thinking](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.md#typescript-as-a-tool-for-engineering-thinking)
+- [Architecture, Technologies, and Languages: Everything Is Connected](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.md#architecture-technologies-and-languages-everything-is-connected)
+- [Materials and Source Code](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.md#materials-and-source-code)
 
 ### GitHub-Branches
 - [TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development](https://github.com/iAVP/enterprise-frontend-workshop/tree/TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development)
