@@ -41,6 +41,26 @@ Avoid examples such as:
 The goal is for the commit history to communicate the project's evolution without requiring readers to open every diff.
 
 ## Code Examples and Cross-Language Consistency
+## Internationalization Rules
+
+All user-facing application texts must be provided exclusively through the internationalization system.
+
+- Direct user-facing text literals in TypeScript files and HTML templates are strictly prohibited.
+- All labels, captions, button texts, placeholders, tooltips, notifications, validation messages, dialog texts, and other UI messages must use translation keys.
+- Use `@ngx-translate/core` v18 as the internationalization framework.
+- Store translations in separate JSON files for Russian (`ru.json`), English (`en.json`), and German (`de.json`).
+- All three language files must maintain the same translation key structure.
+- Russian (`ru.json`) is the leading and authoritative language version.
+- Every addition, modification, or removal of a translation key must be applied to all three JSON files in the same change.
+- English and German translations must reflect the current Russian source.
+- Never introduce hardcoded user-facing fallback text in TypeScript or HTML.
+
+**Shared base library:**
+
+- The `base` library is responsible for providing a shared service that simplifies access to translations.
+- The service must encapsulate the underlying translation mechanism and provide a consistent access point for application code.
+- Keep the service independent of application-specific business logic.
+
 
 **All code examples in the Workshop must be written in English and must remain identical across every language edition of an article. This is a mandatory editorial rule.**
 
