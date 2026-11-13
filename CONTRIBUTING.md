@@ -40,7 +40,6 @@ Avoid examples such as:
 
 The goal is for the commit history to communicate the project's evolution without requiring readers to open every diff.
 
-## Code Examples and Cross-Language Consistency
 ## Internationalization Rules
 
 All user-facing application texts must be provided exclusively through the internationalization system.
@@ -61,6 +60,7 @@ All user-facing application texts must be provided exclusively through the inter
 - The service must encapsulate the underlying translation mechanism and provide a consistent access point for application code.
 - Keep the service independent of application-specific business logic.
 
+## Code Examples and Cross-Language Consistency
 
 **All code examples in the Workshop must be written in English and must remain identical across every language edition of an article. This is a mandatory editorial rule.**
 
