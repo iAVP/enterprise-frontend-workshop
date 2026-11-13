@@ -161,7 +161,7 @@ Subtitle для опубликованных материалов ведутся
 ## 8. TypeScript и архитектурное мышление: от принципов C# к enterprise frontend-разработке
 
 ### Материалы в репозитории
-[английский](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.md) | [русский](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.ru.md) | [немецкий](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.de.md)
+[английский](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.md) | [русский](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.ru.md)
 
 ### Содержание статьи
 - [Архитектура прежде языка](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.ru.md#архитектура-прежде-языка)
