@@ -360,27 +360,6 @@ The article should distinguish language features from architectural decisions: T
 
 Before drafting, review the repository's existing TypeScript implementation and ESLint configuration. Record real file paths and verified rule names in the article notes before selecting examples.
 
-## 6. Article 9 — Angular Material 3 — Building a Consistent UI Foundation
-
-**Status: Planned.** The working title and article number are approved. The article outline is prepared; implementation and drafting are pending.
-
-**Purpose:** turn the Personal Finance interface into a consistent, usable application UI by using Angular Material and Material 3 as its foundation. The article focuses on practical UI implementation rather than a standalone UX-design methodology or building a component library from scratch.
-
-Planned topics:
-
-1. **Angular Material as the UI foundation:** selecting and applying Material components in the application.
-2. **Material 3 theming:** configuring themes, color schemes, typography, and component states.
-3. **Design Tokens:** centralizing colors, typography, dimensions, spacing, radii, and other visual parameters.
-4. **SCSS integration:** organizing styles and aligning custom styles with Angular Material and the design tokens.
-5. **Reusable UI components:** creating shared components on top of Angular Material only where reuse is justified.
-6. **Dashboard:** presenting financial balances, income, expenses, and key indicators.
-7. **Transaction Management UI:** developing the transaction list, forms, filters, categories, and transaction actions.
-8. **Consistent application UI:** bringing screens, dialogs, menus, tables, and forms into one coherent visual system.
-
-**Expected outcome:** the Personal Finance application has a consistent UI foundation based on Angular Material 3, centralized design tokens, and reusable components where appropriate.
-
-The implementation must be based on the actual state of the application. Verify the existing components, theme configuration, SCSS structure, and library boundaries before documenting implementation details.
-
 ### Stage 3 — Domain-Driven Design and Library Boundaries
 
 ## 7. Article 10 — Domain-Driven Design and Library Boundaries
