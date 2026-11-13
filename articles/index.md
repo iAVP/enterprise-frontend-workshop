@@ -149,7 +149,7 @@ This index is the central navigation source for the article series. Keep the pub
 ## 8. TypeScript and Architectural Thinking — From C# Principles to Enterprise Frontend Development
 
 ### Repository materials
-[English](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.md) | [Russian](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.ru.md) | [German](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/notes.de.md)
+[English](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.md) | [Russian](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.ru.md)
 
 ### Article contents
 - [Architecture Before Language](TypeScript-and-Architectural-Thinking-From-CSharp-Principles-to-Enterprise-Frontend-Development/README.md#architecture-before-language)
