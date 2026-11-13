@@ -134,7 +134,6 @@ The initial planned shared libraries are:
 
 Keep these responsibilities distinct. Do not move framework-specific UI behavior into shared libraries simply because multiple parts of the system need related functionality.
 
-## Article Index and Publication Status
 ## Internationalization Rules
 
 All user-facing application texts must be provided exclusively through the internationalization system.
@@ -155,6 +154,7 @@ All user-facing application texts must be provided exclusively through the inter
 - The service must encapsulate the underlying translation mechanism and provide a consistent access point for application code.
 - Keep the service independent of application-specific business logic.
 
+## Article Index and Publication Status
 
 The files `articles/index.md`, `articles/index.ru.md`, and `articles/index.de.md` are the primary navigation and status records for the article series. They list every article in the agreed publication order, link to the relevant language versions, and indicate whether each article is planned or published.
 
