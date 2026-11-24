@@ -62,7 +62,7 @@ async function collectScss(directory) {
 }
 
 const hexPattern = /#[0-9a-f]{3,8}\b/gi;
-const colorFunctionPattern = /\b(?:rgb|rgba|hsl|hsla|hwb|lab|lch|oklab|oklch|color|color-mix)\s*\(/gi;
+const colorFunctionPattern = /\b(?:rgb|rgba|hsl|hls|hsla|hlsa|hwb|lab|lch|oklab|oklch|color|color-mix)\s*\(/gi;
 const colorWordPattern = new RegExp(`\\b(?:${[...namedColors].join('|')})\\b`, 'gi');
 
 for (const scanRoot of scanRoots) {
