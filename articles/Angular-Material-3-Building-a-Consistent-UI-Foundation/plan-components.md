@@ -17,7 +17,7 @@ Status values:
 | 3 | Toolbar Text Item | Informational text with overflow and tooltip | Implemented |
 | 4 | Toolbar Dropdown Item | Dropdown list | Implemented |
 | 5 | Toolbar Date Range Item | Select a From / To date range | Implemented |
-| 6 | Toolbar Year / Month Item | Select year and month | Not implemented |
+| 6 | Toolbar Year / Month Item | Select year and month | Implemented |
 | 7 | Status Bar | Universal status bar | Not implemented |
 | 8 | Status Bar Section | Status Bar section | Not implemented |
 | 9 | Status Bar Item | Information item displayed in Status Bar | Not implemented |
@@ -58,7 +58,7 @@ These are functional UI elements required by the application. They are not autom
 | 33 | Transaction Search | Search transactions | Not implemented |
 | 34 | Transaction Sorting | Sort transactions | Not implemented |
 | 35 | Transaction Type Filter | Income / Expense | Not implemented |
-| 36 | Date Filter | Filter by date range | Not implemented |
+| 36 | Date Filter | Filter transactions by date range | Not implemented |
 | 37 | Notes Filter | Filter transactions with notes | Not implemented |
 | 38 | Table Settings Dialog | Table settings | Not implemented |
 | 39 | Expense Settings | Expense-specific settings | Not implemented |
@@ -92,11 +92,13 @@ These are functional UI elements required by the application. They are not autom
 | 1 | Toolbar Section | Toolbar section container | Implemented |
 | 2 | Toolbar Button Item | Typed button, configured through Input | Implemented |
 | 3 | Toolbar Text Item | Text with overflow handling and tooltip, configured through Signal Input | Implemented |
+| 4 | Toolbar Dropdown Item | Select from configured options | Implemented |
 | 5 | Toolbar Date Range Item | Date range selection with From / To fields | Implemented |
+| 6 | Toolbar Year / Month Item | Select year and month from configured options | Implemented |
 
 ## Notes
 
 - The Universal Toolbar is intended to become the foundation for filters, date selection, buttons, text items, and other Dashboard controls.
-- Dropdown, Date Range, and Year / Month are planned as distinct Toolbar Section Item types with their own custom components.
+- Dropdown, Date Range, and Year / Month are distinct Toolbar Section Item types with their own custom components.
 - Rating / Ranking is not currently listed as a separate component in the article plan and is therefore not included in this tracked list.
-- This file is a progress tracker. Update component statuses as implementation work is completed.
+- This file is a progress tracker. Update component statuses as work progresses.
