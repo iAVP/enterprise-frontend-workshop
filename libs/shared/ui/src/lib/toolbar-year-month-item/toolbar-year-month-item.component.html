@@ -1,0 +1,32 @@
+<div class="toolbar-year-month">
+	<mat-form-field appearance="outline" class="toolbar-year">
+		<mat-select
+			[value]="year()"
+			[placeholder]="item().labels?.year ?? ''"
+			(selectionChange)="onYearChange($event.value)"
+		>
+			@for (yearOption of item().years; track yearOption) {
+				<mat-option [value]="yearOption">
+					{{ yearOption }}
+				</mat-option>
+			}
+		</mat-select>
+	</mat-form-field>
+
+	<mat-form-field appearance="outline" class="toolbar-month">
+		<mat-select
+			[value]="month()"
+			[placeholder]="item().labels?.month ?? ''"
+			(selectionChange)="onMonthChange($event.value)"
+		>
+			@for (monthOption of item().months; track monthOption.value) {
+				<mat-option
+					[value]="monthOption.value"
+					[disabled]="monthOption.disabled"
+				>
+					{{ monthOption.label }}
+				</mat-option>
+			}
+		</mat-select>
+	</mat-form-field>
+</div>
