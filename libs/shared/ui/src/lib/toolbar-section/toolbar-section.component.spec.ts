@@ -1,3 +1,4 @@
+import '@angular/compiler';
 import { ToolbarSectionComponent } from './toolbar-section.component';
 
 describe('ToolbarSectionComponent', () => {
