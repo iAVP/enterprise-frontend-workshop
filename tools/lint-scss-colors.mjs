@@ -94,7 +94,7 @@ for (const scanRoot of scanRoots) {
 
 if (violations.length) {
 	console.error('SCSS color-token lint failed:');
-	console.error(violations.join('\\n'));
+console.error(violations.join('\n'));
 	process.exit(1);
 }
 
