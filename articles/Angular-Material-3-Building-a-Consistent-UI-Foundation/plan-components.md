@@ -15,7 +15,7 @@ Status values:
 | 1 | Toolbar Section | Toolbar section container | Implemented |
 | 2 | Toolbar Button Item | Button with text, icon, and styling variants | Implemented |
 | 3 | Toolbar Text Item | Informational text with overflow and tooltip | Implemented |
-| 4 | Toolbar Dropdown Item | Dropdown list | Not implemented |
+| 4 | Toolbar Dropdown Item | Dropdown list | Implemented |
 | 5 | Toolbar Date Range Item | Select a From / To date range | Not implemented |
 | 6 | Toolbar Year / Month Item | Select year and month | Not implemented |
 | 7 | Status Bar | Universal status bar | Not implemented |
@@ -29,7 +29,7 @@ These are functional UI elements required by the application. They are not autom
 | # | Component | Purpose | Status |
 |---:|---|---|---|
 | 10 | Button | Action buttons | Not implemented |
-| 11 | Dropdown / Select | Select a value from a list | Not implemented |
+| 11 | Dropdown / Select | Select a value from a list | Implemented |
 | 12 | Date Picker | Select a date from a calendar | Not implemented |
 | 13 | Date Range Picker | Select start and end dates | Not implemented |
 | 14 | Year Selector | Select a year | Not implemented |
