@@ -1,0 +1,9 @@
+:host {
+	display: inline-flex;
+	min-width: 0;
+}
+
+.toolbar-button--tonal {
+	background-color: var(--mat-sys-secondary-container);
+	color: var(--mat-sys-on-secondary-container);
+}
