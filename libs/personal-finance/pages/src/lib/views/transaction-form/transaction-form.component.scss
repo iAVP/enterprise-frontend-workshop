@@ -6,15 +6,15 @@
     box-sizing: border-box;
     width: 100%;
     padding: 10px;
-    border: 1px solid #aaa;
+    border: 1px solid var(--mat-sys-outline);
     border-radius: 4px;
   }
 }
-.error { margin: 0; color: #c62828; }
+.error { margin: 0; color: var(--mat-sys-error); }
 .actions {
   display: flex;
   gap: 10px;
   margin-top: 6px;
   button { padding: 9px 16px; cursor: pointer; }
-  .secondary { background: #fff; }
+  .secondary { background: var(--mat-sys-surface); }
 }

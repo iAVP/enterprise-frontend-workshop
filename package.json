@@ -8,12 +8,13 @@
     "build:all": "nx run-many -t build",
     "build:prod": "nx build personal-finance --configuration=production",
     "test": "nx run-many -t test --exclude=mock",
-    "lint": "nx run-many -t lint --exclude=mock",
+    "lint": "nx run-many -t lint --exclude=mock && npm run lint:scss",
     "e2e:chromium": "npx nx e2e personal-finance-e2e --project=chromium --headed --grep \"renders the financial summary\"",
     "e2e:ui": "nx e2e personal-finance-e2e --ui",
     "e2e:install": "playwright install",
     "nx:graph": "nx graph",
-    "affected": "nx affected -t lint test build --exclude=mock"
+    "affected": "nx affected -t lint test build --exclude=mock",
+    "lint:scss": "node tools/lint-scss-colors.mjs"
   },
   "devDependencies": {
     "@angular-devkit/core": "~22.2.0",
