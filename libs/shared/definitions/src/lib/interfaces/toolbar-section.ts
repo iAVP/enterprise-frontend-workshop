@@ -1,5 +1,5 @@
 import type { ToolbarSectionItem } from '../types/toolbar-section-item';
-import type { ToolbarTextAlign } from '../constants/toolbar-text-align';
+import type { ToolbarTextAlign } from '../types/toolbar-text-align';
 
 /** Configuration for a Toolbar section and its item layout. */
 export interface ToolbarSection {

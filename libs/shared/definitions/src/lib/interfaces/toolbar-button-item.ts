@@ -1,6 +1,6 @@
 import type { ToolbarSectionItemBase } from './toolbar-section-item-base';
 import { TOOLBAR_ITEM_TYPE } from '../constants/toolbar-item-type';
-import type { ToolbarButtonStyle } from '../constants/toolbar-button-style';
+import type { ToolbarButtonStyle } from '../types/toolbar-button-style';
 
 /** Configuration for a Toolbar button item. */
 export interface ToolbarButtonItem extends ToolbarSectionItemBase {
