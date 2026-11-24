@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { readdir, readFile } from 'node:fs/promises';
-import { join, relative } from 'node:path';
+import { join, relative, sep } from 'node:path';
 
 const root = process.cwd();
 const themeFile = 'common/styles/themes.scss';
@@ -69,7 +69,7 @@ for (const scanRoot of scanRoots) {
 	const files = await collectScss(join(root, scanRoot));
 
 	for (const file of files) {
-		const relativePath = relative(root, file).replaceAll('\\\\', '/');
+		const relativePath = relative(root, file).split(sep).join('/');
 
 		if (relativePath === themeFile) {
 			continue;
