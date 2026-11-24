@@ -84,7 +84,7 @@ for (const scanRoot of scanRoots) {
 
 		for (const check of checks) {
 			for (const match of source.matchAll(check.pattern)) {
-				const line = source.slice(0, match.index).split('\\n').length;
+				const line = source.slice(0, match.index).split(/\n/).length;
 				violations.push(`${relativePath}:${line}: ${check.label} "${match[0]}" — use a color token instead`);
 			}
 			check.pattern.lastIndex = 0;

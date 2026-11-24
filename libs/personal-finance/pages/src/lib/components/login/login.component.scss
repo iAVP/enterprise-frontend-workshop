@@ -56,7 +56,7 @@
 
 .error {
 	margin: 5px 0 0;
-	color: #c62828;
+	color: var(--mat-sys-error);
 	font-size: 12px
 }
 
@@ -69,7 +69,7 @@
 	button {
 		min-width: 72px;
 		padding: 8px 14px;
-		border: 1px solid #aaa;
+		border: 1px solid var(--mat-sys-outline);
 		border-radius: 3px;
 		background: var(--mat-sys-surface-container);
 		color: var(--app-regular);
