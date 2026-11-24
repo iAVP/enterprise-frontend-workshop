@@ -4,6 +4,3 @@ export const TOOLBAR_TEXT_ALIGN = {
 	center: 'center',
 	right: 'right',
 } as const;
-
-/** Text alignment values supported by Toolbar sections. */
-export type ToolbarTextAlign = typeof TOOLBAR_TEXT_ALIGN[keyof typeof TOOLBAR_TEXT_ALIGN];
