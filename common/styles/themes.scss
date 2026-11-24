@@ -4,26 +4,68 @@ html {
 	color-scheme: light;
 
 	@include mat.theme((
-		color: (
-			theme-type: light,
-			primary: mat.$azure-palette,
-			tertiary: mat.$blue-palette
-			),
-			typography: Roboto,
-			density: 0
-		));
+		color: mat.$azure-palette,
+		typography: Roboto,
+		density: 0
+	), $overrides: (
+		primary: #315C8A,
+		on-primary: #FFFFFF,
+		primary-container: #D4E4F6,
+		on-primary-container: #19324B,
+		secondary: #39796C,
+		on-secondary: #FFFFFF,
+		secondary-container: #CDE9E1,
+		on-secondary-container: #163D34,
+		tertiary: #78639B,
+		on-tertiary: #FFFFFF,
+		tertiary-container: #E8DDF6,
+		on-tertiary-container: #302047
+	));
+
+	--app-success: #176B42;
+	--app-on-success: #FFFFFF;
+	--app-success-container: #D6F0E0;
+	--app-on-success-container: #123D27;
+
+	--app-warning: #B86A0B;
+	--app-on-warning: #FFFFFF;
+	--app-warning-container: #FBE3C2;
+	--app-on-warning-container: #4B2A06;
+
+	--app-regular: #171717;
 }
 
 html.dark-theme {
 	color-scheme: dark;
 
 	@include mat.theme((
-		color: (
-			theme-type: dark,
-			primary: mat.$azure-palette,
-			tertiary: mat.$blue-palette
-			),
-			typography: Roboto,
-			density: 0
-		));
+		color: mat.$azure-palette,
+		typography: Roboto,
+		density: 0
+	), $overrides: (
+		primary: #B1C9E8,
+		on-primary: #203C59,
+		primary-container: #29496B,
+		on-primary-container: #E3EFFC,
+		secondary: #A3D2C4,
+		on-secondary: #1E4038,
+		secondary-container: #315F53,
+		on-secondary-container: #D7F0E8,
+		tertiary: #D2BCEB,
+		on-tertiary: #3E2D56,
+		tertiary-container: #584273,
+		on-tertiary-container: #F0E6FF
+	));
+
+	--app-success: #8BD5A5;
+	--app-on-success: #173D27;
+	--app-success-container: #28583B;
+	--app-on-success-container: #D6F0E0;
+
+	--app-warning: #F2B96F;
+	--app-on-warning: #4B2A06;
+	--app-warning-container: #6D430F;
+	--app-on-warning-container: #FBE3C2;
+
+	--app-regular: #F1F1F1;
 }
