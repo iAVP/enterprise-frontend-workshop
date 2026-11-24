@@ -1,0 +1,13 @@
+<mat-form-field appearance="outline" class="toolbar-dropdown">
+	<mat-select
+		[value]="item().value ?? null"
+		[placeholder]="item().placeholder ?? ''"
+		(selectionChange)="onSelectionChange($event.value)"
+	>
+		@for (option of item().options; track option.value) {
+			<mat-option [value]="option.value" [disabled]="option.disabled">
+				{{ option.label }}
+			</mat-option>
+		}
+	</mat-select>
+</mat-form-field>
