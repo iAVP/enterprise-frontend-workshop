@@ -1,2 +1,4 @@
 /** Public exports for shared type aliases. */
-export {};
+export * from './toolbar-section-item';
+export * from './toolbar-config';
+export * from './status-bar-config';
