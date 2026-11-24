@@ -1,0 +1,13 @@
+:host {
+	display: block;
+	min-width: 0;
+	max-width: 100%;
+}
+
+.toolbar-text-item {
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	mask-image: linear-gradient(to right, #000 0%, #000 calc(100% - 1.25rem), transparent 100%);
+}
