@@ -1,0 +1,21 @@
+<mat-form-field appearance="outline" class="toolbar-date-range">
+	<mat-date-range-input [rangePicker]="picker">
+		<input
+			matStartDate
+			[placeholder]="item().labels?.from ?? ''"
+			[value]="from()"
+			(dateChange)="onFromChange($event.value)"
+		/>
+
+		<input
+			matEndDate
+			[placeholder]="item().labels?.to ?? ''"
+			[value]="to()"
+			(dateChange)="onToChange($event.value)"
+		/>
+	</mat-date-range-input>
+
+	<mat-datepicker-toggle matIconSuffix [for]="picker" />
+
+	<mat-date-range-picker #picker />
+</mat-form-field>

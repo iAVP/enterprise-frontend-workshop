@@ -16,7 +16,7 @@ Status values:
 | 2 | Toolbar Button Item | Button with text, icon, and styling variants | Implemented |
 | 3 | Toolbar Text Item | Informational text with overflow and tooltip | Implemented |
 | 4 | Toolbar Dropdown Item | Dropdown list | Implemented |
-| 5 | Toolbar Date Range Item | Select a From / To date range | Not implemented |
+| 5 | Toolbar Date Range Item | Select a From / To date range | Implemented |
 | 6 | Toolbar Year / Month Item | Select year and month | Not implemented |
 | 7 | Status Bar | Universal status bar | Not implemented |
 | 8 | Status Bar Section | Status Bar section | Not implemented |
@@ -25,7 +25,6 @@ Status values:
 ## 2. Angular Material Components and Controls
 
 These are functional UI elements required by the application. They are not automatically separate custom components in the shared UI library; custom wrappers should be created only when reuse or architecture justifies them.
-
 | # | Component | Purpose | Status |
 |---:|---|---|---|
 | 10 | Button | Action buttons | Not implemented |
@@ -93,6 +92,7 @@ These are functional UI elements required by the application. They are not autom
 | 1 | Toolbar Section | Toolbar section container | Implemented |
 | 2 | Toolbar Button Item | Typed button, configured through Input | Implemented |
 | 3 | Toolbar Text Item | Text with overflow handling and tooltip, configured through Signal Input | Implemented |
+| 5 | Toolbar Date Range Item | Date range selection with From / To fields | Implemented |
 
 ## Notes
 
