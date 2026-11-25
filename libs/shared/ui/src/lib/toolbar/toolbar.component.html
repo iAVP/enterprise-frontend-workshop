@@ -11,7 +11,7 @@
 		}
 	</div>
 
-	@if ((config().right ?? []).some(section => section.items.length > 0)) {
+	@if (hasRightItems()) {
 		<div class="toolbar-right">
 			@for (section of config().right ?? []; track $index) {
 				<ui-toolbar-section [section]="section" />

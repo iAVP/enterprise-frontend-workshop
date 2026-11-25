@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { DASHBOARD_TOOLBAR_CONFIG, TOOLBAR_ITEM_TYPE } from '@workshop:def:consts';
-import type { ToolbarSectionItem } from '@workshop:def:types';
+import type { ToolbarSectionItem, ToolbarConfig } from '@workshop:def:types';
 import { ToolbarFacadeService } from './toolbar-facade.service';
 
 describe('ToolbarFacadeService', () => {
@@ -15,7 +15,7 @@ describe('ToolbarFacadeService', () => {
 
 	it('replaces the configuration reactively', () => {
 		const facade = TestBed.inject(ToolbarFacadeService);
-		const config = { left: [], center: [], right: [] };
+		const config: ToolbarConfig = { left: [], center: [], right: [] };
 		facade.setConfig(config);
 		expect(facade.config()).toBe(config);
 	});
@@ -63,16 +63,17 @@ describe('ToolbarFacadeService', () => {
 		expect(facade.config().center?.[1].items[0]).toBe(item);
 	});
 
-	it('removes the final Right Section item without retaining a visible section', () => {
+	it('removes the final Right Section item from the reactive configuration', () => {
 		const facade = TestBed.inject(ToolbarFacadeService);
-		const config = { left: [], center: [], right: [{ items: [{
+		const item: ToolbarSectionItem = {
 			id: 'right-last',
 			type: TOOLBAR_ITEM_TYPE.text,
 			text: 'Last item',
-		}] }] };
+		};
+		const config: ToolbarConfig = { left: [], center: [], right: [{ items: [item] }] };
 		facade.setConfig(config);
 		facade.removeItem('right', 0, 'right-last');
 		expect(facade.config().right?.[0].items).toEqual([]);
-		expect(facade.config().right?.some(section => section.items.length > 0)).toBe(false);
+		expect(facade.config().right?.some((section) => section.items.length > 0)).toBe(false);
 	});
 });
