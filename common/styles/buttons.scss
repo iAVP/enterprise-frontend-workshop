@@ -1,0 +1,11 @@
+button.mat-mdc-button-base {
+	border-radius: 0.4rem;
+	font-family: inherit;
+	font-size: inherit;
+	gap: 0.5rem;
+}
+
+.toolbar-button--tonal {
+	background-color: var(--mat-sys-secondary-container);
+	color: var(--mat-sys-on-secondary-container);
+}
