@@ -12,6 +12,6 @@ export interface ToolbarDropdownItem extends ToolbarSectionItemBase {
 	value?: string | number;
 	/** Optional placeholder shown when no value is selected. */
 	placeholder?: string;
-	/** Action invoked with the selected option value. */
-	callback: (value: string | number) => void;
+	/** Optional action invoked with the selected option value. */
+	callback?: (value: string | number) => void;
 }
