@@ -1,5 +1,6 @@
 :host {
 	display: block;
+	min-width: 0;
 }
 
 .toolbar-section {
@@ -7,4 +8,5 @@
 	align-items: center;
 	min-width: 0;
 	font-size: inherit;
+	gap: 0.5rem;
 }
