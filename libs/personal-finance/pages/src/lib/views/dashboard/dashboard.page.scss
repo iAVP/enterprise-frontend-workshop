@@ -1,78 +1,114 @@
 .dashboard {
-	max-width: 960px;
-	margin: 0 auto;
-	padding: 32px 20px
+	width: 100%;
+	max-width: none;
+	margin: 0;
+	padding: 2rem 1.5rem;
+	box-sizing: border-box;
 }
+
 
 .page-header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: 24px;
-	
+	gap: 1.5rem;
+
+	h1 {
+		margin: 0;
+		font-size: 2rem;
+		font-weight: 600;
+	}
+
+	p {
+		margin: 0.5rem 0 0;
+	}
+
 	nav {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 12px
+		gap: 0.75rem;
+
+		button {
+			padding: 0.5rem 0.75rem;
+			border: 1px solid var(--mat-sys-outline);
+			border-radius: 0.4rem;
+			background: var(--mat-sys-surface);
+			color: var(--mat-sys-on-surface);
+			font-family: inherit;
+			font-size: inherit;
+			cursor: pointer;
+		}
 	}
 }
+
 
 .summary {
 	display: grid;
-	grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
-	gap: 16px;
-	margin: 28px 0;
-	
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 1rem;
+	margin: 1.75rem 0;
+
 	article {
-		padding: 20px;
+		padding: 1.25rem;
 		border: 1px solid var(--mat-sys-outline-variant);
-		border-radius: 6px
+		border-radius: 0.75rem;
 	}
-	
+
 	h2 {
-		margin-top: 0;
-		font-size: 14px
+		margin: 0 0 1rem;
+		font-size: 0.875rem;
+		font-weight: 500;
 	}
-	
+
 	p {
-		margin-bottom: 0;
-		font-size: 20px;
-		font-weight: 600
+		margin: 0;
+		font-size: 1.25rem;
+		font-weight: 600;
 	}
-	
+
 	.amount {
-		font-size: 28px
+		font-size: 1.75rem;
 	}
 }
+
 
 .transactions {
+	h2 {
+		font-size: 1.25rem;
+		font-weight: 500;
+	}
 	ul {
 		padding: 0;
-		list-style: none
+		list-style: none;
 	}
-	
 	li {
-		display: grid;
-		grid-template-columns:140px 1fr auto;
-		gap: 16px;
-		padding: 14px 0;
-		border-bottom: 1px solid var(--mat-sys-outline-variant)
+		 display: grid;
+		grid-template-columns: 8.75rem 1fr auto;
+		gap: 1rem;
+		padding: 0.875rem 0;
+		border-bottom: 1px solid var(--mat-sys-outline-variant);
 	}
-	
 	.income {
-		color: var(--app-success)
+		color: var(--app-success);
 	}
 }
 
-@media(max-width: 600px) {
+
+@media (max-width: 600px) {
+	.dashboard {
+		padding: 1.5rem 1rem;
+	}
 	.page-header {
 		align-items: flex-start;
-		flex-direction: column
+		flex-direction: column;
 	}
 	.transactions li {
-		grid-template-columns:1fr auto
+		grid-template-columns: 1fr auto;
 	}
 	.transactions time {
-		grid-column: 1/-1
+		grid-column: 1 / -1;
+	}
+	.summary {
+		grid-template-columns: 1fr;
 	}
 }
