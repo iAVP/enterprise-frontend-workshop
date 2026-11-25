@@ -62,6 +62,14 @@ These rules are mandatory for every contribution. Apply them to new code and whe
 - Verify the resulting Git tree and inspect changed files after committing.
 - Never claim tests, lint, or builds were run unless they were actually executed. Report any checks that could not be run.
 
+## Method decomposition and algorithm readability
+
+- Prefer private methods to decompose complex algorithms into clear logical steps. Each method should express one cohesive responsibility and make the calling algorithm easy to read.
+- Keep methods focused and small. When a method's complexity grows, extract meaningful private methods rather than leaving a long sequence of branches and operations in place.
+- Avoid placing large blocks of logic inside `switch`/`case` branches. Each case should remain concise and delegate its work to focused private methods whenever it contains more than straightforward selection or a small operation.
+- Do not use method extraction merely to bypass lint complexity limits. Extract logic along meaningful boundaries, preserve behavior, and improve readability of the algorithm's flow.
+- Use this approach consistently in services, facades, components, and other TypeScript classes.
+
 ## Formatting and source-file readability
 
 - Create and modify source files with readable, conventional formatting. Never compress HTML templates, SCSS, or TypeScript into a single line to save space.
