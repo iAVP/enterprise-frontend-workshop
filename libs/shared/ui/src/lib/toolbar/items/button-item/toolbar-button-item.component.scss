@@ -3,6 +3,25 @@
 	min-width: 0;
 }
 
+:host ::ng-deep button {
+	min-height: 2.5rem;
+	height: 2.5rem;
+	padding: 0 0.75rem;
+	border-radius: 0.4rem !important;
+	border: 1px solid var(--mat-sys-outline) !important;
+	background: var(--mat-sys-surface) !important;
+	color: var(--mat-sys-on-surface) !important;
+	box-shadow: none !important;
+	font: inherit;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+:host ::ng-deep button i {
+	font-size: 1.125rem;
+	line-height: 1;
+}
 
 @media (max-width: 600px) {
 	span {
