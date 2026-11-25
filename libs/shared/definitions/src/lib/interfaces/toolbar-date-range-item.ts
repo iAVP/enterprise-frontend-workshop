@@ -15,6 +15,6 @@ export interface ToolbarDateRangeItem extends ToolbarSectionItemBase {
 		/** Label for the end date field. */
 		to: string;
 	};
-	/** Action invoked when the date range changes. */
-	callback: (value: ToolbarDateRangeValue) => void;
+	/** Optional action invoked when the date range changes. */
+	callback?: (value: ToolbarDateRangeValue) => void;
 }
