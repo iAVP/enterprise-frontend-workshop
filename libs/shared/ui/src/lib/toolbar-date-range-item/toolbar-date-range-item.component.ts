@@ -20,7 +20,7 @@ import type {
 	styleUrl: './toolbar-date-range-item.component.scss',
 })
 export class ToolbarDateRangeItemComponent {
-	/** Date range item configuration and callback. */
+	/** Date range item configuration and optional callback. */
 	readonly item = input.required<ToolbarDateRangeItem>();
 
 	/** Currently selected start date. */
@@ -51,13 +51,19 @@ export class ToolbarDateRangeItemComponent {
 		this.emitDateRange();
 	}
 
-	/** Emits the currently selected date range. */
+	/** Emits the selected date range or shows the implementation placeholder. */
 	protected emitDateRange(): void {
 		const value: ToolbarDateRangeValue = {
 			from: this.from(),
 			to: this.to(),
 		};
+		const callback = this.item().callback;
 
-		this.item().callback(value);
+		if (callback) {
+			callback(value);
+			return;
+		}
+
+		window.alert('Not yet implemented');
 	}
 }
