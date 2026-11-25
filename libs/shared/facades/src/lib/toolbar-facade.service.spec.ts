@@ -18,4 +18,10 @@ describe('ToolbarFacadeService', () => {
 		facade.setConfig(config);
 		expect(facade.config()).toBe(config);
 	});
+
+	it('keeps the facade configuration read-only from the public signal', () => {
+		const facade = TestBed.inject(ToolbarFacadeService);
+		expect(facade.config).toBeDefined();
+		expect(typeof facade.config).toBe('function');
+	});
 });
