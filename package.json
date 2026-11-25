@@ -65,6 +65,7 @@
     "@ngx-translate/http-loader": "^18.1.0",
     "exceljs": "^4.4.0",
     "rxjs": "~7.8.0",
-    "remixicon": "^4.6.0"
+    "remixicon": "^4.6.0",
+    "material-icons": "^1.13.12"
   }
 }
