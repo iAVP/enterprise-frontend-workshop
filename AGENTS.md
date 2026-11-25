@@ -35,6 +35,14 @@ These rules are mandatory for every contribution. Apply them to new code and whe
 - Use SCSS for component styles.
 - Use the `inject()` function for Angular dependency injection. Do not inject dependencies through constructors; constructor injection is supported by Angular but is not used in this repository.
 
+## Icon libraries
+
+- The project uses both the **Material Icons font** and **Remix Icon**.
+- Use icon assets from these libraries rather than text glyphs, emoji, or unregistered icon names.
+- Icons must be rendered using the established integration for the selected library; do not assume that adding an icon name to configuration automatically makes it available.
+- Keep icon usage consistent with the UI context and use the icon library already selected by the component or configuration unless the task explicitly requires otherwise.
+
+
 ## Paths and feature layout
 
 - Avoid duplicated semantic path segments. In particular, never create paths such as `libs/personal-finance/pages/src/lib/pages`.
