@@ -31,7 +31,8 @@ describe('ToolbarFacadeService', () => {
 		const section = { items: [] };
 		facade.addSection('left', section);
 		expect(facade.config().left?.at(-1)).toBe(section);
-		facade.removeSection('left', facade.config().left!.length - 1);
+		const leftSections = facade.config().left ?? [];
+		facade.removeSection('left', leftSections.length - 1);
 		expect(facade.config().left?.at(-1)).not.toBe(section);
 	});
 
