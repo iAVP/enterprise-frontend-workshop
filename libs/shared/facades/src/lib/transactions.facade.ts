@@ -3,7 +3,7 @@ import type { Transaction } from '@workshop:def:interfaces';
 import { TransactionType } from '@workshop:def:enums';
 import { DEMO_TRANSACTIONS } from '@workshop:mock';
 import { IndexedDbService } from '@workshop:dal';
-import { CONSTANTS } from '@workshop:def:consts';
+import { CONSTANTS, DASHBOARD_TOOLBAR_CONFIG } from '@workshop:def:consts';
 
 /**
  * Coordinates transaction state and IndexedDB persistence for Personal Finance.
@@ -13,6 +13,7 @@ import { CONSTANTS } from '@workshop:def:consts';
 export class TransactionsFacade {
   private readonly storage = inject(IndexedDbService);
   private readonly state = signal<Transaction[]>(DEMO_TRANSACTIONS);
+  private readonly toolbarState = signal(DASHBOARD_TOOLBAR_CONFIG);
   private readonly initialized = signal(false);
   private readonly initialization = this.loadTransactions();
 
@@ -28,6 +29,9 @@ export class TransactionsFacade {
 
   /** Exposes the current transaction collection as a read-only signal. */
   readonly transactions = this.state.asReadonly();
+
+  /** Exposes the Dashboard Toolbar configuration as a read-only signal. */
+  readonly toolbarConfig = this.toolbarState.asReadonly();
 
   /** Calculates the current balance from the signed transaction type. */
   readonly balance = computed(() =>
