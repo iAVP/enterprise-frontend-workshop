@@ -12,7 +12,7 @@ export const DASHBOARD_TOOLBAR_CONFIG: ToolbarConfig = {
 					type: TOOLBAR_ITEM_TYPE.button,
 					style: TOOLBAR_BUTTON_STYLE.outlined,
 					text: 'Mark Transactions',
-					icon: 'ri-check-list',
+					icon: 'ri-list-check',
 				},
 				{
 					id: 'income',
