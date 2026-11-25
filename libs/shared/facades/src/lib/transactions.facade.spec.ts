@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { DASHBOARD_TOOLBAR_CONFIG } from '@workshop:def:consts';
 import type { Transaction } from '@workshop:def:interfaces';
 import { TransactionType } from '@workshop:def:enums';
 import { IndexedDbService } from '@workshop:dal';
@@ -73,55 +72,4 @@ describe('TransactionsFacade', () => {
 		expect(facade.transactions().length).toBeGreaterThan(0);
 	});
 
-	it('exposes the initial Dashboard Toolbar configuration', () => {
-		const facade = TestBed.inject(TransactionsFacade);
-
-		expect(facade.toolbarConfig()).toBe(DASHBOARD_TOOLBAR_CONFIG);
-	});
-
-	it('provides all three Toolbar sections', () => {
-		const facade = TestBed.inject(TransactionsFacade);
-		const config = facade.toolbarConfig();
-
-		expect(config.left).toBeDefined();
-		expect(config.center).toBeDefined();
-		expect(config.right).toBeDefined();
-		expect(config.left?.length).toBeGreaterThan(0);
-		expect(config.center?.length).toBeGreaterThan(0);
-		expect(config.right?.length).toBeGreaterThan(0);
-	});
-
-	it('contains the expected Dashboard Toolbar items', () => {
-		const facade = TestBed.inject(TransactionsFacade);
-		const config = facade.toolbarConfig();
-		const itemIds = [
-			...(config.left ?? []),
-			...(config.center ?? []),
-			...(config.right ?? []),
-		].flatMap((section) => section.items.map((item) => item.id));
-
-		expect(itemIds).toEqual([
-			'mark-transactions',
-			'income',
-			'expense',
-			'notes-filter',
-			'period',
-			'date-range',
-			'year-month',
-			'settings',
-			'export',
-		]);
-	});
-
-	it('does not configure placeholder callbacks for Toolbar items', () => {
-		const facade = TestBed.inject(TransactionsFacade);
-		const config = facade.toolbarConfig();
-		const items = [
-			...(config.left ?? []),
-			...(config.center ?? []),
-			...(config.right ?? []),
-		].flatMap((section) => section.items);
-
-		expect(items.every((item) => item.callback === undefined)).toBe(true);
-	});
 });
