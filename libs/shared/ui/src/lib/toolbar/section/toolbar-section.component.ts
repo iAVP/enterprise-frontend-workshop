@@ -2,11 +2,11 @@ import { Component, computed, input } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { TOOLBAR_ITEM_TYPE } from '@workshop:def:consts';
 import type { ToolbarSectionItem } from '@workshop:def:types';
-import { ToolbarButtonItemComponent } from './items/button-item';
-import { ToolbarDateRangeItemComponent } from './items/date-range-item';
-import { ToolbarDropdownItemComponent } from './items/dropdown-item';
-import { ToolbarTextItemComponent } from './items/text-item';
-import { ToolbarYearMonthItemComponent } from './items/year-month-item';
+import { ToolbarButtonItemComponent } from '../items/button-item';
+import { ToolbarDateRangeItemComponent } from '../items/date-range-item';
+import { ToolbarDropdownItemComponent } from '../items/dropdown-item';
+import { ToolbarTextItemComponent } from '../items/text-item';
+import { ToolbarYearMonthItemComponent } from '../items/year-month-item';
 import type { ToolbarSection } from '@workshop:def:interfaces';
 /** Renders a configurable Toolbar section and its dynamic items. */
 @Component({
