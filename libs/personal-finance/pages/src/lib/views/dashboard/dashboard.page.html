@@ -10,7 +10,7 @@
 			<button type="button" (click)="onLogout()">Logout</button>
 		</nav>
 	</header>
-
+	<ui-toolbar [config]="facade.toolbarConfig()" />
 	<section class="summary" aria-label="Financial summary">
 		<article>
 			<h2>Current balance</h2>
@@ -25,7 +25,6 @@
 			<p>{{ facade.totalExpense() | currency: currency : 'symbol' : currencyFormat : currencyLocale }}</p>
 		</article>
 	</section>
-
 	<section class="transactions">
 		<h2>Transactions</h2>
 		@if (facade.transactions().length) {
