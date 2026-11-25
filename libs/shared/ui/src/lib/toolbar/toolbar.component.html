@@ -1,1 +1,19 @@
-<div class="toolbar"></div>
+<div class="toolbar">
+	<div class="toolbar-left">
+		@for (section of config().left ?? []; track $index) {
+			<ui-toolbar-section [section]="section" />
+		}
+	</div>
+
+	<div class="toolbar-center">
+		@for (section of config().center ?? []; track $index) {
+			<ui-toolbar-section [section]="section" />
+		}
+	</div>
+
+	<div class="toolbar-right">
+		@for (section of config().right ?? []; track $index) {
+			<ui-toolbar-section [section]="section" />
+		}
+	</div>
+</div>
