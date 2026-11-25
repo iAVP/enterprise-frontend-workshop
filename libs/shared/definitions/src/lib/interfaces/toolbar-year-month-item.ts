@@ -20,6 +20,6 @@ export interface ToolbarYearMonthItem extends ToolbarSectionItemBase {
 		/** Label for the month field. */
 		month: string;
 	};
-	/** Action invoked when the year or month changes. */
-	callback: (value: ToolbarYearMonthValue) => void;
+	/** Optional action invoked when the year or month changes. */
+	callback?: (value: ToolbarYearMonthValue) => void;
 }
