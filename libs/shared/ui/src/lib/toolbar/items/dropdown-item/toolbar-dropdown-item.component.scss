@@ -12,3 +12,39 @@
 :host ::ng-deep .mat-mdc-form-field-subscript-wrapper {
 	display: none;
 }
+
+:host ::ng-deep .mat-mdc-form-field {
+	min-height: 2.5rem;
+	height: 2.5rem;
+	font: inherit;
+}
+
+:host ::ng-deep .mat-mdc-text-field-wrapper {
+	height: 2.5rem;
+	padding: 0 0.75rem;
+	border-radius: 0.4rem !important;
+	background: var(--mat-sys-surface);
+}
+
+:host ::ng-deep .mat-mdc-form-field-flex {
+	height: 2.5rem;
+	align-items: center;
+}
+
+:host ::ng-deep .mat-mdc-form-field-infix {
+	min-height: 2.5rem;
+	padding: 0;
+	display: flex;
+	align-items: center;
+}
+
+:host ::ng-deep .mat-mdc-select-value,
+:host ::ng-deep .mat-mdc-select-arrow-wrapper {
+	color: var(--mat-sys-on-surface);
+}
+
+:host ::ng-deep .mdc-notched-outline__leading,
+:host ::ng-deep .mdc-notched-outline__notch,
+:host ::ng-deep .mdc-notched-outline__trailing {
+	border-color: var(--mat-sys-outline) !important;
+}
