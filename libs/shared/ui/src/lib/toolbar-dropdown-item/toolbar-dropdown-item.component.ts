@@ -12,11 +12,18 @@ import type { ToolbarDropdownItem } from '@workshop:def:interfaces';
 	styleUrl: './toolbar-dropdown-item.component.scss',
 })
 export class ToolbarDropdownItemComponent {
-	/** Dropdown configuration and selection callback. */
+	/** Dropdown configuration and optional selection callback. */
 	readonly item = input.required<ToolbarDropdownItem>();
 
-	/** Emits the selected option value. */
+	/** Emits the selected option or shows the implementation placeholder. */
 	protected onSelectionChange(value: string | number): void {
-		this.item().callback(value);
+		const callback = this.item().callback;
+
+		if (callback) {
+			callback(value);
+			return;
+		}
+
+		window.alert('Not yet implemented');
 	}
 }
