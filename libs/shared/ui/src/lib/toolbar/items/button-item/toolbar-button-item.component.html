@@ -1,26 +1,26 @@
 @switch (item().style) {
 	@case ('outlined') {
-		<button mat-stroked-button type="button" (click)="onClick()">
+		<button mat-stroked-button type="button" [attr.aria-label]="item().text" [attr.title]="item().text" (click)="onClick()">
 			<ng-container *ngTemplateOutlet="buttonContent" />
 		</button>
 	}
 	@case ('filled') {
-		<button mat-flat-button type="button" (click)="onClick()">
+		<button mat-flat-button type="button" [attr.aria-label]="item().text" [attr.title]="item().text" (click)="onClick()">
 			<ng-container *ngTemplateOutlet="buttonContent" />
 		</button>
 	}
 	@case ('elevated') {
-		<button mat-elevated-button type="button" (click)="onClick()">
+		<button mat-elevated-button type="button" [attr.aria-label]="item().text" [attr.title]="item().text" (click)="onClick()">
 			<ng-container *ngTemplateOutlet="buttonContent" />
 		</button>
 	}
 	@case ('tonal') {
-		<button mat-button class="toolbar-button--tonal" type="button" (click)="onClick()">
+		<button mat-button class="toolbar-button--tonal" type="button" [attr.aria-label]="item().text" [attr.title]="item().text" (click)="onClick()">
 			<ng-container *ngTemplateOutlet="buttonContent" />
 		</button>
 	}
 	@default {
-		<button mat-button type="button" (click)="onClick()">
+		<button mat-button type="button" [attr.aria-label]="item().text" [attr.title]="item().text" (click)="onClick()">
 			<ng-container *ngTemplateOutlet="buttonContent" />
 		</button>
 	}
@@ -28,7 +28,7 @@
 
 <ng-template #buttonContent>
 	@if (item().icon) {
-		<mat-icon aria-hidden="true">{{ item().icon }}</mat-icon>
+		<i [class]="item().icon" aria-hidden="true"></i>
 	}
 	@if (item().text) {
 		<span>{{ item().text }}</span>
