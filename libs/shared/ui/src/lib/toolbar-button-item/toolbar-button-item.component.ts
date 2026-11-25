@@ -13,11 +13,18 @@ import type { ToolbarButtonItem } from '@workshop:def:interfaces';
 	styleUrl: './toolbar-button-item.component.scss',
 })
 export class ToolbarButtonItemComponent {
-	/** Button configuration including presentation and callback. */
+	/** Button configuration including presentation and optional callback. */
 	readonly item = input.required<ToolbarButtonItem>();
 
-	/** Executes the configured action. */
+	/** Executes the configured action or shows the implementation placeholder. */
 	protected onClick(): void {
-		this.item().callback();
+		const callback = this.item().callback;
+
+		if (callback) {
+			callback();
+			return;
+		}
+
+		window.alert('Not yet implemented');
 	}
 }
