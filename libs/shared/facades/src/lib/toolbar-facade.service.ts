@@ -115,10 +115,7 @@ export class ToolbarFacadeService {
 		this.state.update((config) => {
 			const sourceSections = [...(config[sourcePosition] ?? [])];
 			const targetSections = sourcePosition === targetPosition ? sourceSections : [...(config[targetPosition] ?? [])];
-			if (
-				sourceSectionIndex < 0 || sourceSectionIndex >= sourceSections.length ||
-				targetSectionIndex < 0 || targetSectionIndex >= targetSections.length
-			) {
+			if (!this.hasValidSectionIndices(sourceSectionIndex, targetSectionIndex, sourceSections, targetSections)) {
 				return config;
 			}
 			const sourceSection = sourceSections[sourceSectionIndex];
@@ -144,4 +141,9 @@ export class ToolbarFacadeService {
 				: { ...config, [sourcePosition]: sourceSections, [targetPosition]: targetSections };
 		});
 	}
+	/** Checks whether both section indexes exist. */
+	private hasValidSectionIndices(sourceIndex: number, targetIndex: number, sourceSections: ToolbarSection[], targetSections: ToolbarSection[]): boolean {
+		return sourceIndex >= 0 && sourceIndex < sourceSections.length && targetIndex >= 0 && targetIndex < targetSections.length;
+	}
+
 }
