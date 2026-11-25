@@ -37,10 +37,12 @@ These rules are mandatory for every contribution. Apply them to new code and whe
 
 ## Icon libraries
 
-- The project uses both the **Material Icons font** and **Remix Icon**.
-- Use icon assets from these libraries rather than text glyphs, emoji, or unregistered icon names.
+
+- **Material Icons font is the primary icon library** for the project.
+- Use **Remix Icon** only when a required icon is not available in Material Icons font.
+- Use icons from these libraries rather than text glyphs, emoji, or unregistered icon names.
 - Icons must be rendered using the established integration for the selected library; do not assume that adding an icon name to configuration automatically makes it available.
-- Keep icon usage consistent with the UI context and use the icon library already selected by the component or configuration unless the task explicitly requires otherwise.
+- Keep icon usage consistent with the UI context and prefer Material Icons font unless the task requires an icon that it does not provide.
 
 
 ## Paths and feature layout
