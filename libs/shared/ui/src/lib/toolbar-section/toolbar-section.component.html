@@ -3,5 +3,23 @@
 	[ngClass]="section().class"
 	[style.justify-content]="justifyContent()"
 >
-	<ng-content />
+	@for (item of section().items; track item.id) {
+		@switch (item.type) {
+			@case (itemType.button) {
+				<ui-toolbar-button-item [item]="getItem(item)" />
+			}
+			@case (itemType.dropdown) {
+				<ui-toolbar-dropdown-item [item]="getItem(item)" />
+			}
+			@case (itemType.dateRange) {
+				<ui-toolbar-date-range-item [item]="getItem(item)" />
+			}
+			@case (itemType.yearMonth) {
+				<ui-toolbar-year-month-item [item]="getItem(item)" />
+			}
+			@case (itemType.text) {
+				<ui-toolbar-text-item [item]="getItem(item)" />
+			}
+		}
+	}
 </div>
