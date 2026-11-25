@@ -5,7 +5,7 @@ import { COMMON } from '@workshop:common';
 import { ROUTE } from '@workshop:def:consts';
 import { TransactionType } from '@workshop:def:enums';
 import type { Transaction } from '@workshop:def:interfaces';
-import { AuthFacadeService, TransactionsFacade } from '@workshop:facades';
+import { AuthFacadeService, ToolbarFacadeService, TransactionsFacade } from '@workshop:facades';
 import { ModalDialogService, ToolbarComponent } from '@workshop:ui';
 import { TransactionFormComponent } from '../transaction-form/transaction-form.component';
 
@@ -14,6 +14,7 @@ import { TransactionFormComponent } from '../transaction-form/transaction-form.c
 	selector: 'app-dashboard-page',
 	standalone: true,
 	imports: [CurrencyPipe, DatePipe, ToolbarComponent],
+	providers: [ToolbarFacadeService],
 	templateUrl: './dashboard.page.html',
 	styleUrl: './dashboard.page.scss',
 })
@@ -21,6 +22,8 @@ export class DashboardPage {
 	protected readonly TransactionType = TransactionType;
 	/** Provides shared transaction state to the dashboard template. */
 	protected readonly facade = inject(TransactionsFacade);
+	/** Provides Dashboard Toolbar state scoped to this page instance. */
+	protected readonly toolbarFacade = inject(ToolbarFacadeService);
 	/** Exposes the configured currency to the dashboard template. */
 	protected readonly currency = COMMON.DEFAULT_CURRENCY;
 	/** Exposes the configured currency format to the dashboard template. */
