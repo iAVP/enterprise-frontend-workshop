@@ -12,6 +12,6 @@ export interface ToolbarButtonItem extends ToolbarSectionItemBase {
 	text?: string;
 	/** Optional icon name. */
 	icon?: string;
-	/** Action invoked when the button is clicked. */
-	callback: () => void;
+	/** Optional action invoked when the button is clicked. */
+	callback?: () => void;
 }
