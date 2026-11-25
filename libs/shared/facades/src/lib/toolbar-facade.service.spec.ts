@@ -76,4 +76,47 @@ describe('ToolbarFacadeService', () => {
 		expect(facade.config().right?.[0].items).toEqual([]);
 		expect(facade.config().right?.some((section) => section.items.length > 0)).toBe(false);
 	});
+	it('provides all three Toolbar sections', () => {
+		const facade = TestBed.inject(ToolbarFacadeService);
+		const config = facade.config();
+		 expect(config.left).toBeDefined();
+		 expect(config.center).toBeDefined();
+		 expect(config.right).toBeDefined();
+		 expect(config.left?.length).toBeGreaterThan(0);
+		 expect(config.center?.length).toBeGreaterThan(0);
+		 expect(config.right?.length).toBeGreaterThan(0);
+	});
+
+	it('contains the expected Dashboard Toolbar items', () => {
+		const facade = TestBed.inject(ToolbarFacadeService);
+		const config = facade.config();
+		const itemIds = [
+			...(config.left ?? []),
+			...(config.center ?? []),
+			...(config.right ?? []),
+		].flatMap((section) => section.items.map((item) => item.id));
+		 expect(itemIds).toEqual([
+			'mark-transactions',
+			'income',
+			'expense',
+			'notes-filter',
+			'period',
+			'date-range',
+			'year-month',
+			'settings',
+			'export',
+		]);
+	});
+
+	it('does not configure placeholder callbacks for Toolbar items', () => {
+		const facade = TestBed.inject(ToolbarFacadeService);
+		const config = facade.config();
+		const items = [
+			...(config.left ?? []),
+			...(config.center ?? []),
+			...(config.right ?? []),
+		].flatMap((section) => section.items);
+		 expect(items.every((item) => item.callback === undefined)).toBe(true);
+	});
+
 });
