@@ -15,7 +15,7 @@ import type {
 	styleUrl: './toolbar-year-month-item.component.scss',
 })
 export class ToolbarYearMonthItemComponent {
-	/** Year/month configuration and selection callback. */
+	/** Year/month configuration and optional selection callback. */
 	readonly item = input.required<ToolbarYearMonthItem>();
 
 	/** Currently selected calendar year. */
@@ -46,13 +46,19 @@ export class ToolbarYearMonthItemComponent {
 		this.emitSelection();
 	}
 
-	/** Emits the currently selected year and month. */
+	/** Emits the selected year/month or shows the implementation placeholder. */
 	protected emitSelection(): void {
 		const value: ToolbarYearMonthValue = {
 			year: this.year(),
 			month: this.month(),
 		};
+		const callback = this.item().callback;
 
-		this.item().callback(value);
+		if (callback) {
+			callback(value);
+			return;
+		}
+
+		window.alert('Not yet implemented');
 	}
 }
