@@ -11,6 +11,6 @@ import { ToolbarSectionComponent } from '../toolbar-section';
 	styleUrl: './toolbar.component.scss',
 })
 export class ToolbarComponent {
-	/** Toolbar configuration containing Left, Center, and Right sections. */
+	/** Reactive Toolbar configuration containing Left, Center, and Right sections. */
 	readonly config = input.required<ToolbarConfig>();
 }
