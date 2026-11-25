@@ -113,7 +113,7 @@ describe('TransactionsFacade', () => {
 		]);
 	});
 
-	it('provides callbacks for all interactive Toolbar items', () => {
+	it('does not configure placeholder callbacks for Toolbar items', () => {
 		const facade = TestBed.inject(TransactionsFacade);
 		const config = facade.toolbarConfig();
 		const items = [
@@ -122,7 +122,6 @@ describe('TransactionsFacade', () => {
 			...(config.right ?? []),
 		].flatMap((section) => section.items);
 
-		expect(items.filter((item) => 'callback' in item).length).toBeGreaterThan(0);
-		expect(items.filter((item) => 'callback' in item).every((item) => typeof item.callback === 'function')).toBe(true);
+		expect(items.every((item) => item.callback === undefined)).toBe(true);
 	});
 });
