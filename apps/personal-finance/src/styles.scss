@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
 @use '../../../common/styles/themes';
+@use '../../../common/styles/common';
 
 @include mat.core();
 
